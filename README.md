@@ -1,7 +1,5 @@
 # Fate of All Fools
-["Fate of All Fools"](http://destinydb.com/item/3490486524/fate-of-all-fools)?
-
-[TamperMonkey](https://tampermonkey.net/)-based minor enhancements to the visual presentation of [Destiny Item Manager](https://www.destinyitemmanager.com/) for Destiny 2. You should totally use DIM, it's awesome!
+["Fate of All Fools"](http://destinydb.com/item/3490486524/fate-of-all-fools)? [TamperMonkey](https://tampermonkey.net/)-based minor enhancements to the visual presentation of [Destiny Item Manager](https://www.destinyitemmanager.com/) for Destiny 2. You should totally use DIM, it's awesome!
 
 # Before and After
 
