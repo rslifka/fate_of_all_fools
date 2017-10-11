@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2017 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fateofallfools" horiz-adv-x="1000" >
+<font-face font-family="fateofallfools" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="comment" unicode="&#xe800;" d="M1000 350q0-97-67-179t-182-130-251-48q-39 0-81 4-110-97-257-135-27-8-63-12-10-1-17 5t-10 16v1q-2 2 0 6t1 6 2 5l4 5t4 5 4 5q4 5 17 19t20 22 17 22 18 28 15 33 15 42q-88 50-138 123t-51 157q0 73 40 139t106 114 160 76 194 28q136 0 251-48t182-130 67-179z" horiz-adv-x="1000" />
+
+<glyph glyph-name="thumbs-up-alt" unicode="&#xf164;" d="M143 100q0 15-11 25t-25 11q-15 0-25-11t-11-25q0-15 11-25t25-11q15 0 25 11t11 25z m89 286v-357q0-15-10-25t-26-11h-160q-15 0-25 11t-11 25v357q0 14 11 25t25 10h160q15 0 26-10t10-25z m661 0q0-48-31-83 9-25 9-43 1-42-24-76 9-31 0-66-9-31-31-52 5-62-27-101-36-43-110-44h-72q-37 0-80 9t-68 16-67 22q-69 24-88 25-15 0-25 11t-11 25v357q0 14 10 25t24 11q13 1 42 33t57 67q38 49 56 67 10 10 17 27t10 27 8 34q4 22 7 34t11 29 19 28q10 11 25 11 25 0 46-6t33-15 22-22 14-25 7-28 2-25 1-22q0-21-6-43t-10-33-16-31q-1-4-5-10t-6-13-5-13h155q43 0 75-32t32-75z" horiz-adv-x="928.6" />
+</font>
+</defs>
+</svg>
