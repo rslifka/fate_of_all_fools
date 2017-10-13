@@ -1,3 +1,5 @@
 
-.slif-comment:before { content: '\e800'; } /* '' */
-.slif-thumbs-up-alt:before { content: '\f164'; } /* '' */
+.foaf-pvp:before { content: '\e800'; } /* '' */
+.foaf-help:before { content: '\f128'; } /* '' */
+.foaf-thumbs-down:before { content: '\f165'; } /* '' */
+.foaf-pve:before { content: '\f1ae'; } /* '' */
