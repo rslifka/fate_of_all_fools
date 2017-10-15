@@ -2,11 +2,15 @@
 [TamperMonkey](https://tampermonkey.net/)-based minor enhancements to the visual presentation of [Destiny Item Manager](https://www.destinyitemmanager.com/) for Destiny 2. You should totally use DIM, it's awesome!
 
 # How It Works
-`FOAF` applies different visual styling to DIM using a TamperMonkey script that pulls in some custom CSS. Additionally it periodically downloads your personal weapon assessments (stored on Google Docs) and decorates weapons with that information.
+`FOAF` applies different visual styling to DIM using a TamperMonkey script that pulls in some custom CSS with a bit of its own JavaScript mixed in for things I couldn't do via styling. Additionally it periodically downloads your personal weapon assessments and decorates weapons with that information.
+
+# Before and After
+(icons not final)
+![Fate Of All Fools Before & After](https://rslifka.github.io/fate_of_all_fools/img/before-after.jpg)
 
 # Installation and Configuration
 
-1. Install [TamperMonkey](https://tampermonkey.net/). It may work with other UserScript extensions though I haven't tried (and won't! ¯\\_(ツ)_/¯ )
+1. Install [TamperMonkey](https://tampermonkey.net/). It may work with other UserScript extensions though I haven't tried, and won't, but you're welcome to! ¯\\_(ツ)_/¯ )
 1. FOAF is hosted over on OpenUserJS; [one-click install](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization) from there.
 
 At this point you're good to go! The only trouble that you'll be look at my weapon assessments and not your own :)
@@ -18,7 +22,7 @@ At this point you're good to go! The only trouble that you'll be look at my weap
 1. For each tab, generate a TSV link by choosing `Tab-seperated values` and copying the link Google generates.
 1. Click on the TamperMonkey extension icon in your browser.
 1. Click on the FOAF script.
-1. Replace the three long Google URLs with the three URLs to your Google Sheet (one for each weapon category).
+1. Replace the three Google URLs with the three URLs to your Google Sheet (one for each weapon category).
 
 # Why FOAF?
 I've used DIM for years and find it indispensable. However, there are a few nits I've wanted to fix from styling to information density; some affecting the UI more than others. I've also wanted to add workflow-specific features that are unique to the way I use DIM. These changes range from slight preferences to how I prefer to organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core.
@@ -28,9 +32,6 @@ For example:
 * Let's say I get a drop I'm not a fan of (e.g. `Bad News`). I break it down. Another `Bad News` drops a month later. Well rather than have to drop in to the EDZ and shoot Fallen and Cabal and compare it to other weapons, I'd kind of just want to know if I previously did that.
 * With Destiny 2's static weapon drops, it's far easily to have a tidy vault. [I've been tracking drops](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pubhtml) and capturing my ratings. I'd like these to make their way back in to DIM.
 * #realtalk - ["Fate of All Fools"](http://destinydb.com/item/3490486524/fate-of-all-fools) is just a great weapon/perk name and I'd love an excuse to use it :)
-
-# Before and After
-(screenshot here)
 
 # Features
 
