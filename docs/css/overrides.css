@@ -63,3 +63,11 @@ body,
   background-repeat: no-repeat !important;
   border: 2px solid rgba(221,221,221,0.7) !important;
 }
+
+/*
+  Swap the orientation of Kinetics to make them all uniform and to leave room
+  for the top left icon set.
+*/
+div[drag-channel='Kinetic'] .item-img {
+  transform: scaleX(-1) !important;
+}
