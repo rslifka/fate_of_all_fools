@@ -4,7 +4,8 @@
 }
 
 /* We never use the collapse controls */
-.fa.collapse.fa-minus-square-o {
+.fa.collapse.fa-minus-square-o,
+.fa.collapse.fa-plus-square-o {
   display: none !important;
 }
 
