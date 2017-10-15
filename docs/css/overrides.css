@@ -10,7 +10,7 @@
 }
 
 /* We never switch subclasses */
-.store-row.items.ng-scope :first {
+.title + .store-row.items.ng-scope {
   display: none !important;
 }
 
