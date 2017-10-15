@@ -1,10 +1,13 @@
 // ==UserScript==
+// @author   Robert SLifka (github @rslifka)
 // @connect  docs.google.com
 // @connect  rslifka.github.io
+// @description Customization on top of the Destiny Item Manager
 // @grant    GM_addStyle
 // @grant    GM_log
 // @grant    GM_getResourceText
 // @grant    GM_xmlhttpRequest
+// @homepage https://github.com/rslifka/fate_of_all_fools
 // @match    https://*.destinyitemmanager.com/*
 // @name     FateOfAllFools - DIM Customization
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
