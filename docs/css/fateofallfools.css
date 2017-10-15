@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fateofallfools';
-  src: url('../font/fateofallfools.eot?89717789');
-  src: url('../font/fateofallfools.eot?89717789#iefix') format('embedded-opentype'),
-       url('../font/fateofallfools.woff2?89717789') format('woff2'),
-       url('../font/fateofallfools.woff?89717789') format('woff'),
-       url('../font/fateofallfools.ttf?89717789') format('truetype'),
-       url('../font/fateofallfools.svg?89717789#fateofallfools') format('svg');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?89717789');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?89717789#iefix') format('embedded-opentype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff2?89717789') format('woff2'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff?89717789') format('woff'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.ttf?89717789') format('truetype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?89717789#fateofallfools') format('svg');
   font-weight: normal;
   font-style: normal;
 }
