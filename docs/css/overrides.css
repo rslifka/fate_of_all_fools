@@ -71,3 +71,36 @@ body,
 div[drag-channel='Kinetic'] .item-img {
   transform: scaleX(-1) !important;
 }
+
+/* Icon colorings */
+.foaf-yes {
+  color: rgba(140,182,132,1);
+}
+.foaf-no {
+  color: rgba(156,61,52,1);
+}
+.foaf-unknown {
+  color: rgba(221,221,221,1);
+}
+.foaf-thumbs-down {
+  color:rgba(221,221,221,1);
+  font-size:13px;
+  top:1px;
+  left:2px;
+}
+.foaf-pve {
+  font-size:14px;
+  top:1px;
+  left:1px;
+}
+.foaf-pvp {
+  font-size:15px;
+  top:1px;
+  left:10px;
+}
+.foaf-help {
+  color:rgba(221,221,221,1);
+  font-size:15px;
+  top:1px;
+  left:-1px;
+}
