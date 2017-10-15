@@ -1,14 +1,14 @@
-// Remove all damage type elements from items (little colored notch on top left)
+/* Remove all damage type elements from items (little colored notch on top left) */
 .item-element {
   display: none !important;
 }
 
-// We never use the collapse controls
+/* We never use the collapse controls */
 .fa.collapse.fa-minus-square-o {
   display: none !important;
 }
 
-// We never switch subclasses
+/* We never switch subclasses */
 .store-row.items.ng-scope :first {
   display: none !important;
 }
