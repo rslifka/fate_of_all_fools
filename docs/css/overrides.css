@@ -9,10 +9,10 @@
   display: none !important;
 }
 
-/* We never switch subclasses */
+/* We never switch subclasses
 .title + .store-row.items.ng-scope {
   display: none !important;
-}
+} */
 
 /* Reset background color and font size for increased readability */
 .item-stat {
