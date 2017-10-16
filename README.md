@@ -11,26 +11,22 @@ For example:
 
 # Features
 
-### Additions
+## Additions
 * Display additional information derived from an external source of subjective weapon quality assessments (in this case, Google Sheets). This is the main reason I developed this UserScript. I wanted to be able to tell a few things at a glance when looking at my vault. FOAF supports linking to your own sheet so you can of course customize these rankings.
 
 (icons not final)
 ![Fate Of All Fools Icons](https://rslifka.github.io/fate_of_all_fools/img/icon-demo.jpg)
 
-### Reductions
-* **Remove subclass icons**: I've never once switched subclasses this way. OK, maybe once to see if it worked (it does!) but never enough to warrant having this displayed at all times.
-* **Remove collapse controls**: I never use these. Maybe once in a blue moon. Certainly a part of my workflow I can live without.
-
-### Tweaks / Relocations
+## Modifications
 * **Consistent, subdued background throughout**: No need for the contrast between toon inventory and vault; the grouping of items is enough.
 * **Improved display of power level**: Maybe it's because I'm forty now :) that the font for power level was too small and difficult to read. Slight increase to the font size and decrease (increase?) to the opacity to make it stand out more.
 * **Power level background indicates element**: The elemental damage type tags were another visual cue that seems excessive in a screen full of gear, so I've moved them back to the background of the power level.
 * **Flipped Kinetic weapon orientation**: Kinetic weapons now face the same direction as Energy and Power Weapons (bottom-left to top-right). This was so that the LL and any icons would not be on top of the weapon itself.
 * **Removed yellow border for mods**: This has been replaced with a `+M` after the power level of a weapon or piece of armor. The yellow border was too much visual distraction for this small bit of information, and overwhelming to look at a vault full of yellows. It's also hard to turn off the part of my brain that thinks this is a "fully leveled item" from Destiny 1 :)
 
-# Before and After
-(icons not final)
-![Fate Of All Fools Before & After](https://rslifka.github.io/fate_of_all_fools/img/before-after.jpg)
+## Removals
+* **Remove subclass icons**: I've never once switched subclasses this way. OK, maybe once to see if it worked (it does!) but never enough to warrant having this displayed at all times.
+* **Remove collapse controls**: I never use these. Maybe once in a blue moon. Certainly a part of my workflow I can live without.
 
 # Installation and Configuration
 
