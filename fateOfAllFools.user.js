@@ -40,6 +40,10 @@
     var PVE_WEAPON_STATUS = new Map();
     var PVP_WEAPON_STATUS = new Map();
 
+    function log(message) {
+      GM_log('[FOAF] ' + message);
+    }
+
     // We're replacing DIM's tags with our own
     function clearDIMTags() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
@@ -113,18 +117,18 @@
     }
 
     function refresh() {
-        GM_log('[FateOfAllFools] Refreshing...');
+        log('Refreshing...');
 
-        GM_log('[FateOfAllFools] Clearing DIM weapon item tags...');
+        log('Clearing DIM weapon item tags...');
         clearDIMTags();
-        GM_log('[FateOfAllFools] Adding mod indicator...');
+        log('Adding mod indicator...');
         addLegendaryModInfo();
-        GM_log('[FateOfAllFools] Adding icons to weapons...');
+        log('Adding icons to weapons...');
         iconifyWeapons();
-        GM_log('[FateOfAllFools] Resetting tooltips...');
+        log('Resetting tooltips...');
         populateTooltips();
 
-        GM_log('[FateOfAllFools] Done! Scheduling next refresh.');
+        log('Done! Scheduling next refresh.');
         setTimeout(refresh, 5000);
     }
 
@@ -145,26 +149,26 @@
             url: tsvUrl,
             context: deferredReady,
             onload: function(response) {
-                GM_log('[FateOfAllFools] Processing collection: "'+tsvUrl+'"');
+                log('Processing collection: "'+tsvUrl+'"');
 
                 var dataLines = response.responseText.split(/[\r\n]+/);
-                GM_log('[FateOfAllFools] Found ('+(dataLines.length-1)+') weapons');
+                log('Found ('+(dataLines.length-1)+') weapons');
 
                 // Skip the column headers line
                 // Name,Type,Archetype,Status,PvE,PvP,Comments
                 for (var i = 1; i < dataLines.length; i++) {
                     // We've split by TAB because no weapon names have tabs in them
                     var data = dataLines[i].split('\t');
-                    // GM_log(data);
+                    // log('Examining ' + data);
 
                     ALL_WEAPON_STATUS.set(data[0], data[3]);
-                    // GM_log('[FateOfAllFools] Weapon registered: '+data[0]+'; status='+data[3]);
+                    // log('Weapon registered: '+data[0]+'; status='+data[3]);
 
                     PVE_WEAPON_STATUS.set(data[0], data[4]);
-                    // GM_log('[FateOfAllFools] PvE weapon registered: '+data[0]+'; status='+data[4]);
+                    // log('PvE weapon registered: '+data[0]+'; status='+data[4]);
 
                     PVP_WEAPON_STATUS.set(data[0], data[5]);
-                    // GM_log('[FateOfAllFools] PvP weapon registered: '+data[0]+'; status='+data[5]);
+                    // log('PvP weapon registered: '+data[0]+'; status='+data[5]);
                 }
 
                 deferredReady.resolve();
@@ -173,18 +177,18 @@
         return deferredReady.promise();
     }
 
-    GM_log('[FateOfAllFools] Applying CSS...');
+    log('Applying CSS...');
     [
         'https://rslifka.github.io/fate_of_all_fools/css/fateofallfools.css',
         'https://rslifka.github.io/fate_of_all_fools/css/overrides.css',
         'https://unpkg.com/tippy.js@1.4.0/dist/tippy.css'
     ].forEach(function(cssPath) {
-        GM_log('[FateOfAllFools] Downloading style: '+cssPath);
+        log('Downloading style: '+cssPath);
         GM_xmlhttpRequest({
             method: 'GET',
             url: cssPath,
             onload: function(response) {
-                GM_log('[FateOfAllFools] Done! Installing...');
+                log('Done! Installing...');
                 GM_addStyle(response.responseText);
             }
         });
@@ -195,21 +199,21 @@
         is that you're updating this sheet on a much longer interval than you're dragging
         items around (which requires a periodic refresh to re-apply our styles).
     */
-    GM_log('[FateOfAllFools] Initializing data refresh timer...');
+    log('Initializing data refresh timer...');
     setInterval(function() {
         $.when(
             rankingsDownloaded(ITEM_DATA_TSVS[0]),
             rankingsDownloaded(ITEM_DATA_TSVS[1]),
             rankingsDownloaded(ITEM_DATA_TSVS[2])
         ).then(function() {
-            GM_log('[FateOfAllFools] Data refresh complete!');
+            log('Data refresh complete!');
         });
     }, 15000);
 
     /*
         Once the items appear, kick everything off!
     */
-    GM_log('[FateOfAllFools] Initialized, waiting for items to appear...');
+    log('Initialized, waiting for items to appear...');
     $.when(
         itemsAreLoaded(),
         rankingsDownloaded(ITEM_DATA_TSVS[0]),
