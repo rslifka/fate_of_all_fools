@@ -37,6 +37,7 @@
     */
 
     var ALL_WEAPON_STATUS = new Map();
+    var ALL_WEAPON_COMMENTS = new Map();
     var PVE_WEAPON_STATUS = new Map();
     var PVP_WEAPON_STATUS = new Map();
 
@@ -169,6 +170,9 @@
 
                     PVP_WEAPON_STATUS.set(data[0], data[5]);
                     // log('PvP weapon registered: '+data[0]+'; status='+data[5]);
+
+                    ALL_WEAPON_COMMENTS.set(data[0], data[6]);
+                    // log('Comments: '+data[0]+'; status='+data[6]);
                 }
 
                 deferredReady.resolve();
@@ -195,9 +199,14 @@
     });
 
     /*
-        Pull down new weapon data at a separate interval than the refresh timer. The idea
-        is that you're updating this sheet on a much longer interval than you're dragging
-        items around (which requires a periodic refresh to re-apply our styles).
+        Pull down new weapon data at a separate interval than the refresh timer.
+        The idea is that you're updating this sheet on a much longer interval
+        than you're dragging items around (which requires a periodic refresh to
+        re-apply our styles).
+
+        That being said, chances are when you do make an update, you'd like to
+        see the change sooner than later, so we'll use a time conducive to
+        interactivity.
     */
     log('Initializing data refresh timer...');
     setInterval(function() {
@@ -210,9 +219,6 @@
         });
     }, 15000);
 
-    /*
-        Once the items appear, kick everything off!
-    */
     log('Initialized, waiting for items to appear...');
     $.when(
         itemsAreLoaded(),
