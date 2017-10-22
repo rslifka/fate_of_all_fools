@@ -56,12 +56,18 @@ body,
 }
 
 /*
-  Uniform, translucent borders (ignoring the diamond subclass icons). Then,
-  make those translucent borders look nice.
+  Uniform, translucent borders.
 */
-.item-img:not(.diamond) {
-  background-repeat: no-repeat !important;
-  border: 2px solid rgba(221,221,221,0.7) !important;
+.item-img {
+  background-repeat: no-repeat;
+  border: 2px solid rgba(221,221,221,0.7);
+}
+
+/*
+  There's a lot going on. Let's make it clear what we're focused on.
+*/
+.item-img:hover {
+  border: 2px solid rgba(245,220,86,0.7);
 }
 
 /*
