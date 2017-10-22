@@ -1,15 +1,12 @@
 .wrapper {
   margin: 0 auto;
-  padding: 40px;
-  max-width: 800px;
 }
 
 .foaf-table {
-  margin: 0 0 40px 0;
-  width: 100%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  /* width: 100%; */
   display: table;
 }
+
 @media screen and (max-width: 580px) {
   .foaf-table {
     display: block;
@@ -27,12 +24,6 @@
   font-weight: 900;
   color: #ffffff;
   background: #ea6153;
-}
-.foaf-row.green {
-  background: #27ae60;
-}
-.foaf-row.blue {
-  background: #2980b9;
 }
 @media screen and (max-width: 580px) {
   .foaf-row {
