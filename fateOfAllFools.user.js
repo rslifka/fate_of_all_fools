@@ -1,6 +1,7 @@
 // ==UserScript==
-// @author   Robert SLifka (github @rslifka)
+// @author   Robert Slifka (github @rslifka)
 // @connect  docs.google.com
+// @connect  unpkg.com
 // @connect  rslifka.github.io
 // @description Customizations on top of the Destiny Item Manager
 // @grant    GM_addStyle
@@ -11,6 +12,7 @@
 // @match    https://*.destinyitemmanager.com/*
 // @name     FateOfAllFools - DIM Customization
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
+// @require  https://unpkg.com/tippy.js@1.4.0/dist/tippy.js
 // @run-at   document-start
 // @supportURL https://github.com/rslifka/fate_of_all_fools/issues
 // ==/UserScript==
@@ -74,36 +76,40 @@
 
                 var weaponName = $(this).attr('title');
                 var weaponMatched = false;
-                var $item_tag;
+                var $item_tag = $(this).children('.item-tag');
 
-                if (ALL_WEAPON_STATUS.has(weaponName)) {
-                    switch(ALL_WEAPON_STATUS.get(weaponName)) {
-                        case 'Junk':
-                            $item_tag = $(this).children('.item-tag');
-                            if ($item_tag.length === 0) {
-                                $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
-                            }
-                            break;
-                        case 'Keep':
-                        case 'Favourite':
-                            $item_tag = $(this).children('.item-tag');
-                            if ($item_tag.length === 0) {
-                                var tagClass = STATUS_CLASSES[PVE_WEAPON_STATUS.get(weaponName)];
-                                $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
-                                tagClass = STATUS_CLASSES[PVP_WEAPON_STATUS.get(weaponName)];
-                                $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
-                            }
-                            break;
-                    }
-                } else {
-                    // We're not sure what this weapon is so we're going to indicate unknown
-                    $item_tag = $(this).children('.item-tag');
-                    if ($item_tag.length === 0) {
-                        $(this).append($("<div>", {"class": "item-tag foaf-help"}));
-                    }
+                switch(ALL_WEAPON_STATUS.get(weaponName)) {
+                    case 'Junk':
+                        if ($item_tag.length === 0) {
+                            $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
+                        }
+                        break;
+                    case 'Keep':
+                    case 'Favourite':
+                        if ($item_tag.length === 0) {
+                            var tagClass = STATUS_CLASSES[PVE_WEAPON_STATUS.get(weaponName)];
+                            $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
+                            tagClass = STATUS_CLASSES[PVP_WEAPON_STATUS.get(weaponName)];
+                            $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
+                        }
+                        break;
+                    default:
+                        if ($item_tag.length === 0) {
+                            $(this).append($("<div>", {"class": "item-tag foaf-help"}));
+                        }
                 }
             });
         });
+    }
+
+    function populateTooltips() {
+        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
+            $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
+                $(this).addClass('tippy-tip');
+            });
+        });
+
+        tippy('.tippy-tip');
     }
 
     function refresh() {
@@ -115,6 +121,8 @@
         addLegendaryModInfo();
         GM_log('[FateOfAllFools] Adding icons to weapons...');
         iconifyWeapons();
+        GM_log('[FateOfAllFools] Resetting tooltips...');
+        populateTooltips();
 
         GM_log('[FateOfAllFools] Done! Scheduling next refresh.');
         setTimeout(refresh, 5000);
@@ -168,7 +176,8 @@
     GM_log('[FateOfAllFools] Applying CSS...');
     [
         'https://rslifka.github.io/fate_of_all_fools/css/fateofallfools.css',
-        'https://rslifka.github.io/fate_of_all_fools/css/overrides.css'
+        'https://rslifka.github.io/fate_of_all_fools/css/overrides.css',
+        'https://unpkg.com/tippy.js@1.4.0/dist/tippy.css'
     ].forEach(function(cssPath) {
         GM_log('[FateOfAllFools] Downloading style: '+cssPath);
         GM_xmlhttpRequest({
