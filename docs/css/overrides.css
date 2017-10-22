@@ -58,7 +58,8 @@ body,
 /*
   Uniform, translucent borders.
 */
-.item-img {
+.item-img,
+.item-img.complete {
   background-repeat: no-repeat;
   border: 2px solid rgba(221,221,221,0.7);
 }
