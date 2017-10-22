@@ -5,12 +5,13 @@ I've used [Destiny Item Manager](https://www.destinyitemmanager.com/) for years 
 
 For example:
 
-* Let's say I get a drop I'm not a fan of (e.g. `Bad News`). I break it down. Another `Bad News` drops a month later. Well rather than have to drop in to the EDZ and shoot Cabal to re-assess the weapon, I'd prefer to know if I previously did that and what the results were.
 * With Destiny 2's static weapon drops, it's far easier to have a tidy vault. [I've been tracking drops](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pubhtml) and capturing my ratings. I'd like these to make their way back in to DIM without having to refer to a separate sheet.
-* #realtalk - ["Fate of All Fools"](http://destinydb.com/item/3490486524/fate-of-all-fools) is just a great weapon/perk name and I'd love an excuse to use it :)
+* Let's say I get a drop I'm not a fan of (e.g. `Bad News`). I break it down. Another `Bad News` drops a month later. Well rather than have to drop in to the EDZ and shoot Cabal to re-assess the weapon, I'd prefer to know if I previously did that, what the results were and any comments I had about it (e.g. `"So close! Give this one a go once hand cannons are buffed"`).
 
 # Features
-Display additional information derived from an external source of subjective weapon quality assessments (in this case, Google Sheets). This is the main reason I developed this UserScript. I wanted to be able to tell a few things at a glance when looking at my vault. FOAF supports linking to your own sheet so you can of course customize these rankings.
+
+## Additions
+* Displays additional information derived from an external source of subjective weapon quality assessments (in this case, Google Sheets). This is the main reason I developed this UserScript. I wanted to be able to tell a few things at a glance when looking at my vault. FOAF supports linking to your own sheet so you can of course customize these rankings.
 
 **(NOTE: Icons are placeholders, better ones coming very soon :)**
 ![Fate Of All Fools Icons](https://rslifka.github.io/fate_of_all_fools/img/icon-demo.jpg)
