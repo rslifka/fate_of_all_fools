@@ -68,7 +68,7 @@ body,
   There's a lot going on. Let's make it clear what we're focused on.
 */
 .item-img:hover {
-  border: 2px solid rgba(245,220,86,0.7);
+  border: 2px solid #f5dc56;
 }
 
 /*
