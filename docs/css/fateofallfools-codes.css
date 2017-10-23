@@ -1,5 +1,6 @@
 
-.foaf-pvp:before { content: '\e800'; } /* '' */
-.foaf-help:before { content: '\f128'; } /* '' */
+.foaf-pvp:before { content: '\e802'; } /* '' */
+.foaf-question-mark:before { content: '\f128'; } /* '' */
+.foaf-pve:before { content: '\f132'; } /* '' */
+.foaf-thumbs-up:before { content: '\f164'; } /* '' */
 .foaf-thumbs-down:before { content: '\f165'; } /* '' */
-.foaf-pve:before { content: '\f1ae'; } /* '' */
