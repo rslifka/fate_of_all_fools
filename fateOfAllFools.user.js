@@ -41,6 +41,12 @@
     var PVE_WEAPON_STATUS = new Map();
     var PVP_WEAPON_STATUS = new Map();
 
+    var STATUS_CLASSES = {
+        'Y': 'foaf-yes',
+        'N': 'foaf-no',
+        '?': 'foaf-unknown'
+    };
+
     function log(message) {
       GM_log('[FOAF] ' + message);
     }
@@ -70,12 +76,6 @@
     }
 
     function iconifyWeapons() {
-        var STATUS_CLASSES = {
-            'Y': 'foaf-yes',
-            'N': 'foaf-no',
-            '?': 'foaf-unknown'
-        };
-
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
             $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
 
@@ -100,21 +100,113 @@
                         break;
                     default:
                         if ($item_tag.length === 0) {
-                            $(this).append($("<div>", {"class": "item-tag foaf-help"}));
+                            $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
                         }
                 }
             });
         });
     }
 
+    var tippyInitialized = false;
     function populateTooltips() {
+        var PVE_STATUS_DESC = {
+            'Y': 'CRUSH the Red Legion!',
+            'N': 'Nope :(',
+            '?': 'Uncertain!'
+        };
+
+        var PVP_STATUS_DESC = {
+            'Y': 'FIGHT FOREVER GUARDIANN!',
+            'N': 'Nope :(',
+            '?': 'Uncertain!'
+        };
+
+        // TODO - For every one of these that doesn't already have the class, add it and call tippy directly?
+
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
             $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
                 $(this).addClass('tippy-tip');
             });
         });
 
-        tippy('.tippy-tip');
+        if (tippyInitialized) {
+          return;
+        }
+
+        tippyInitialized = true;
+        tippy('.tippy-tip', {
+            html: targetElement => {
+                var weaponName = $(targetElement).attr('title');
+
+                var knownWeapon = ALL_WEAPON_STATUS.get(weaponName) !== undefined;
+
+                var isCommented = ALL_WEAPON_COMMENTS.get(weaponName) !== '';
+                var comments = isCommented ? ALL_WEAPON_COMMENTS.get(weaponName) : '(no comments entered)';
+
+                var status = ALL_WEAPON_STATUS.get(weaponName);
+                var statusClass;
+                var displayDetails = false;
+                switch(status) {
+                    case 'Junk':
+                        statusClass = 'foaf-thumbs-down foaf-no';
+                        break;
+                    case 'Keep':
+                    case 'Favourite':
+                        statusClass = 'foaf-thumbs-up foaf-yes';
+                        displayDetails = true;
+                        break;
+                    default:
+                        statusClass = 'foaf-question-mark foaf-unknown';
+                        status = 'Unknown';
+                        comments = 'This weapon has not been rated';
+                }
+
+                return $(`
+<table style="min-width:350px;max-width:500px;">
+  <tr>
+    <td colspan="3">
+      <table style="width:100%">
+        <tr>
+          <td style="text-align:left;font-weight:bold;font-size:1.2em">
+            ${weaponName}
+          </td>
+          <td style="text-align:right;">
+            <span style="font-weight:bold;font-size:1.2em">${status}</span>
+            <div class="${statusClass}" style="font-size:1.2em;display:inline-block"/>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align:left;word-wrap:break-word;">
+            <span>${comments}</span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr style="${displayDetails ? '' : 'display:none'}">
+    <td class="foaf-pve ${STATUS_CLASSES[PVE_WEAPON_STATUS.get(weaponName)]}" style="text-align:center;font-size:1.5em">
+    </td>
+    <td style="text-align:left;white-space:nowrap;">
+      Good for PvE?
+    </td>
+    <td class="${STATUS_CLASSES[PVE_WEAPON_STATUS.get(weaponName)]}" style="text-align:left;font-weight:bold;width:100%;">
+      ${PVE_STATUS_DESC[PVE_WEAPON_STATUS.get(weaponName)]}
+    </td>
+  </tr>
+  <tr style="${displayDetails ? '' : 'display:none'}">
+    <td class="foaf-pvp ${STATUS_CLASSES[PVP_WEAPON_STATUS.get(weaponName)]}" style="text-align:center;font-size:1.2em">
+    </td>
+    <td style="text-align:left;white-space:nowrap;">
+      Good for PvP?
+    </td>
+    <td class="${STATUS_CLASSES[PVP_WEAPON_STATUS.get(weaponName)]}" style="text-align:left;font-weight:bold;width:100%;">
+      ${PVP_STATUS_DESC[PVP_WEAPON_STATUS.get(weaponName)]}
+    </td>
+  </tr>
+</table>
+                `).get(0);
+            }
+        });
     }
 
     function refresh() {
