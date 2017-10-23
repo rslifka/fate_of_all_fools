@@ -108,16 +108,16 @@ div[drag-channel='Kinetic'] .item-img {
   left:2px;
 }
 .foaf-pve {
-  font-size:14px;
+  font-size:13px;
   top:1px;
-  left:1px;
+  left:0px;
 }
 .foaf-pvp {
-  font-size:15px;
-  top:1px;
-  left:10px;
+  font-size:10px;
+  top:2px;
+  left:13px;
 }
-.foaf-help {
+.foaf-question-mark {
   color:rgba(221,221,221,1);
   font-size:15px;
   top:1px;
