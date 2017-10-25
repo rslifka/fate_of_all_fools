@@ -36,6 +36,34 @@
         **************************************************************
     */
 
+    const Status = {
+        FAVORITE: 'favorite',
+        JUNK: 'junk',
+        KEEP: 'keep',
+        UNKNOWN: 'unknown'
+    };
+
+    class Weapon {
+        constructor(name, status) {
+            this.name = name;
+            switch(status.toLowerCase()) {
+                case 'junk':
+                    this.status = Status.JUNK;
+                    break;
+                case 'favorite':
+                    this.status = Status.FAVORITE;
+                    break;
+                case 'keep':
+                    this.status = Status.KEEP;
+                    break;
+                default:
+                    this.status = Status.UNKNOWN;
+            }
+        }
+    }
+
+    const WEAPONS = new Map();
+
     var ALL_WEAPON_STATUS = new Map();
     var ALL_WEAPON_COMMENTS = new Map();
     var PVE_WEAPON_STATUS = new Map();
@@ -80,17 +108,23 @@
             $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
 
                 var weaponName = $(this).attr('title');
-                var weaponMatched = false;
                 var $item_tag = $(this).children('.item-tag');
 
-                switch(ALL_WEAPON_STATUS.get(weaponName)) {
-                    case 'Junk':
+                if (!WEAPONS.has(weaponName)) {
+                    if ($item_tag.length === 0) {
+                        $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
+                    }
+                    return;
+                }
+
+                switch(WEAPONS.get(weaponName).status) {
+                    case Status.JUNK:
                         if ($item_tag.length === 0) {
                             $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
                         }
                         break;
-                    case 'Keep':
-                    case 'Favourite':
+                    case Status.KEEP:
+                    case Status.FAVORITE:
                         if ($item_tag.length === 0) {
                             var tagClass = STATUS_CLASSES[PVE_WEAPON_STATUS.get(weaponName)];
                             $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
@@ -98,10 +132,6 @@
                             $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
                         }
                         break;
-                    default:
-                        if ($item_tag.length === 0) {
-                            $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
-                        }
                 }
             });
         });
@@ -265,6 +295,8 @@
 
                     ALL_WEAPON_COMMENTS.set(data[0], data[6]);
                     // log('Comments: '+data[0]+'; status='+data[6]);
+
+                    WEAPONS.set(data[0], new Weapon(data[0], data[3]));
                 }
 
                 deferredReady.resolve();
