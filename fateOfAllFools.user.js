@@ -43,8 +43,15 @@
         UNKNOWN: 'unknown'
     };
 
+    const Suitability = {
+        YES: 'y',
+        NO: 'n',
+        JUNK: 'x',
+        UNKNOWN: '?'
+    };
+
     class Weapon {
-        constructor(name, status) {
+        constructor(name, status, pveUseful, pvpUseful) {
             this.name = name;
             switch(status.toLowerCase()) {
                 case 'junk':
@@ -59,6 +66,32 @@
                 default:
                     this.status = Status.UNKNOWN;
             }
+            switch(pveUseful.toLowerCase()) {
+                case 'y':
+                    this.pveUseful = Suitability.YES;
+                    break;
+                case 'n':
+                    this.pveUseful = Suitability.NO;
+                    break;
+                case 'x':
+                    this.pveUseful = Suitability.JUNK;
+                    break;
+                default:
+                    this.pveUseful = Suitability.UNKNOWN;
+            }
+            switch(pvpUseful.toLowerCase()) {
+                case 'y':
+                    this.pvpUseful = Suitability.YES;
+                    break;
+                case 'n':
+                    this.pvpUseful = Suitability.NO;
+                    break;
+                case 'x':
+                    this.pvpUseful = Suitability.JUNK;
+                    break;
+                default:
+                    this.pvpUseful = Suitability.UNKNOWN;
+            }
         }
     }
 
@@ -69,11 +102,10 @@
     var PVE_WEAPON_STATUS = new Map();
     var PVP_WEAPON_STATUS = new Map();
 
-    var STATUS_CLASSES = {
-        'Y': 'foaf-yes',
-        'N': 'foaf-no',
-        '?': 'foaf-unknown'
-    };
+    const STATUS_CLASSES = new Map();
+    STATUS_CLASSES.set(Suitability.YES, 'foaf-yes');
+    STATUS_CLASSES.set(Suitability.NO, 'foaf-no');
+    STATUS_CLASSES.set(Suitability.UNKNOWN, 'foaf-unknown');
 
     function log(message) {
       GM_log('[FOAF] ' + message);
@@ -117,7 +149,8 @@
                     return;
                 }
 
-                switch(WEAPONS.get(weaponName).status) {
+                var weapon = WEAPONS.get(weaponName);
+                switch(weapon.status) {
                     case Status.JUNK:
                         if ($item_tag.length === 0) {
                             $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
@@ -126,9 +159,9 @@
                     case Status.KEEP:
                     case Status.FAVORITE:
                         if ($item_tag.length === 0) {
-                            var tagClass = STATUS_CLASSES[PVE_WEAPON_STATUS.get(weaponName)];
+                            var tagClass = STATUS_CLASSES.get(weapon.pveUseful);
                             $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
-                            tagClass = STATUS_CLASSES[PVP_WEAPON_STATUS.get(weaponName)];
+                            tagClass = STATUS_CLASSES.get(weapon.pvpUseful);
                             $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
                         }
                         break;
@@ -296,7 +329,8 @@
                     ALL_WEAPON_COMMENTS.set(data[0], data[6]);
                     // log('Comments: '+data[0]+'; status='+data[6]);
 
-                    WEAPONS.set(data[0], new Weapon(data[0], data[3]));
+                    // Name=0,Type,Archetype,Status,PvE,PvP,Comments
+                    WEAPONS.set(data[0], new Weapon(data[0], data[3], data[4], data[5]));
                 }
 
                 deferredReady.resolve();
