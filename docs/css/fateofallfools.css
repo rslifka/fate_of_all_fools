@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fateofallfools';
-  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?10551437');
-  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?10551437#iefix') format('embedded-opentype'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff2?10551437') format('woff2'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff?10551437') format('woff'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.ttf?10551437') format('truetype'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?10551437#fateofallfools') format('svg');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?38263549');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?38263549#iefix') format('embedded-opentype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff2?38263549') format('woff2'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff?38263549') format('woff'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.ttf?38263549') format('truetype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?38263549#fateofallfools') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fateofallfools';
-    src: url('../font/fateofallfools.svg?10551437#fateofallfools') format('svg');
+    src: url('../font/fateofallfools.svg?38263549#fateofallfools') format('svg');
   }
 }
 */
@@ -55,8 +55,11 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.foaf-pvp:before { content: '\e802'; } /* '' */
+.foaf-fave:before { content: '\e800'; } /* '' */
+.foaf-dupe2:before { content: '\e801'; } /* '' */
+.foaf-dupe1:before { content: '\e802'; } /* '' */
 .foaf-question-mark:before { content: '\f128'; } /* '' */
 .foaf-pve:before { content: '\f132'; } /* '' */
-.foaf-thumbs-up:before { content: '\f164'; } /* '' */
+.foaf-dupe3:before { content: '\f15b'; } /* '' */
 .foaf-thumbs-down:before { content: '\f165'; } /* '' */
+.foaf-pvp:before { content: '\f1ae'; } /* '' */
