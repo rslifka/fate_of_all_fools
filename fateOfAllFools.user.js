@@ -37,6 +37,13 @@
         UNKNOWN: '?'
     };
 
+    const STATUS_CLASSES = new Map();
+    STATUS_CLASSES.set(Suitability.YES, 'foaf-yes');
+    STATUS_CLASSES.set(Suitability.NO, 'foaf-no');
+    STATUS_CLASSES.set(Suitability.UNKNOWN, 'foaf-unknown');
+
+    const WEAPONS = new Map();
+    
     class Weapon {
         constructor(name, type, subtype, favourite, pveUseful, pvpUseful, comments) {
             this.name = name;
@@ -71,13 +78,6 @@
         }
     }
 
-    const WEAPONS = new Map();
-
-    const STATUS_CLASSES = new Map();
-    STATUS_CLASSES.set(Suitability.YES, 'foaf-yes');
-    STATUS_CLASSES.set(Suitability.NO, 'foaf-no');
-    STATUS_CLASSES.set(Suitability.UNKNOWN, 'foaf-unknown');
-
     function log(message) {
       GM_log('[FOAF] ' + message);
     }
@@ -99,10 +99,13 @@
         the item's Power Level. In D1, yellow borders used to indicate that an item was fully
         leveled up, and considering how eventually all items will have legendary mods in them,
         it ends up being visual noise.
+
+        We hang on to the original light as we want to use it later for other calculations.
     */
     function addLegendaryModInfo() {
-        $('.item-img.complete').siblings('.item-stat').text(function(index,oldText) {
-            return (oldText.endsWith('+M')) ? (oldText) : (oldText+'+M');
+        $('.item-img.complete').siblings('.item-stat').not('[data-original-light]').each(function(index, element) {
+            $(this).attr('data-original-light', $(this).text());
+            $(this).text($(this).text()+'+M');
         });
     }
 
@@ -241,6 +244,41 @@
         });
     }
 
+    function indicateDupes() {
+        var weapons = new Map();
+        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
+            // Tippy is going to remove the original title attribute that DIM
+            // uses (because it would be a second tooltip appearing on the element
+            // so we use the Tippy-renamed attribute.
+            $('div[data-original-title][drag-channel="'+dimWeaponType+'"]').not('[data-dupified]').each(function(index,element) {
+                let weaponName = $(this).attr('data-original-title');
+                let weaponData = {
+                    name: weaponName,
+                    domElement: this,
+                    light: parseInt($(this).children('.item-stat').text())
+                };
+                if (weapons.has(weaponName)) {
+                    weapons.set(weaponName, weapons.get(weaponName).concat(weaponData));
+                } else {
+                    weapons.set(weaponName, [weaponData]);
+                }
+            });
+        });
+
+        weapons.forEach(function(weaponInstances, key, map) {
+            if (weaponInstances.length == 1) {
+                return;
+            }
+            const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
+            weaponInstances.forEach(function(weapon) {
+                let dupeDesc = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe');
+                let dupeClass = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe-higher');
+                $(weapon.domElement).append($("<div>", {"class": "dupe-stat " + dupeClass}).text(dupeDesc));
+                $(weapon.domElement).attr('data-dupified', true);
+            });
+        });
+    }
+
     function refresh() {
         log('Refreshing...');
 
@@ -250,8 +288,10 @@
         addLegendaryModInfo();
         log('Adding icons to weapons...');
         iconifyWeapons();
-        log('Resetting tooltips...');
+        log('Creating tooltips...');
         populateTooltips();
+        log('Dupify!...');
+        indicateDupes();
 
         log('Done! Scheduling next refresh.');
         setTimeout(refresh, 5000);

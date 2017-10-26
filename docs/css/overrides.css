@@ -123,3 +123,24 @@ div[drag-channel='Kinetic'] .item-img {
   top:1px;
   left:-1px;
 }
+
+.dupe-lower {
+    background: rgba(228,213,31,0.85);
+}
+
+.dupe-higher {
+    background: rgba(123,243,220,0.85);
+}
+
+.dupe-stat {
+    position: absolute;
+    bottom: 14px;
+    right: 0;
+    font-size: 9.5px;
+    padding: 0 2px;
+    color: #000;
+    min-width: 10px;
+    text-align: center;
+    -webkit-user-select: none;
+    box-sizing: content-box;
+}
