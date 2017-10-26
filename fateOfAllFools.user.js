@@ -216,27 +216,17 @@
     }
 
     /*
-        TODO - When you drag weapons around between your vault and character(s),
-        DIM actually creates a new element in a different tree, which means we
-        lose all of the changes we've made, including installing tooltips.
-
-        You can't globally re-init tippy or else it will cause multiple tooltips
-        to appear, so we need to figure out a way to do this per-element perhaps?
-
-        For now, it's an open issue that you lose tooltips when you drag elements around.
+        Attach tooltips to all weapons. Note that we do a bit of tomfoolery to
+        ensure we don't double-tip weapons that already have tooltips (tippy
+        makes more than one and things get hairy).
     */
-    var tippyInitialized = false;
     function populateTooltips() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
-                $(this).addClass('tippy-tip');
+            $('div[title][drag-channel="'+dimWeaponType+'"]:not(.tipped-out)').each(function(index,element) {
+                $(this).addClass('tippy-tip-me-up');
             });
         });
-        if (tippyInitialized) {
-          return;
-        }
-        tippyInitialized = true;
-        tippy('.tippy-tip', {
+        tippy('.tippy-tip-me-up', {
             html: targetElement => {
                 var weaponName = $(targetElement).attr('title');
                 if (!WEAPONS.has(weaponName)) {
@@ -244,6 +234,10 @@
                 }
                 return knownWeaponTemplate(WEAPONS.get(weaponName));
             }
+        });
+        $('.tippy-tip-me-up').each(function(index,element) {
+            $(this).removeClass('tippy-tip-me-up');
+            $(this).addClass('tipped-out');
         });
     }
 
