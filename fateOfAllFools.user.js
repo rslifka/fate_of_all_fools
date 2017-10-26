@@ -22,59 +22,34 @@
 
     /*
         **************************************************************
-        C H A N G E   O N L Y   T H E S E   U R L S \/ \/ \/ \/ \/
+        C H A N G E   O N L Y   T H E S E   U R L S
         **************************************************************
     */
-    var ITEM_DATA_TSVS = [
+    const ITEM_DATA_TSVS = [
         'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=0&single=true&output=tsv',
         'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=945724952&single=true&output=tsv',
         'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1848980798&single=true&output=tsv'
     ];
-    /*
-        **************************************************************
-        C H A N G E   O N L Y   T H E S E   U R L S ^^^^^^^^^^^^^^
-        **************************************************************
-    */
-
-    const Status = {
-        FAVORITE: 'favorite',
-        JUNK: 'junk',
-        KEEP: 'keep',
-        UNKNOWN: 'unknown'
-    };
 
     const Suitability = {
         YES: 'y',
         NO: 'n',
-        JUNK: 'x',
         UNKNOWN: '?'
     };
 
     class Weapon {
-        constructor(name, status, pveUseful, pvpUseful) {
+        constructor(name, type, subtype, favourite, pveUseful, pvpUseful, comments) {
             this.name = name;
-            switch(status.toLowerCase()) {
-                case 'junk':
-                    this.status = Status.JUNK;
-                    break;
-                case 'favorite':
-                    this.status = Status.FAVORITE;
-                    break;
-                case 'keep':
-                    this.status = Status.KEEP;
-                    break;
-                default:
-                    this.status = Status.UNKNOWN;
-            }
+            this.type = type;
+            this.subtype = subtype;
+            this.favourite = favourite.toLowerCase() === 'y';
+            this.comments = (comments === '') ? '(no comments entered)' : comments;
             switch(pveUseful.toLowerCase()) {
                 case 'y':
                     this.pveUseful = Suitability.YES;
                     break;
                 case 'n':
                     this.pveUseful = Suitability.NO;
-                    break;
-                case 'x':
-                    this.pveUseful = Suitability.JUNK;
                     break;
                 default:
                     this.pveUseful = Suitability.UNKNOWN;
@@ -86,26 +61,28 @@
                 case 'n':
                     this.pvpUseful = Suitability.NO;
                     break;
-                case 'x':
-                    this.pvpUseful = Suitability.JUNK;
-                    break;
                 default:
                     this.pvpUseful = Suitability.UNKNOWN;
             }
+        }
+
+        isJunk() {
+            return this.pveUseful === Suitability.NO && this.pvpUseful === Suitability.NO;
         }
     }
 
     const WEAPONS = new Map();
 
-    var ALL_WEAPON_STATUS = new Map();
-    var ALL_WEAPON_COMMENTS = new Map();
-    var PVE_WEAPON_STATUS = new Map();
-    var PVP_WEAPON_STATUS = new Map();
-
     const STATUS_CLASSES = new Map();
     STATUS_CLASSES.set(Suitability.YES, 'foaf-yes');
     STATUS_CLASSES.set(Suitability.NO, 'foaf-no');
     STATUS_CLASSES.set(Suitability.UNKNOWN, 'foaf-unknown');
+
+    // const STATUS_GLYPHS = new Map();
+    // STATUS_GLYPHS.set(Status.JUNK, 'foaf-thumbs-down');
+    // STATUS_GLYPHS.set(Status.KEEP, 'foaf-thumbs-up');
+    // STATUS_GLYPHS.set(Status.FAVORITE, 'foaf-thumbs-up');
+    // STATUS_GLYPHS.set(Status.UNKNOWN, 'foaf-question-mark');
 
     function log(message) {
       GM_log('[FOAF] ' + message);
@@ -138,7 +115,6 @@
     function iconifyWeapons() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
             $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
-
                 var weaponName = $(this).attr('title');
                 var $item_tag = $(this).children('.item-tag');
 
@@ -150,124 +126,126 @@
                 }
 
                 var weapon = WEAPONS.get(weaponName);
-                switch(weapon.status) {
-                    case Status.JUNK:
-                        if ($item_tag.length === 0) {
-                            $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
-                        }
-                        break;
-                    case Status.KEEP:
-                    case Status.FAVORITE:
-                        if ($item_tag.length === 0) {
-                            var tagClass = STATUS_CLASSES.get(weapon.pveUseful);
-                            $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
-                            tagClass = STATUS_CLASSES.get(weapon.pvpUseful);
-                            $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
-                        }
-                        break;
+                if (weapon.isJunk()) {
+                    if ($item_tag.length === 0) {
+                        $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
+                    }
+                    return;
+                }
+
+                if ($item_tag.length === 0) {
+                    var tagClass = STATUS_CLASSES.get(weapon.pveUseful);
+                    $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
+                    tagClass = STATUS_CLASSES.get(weapon.pvpUseful);
+                    $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
                 }
             });
         });
     }
 
+    function unknownWeaponTemplate(weaponName) {
+        return $(`
+<table style="min-width:350px;max-width:500px;">
+    <tr>
+        <td colspan="3">
+            <table style="width:100%">
+                <tr>
+                    <td style="text-align:left;font-weight:bold;font-size:1.2em">
+                        ${weaponName}
+                    </td>
+                    <td style="text-align:right;">
+                        <span style="font-weight:bold;font-size:1.2em">Unknown</span>
+                        <div class="foaf-question-mark" style="font-size:1.2em;display:inline-block"/>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+        `).get(0);
+    }
+
+    const PVE_STATUS_DESC = new Map();
+    PVE_STATUS_DESC.set(Suitability.YES, 'CRUSH the Red Legion!');
+    PVE_STATUS_DESC.set(Suitability.NO, 'Nope :(');
+    PVE_STATUS_DESC.set(Suitability.UNKNOWN, 'Uncertain ¯\\_(ツ)_/¯');
+
+    const PVP_STATUS_DESC = new Map();
+    PVP_STATUS_DESC.set(Suitability.YES, 'FIGHT FOREVER GUARDIANN!');
+    PVP_STATUS_DESC.set(Suitability.NO, 'Nope :(');
+    PVP_STATUS_DESC.set(Suitability.UNKNOWN, 'Uncertain ¯\\_(ツ)_/¯');
+
+    function knownWeaponTemplate(weapon) {
+        return $(`
+<table style="min-width:350px;max-width:500px;">
+    <tr>
+        <td colspan="3">
+            <table style="width:100%">
+                <tr>
+                    <td style="text-align:left;font-weight:bold;font-size:1.2em">
+                        ${weapon.name}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;word-wrap:break-word;">
+                        <span>${weapon.comments}</span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="foaf-pve ${STATUS_CLASSES.get(weapon.pveUseful)}" style="text-align:center;font-size:1.5em">
+        </td>
+        <td style="text-align:left;white-space:nowrap;">
+            Good for PvE?
+        </td>
+        <td class="${STATUS_CLASSES.get(weapon.pveUseful)}" style="text-align:left;font-weight:bold;width:100%;">
+            ${PVE_STATUS_DESC.get(weapon.pveUseful)}
+        </td>
+    </tr>
+    <tr>
+        <td class="foaf-pvp ${STATUS_CLASSES.get(weapon.pvpUseful)}" style="text-align:center;font-size:1.2em">
+        </td>
+        <td style="text-align:left;white-space:nowrap;">
+            Good for PvP?
+        </td>
+        <td class="${STATUS_CLASSES.get(weapon.pvpUseful)}" style="text-align:left;font-weight:bold;width:100%;">
+            ${PVE_STATUS_DESC.get(weapon.pvpUseful)}
+        </td>
+    </tr>
+</table>
+        `).get(0);
+    }
+
+    /*
+        TODO - When you drag weapons around between your vault and character(s),
+        DIM actually creates a new element in a different tree, which means we
+        lose all of the changes we've made, including installing tooltips.
+
+        You can't globally re-init tippy or else it will cause multiple tooltips
+        to appear, so we need to figure out a way to do this per-element perhaps?
+
+        For now, it's an open issue that you lose tooltips when you drag elements around.
+    */
     var tippyInitialized = false;
     function populateTooltips() {
-        var PVE_STATUS_DESC = {
-            'Y': 'CRUSH the Red Legion!',
-            'N': 'Nope :(',
-            '?': 'Uncertain!'
-        };
-
-        var PVP_STATUS_DESC = {
-            'Y': 'FIGHT FOREVER GUARDIANN!',
-            'N': 'Nope :(',
-            '?': 'Uncertain!'
-        };
-
-        // TODO - For every one of these that doesn't already have the class, add it and call tippy directly?
-
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
             $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
                 $(this).addClass('tippy-tip');
             });
         });
-
         if (tippyInitialized) {
           return;
         }
-
         tippyInitialized = true;
         tippy('.tippy-tip', {
             html: targetElement => {
                 var weaponName = $(targetElement).attr('title');
-
-                var knownWeapon = ALL_WEAPON_STATUS.get(weaponName) !== undefined;
-
-                var isCommented = ALL_WEAPON_COMMENTS.get(weaponName) !== '';
-                var comments = isCommented ? ALL_WEAPON_COMMENTS.get(weaponName) : '(no comments entered)';
-
-                var status = ALL_WEAPON_STATUS.get(weaponName);
-                var statusClass;
-                var displayDetails = false;
-                switch(status) {
-                    case 'Junk':
-                        statusClass = 'foaf-thumbs-down foaf-no';
-                        break;
-                    case 'Keep':
-                    case 'Favourite':
-                        statusClass = 'foaf-thumbs-up foaf-yes';
-                        displayDetails = true;
-                        break;
-                    default:
-                        statusClass = 'foaf-question-mark foaf-unknown';
-                        status = 'Unknown';
-                        comments = 'This weapon has not been rated';
+                if (!WEAPONS.has(weaponName)) {
+                    return unknownWeaponTemplate(weaponName);
                 }
-
-                return $(`
-<table style="min-width:350px;max-width:500px;">
-  <tr>
-    <td colspan="3">
-      <table style="width:100%">
-        <tr>
-          <td style="text-align:left;font-weight:bold;font-size:1.2em">
-            ${weaponName}
-          </td>
-          <td style="text-align:right;">
-            <span style="font-weight:bold;font-size:1.2em">${status}</span>
-            <div class="${statusClass}" style="font-size:1.2em;display:inline-block"/>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" style="text-align:left;word-wrap:break-word;">
-            <span>${comments}</span>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr style="${displayDetails ? '' : 'display:none'}">
-    <td class="foaf-pve ${STATUS_CLASSES[PVE_WEAPON_STATUS.get(weaponName)]}" style="text-align:center;font-size:1.5em">
-    </td>
-    <td style="text-align:left;white-space:nowrap;">
-      Good for PvE?
-    </td>
-    <td class="${STATUS_CLASSES[PVE_WEAPON_STATUS.get(weaponName)]}" style="text-align:left;font-weight:bold;width:100%;">
-      ${PVE_STATUS_DESC[PVE_WEAPON_STATUS.get(weaponName)]}
-    </td>
-  </tr>
-  <tr style="${displayDetails ? '' : 'display:none'}">
-    <td class="foaf-pvp ${STATUS_CLASSES[PVP_WEAPON_STATUS.get(weaponName)]}" style="text-align:center;font-size:1.2em">
-    </td>
-    <td style="text-align:left;white-space:nowrap;">
-      Good for PvP?
-    </td>
-    <td class="${STATUS_CLASSES[PVP_WEAPON_STATUS.get(weaponName)]}" style="text-align:left;font-weight:bold;width:100%;">
-      ${PVP_STATUS_DESC[PVP_WEAPON_STATUS.get(weaponName)]}
-    </td>
-  </tr>
-</table>
-                `).get(0);
+                return knownWeaponTemplate(WEAPONS.get(weaponName));
             }
         });
     }
@@ -310,27 +288,13 @@
                 var dataLines = response.responseText.split(/[\r\n]+/);
                 log('Found ('+(dataLines.length-1)+') weapons');
 
-                // Skip the column headers line
-                // Name,Type,Archetype,Status,PvE,PvP,Comments
                 for (var i = 1; i < dataLines.length; i++) {
                     // We've split by TAB because no weapon names have tabs in them
                     var data = dataLines[i].split('\t');
                     // log('Examining ' + data);
 
-                    ALL_WEAPON_STATUS.set(data[0], data[3]);
-                    // log('Weapon registered: '+data[0]+'; status='+data[3]);
-
-                    PVE_WEAPON_STATUS.set(data[0], data[4]);
-                    // log('PvE weapon registered: '+data[0]+'; status='+data[4]);
-
-                    PVP_WEAPON_STATUS.set(data[0], data[5]);
-                    // log('PvP weapon registered: '+data[0]+'; status='+data[5]);
-
-                    ALL_WEAPON_COMMENTS.set(data[0], data[6]);
-                    // log('Comments: '+data[0]+'; status='+data[6]);
-
-                    // Name=0,Type,Archetype,Status,PvE,PvP,Comments
-                    WEAPONS.set(data[0], new Weapon(data[0], data[3], data[4], data[5]));
+                    // Name=0,Type,Subtype,Personal Fave?,PvE, PvP, Comments
+                    WEAPONS.set(data[0], new Weapon(data[0], data[1], data[2], data[3], data[4], data[5], data[6]));
                 }
 
                 deferredReady.resolve();
