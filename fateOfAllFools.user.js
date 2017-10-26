@@ -78,12 +78,6 @@
     STATUS_CLASSES.set(Suitability.NO, 'foaf-no');
     STATUS_CLASSES.set(Suitability.UNKNOWN, 'foaf-unknown');
 
-    // const STATUS_GLYPHS = new Map();
-    // STATUS_GLYPHS.set(Status.JUNK, 'foaf-thumbs-down');
-    // STATUS_GLYPHS.set(Status.KEEP, 'foaf-thumbs-up');
-    // STATUS_GLYPHS.set(Status.FAVORITE, 'foaf-thumbs-up');
-    // STATUS_GLYPHS.set(Status.UNKNOWN, 'foaf-question-mark');
-
     function log(message) {
       GM_log('[FOAF] ' + message);
     }
@@ -185,9 +179,12 @@
                     <td style="text-align:left;font-weight:bold;font-size:1.2em">
                         ${weapon.name}
                     </td>
+                    <td style="text-align:right;font-weight:bold;font-size:1.2em">
+                        ${weapon.type} // ${weapon.subtype}
+                    </td>
                 </tr>
                 <tr>
-                    <td style="text-align:left;word-wrap:break-word;">
+                    <td colspan="2" style="text-align:left;word-wrap:break-word;">
                         <span>${weapon.comments}</span>
                     </td>
                 </tr>
