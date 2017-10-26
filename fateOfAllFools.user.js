@@ -109,33 +109,27 @@
         });
     }
 
+    /*
+        Create a visual representation of the rankings from our Google Sheet.
+    */
     function iconifyWeapons() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
-                var weaponName = $(this).attr('title');
-                var $item_tag = $(this).children('.item-tag');
-
+            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-tagged]').each(function(index,element) {
+                const weaponName = $(this).attr('title');
                 if (!WEAPONS.has(weaponName)) {
-                    if ($item_tag.length === 0) {
-                        $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
-                    }
-                    return;
-                }
-
-                var weapon = WEAPONS.get(weaponName);
-                if (weapon.isJunk()) {
-                    if ($item_tag.length === 0) {
+                    $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
+                } else {
+                    var weapon = WEAPONS.get(weaponName);
+                    if (weapon.isJunk()) {
                         $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
+                    } else {
+                        var tagClass = STATUS_CLASSES.get(weapon.pveUseful);
+                        $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
+                        tagClass = STATUS_CLASSES.get(weapon.pvpUseful);
+                        $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
                     }
-                    return;
                 }
-
-                if ($item_tag.length === 0) {
-                    var tagClass = STATUS_CLASSES.get(weapon.pveUseful);
-                    $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
-                    tagClass = STATUS_CLASSES.get(weapon.pvpUseful);
-                    $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
-                }
+                $(this).attr('data-foaf-tagged', true);
             });
         });
     }
