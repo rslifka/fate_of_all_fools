@@ -43,7 +43,7 @@
     STATUS_CLASSES.set(Suitability.UNKNOWN, 'foaf-unknown');
 
     const WEAPONS = new Map();
-    
+
     class Weapon {
         constructor(name, type, subtype, favourite, pveUseful, pvpUseful, comments) {
             this.name = name;
@@ -241,10 +241,7 @@
     function indicateDupes() {
         var weapons = new Map();
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            // Tippy is going to remove the original title attribute that DIM
-            // uses (because it would be a second tooltip appearing on the element
-            // so we use the Tippy-renamed attribute.
-            $('div[data-original-title][drag-channel="'+dimWeaponType+'"]').not('[data-dupified]').each(function(index,element) {
+            $('div[data-original-title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
                 let weaponName = $(this).attr('data-original-title');
                 let weaponData = {
                     name: weaponName,
@@ -268,7 +265,6 @@
                 let dupeDesc = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe');
                 let dupeClass = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe-higher');
                 $(weapon.domElement).append($("<div>", {"class": "dupe-stat " + dupeClass}).text(dupeDesc));
-                $(weapon.domElement).attr('data-dupified', true);
             });
         });
     }
