@@ -80,8 +80,30 @@
         }
     }
 
+    /*
+        When there's a full data refresh from the sheet, we do a more aggressive
+        reset of the interface elements.
+    */
+    var dataRefreshed;
+
     function log(message) {
       GM_log('[FOAF] ' + message);
+    }
+
+    /*
+        Tippy (our tooltip library) removes [title] so that it can tooltip
+        without the browser showing the value of [title]. Trick is that this
+        means we have to be cognizant of call order for when we can reference
+        the [data-original-title]. Rather than have to have that tacit
+        knowledge, we're just going to save the titles off in to our own attr
+        so that we can use it all the time, irrespective of call order.
+    */
+    function saveWeaponNames() {
+        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
+            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-original-title]').each(function(index,element) {
+                $(this).attr('data-foaf-weapon-name', $(this).attr('title'));
+            });
+        });
     }
 
     // We're replacing DIM's tags with our own
@@ -115,9 +137,14 @@
         Create a visual representation of the rankings from our Google Sheet.
     */
     function iconifyWeapons() {
+        const exclusion = dataRefreshed ? '' : '[data-foaf-tagged]';
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-tagged]').each(function(index,element) {
-                const weaponName = $(this).attr('title');
+            $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').not(exclusion).each(function(index,element) {
+                if (dataRefreshed) {
+                    $(this).children('.item-tag').remove();
+                }
+
+                const weaponName = $(this).attr('data-foaf-weapon-name');
                 if (!WEAPONS.has(weaponName)) {
                     $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
                 } else {
@@ -218,15 +245,20 @@
         Attach tooltips to all weapons. Note that we do a bit of tomfoolery to
         ensure we don't double-tip weapons that already have tooltips.
     */
-    var tipperino = tippy();
+    const TIPPERINO = [];
     function populateTooltips() {
-        tipperino.destroyAll();
+        if (dataRefreshed) {
+            TIPPERINO.forEach(function(tippyInstance) {
+                tippyInstance.destroyAll();
+            });
+            TIPPERINO.length = 0;
+        }
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
+            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[tipped-up]').each(function(index,element) {
                 $(this).addClass('tippy-tip-me-up');
             });
         });
-        tipperino = tippy('.tippy-tip-me-up', {
+        TIPPERINO.push(tippy('.tippy-tip-me-up', {
             html: targetElement => {
                 var weaponName = $(targetElement).attr('title');
                 if (!WEAPONS.has(weaponName)) {
@@ -234,14 +266,16 @@
                 }
                 return knownWeaponTemplate(WEAPONS.get(weaponName));
             }
-        });
+        }));
+        $('.tippy-tip-me-up').addClass('tipped-up');
+        $('.tippy-tip-me-up').removeClass('tippy-tip-me-up');
     }
 
     function indicateDupes() {
         var weapons = new Map();
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[data-original-title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
-                let weaponName = $(this).attr('data-original-title');
+            $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
+                let weaponName = $(this).attr('data-foaf-weapon-name');
                 let weaponData = {
                     name: weaponName,
                     domElement: this,
@@ -277,20 +311,28 @@
     }
 
     function refresh() {
-        log('Refreshing...');
+        if (dataRefreshed) {
+            log('Refreshing (full)...');
+        } else {
+            log('Refreshing (partial)...');
+        }
 
-        log('Clearing DIM weapon item tags...');
-        clearDIMTags();
-        log('Adding mod indicator...');
-        addLegendaryModInfo();
-        log('Adding icons to weapons...');
-        iconifyWeapons();
-        log('Creating tooltips...');
+        log('  Saving weapon names...');
+        saveWeaponNames();
+        log('  Creating tooltips...');
         populateTooltips();
-        log('Dupify!...');
+        log('  Clearing DIM weapon item tags...');
+        clearDIMTags();
+        log('  Adding mod indicator...');
+        addLegendaryModInfo();
+        log('  Adding icons to weapons...');
+        iconifyWeapons();
+        log('  Dupify!...');
         indicateDupes();
 
         log('Done! Scheduling next refresh.');
+
+        dataRefreshed = false;
         setTimeout(refresh, 5000);
     }
 
@@ -366,6 +408,7 @@
             rankingsDownloaded(ITEM_DATA_TSVS[2])
         ).then(function() {
             log('Data refresh complete!');
+            dataRefreshed = true;
         });
     }, 15000);
 
@@ -375,5 +418,8 @@
         rankingsDownloaded(ITEM_DATA_TSVS[0]),
         rankingsDownloaded(ITEM_DATA_TSVS[1]),
         rankingsDownloaded(ITEM_DATA_TSVS[2])
-    ).then(refresh);
+    ).then(function() {
+        dataRefreshed = true;
+        refresh();
+    });
 })();
