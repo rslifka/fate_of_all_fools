@@ -9,6 +9,8 @@
 // @grant    GM_getResourceText
 // @grant    GM_xmlhttpRequest
 // @homepage https://github.com/rslifka/fate_of_all_fools
+// @license   MIT; https://raw.githubusercontent.com/rslifka/fate_of_all_fools/master/LICENSE.txt
+// @copyright 2017, Robert Slifka (https://github.com/rslifka/fate_of_all_fools)
 // @match    https://*.destinyitemmanager.com/*
 // @name     FateOfAllFools - DIM Customization
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
@@ -268,7 +270,6 @@
                 // Does this exact element exist already?
                 let existingDuperino = $(weapon.domElement).children(".dupe-stat."+dupeClass+":contains('"+dupeDesc+"')");
                 if (existingDuperino.length > 0) {
-                    console.log('it already exists, so let us do nothing');
                     return;
                 }
 
