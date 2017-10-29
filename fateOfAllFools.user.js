@@ -216,16 +216,17 @@
 
     /*
         Attach tooltips to all weapons. Note that we do a bit of tomfoolery to
-        ensure we don't double-tip weapons that already have tooltips (tippy
-        makes more than one and things get hairy).
+        ensure we don't double-tip weapons that already have tooltips.
     */
+    var tipperino = tippy();
     function populateTooltips() {
+        tipperino.destroyAll();
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]:not(.tipped-out)').each(function(index,element) {
+            $('div[title][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
                 $(this).addClass('tippy-tip-me-up');
             });
         });
-        tippy('.tippy-tip-me-up', {
+        tipperino = tippy('.tippy-tip-me-up', {
             html: targetElement => {
                 var weaponName = $(targetElement).attr('title');
                 if (!WEAPONS.has(weaponName)) {
@@ -233,10 +234,6 @@
                 }
                 return knownWeaponTemplate(WEAPONS.get(weaponName));
             }
-        });
-        $('.tippy-tip-me-up').each(function(index,element) {
-            $(this).removeClass('tippy-tip-me-up');
-            $(this).addClass('tipped-out');
         });
     }
 
