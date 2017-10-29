@@ -78,6 +78,10 @@
         isJunk() {
             return this.pveUseful === Suitability.NO && this.pvpUseful === Suitability.NO;
         }
+
+        isUnknown() {
+            return this.pveUseful === Suitability.UNKNOWN && this.pvpUseful == Suitability.UNKNOWN;
+        }
     }
 
     /*
@@ -145,19 +149,25 @@
                 }
 
                 const weaponName = $(this).attr('data-foaf-weapon-name');
+
                 if (!WEAPONS.has(weaponName)) {
                     $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
-                } else {
-                    var weapon = WEAPONS.get(weaponName);
-                    if (weapon.isJunk()) {
-                        $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
-                    } else {
-                        var tagClass = STATUS_CLASSES.get(weapon.pveUseful);
-                        $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
-                        tagClass = STATUS_CLASSES.get(weapon.pvpUseful);
-                        $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
-                    }
+                    $(this).attr('data-foaf-tagged', true);
+                    return;
                 }
+
+                var weapon = WEAPONS.get(weaponName);
+                if (weapon.isJunk()) {
+                    $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
+                } else if (weapon.isUnknown()) {
+                    $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
+                } else {
+                    var tagClass = STATUS_CLASSES.get(weapon.pveUseful);
+                    $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
+                    tagClass = STATUS_CLASSES.get(weapon.pvpUseful);
+                    $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
+                }
+
                 $(this).attr('data-foaf-tagged', true);
             });
         });
@@ -330,10 +340,8 @@
         log('  Dupify!...');
         indicateDupes();
 
-        log('Done! Scheduling next refresh.');
-
         dataRefreshed = false;
-        setTimeout(refresh, 5000);
+        log('Done!');
     }
 
     function itemsAreLoaded() {
@@ -410,7 +418,7 @@
             log('Data refresh complete!');
             dataRefreshed = true;
         });
-    }, 15000);
+    }, 30000);
 
     log('Initialized, waiting for items to appear...');
     $.when(
@@ -421,5 +429,8 @@
     ).then(function() {
         dataRefreshed = true;
         refresh();
+        setInterval(function() {
+            refresh();
+        }, 5000);
     });
 })();
