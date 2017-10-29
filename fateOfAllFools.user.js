@@ -264,6 +264,15 @@
             weaponInstances.forEach(function(weapon) {
                 let dupeDesc = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe');
                 let dupeClass = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe-higher');
+
+                // Does this exact element exist already?
+                let existingDuperino = $(weapon.domElement).children(".dupe-stat."+dupeClass+":contains('"+dupeDesc+"')");
+                if (existingDuperino.length > 0) {
+                    console.log('it already exists, so let us do nothing');
+                    return;
+                }
+
+                $(weapon.domElement).remove('.dupe-stat');
                 $(weapon.domElement).append($("<div>", {"class": "dupe-stat " + dupeClass}).text(dupeDesc));
             });
         });
