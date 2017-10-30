@@ -221,7 +221,7 @@
                 let weaponData = {
                     name: weaponName,
                     domElement: this,
-                    light: parseInt($(this).children('.item-stat').text())
+                    light: $(this).attr('data-foaf-base-light-level')
                 };
                 if (weapons.has(weaponName)) {
                     weapons.set(weaponName, weapons.get(weaponName).concat(weaponData));
