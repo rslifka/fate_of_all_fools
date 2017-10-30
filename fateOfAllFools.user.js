@@ -108,6 +108,22 @@
     }
 
     /*
+        The weapon type never changes, and we need it for infusion calculation,
+        so let's drop it at the weapon level.
+    */
+    function saveWeaponTypes() {
+        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
+            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-type]').each(function(index,element) {
+                const weaponName = $(this).attr('data-foaf-weapon-name');
+                if (!WEAPONS.has(weaponName)) {
+                    return;
+                }
+                $(this).attr('data-foaf-weapon-type', WEAPONS.get(weaponName).type);
+            });
+        });
+    }
+
+    /*
         Save off the light level of the weapon up at the top of the tree where
         the weapon is defined, so we can use it for later calculations (e.g. dupe,
         infusion, etc.).
@@ -269,6 +285,8 @@
 
         log('  Saving weapon names...');
         saveWeaponNames();
+        log('  Saving weapon types...');
+        saveWeaponTypes();
         log('  Saving light levels...');
         saveLightLevel();
         log('  Clearing DIM weapon item tags...');
