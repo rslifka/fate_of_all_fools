@@ -149,10 +149,10 @@
                 }
 
                 const weaponName = $(this).attr('data-foaf-weapon-name');
+                $(this).attr('data-foaf-tagged', true);
 
                 if (!WEAPONS.has(weaponName)) {
                     $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
-                    $(this).attr('data-foaf-tagged', true);
                     return;
                 }
 
@@ -162,13 +162,17 @@
                 } else if (weapon.isUnknown()) {
                     $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
                 } else {
-                    var tagClass = STATUS_CLASSES.get(weapon.pveUseful);
-                    $(this).append($("<div>", {"class": "item-tag foaf-pve " + tagClass}));
-                    tagClass = STATUS_CLASSES.get(weapon.pvpUseful);
-                    $(this).append($("<div>", {"class": "item-tag foaf-pvp " + tagClass}));
+                    if (weapon.pveUseful !== Suitability.UNKNOWN) {
+                        $(this).append($("<div>", {"class": "item-tag foaf-pve " + STATUS_CLASSES.get(weapon.pveUseful)}));
+                    }
+                    if (weapon.pvpUseful !== Suitability.UNKNOWN) {
+                        let leftPadding = '';
+                        if (weapon.pveUseful === Suitability.UNKNOWN) {
+                            leftPadding = 'left:0;';
+                        }
+                        $(this).append($("<div>", {"class": "item-tag foaf-pvp " + STATUS_CLASSES.get(weapon.pvpUseful), "style": leftPadding}));
+                    }
                 }
-
-                $(this).attr('data-foaf-tagged', true);
             });
         });
     }
