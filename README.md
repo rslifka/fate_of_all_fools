@@ -11,10 +11,10 @@ For example:
 # Features
 
 ## Additions
-* Displays additional information derived from an external source of subjective weapon quality assessments (in this case, Google Sheets). This is the main reason I developed this UserScript. I wanted to be able to tell a few things at a glance when looking at my vault. FOAF supports linking to your own sheet so you can of course customize these rankings.
-* TODO: Dupe and dupe-lower
-* TODO: Dupe mouseover
-* TODO: Extra detail in the tooltip
+* Displays additional information derived from an external source of subjective weapon quality assessments (in this case, Google Sheets). This is the main reason I developed this UserScript. I wanted to be able to tell a few things at a glance when looking at my vault. FOAF supports linking to your own sheet so you can of course customize these rankings. **You can create your own sheet from my template to specify your own rankings!** (see below)
+* The tooltip has been repurposed with information from the aforementioned Google Sheet.
+* Duplicate items are indicated with a `dupe` tag, and duplicate items with a lower light (sorry, 'power level' :) are indicated with `dupe-lower`.
+* When hovering over a duplicate item, all other duplicates are highlighted.
 
 **(NOTE: Icons are placeholders, better ones coming very soon :)**
 ![Fate Of All Fools Icons](https://rslifka.github.io/fate_of_all_fools/img/icon-demo.jpg)
@@ -45,8 +45,3 @@ At this point you're good to go! The only trouble that you'll be look at my weap
 1. Click on the TamperMonkey extension icon in your browser.
 1. Click on the FOAF script.
 1. Replace the three Google URLs with the three URLs to your Google Sheet (one for each weapon category).
-
-# Credits
-
-* The authors of [Destiny Item Manager](https://www.destinyitemmanager.com/) have really put out a phenomenal tool that is essential to my Destiny experience. My laptop has been open next to me for years with DIM running on it and it forms the foundations of all of these improvements of course.
-* Mercules904 over on Reddit for his years of round-ups. Data for FOAF comes from his amazing collection of weapon stats [here](https://docs.google.com/spreadsheets/d/1_6zsM7kzvg0aUT8YtM_-Wg_5K1gKDOlrwfVzutEjq-s/edit#gid=0).
