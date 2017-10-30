@@ -101,7 +101,7 @@
     */
     function saveWeaponNames() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-original-title]').each(function(index,element) {
+            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-name]').each(function(index,element) {
                 $(this).attr('data-foaf-weapon-name', $(this).attr('title'));
             });
         });
