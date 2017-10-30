@@ -1,7 +1,6 @@
 // ==UserScript==
 // @author   Robert Slifka (github @rslifka)
 // @connect  docs.google.com
-// @connect  unpkg.com
 // @connect  rslifka.github.io
 // @description Customizations on top of the Destiny Item Manager
 // @grant    GM_addStyle
@@ -95,12 +94,10 @@
     }
 
     /*
-        Tippy (our tooltip library) removes [title] so that it can tooltip
-        without the browser showing the value of [title]. Trick is that this
-        means we have to be cognizant of call order for when we can reference
-        the [data-original-title]. Rather than have to have that tacit
-        knowledge, we're just going to save the titles off in to our own attr
-        so that we can use it all the time, irrespective of call order.
+        [title] = name of the weapon, which we need to find the weapons, but it
+        also does double-duty as a tooltip, which we'd like to customize. Save
+        off the name of the weapon so we can always refer to it once we modify
+        the [title].
     */
     function saveWeaponNames() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
@@ -177,114 +174,6 @@
         });
     }
 
-    function unknownWeaponTemplate(weaponName) {
-        return $(`
-<table style="min-width:350px;max-width:500px;">
-    <tr>
-        <td colspan="3">
-            <table style="width:100%">
-                <tr>
-                    <td style="text-align:left;font-weight:bold;font-size:1.2em">
-                        ${weaponName}
-                    </td>
-                    <td style="text-align:right;">
-                        <span style="font-weight:bold;font-size:1.2em">Unknown</span>
-                        <div class="foaf-question-mark" style="font-size:1.2em;display:inline-block"/>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
-        `).get(0);
-    }
-
-    const PVE_STATUS_DESC = new Map();
-    PVE_STATUS_DESC.set(Suitability.YES, 'CRUSH the Red Legion!');
-    PVE_STATUS_DESC.set(Suitability.NO, 'Nope :(');
-    PVE_STATUS_DESC.set(Suitability.UNKNOWN, 'Uncertain ¯\\_(ツ)_/¯');
-
-    const PVP_STATUS_DESC = new Map();
-    PVP_STATUS_DESC.set(Suitability.YES, 'FIGHT FOREVER GUARDIANN!');
-    PVP_STATUS_DESC.set(Suitability.NO, 'Nope :(');
-    PVP_STATUS_DESC.set(Suitability.UNKNOWN, 'Uncertain ¯\\_(ツ)_/¯');
-
-    function knownWeaponTemplate(weapon) {
-        return $(`
-<table style="min-width:350px;max-width:500px;">
-    <tr>
-        <td colspan="3">
-            <table style="width:100%">
-                <tr>
-                    <td style="text-align:left;font-weight:bold;font-size:1.2em">
-                        ${weapon.name}
-                    </td>
-                    <td style="text-align:right;font-weight:bold;font-size:1.2em">
-                        ${weapon.type} // ${weapon.subtype}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align:left;word-wrap:break-word;">
-                        <span>${weapon.comments}</span>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="foaf-pve ${STATUS_CLASSES.get(weapon.pveUseful)}" style="text-align:center;font-size:1.5em">
-        </td>
-        <td style="text-align:left;white-space:nowrap;">
-            Good for PvE?
-        </td>
-        <td class="${STATUS_CLASSES.get(weapon.pveUseful)}" style="text-align:left;font-weight:bold;width:100%;">
-            ${PVE_STATUS_DESC.get(weapon.pveUseful)}
-        </td>
-    </tr>
-    <tr>
-        <td class="foaf-pvp ${STATUS_CLASSES.get(weapon.pvpUseful)}" style="text-align:center;font-size:1.2em">
-        </td>
-        <td style="text-align:left;white-space:nowrap;">
-            Good for PvP?
-        </td>
-        <td class="${STATUS_CLASSES.get(weapon.pvpUseful)}" style="text-align:left;font-weight:bold;width:100%;">
-            ${PVE_STATUS_DESC.get(weapon.pvpUseful)}
-        </td>
-    </tr>
-</table>
-        `).get(0);
-    }
-
-    /*
-        Attach tooltips to all weapons. Note that we do a bit of tomfoolery to
-        ensure we don't double-tip weapons that already have tooltips.
-    */
-    const TIPPERINO = [];
-    function populateTooltips() {
-        if (dataRefreshed) {
-            TIPPERINO.forEach(function(tippyInstance) {
-                tippyInstance.destroyAll();
-            });
-            TIPPERINO.length = 0;
-        }
-        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[tipped-up]').each(function(index,element) {
-                $(this).addClass('tippy-tip-me-up');
-            });
-        });
-        TIPPERINO.push(tippy('.tippy-tip-me-up', {
-            html: targetElement => {
-                var weaponName = $(targetElement).attr('title');
-                if (!WEAPONS.has(weaponName)) {
-                    return unknownWeaponTemplate(weaponName);
-                }
-                return knownWeaponTemplate(WEAPONS.get(weaponName));
-            }
-        }));
-        $('.tippy-tip-me-up').addClass('tipped-up');
-        $('.tippy-tip-me-up').removeClass('tippy-tip-me-up');
-    }
-
     function indicateDupes() {
         var weapons = new Map();
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
@@ -320,6 +209,14 @@
 
                 $(weapon.domElement).remove('.dupe-stat');
                 $(weapon.domElement).append($("<div>", {"class": "dupe-stat " + dupeClass}).text(dupeDesc));
+
+                $(weapon.domElement).hover(function() {
+                    ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
+                        $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-name="'+weapon.name+'"]').addClass('search-hidden');
+                    });
+                },function() {
+                    $('.search-hidden').removeClass('search-hidden');
+                });
             });
         });
     }
@@ -333,8 +230,6 @@
 
         log('  Saving weapon names...');
         saveWeaponNames();
-        log('  Creating tooltips...');
-        populateTooltips();
         log('  Clearing DIM weapon item tags...');
         clearDIMTags();
         log('  Adding mod indicator...');
@@ -388,8 +283,7 @@
     log('Applying CSS...');
     [
         'https://rslifka.github.io/fate_of_all_fools/css/fateofallfools.css',
-        'https://rslifka.github.io/fate_of_all_fools/css/overrides.css',
-        'https://unpkg.com/tippy.js@1.4.0/dist/tippy.css'
+        'https://rslifka.github.io/fate_of_all_fools/css/overrides.css'
     ].forEach(function(cssPath) {
         log('Downloading style: '+cssPath);
         GM_xmlhttpRequest({
