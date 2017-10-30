@@ -107,6 +107,22 @@
         });
     }
 
+    /*
+        Save off the light level of the weapon up at the top of the tree where
+        the weapon is defined, so we can use it for later calculations (e.g. dupe,
+        infusion, etc.).
+    */
+    function saveLightLevel() {
+        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
+            $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-base-light-level]').each(function(index,element) {
+                const modifiedLightLevel = $(this).children('.item-stat').text();
+                const isModded = $(this).children('.item-img').hasClass('complete');
+                const baseLightLevel = isModded ? modifiedLightLevel-5 : modifiedLightLevel;
+                $(this).attr('data-foaf-base-light-level', baseLightLevel);
+            });
+        });
+    }
+
     // We're replacing DIM's tags with our own
     function clearDIMTags() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
@@ -253,6 +269,8 @@
 
         log('  Saving weapon names...');
         saveWeaponNames();
+        log('  Saving light levels...');
+        saveLightLevel();
         log('  Clearing DIM weapon item tags...');
         clearDIMTags();
         log('  Enhancing tooltips...');
