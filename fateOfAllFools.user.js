@@ -94,47 +94,29 @@
     }
 
     /*
-        [title] = name of the weapon, which we need to find the weapons, but it
-        also does double-duty as a tooltip, which we'd like to customize. Save
-        off the name of the weapon so we can always refer to it once we modify
-        the [title].
+        Decorate the DOM to make basic weapon information more readily available
+        later on.
     */
-    function saveWeaponNames() {
+    function saveInitialWeaponInfo() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-name]').each(function(index,element) {
+            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-info]').each(function(index,element) {
+                // Save original title (weapon name) as we later reformat the title
+                // to include additional data.
                 $(this).attr('data-foaf-weapon-name', $(this).attr('title'));
-            });
-        });
-    }
 
-    /*
-        The weapon type never changes, and we need it for infusion calculation,
-        so let's drop it at the weapon level.
-    */
-    function saveWeaponTypes() {
-        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-type]').each(function(index,element) {
+                // The weapon type never changes, and we need it for infusion calculation
                 const weaponName = $(this).attr('data-foaf-weapon-name');
-                if (!WEAPONS.has(weaponName)) {
-                    return;
+                if (WEAPONS.has(weaponName)) {
+                    $(this).attr('data-foaf-weapon-type', WEAPONS.get(weaponName).type);
                 }
-                $(this).attr('data-foaf-weapon-type', WEAPONS.get(weaponName).type);
-            });
-        });
-    }
 
-    /*
-        Save off the light level of the weapon up at the top of the tree where
-        the weapon is defined, so we can use it for later calculations (e.g. dupe,
-        infusion, etc.).
-    */
-    function saveLightLevel() {
-        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-base-light-level]').each(function(index,element) {
+                // Save base light for dupe and infusion calculations
                 const modifiedLightLevel = $(this).children('.item-stat').text();
                 const isModded = $(this).children('.item-img').hasClass('complete');
                 const baseLightLevel = isModded ? modifiedLightLevel-5 : modifiedLightLevel;
                 $(this).attr('data-foaf-base-light-level', baseLightLevel);
+
+                $(this).attr('data-foaf-weapon-info', true);
             });
         });
     }
@@ -283,12 +265,8 @@
             log('Refreshing (partial)...');
         }
 
-        log('  Saving weapon names...');
-        saveWeaponNames();
-        log('  Saving weapon types...');
-        saveWeaponTypes();
-        log('  Saving light levels...');
-        saveLightLevel();
+        log('  Saving weapon info...');
+        saveInitialWeaponInfo();
         log('  Clearing DIM weapon item tags...');
         clearDIMTags();
         log('  Enhancing tooltips...');
