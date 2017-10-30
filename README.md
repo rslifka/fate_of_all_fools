@@ -12,8 +12,9 @@ For example:
 
 ## Additions
 * Displays additional information derived from an external source of subjective weapon quality assessments (in this case, Google Sheets). This is the main reason I developed this UserScript. I wanted to be able to tell a few things at a glance when looking at my vault. FOAF supports linking to your own sheet so you can of course customize these rankings.
-* TODO: Dupe and dupe-lower.
-* TODO: Tooltips.
+* TODO: Dupe and dupe-lower
+* TODO: Dupe mouseover
+* TODO: Extra detail in the tooltip
 
 **(NOTE: Icons are placeholders, better ones coming very soon :)**
 ![Fate Of All Fools Icons](https://rslifka.github.io/fate_of_all_fools/img/icon-demo.jpg)

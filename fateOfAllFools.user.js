@@ -135,6 +135,29 @@
     }
 
     /*
+        Pull more information from our sheet in to the tooltip.
+    */
+    function tooltipComments() {
+        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
+            $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
+                const weaponName = $(this).attr('data-foaf-weapon-name');
+                if (!WEAPONS.has(weaponName)) {
+                    return;
+                }
+
+                var weapon = WEAPONS.get(weaponName);
+                let tooltipText = weaponName + ' // ' + weapon.type + ' - ' + weapon.subtype + '\n';
+                tooltipText += '\n';
+                tooltipText += 'PvE: GOOD' + '\n';
+                tooltipText += 'PvP: BAD' + '\n';
+                tooltipText += '\n';
+                tooltipText += 'Comments: \n' + weapon.comments;
+                $(this).attr('title', tooltipText);
+            });
+        });
+    }
+
+    /*
         Create a visual representation of the rankings from our Google Sheet.
     */
     function iconifyWeapons() {
@@ -232,6 +255,8 @@
         saveWeaponNames();
         log('  Clearing DIM weapon item tags...');
         clearDIMTags();
+        log('  Enhancing tooltips...');
+        tooltipComments();
         log('  Adding mod indicator...');
         addLegendaryModInfo();
         log('  Adding icons to weapons...');
