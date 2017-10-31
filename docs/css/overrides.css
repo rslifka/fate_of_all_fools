@@ -16,8 +16,11 @@
 
 /* Reset background color and font size for increased readability */
 .item-stat {
-  background-color: rgba(200,200,200,0.8) !important;
-  font-size: 11px !important;
+  background-color: transparent !important;
+  bottom: 2px !important;
+  color: rgba(255,255,255,0.8) !important;
+  font-size: 10px !important;
+  right: 2px !important;
 }
 
 /*
@@ -61,7 +64,7 @@ body,
 .item-img,
 .item-img.complete {
   background-repeat: no-repeat;
-  border: 2px solid rgba(221,221,221,0.7);
+  border: 2px solid #929292;
 }
 
 /*
