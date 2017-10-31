@@ -28,7 +28,6 @@
   additional decoration we could capture elsewhere. We still want to indicate
   elemental damage type, so let's use the background of the damage number to
   indicate that.
-*/
 .item-element.arc ~ .item-stat {
   background-color: rgba(133,197,236,0.9) !important;
 }
@@ -38,6 +37,7 @@
 .item-element.void ~ .item-stat {
   background-color: rgba(177,132,197,0.9) !important;
 }
+*/
 
 /* Go for a more muted background */
 body,
@@ -131,10 +131,10 @@ div[drag-channel='Kinetic'] .item-img {
   position: absolute;
   bottom: 2px;
   left: 2px;
-  font-size: 9.5px;
+  font-size: 10px;
   padding: 0 2px;
   color: #fff;
-  min-width: 26px;
+  min-width: 20px;
   text-align: center;
   -webkit-user-select: none;
   box-sizing: content-box;
@@ -142,7 +142,7 @@ div[drag-channel='Kinetic'] .item-img {
 
 /* Muted background; don't need to call too much attention to this */
 .dupe-higher {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.7);
 }
 
 /* You almost always want to destroy these */
