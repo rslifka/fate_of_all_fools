@@ -1,9 +1,6 @@
 
 .foaf-fave:before { content: '\e800'; } /* '' */
-.foaf-dupe2:before { content: '\e801'; } /* '' */
-.foaf-dupe1:before { content: '\e802'; } /* '' */
-.foaf-question-mark:before { content: '\f128'; } /* '' */
-.foaf-pve:before { content: '\f132'; } /* '' */
-.foaf-dupe3:before { content: '\f15b'; } /* '' */
-.foaf-thumbs-down:before { content: '\f165'; } /* '' */
-.foaf-pvp:before { content: '\f1ae'; } /* '' */
+.foaf-pvp-1:before { content: '\e802'; } /* '' */
+.foaf-question-mark:before { content: '\e803'; } /* '' */
+.foaf-pvp:before { content: '\e804'; } /* '' */
+.foaf-thumbs-down:before { content: '\e805'; } /* '' */
