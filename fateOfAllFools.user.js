@@ -144,7 +144,7 @@
     function addLegendaryModInfo() {
         $('.item-img.complete').siblings('.item-stat').not('[data-original-light]').each(function(index, element) {
             $(this).attr('data-original-light', $(this).text());
-            $(this).text($(this).text()+'+M');
+            $(this).text($(this).text()+'M');
         });
     }
 
@@ -235,7 +235,7 @@
             }
             const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
             weaponInstances.forEach(function(weapon) {
-                let dupeDesc = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe');
+                let dupeDesc = (weapon.light < maxLight) ? ('dup-lo') : ('dup');
                 let dupeClass = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe-higher');
 
                 // Does this exact element exist already?

@@ -127,24 +127,25 @@ div[drag-channel='Kinetic'] .item-img {
   left:-2px;
 }
 
-.dupe-lower {
-  background: rgba(228,213,31,0.85);
-}
-
-.dupe-higher {
-  background: rgba(123,243,220,0.85);
-}
-
 .dupe-stat {
   position: absolute;
   bottom: 2px;
   left: 2px;
   font-size: 9.5px;
-  font-weight: bold;
   padding: 0 2px;
   color: #fff;
   min-width: 26px;
   text-align: center;
   -webkit-user-select: none;
   box-sizing: content-box;
+}
+
+/* Muted background; don't need to call too much attention to this */
+.dupe-higher {
+  background: rgba(0,0,0,0.5);
+}
+
+/* You almost always want to destroy these */
+.dupe-lower {
+  background: rgba(31,228,196,0.7);
 }
