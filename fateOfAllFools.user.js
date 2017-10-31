@@ -134,16 +134,6 @@
     }
 
     /*
-        The .item-stat selector is somehow insanely specific and cannot be
-        overriden with !important, so we use our own instead.
-    */
-    function styleStats() {
-        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').children('.item-stat').not('.foaf-item-stat').addClass('foaf-item-stat');
-        });
-    }
-
-    /*
         Instead of a yellow border to indicate a mod, we're going to add "+M" to the end of
         the item's Power Level. In D1, yellow borders used to indicate that an item was fully
         leveled up, and considering how eventually all items will have legendary mods in them,
@@ -279,8 +269,6 @@
         saveInitialWeaponInfo();
         log('  Clearing DIM weapon item tags...');
         clearDIMTags();
-        log('  Enhancing stats...');
-        styleStats();
         log('  Enhancing tooltips...');
         tooltipComments();
         log('  Adding mod indicator...');

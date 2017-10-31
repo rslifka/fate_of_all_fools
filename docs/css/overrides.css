@@ -3,6 +3,15 @@
   display: none !important;
 }
 
+/* Reset background color and font size for increased readability */
+.item-stat {
+  background-color: transparent !important;
+  bottom: 2px !important;
+  color: rgba(255,255,255,0.8) !important;
+  font-size: 10px !important;
+  right: 2px !important;
+}
+
 /* We never use the collapse controls */
 .fa.collapse.fa-minus-square-o,
 .fa.collapse.fa-plus-square-o {
@@ -12,15 +21,6 @@
 /* We never switch subclasses */
 .sub-section.sort-3284755031 {
   display: none !important };
-}
-
-/* Reset background color and font size for increased readability */
-.foaf-item-stat {
-  background-color: transparent !important;
-  bottom: 2px !important;
-  color: rgba(255,255,255,0.8) !important;
-  font-size: 10px !important;
-  right: 2px !important;
 }
 
 /*
