@@ -15,7 +15,7 @@
 }
 
 /* Reset background color and font size for increased readability */
-.item-stat {
+.foaf-item-stat {
   background-color: transparent !important;
   bottom: 2px !important;
   color: rgba(255,255,255,0.8) !important;
