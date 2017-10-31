@@ -1,22 +1,20 @@
 # Fate of All Fools
-`FOAF` is a [TamperMonkey](https://tampermonkey.net/)-based suite of enhancements to DIM for Destiny 2. It's also the name of a [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
+`FOAF` is a [TamperMonkey](https://tampermonkey.net/)-based suite of enhancements to Destiny Item Manager for Destiny 2. It's also the name of a [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
 
-I've used [Destiny Item Manager](https://www.destinyitemmanager.com/) for years and find it indispensable. However, there are a few nits I've wanted to fix from styling to information density; some affecting the UI more than others. I've also wanted to add workflow-specific features that are unique to the way I use DIM. These changes range from slight preferences to how I prefer to organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core. (BTW you should totally use DIM, it's awesome!)
+I've used [Destiny Item Manager](https://www.destinyitemmanager.com/) for years and find it indispensable. However, there are a few nits I've wanted to fix from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I use DIM. These changes range from slight preferences to how I prefer to organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core. (BTW you should totally use DIM, it's awesome!)
 
 For example:
 
 * With Destiny 2's static weapon drops, it's far easier to have a tidy vault. [I've been tracking drops](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pubhtml) and capturing my ratings. I'd like these to make their way back in to DIM without having to refer to a separate sheet.
-* Let's say I get a drop I'm not a fan of (e.g. `Bad News`). I break it down. Another `Bad News` drops a month later. Well rather than have to drop in to the EDZ and shoot Cabal to re-assess the weapon, I'd prefer to know if I previously did that, what the results were and any comments I had about it (e.g. `"So close! Give this one a go once hand cannons are buffed"`).
+* I'd also like these rating to be available at-a-glance so I can quickly decide if a weapon is appropriate for a given type of activity. Quick, pick a scout rifle that's good for PvP! (assuming you don't want to use `Nameless Midnight` as your sole SR forever)
+* Let's say I get a drop I'm not a fan of (e.g. `Bad News`). I break it down. Another `Bad News` drops a month later. Rather than have to drop in to the EDZ and shoot Cabal to re-assess the weapon, I'd prefer to know if I previously did that, what the results were and any comments I had about it (e.g. `"So close! Give this one a go once hand cannons are buffed"`).
 
 # Features
 
 ## Additions
-* Displays additional information derived from an external source of subjective weapon quality assessments (in this case, Google Sheets). This is the main reason I developed this UserScript. I wanted to be able to tell a few things at a glance when looking at my vault. FOAF supports linking to your own sheet so you can of course customize these rankings. **You can create your own sheet from my template to specify your own rankings!** (see below)
-(**TODO: screenshot**)
-* Duplicate items are indicated with a `dup` tag, and duplicate items with a lower light level are indicated with `dupe-lo`.
-(**TODO: screenshot**)
-* When hovering over a duplicate item, all other duplicates are highlighted.
-(**TODO: screenshot**)
+* Displays information at-a-glance derived from an external source of subjective weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below) (**TODO: screenshot**)
+* Duplicate items are indicated with a `dup` tag, and duplicate items with a lower light level are indicated with `dup-lo`. When hovering over a duplicate item, all other duplicates are highlighted. (**TODO: screenshot**)
+* Infusable items are indicated with an `infuse` tag. Hovering over an infusable item will highlight items that it can use for infusion. (**TODO: screenshot**)
 
 ## Modifications
 * **Consistent, subdued background throughout**: No need for the contrast between toon inventory and vault; the grouping of items is enough. (**TODO: screenshot**)
@@ -33,15 +31,11 @@ For example:
 # Installation and Configuration
 
 1. Install [TamperMonkey](https://tampermonkey.net/). It may work with other UserScript extensions though I haven't tried, and won't, but you're welcome to! ¯\\_(ツ)_/¯
-1. FOAF is hosted over on OpenUserJS; [one-click install](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization) from there.
-
-At this point you're good to go! The only trouble that you'll be look at my weapon assessments and not your own :)
-
-# Customization
-
+1. FOAF is hosted over on OpenUserJS; [one-click install](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization) from there. **At this point you're good to go!** The only trouble that you'll be look at my weapon assessments and not your own, which is sort of the whole point of this UserScript ;)
 1. Duplicate my [weapon assessments sheet](https://docs.google.com/spreadsheets/d/16BO3r1B5vuLtCnR06l_rtCl_WlWVDkg_9C9Gu-v-xi4/edit?usp=sharing) as a starting point.
 1. Ensure that your sheet is published to the web (`File` => `Publish to the Web...`) and that in publish settings you've selected `Entire Document`.
 1. For each tab, generate a TSV link by choosing `Tab-seperated values` and copying the link Google generates.
 1. Click on the TamperMonkey extension icon in your browser.
 1. Click on the FOAF script.
 1. Replace the three Google URLs with the three URLs to your Google Sheet (one for each weapon category).
+1. You're done! The script will automatically update from here on out.
