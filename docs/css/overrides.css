@@ -137,12 +137,13 @@ div[drag-channel='Kinetic'] .item-img {
 
 .dupe-stat {
   position: absolute;
-  bottom: 14px;
-  right: 0;
+  bottom: 2px;
+  left: 2px;
   font-size: 9.5px;
+  font-weight: bold;
   padding: 0 2px;
-  color: #000;
-  min-width: 10px;
+  color: #fff;
+  min-width: 26px;
   text-align: center;
   -webkit-user-select: none;
   box-sizing: content-box;
