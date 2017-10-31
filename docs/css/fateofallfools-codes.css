@@ -1,6 +1,6 @@
 
 .foaf-fave:before { content: '\e800'; } /* '' */
-.foaf-pvp-1:before { content: '\e802'; } /* '' */
+.foaf-pvp:before { content: '\e802'; } /* '' */
 .foaf-question-mark:before { content: '\e803'; } /* '' */
-.foaf-pvp:before { content: '\e804'; } /* '' */
+.foaf-pve:before { content: '\e804'; } /* '' */
 .foaf-thumbs-down:before { content: '\e805'; } /* '' */

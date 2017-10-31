@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fateofallfools';
-  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?46088504');
-  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?46088504#iefix') format('embedded-opentype'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff2?46088504') format('woff2'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff?46088504') format('woff'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.ttf?46088504') format('truetype'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?46088504#fateofallfools') format('svg');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?27318815');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?27318815#iefix') format('embedded-opentype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff2?27318815') format('woff2'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff?27318815') format('woff'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.ttf?27318815') format('truetype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?27318815#fateofallfools') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fateofallfools';
-    src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?46088504#fateofallfools') format('svg');
+    src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?27318815#fateofallfools') format('svg');
   }
 }
 */
@@ -56,7 +56,7 @@
 }
 
 .foaf-fave:before { content: '\e800'; } /* '' */
-.foaf-pvp-1:before { content: '\e802'; } /* '' */
+.foaf-pvp:before { content: '\e802'; } /* '' */
 .foaf-question-mark:before { content: '\e803'; } /* '' */
-.foaf-pvp:before { content: '\e804'; } /* '' */
+.foaf-pve:before { content: '\e804'; } /* '' */
 .foaf-thumbs-down:before { content: '\e805'; } /* '' */
