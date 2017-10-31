@@ -4,7 +4,9 @@
 }
 
 /* Reset background color and font size for increased readability */
-.item-stat {
+div[drag-channel='Kinetic'] > .item-stat,
+div[drag-channel='Energy'] > .item-stat,
+div[drag-channel='Power'] > .item-stat {
   background-color: transparent !important;
   bottom: 2px !important;
   color: rgba(255,255,255,0.8) !important;
