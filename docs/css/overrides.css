@@ -28,16 +28,16 @@
   additional decoration we could capture elsewhere. We still want to indicate
   elemental damage type, so let's use the background of the damage number to
   indicate that.
+*/
 .item-element.arc ~ .item-stat {
-  background-color: rgba(133,197,236,0.9) !important;
+  border-top: 2px solid rgba(133,197,236,0.9);
 }
 .item-element.solar ~ .item-stat {
-  background-color: rgba(242,114,27,0.9) !important;
+  border-top: 2px solid rgba(242,114,27,0.9);
 }
 .item-element.void ~ .item-stat {
-  background-color: rgba(177,132,197,0.9) !important;
+  border-top: 2px solid rgba(177,132,197,0.9);
 }
-*/
 
 /* Go for a more muted background */
 body,
