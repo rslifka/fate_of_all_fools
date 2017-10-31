@@ -13,19 +13,18 @@ For example:
 ## Additions
 * Displays additional information derived from an external source of subjective weapon quality assessments (in this case, Google Sheets). This is the main reason I developed this UserScript. I wanted to be able to tell a few things at a glance when looking at my vault. FOAF supports linking to your own sheet so you can of course customize these rankings. **You can create your own sheet from my template to specify your own rankings!** (see below)
 (**TODO: screenshot**)
-* The tooltip has been repurposed with information from the aforementioned Google Sheet.
-(**TODO: screenshot**)
 * Duplicate items are indicated with a `dup` tag, and duplicate items with a lower light level are indicated with `dupe-lo`.
 (**TODO: screenshot**)
 * When hovering over a duplicate item, all other duplicates are highlighted.
 (**TODO: screenshot**)
 
 ## Modifications
-* **Consistent, subdued background throughout**: No need for the contrast between toon inventory and vault; the grouping of items is enough.
-* **Improved display of power level**: Maybe it's because I'm forty now :) that the font for power level was too small and difficult to read. Slight increase to the font size and decrease (increase?) to the opacity to make it stand out more.
-* **Light level border indicates element**: The elemental damage type tags were another visual cue that seems excessive in a screen full of gear, so I've moved them back to the background of the power level.
-* **Flipped Kinetic weapon orientation**: Kinetic weapons now face the same direction as Energy and Power Weapons (bottom-left to top-right). This was so that the LL and any icons would not be on top of the weapon itself.
-* **Removed yellow border for mods**: This has been replaced with `M` after the light level of a weapon or piece of armor. The yellow border was too much visual distraction for this small bit of information, and overwhelming to look at a vault full of yellows. It's also hard to turn off the part of my brain that thinks this is a "fully leveled item" from Destiny 1 :)
+* **Consistent, subdued background throughout**: No need for the contrast between toon inventory and vault; the grouping of items is enough. (**TODO: screenshot**)
+* **Improved display of power level**: Maybe it's because I'm forty now :) that the font for power level was too small and difficult to read. Slight increase to the font size and decrease (increase?) to the opacity to make it stand out more. (**TODO: screenshot**)
+* The tooltip has been repurposed with information from the aforementioned Google Sheet. (**TODO: screenshot**)
+* **Light level border indicates element**: The elemental damage type tags were another visual cue that seems excessive in a screen full of gear, so I've moved them back to the background of the power level. (**TODO: screenshot**)
+* **Flipped Kinetic weapon orientation**: Kinetic weapons now face the same direction as Energy and Power Weapons (bottom-left to top-right). This was so that the LL and any icons would not be on top of the weapon itself. (**TODO: screenshot**)
+* **Removed yellow border for mods**: This has been replaced with `M` after the light level of a weapon or piece of armor. The yellow border was too much visual distraction for this small bit of information, and overwhelming to look at a vault full of yellows. It's also hard to turn off the part of my brain that thinks this is a "fully leveled item" from Destiny 1 :) (**TODO: screenshot**)
 
 ## Removals
 * **Remove subclass icons**: I've never once switched subclasses this way. OK, maybe once to see if it worked (it does!) but never enough to warrant having this displayed at all times.
