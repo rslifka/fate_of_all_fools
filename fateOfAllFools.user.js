@@ -235,7 +235,7 @@
             }
             const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
             weaponInstances.forEach(function(weapon) {
-                let dupeDesc = (weapon.light < maxLight) ? ('dup-lo') : ('dup');
+                let dupeDesc = (weapon.light < maxLight) ? ('D-LO') : ('D');
                 let dupeClass = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe-higher');
 
                 // Does this exact element exist already?
