@@ -98,7 +98,7 @@
     */
     function saveInitialWeaponInfo() {
         ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-info]').each(function(index,element) {
+            $('[title][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-info]').each(function(index,element) {
                 // Save original title (weapon name) as we later reformat the title
                 // to include additional data.
                 $(this).attr('data-foaf-weapon-name', $(this).attr('title'));
@@ -120,15 +120,13 @@
         });
     }
 
-    // We're replacing DIM's tags with our own
+    /*
+        Remove DIM-native tagging decoration from weapons, leaving it on all
+        inventory item types.
+    */
     function clearDIMTags() {
-        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $("div[drag-channel='"+dimWeaponType+"'] .fa").each(function(index,element) {
-                $(this).remove();
-            });
-            $("div[drag-channel='"+dimWeaponType+"'] .no-tag").each(function(index,element) {
-                $(this).remove();
-            });
+        $('[data-foaf-weapon-info] .fa, [data-foaf-weapon-info] .no-tag').each(function(index,element) {
+            $(this).remove();
         });
     }
 
@@ -151,18 +149,16 @@
         Pull more information from our sheet in to the tooltip.
     */
     function tooltipComments() {
-        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
-                const weaponName = $(this).attr('data-foaf-weapon-name');
-                if (!WEAPONS.has(weaponName)) {
-                    return;
-                }
+        $('[data-foaf-weapon-name]').each(function(index,element) {
+            const weaponName = $(this).attr('data-foaf-weapon-name');
+            if (!WEAPONS.has(weaponName)) {
+                return;
+            }
 
-                var weapon = WEAPONS.get(weaponName);
-                let tooltipText = weaponName + ' // ' + weapon.type + ' - ' + weapon.subtype + '\n';
-                tooltipText += weapon.comments;
-                $(this).attr('title', tooltipText);
-            });
+            var weapon = WEAPONS.get(weaponName);
+            let tooltipText = weaponName + ' // ' + weapon.type + ' - ' + weapon.subtype + '\n';
+            tooltipText += weapon.comments;
+            $(this).attr('title', tooltipText);
         });
     }
 
@@ -171,44 +167,42 @@
     */
     function iconifyWeapons() {
         const exclusion = dataRefreshed ? '' : '[data-foaf-tagged]';
-        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').not(exclusion).each(function(index,element) {
-                if (dataRefreshed) {
-                    $(this).children('.item-tag').remove();
+        $('[data-foaf-weapon-name]').not(exclusion).each(function(index,element) {
+            if (dataRefreshed) {
+                $(this).children('.item-tag').remove();
+            }
+
+            const weaponName = $(this).attr('data-foaf-weapon-name');
+            $(this).attr('data-foaf-tagged', true);
+
+            if (!WEAPONS.has(weaponName)) {
+                $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
+                return;
+            }
+
+            var weapon = WEAPONS.get(weaponName);
+            if (weapon.isJunk()) {
+                $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
+            } else if (weapon.isUnknown()) {
+                $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
+            } else {
+                if (weapon.pveUseful !== Suitability.UNKNOWN) {
+                    $(this).append($("<div>", {"class": "item-tag foaf-pve " + STATUS_CLASSES.get(weapon.pveUseful)}));
                 }
-
-                const weaponName = $(this).attr('data-foaf-weapon-name');
-                $(this).attr('data-foaf-tagged', true);
-
-                if (!WEAPONS.has(weaponName)) {
-                    $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
-                    return;
-                }
-
-                var weapon = WEAPONS.get(weaponName);
-                if (weapon.isJunk()) {
-                    $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
-                } else if (weapon.isUnknown()) {
-                    $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
-                } else {
-                    if (weapon.pveUseful !== Suitability.UNKNOWN) {
-                        $(this).append($("<div>", {"class": "item-tag foaf-pve " + STATUS_CLASSES.get(weapon.pveUseful)}));
+                if (weapon.pvpUseful !== Suitability.UNKNOWN) {
+                    let leftPadding = '';
+                    if (weapon.pveUseful === Suitability.UNKNOWN) {
+                        leftPadding = 'left:2px;';
                     }
-                    if (weapon.pvpUseful !== Suitability.UNKNOWN) {
-                        let leftPadding = '';
-                        if (weapon.pveUseful === Suitability.UNKNOWN) {
-                            leftPadding = 'left:2px;';
-                        }
-                        $(this).append($("<div>", {"class": "item-tag foaf-pvp " + STATUS_CLASSES.get(weapon.pvpUseful), "style": leftPadding}));
-                    }
+                    $(this).append($("<div>", {"class": "item-tag foaf-pvp " + STATUS_CLASSES.get(weapon.pvpUseful), "style": leftPadding}));
                 }
-            });
+            }
         });
     }
 
     function indicateDupes() {
         var weapons = new Map();
-        $('div[data-foaf-weapon-name]').each(function(index,element) {
+        $('[data-foaf-weapon-name]').each(function(index,element) {
             // Remove all events while we're iterating here so we don't have to do it later
             $(this).off('.dupe');
             $(this).remove('.dupe-stat');
