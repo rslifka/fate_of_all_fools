@@ -161,11 +161,7 @@
 
                 var weapon = WEAPONS.get(weaponName);
                 let tooltipText = weaponName + ' // ' + weapon.type + ' - ' + weapon.subtype + '\n';
-                tooltipText += '\n';
-                tooltipText += 'PvE: GOOD' + '\n';
-                tooltipText += 'PvP: BAD' + '\n';
-                tooltipText += '\n';
-                tooltipText += 'Comments: \n' + weapon.comments;
+                tooltipText += weapon.comments;
                 $(this).attr('title', tooltipText);
             });
         });
