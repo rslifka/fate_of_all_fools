@@ -106,8 +106,8 @@ div[drag-channel='Kinetic'] .item-img {
   background-color: rgba(0,0,0,0.5);
   color:rgba(221,221,221,1);
   font-size:12px;
-  top:2;
-  left:2;
+  top:2px;
+  left:2px;
   text-shadow: none;
 }
 .foaf-question-mark {
