@@ -41,7 +41,6 @@
     const STATUS_CLASSES = new Map();
     STATUS_CLASSES.set(Suitability.YES, 'foaf-yes');
     STATUS_CLASSES.set(Suitability.NO, 'foaf-no');
-    STATUS_CLASSES.set(Suitability.UNKNOWN, 'foaf-unknown');
 
     const WEAPONS = new Map();
 
@@ -209,20 +208,22 @@
 
     function indicateDupes() {
         var weapons = new Map();
-        ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-            $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').each(function(index,element) {
-                let weaponName = $(this).attr('data-foaf-weapon-name');
-                let weaponData = {
-                    name: weaponName,
-                    domElement: this,
-                    light: $(this).attr('data-foaf-base-light-level')
-                };
-                if (weapons.has(weaponName)) {
-                    weapons.set(weaponName, weapons.get(weaponName).concat(weaponData));
-                } else {
-                    weapons.set(weaponName, [weaponData]);
-                }
-            });
+        $('div[data-foaf-weapon-name]').each(function(index,element) {
+            // Remove all events while we're iterating here so we don't have to do it later
+            $(this).off('.dupe');
+            $(this).remove('.dupe-stat');
+
+            let weaponName = $(this).attr('data-foaf-weapon-name');
+            let weaponData = {
+                name: weaponName,
+                domElement: this,
+                light: parseInt($(this).attr('data-foaf-base-light-level'))
+            };
+            if (weapons.has(weaponName)) {
+                weapons.set(weaponName, weapons.get(weaponName).concat(weaponData));
+            } else {
+                weapons.set(weaponName, [weaponData]);
+            }
         });
 
         weapons.forEach(function(weaponInstances, key, map) {
@@ -231,23 +232,14 @@
             }
             const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
             weaponInstances.forEach(function(weapon) {
-                let dupeDesc = (weapon.light < maxLight) ? ('D-LO') : ('D');
-                let dupeClass = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe-higher');
-
-                // Does this exact element exist already?
-                let existingDuperino = $(weapon.domElement).children(".dupe-stat."+dupeClass+":contains('"+dupeDesc+"')");
-                if (existingDuperino.length > 0) {
-                    return;
-                }
-
-                $(weapon.domElement).remove('.dupe-stat');
+                const dupeDesc = (weapon.light < maxLight) ? ('D-LO') : ('D');
+                const dupeClass = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe-higher');
                 $(weapon.domElement).append($("<div>", {"class": "dupe-stat " + dupeClass}).text(dupeDesc));
 
-                $(weapon.domElement).hover(function() {
-                    ["Kinetic","Energy","Power"].forEach(function(dimWeaponType) {
-                        $('div[data-foaf-weapon-name][drag-channel="'+dimWeaponType+'"]').not('[data-foaf-weapon-name="'+weapon.name+'"]').addClass('search-hidden');
-                    });
-                },function() {
+                $(weapon.domElement).on('mouseenter.dupe', function() {
+                    $('div[data-foaf-weapon-name]').not('[data-foaf-weapon-name="'+weapon.name+'"]').addClass('search-hidden');
+                });
+                $(weapon.domElement).on('mouseleave.dupe', function() {
                     $('.search-hidden').removeClass('search-hidden');
                 });
             });
