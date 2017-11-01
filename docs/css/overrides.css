@@ -10,7 +10,7 @@ div[drag-channel='Power'] > .item-stat {
   background-color: transparent !important;
   bottom: 2px !important;
   color: rgba(255,255,255,0.8) !important;
-  font-size: 10px !important;
+  font-size: 12px !important;
   right: 2px !important;
 }
 
@@ -103,7 +103,7 @@ div[drag-channel='Kinetic'] .item-img {
   color: rgba(156,61,52,1);
 }
 .foaf-thumbs-down {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.625);
   color:rgba(221,221,221,1);
   font-size:12px;
   top:2px;
@@ -111,7 +111,7 @@ div[drag-channel='Kinetic'] .item-img {
   text-shadow: none;
 }
 .foaf-question-mark {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.625);
   color:rgba(221,221,221,1);
   font-size:12px;
   top:2px;
@@ -119,14 +119,14 @@ div[drag-channel='Kinetic'] .item-img {
   text-shadow: none;
 }
 .foaf-pve {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.625);
   font-size:12px;
   top:2px;
   left:2px;
   text-shadow: none;
 }
 .foaf-pvp {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.625);
   font-size:12px;
   top:2px;
   left:19px;
@@ -134,11 +134,12 @@ div[drag-channel='Kinetic'] .item-img {
 }
 
 .dupe-stat {
+  background-color: rgba(82, 47, 101, 0.5);
   position: absolute;
   bottom: 2px;
   left: 2px;
-  font-size: 10px;
-  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
   text-align: center;
   -webkit-user-select: none;
   box-sizing: content-box;
@@ -146,12 +147,12 @@ div[drag-channel='Kinetic'] .item-img {
 
 /* Muted background; don't need to call too much attention to this */
 .dupe-higher {
-  background: rgba(0,0,0,0.5);
-  padding: 0 5px;
+  color: rgba(255,255,255,0.8);
+  padding: 0 4px;
 }
 
 /* You almost always want to destroy these */
 .dupe-lower {
-  background: rgba(0,222,186,0.5);
-  padding: 0 3px;
+  color: rgba(0,255,212,1);
+  padding: 1px 3px;
 }
