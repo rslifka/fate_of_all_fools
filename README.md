@@ -1,12 +1,12 @@
 # Fate of All Fools
-`FOAF` is a [TamperMonkey](https://tampermonkey.net/)-based suite of enhancements to Destiny Item Manager for Destiny 2. It's also the name of a [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
+`FOAF` is a [TamperMonkey](https://tampermonkey.net/)-based suite of enhancements to [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for Destiny 2. It's also the name of a [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
 
-I've used [Destiny Item Manager](https://www.destinyitemmanager.com/) for years and find it indispensable. However, there are a few nits I've wanted to fix from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I use DIM. These changes range from slight preferences to how I prefer to organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core. (BTW you should totally use DIM, it's awesome!)
+***This is only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension***
 
-For example:
+I've used DIM for years and find it indispensable. There are a few nits I've wanted to fix from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I play Destiny. These changes range from slight preferences to how I prefer to organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core. Some examples:
 
 * With Destiny 2's static weapon drops, it's far easier to have a tidy vault. [I've been tracking drops](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pubhtml) and capturing my ratings. I'd like these to make their way back in to DIM without having to refer to a separate sheet.
-* I'd also like these rating to be available at-a-glance so I can quickly decide if a weapon is appropriate for a given type of activity. Quick, pick a scout rifle that's good for PvP! (assuming you don't want to use `Nameless Midnight` as your sole SR forever)
+* I'd like these ratings to be available at-a-glance so I can quickly decide if a weapon is appropriate for a given type of activity. Quick, pick a scout rifle that's good for PvP! (assuming you don't want to use `Nameless Midnight` as your sole SR forever)
 * Let's say I get a drop I'm not a fan of (e.g. `Bad News`). I break it down. Another `Bad News` drops a month later. Rather than have to drop in to the EDZ and shoot Cabal to re-assess the weapon, I'd prefer to know if I previously did that, what the results were and any comments I had about it (e.g. `"So close! Give this one a go once hand cannons are buffed"`).
 
 # Features
