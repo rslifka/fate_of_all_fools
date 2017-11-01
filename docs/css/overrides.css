@@ -121,16 +121,16 @@ div[drag-channel='Kinetic'] .item-img {
 }
 .foaf-pve {
   background: rgba(0,0,0,0.7);
-  font-size:11px;
+  font-size:12px;
   top:2px;
   left:2px;
   text-shadow: none;
 }
 .foaf-pvp {
   background: rgba(0,0,0,0.7);
-  font-size:10px;
+  font-size:12px;
   top:2px;
-  left:13px;
+  left:19px;
   text-shadow: none;
 }
 
