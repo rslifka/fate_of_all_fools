@@ -70,11 +70,11 @@ body,
 }
 
 /*
-  There's a lot going on. Let's make it clear what we're focused on.
-  DIM's "complete" border: #f5dc56
-.item-img:hover {
+    Used to indicate infusion targets.
+*/
+.pulse {
   animation: glow 800ms ease-out infinite alternate;
-  border-color: #908130;
+  border: 2px solid #908130;
 }
 @keyframes glow {
   0% {
@@ -86,7 +86,6 @@ body,
 	box-shadow: 0 0 20px rgba(0,255,0,.6), inset 0 0 10px rgba(0,255,0,.4), 0 2px 0 #000;
   }
 }
-*/
 
 /*
   Swap the orientation of Kinetics to make them all uniform and to leave room
