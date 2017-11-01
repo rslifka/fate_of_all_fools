@@ -198,7 +198,7 @@
                     if (weapon.pvpUseful !== Suitability.UNKNOWN) {
                         let leftPadding = '';
                         if (weapon.pveUseful === Suitability.UNKNOWN) {
-                            leftPadding = 'left:0;';
+                            leftPadding = 'left:2px;';
                         }
                         $(this).append($("<div>", {"class": "item-tag foaf-pvp " + STATUS_CLASSES.get(weapon.pvpUseful), "style": leftPadding}));
                     }
