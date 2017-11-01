@@ -11,6 +11,7 @@ div[drag-channel='Power'] > .item-stat {
   bottom: 2px !important;
   color: rgba(255,255,255,0.8) !important;
   font-size: 12px !important;
+  font-weight: bold !important;
   right: 2px !important;
 }
 
@@ -97,10 +98,10 @@ div[drag-channel='Kinetic'] .item-img {
 
 /* Icon colorings */
 .foaf-yes {
-  color: rgba(140,182,132,1);
+  color: rgba(93,181,110,1);
 }
 .foaf-no {
-  color: rgba(156,61,52,1);
+  color: rgba(206,82,70,1);
 }
 .foaf-thumbs-down {
   background-color: rgba(0,0,0,0.625);
