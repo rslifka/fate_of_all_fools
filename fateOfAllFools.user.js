@@ -239,6 +239,54 @@
         });
     }
 
+    function indicateInfusion() {
+        var weaponsByType = new Map();
+        $('[data-foaf-weapon-type]').each(function(index,element) {
+            const weaponType = $(this).attr('data-foaf-weapon-type');
+            const weaponData = {
+                type: weaponType,
+                domElement: this,
+                light: parseInt($(this).attr('data-foaf-base-light-level'))
+            };
+            if (weaponsByType.has(weaponType)) {
+                weaponsByType.set(weaponType, weaponsByType.get(weaponType).concat(weaponData));
+            } else {
+                weaponsByType.set(weaponType, [weaponData]);
+            }
+        });
+
+        weaponsByType.forEach(function(weaponInstances, key, map) {
+            $(weaponInstances[0].domElement).children('.infuse-stat').remove();
+
+            if (weaponInstances.length == 1) {
+                return;
+            }
+
+            const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
+            weaponInstances.forEach(function(weapon) {
+                if (weapon.light === maxLight) {
+                    return;
+                }
+
+                $(weapon.domElement).children('.infuse-stat').remove();
+                $(weapon.domElement).append($("<div>", {"class": "infuse-stat foaf-up"}));
+
+                $(weapon.domElement).children('.infuse-stat').on('mouseenter.infuse', function() {
+                    // Hide all weapons not of the this type, since they can't be used for infusion
+                    $('[data-foaf-weapon-type]').not('[data-foaf-weapon-type="'+weapon.type+'"]').addClass('search-hidden');
+
+                    // Hide all weapons of this type with lower base light
+                    $('[data-foaf-weapon-type="'+weapon.type+'"]').filter(function() {
+                        return $(this).attr('data-foaf-base-light-level') <= weapon.light;
+                    }).addClass('search-hidden');
+                });
+                $(weapon.domElement).children('.infuse-stat').on('mouseleave.infuse', function() {
+                    $('.search-hidden').removeClass('search-hidden');
+                });
+            });
+        });
+    }
+
     function refresh() {
         if (dataRefreshed) {
             log('Refreshing (full)...');
@@ -258,6 +306,8 @@
         iconifyWeapons();
         log('  Dupify!...');
         indicateDupes();
+        log('  Infusify!...');
+        indicateInfusion();
 
         dataRefreshed = false;
         log('Done!');
