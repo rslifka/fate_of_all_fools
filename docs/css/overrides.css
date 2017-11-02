@@ -157,3 +157,17 @@ div[drag-channel='Kinetic'] .item-img {
   color: rgba(206,82,70,1);
   padding: 1px 3px;
 }
+
+.infuse-stat {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: rgba(0,0,0,0.625);
+  color: rgba(93,181,110,1);
+  padding: 0;
+  text-align: center;
+  -webkit-user-select: none;
+  box-sizing: content-box;
+}
