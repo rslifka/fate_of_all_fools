@@ -1,9 +1,7 @@
 
 .foaf-fave:before { content: '\e800'; } /* '' */
 .foaf-pvp:before { content: '\e801'; } /* '' */
-.foaf-up3:before { content: '\e802'; } /* '' */
 .foaf-question-mark:before { content: '\e803'; } /* '' */
 .foaf-pve:before { content: '\e804'; } /* '' */
 .foaf-thumbs-down:before { content: '\e805'; } /* '' */
-.foaf-up1:before { content: '\e806'; } /* '' */
-.foaf-up2:before { content: '\e807'; } /* '' */
+.foaf-up:before { content: '\e806'; } /* '' */
