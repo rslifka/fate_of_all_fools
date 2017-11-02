@@ -135,7 +135,7 @@ div[drag-channel='Kinetic'] .item-img {
 }
 
 .dupe-stat {
-  background-color: rgba(82, 47, 101, 0.5);
+  background-color: rgba(0,0,0,0.625);
   position: absolute;
   bottom: 2px;
   left: 2px;
@@ -148,12 +148,12 @@ div[drag-channel='Kinetic'] .item-img {
 
 /* Muted background; don't need to call too much attention to this */
 .dupe-higher {
-  color: rgba(255,255,255,0.8);
+  color: rgba(93,181,110,1);
   padding: 0 4px;
 }
 
 /* You almost always want to destroy these */
 .dupe-lower {
-  color: rgba(0,255,212,1);
+  color: rgba(206,82,70,1);
   padding: 1px 3px;
 }
