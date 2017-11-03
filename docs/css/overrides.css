@@ -1,29 +1,33 @@
 /* Remove all damage type elements from items (little colored notch on top left) */
 .item-element {
-  display: none !important;
+  display: none;
 }
 
 /* Reset background color and font size for increased readability */
 div[drag-channel='Kinetic'] > .item-stat,
 div[drag-channel='Energy'] > .item-stat,
 div[drag-channel='Power'] > .item-stat {
-  background-color: transparent !important;
-  bottom: 2px !important;
-  color: rgba(255,255,255,0.8) !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  right: 2px !important;
+  background-color: transparent;
+  bottom: 2px;
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  font-weight: bold;
+  right: 2px;
+}
+
+div[data-foaf-weapon-type='Exotic'] > .item-stat {
+  background-color: rgba(0,0,0,0.625);
 }
 
 /* We never use the collapse controls */
 .fa.collapse.fa-minus-square-o,
 .fa.collapse.fa-plus-square-o {
-  display: none !important;
+  display: none;
 }
 
 /* We never switch subclasses */
 .sub-section.sort-3284755031 {
-  display: none !important;
+  display: none;
 }
 
 /*
