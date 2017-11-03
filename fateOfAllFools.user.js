@@ -107,6 +107,9 @@
                 // Save base light for dupe and infusion calculations
                 const modifiedLightLevel = $(this).children('.item-stat').text();
                 const isModded = $(this).children('.item-img').hasClass('complete');
+                if (isModded) {
+                    $(this).attr('data-foaf-is-modded', true);
+                }
                 const baseLightLevel = isModded ? modifiedLightLevel-5 : modifiedLightLevel;
                 $(this).attr('data-foaf-base-light-level', baseLightLevel);
 
@@ -126,15 +129,13 @@
     }
 
     /*
-        Instead of a yellow border to indicate a mod, we're going to add "+M" to the end of
+        Instead of a yellow border to indicate a mod, we're going to add "M" to the end of
         the item's Power Level. In D1, yellow borders used to indicate that an item was fully
         leveled up, and considering how eventually all items will have legendary mods in them,
         it ends up being visual noise.
-
-        We hang on to the original light as we want to use it later for other calculations.
     */
     function addLegendaryModInfo() {
-        $('.item-img.complete').siblings('.item-stat').not('[data-original-light]').each(function(index, element) {
+        $('[data-foaf-is-modded]').children('.item-stat').not('[data-original-light]').each(function(index, element) {
             $(this).attr('data-original-light', $(this).text());
             $(this).text($(this).text()+'M');
         });
@@ -253,6 +254,7 @@
             const weaponData = {
                 type: weaponType,
                 domElement: this,
+                isModded: $(this).is('[data-foaf-is-modded]'),
                 light: parseInt($(this).attr('data-foaf-base-light-level'))
             };
             if (weaponsByType.has(weaponType)) {
@@ -298,7 +300,8 @@
                     $('[data-foaf-weapon-type="'+weapon.type+'"]').filter(function() {
                         return $(this).attr('data-foaf-base-light-level') > weapon.light;
                     }).each(function(index,element) {
-                        const newLight = $(this).attr('data-foaf-base-light-level');
+                        let newLight = parseInt($(this).attr('data-foaf-base-light-level'));
+                        newLight += weapon.isModded ? 5 : 0;
                         $(this).append($("<div>", {"class": "infuse-new-light"}).text(newLight));
                     });
                 });
