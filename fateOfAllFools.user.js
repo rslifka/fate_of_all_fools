@@ -14,6 +14,7 @@
 // @name     FateOfAllFools - DIM Customization
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require  https://unpkg.com/tippy.js@1.4.0/dist/tippy.js
+// @require  https://raw.githubusercontent.com/blueimp/JavaScript-MD5/master/js/md5.min.js
 // @run-at   document-start
 // @supportURL https://github.com/rslifka/fate_of_all_fools/issues
 // ==/UserScript==
@@ -26,11 +27,7 @@
         C H A N G E   O N L Y   T H E S E   U R L S
         **************************************************************
     */
-    const ITEM_DATA_TSVS = [
-        'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=0&single=true&output=tsv',
-        'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=945724952&single=true&output=tsv',
-        'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1848980798&single=true&output=tsv'
-    ];
+    const ITEM_DATA_TSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv';
 
     const Suitability = {
         YES: 'y',
@@ -43,6 +40,7 @@
     STATUS_CLASSES.set(Suitability.NO, 'foaf-no');
 
     const WEAPONS = new Map();
+    var rawWeaponDataMD5;
 
     class Weapon {
         constructor(name, type, subtype, favourite, pveUseful, pvpUseful, comments) {
@@ -323,26 +321,35 @@
         return deferredReady.promise();
     }
 
-    function rankingsDownloaded(tsvUrl) {
+    function rankingsDownloaded() {
         var deferredReady = $.Deferred();
         GM_xmlhttpRequest({
             method: 'GET',
-            url: tsvUrl,
+            url: ITEM_DATA_TSV,
             context: deferredReady,
             onload: function(response) {
-                log('Processing collection: "'+tsvUrl+'"');
+                log('Processing weapon data...');
+
+                const rawWeaponData = response.responseText;
+                if (rawWeaponDataMD5 === md5(rawWeaponData)) {
+                    log('Checksums match, skipping refresh');
+                    deferredReady.resolve();
+                    return;
+                }
+
+                // If the data changed, save the new checksum
+                rawWeaponDataMD5 = md5(rawWeaponData);
 
                 var dataLines = response.responseText.split(/[\r\n]+/);
                 log('Found ('+(dataLines.length-1)+') weapons');
 
+                // Name=0,Slot,Type,Subtype,Personal Fave?,PvE, PvP, Comments
                 for (var i = 1; i < dataLines.length; i++) {
-                    // We've split by TAB because no weapon names have tabs in them
                     var data = dataLines[i].split('\t');
-                    // log('Examining ' + data);
-
-                    // Name=0,Type,Subtype,Personal Fave?,PvE, PvP, Comments
-                    WEAPONS.set(data[0], new Weapon(data[0], data[1], data[2], data[3], data[4], data[5], data[6]));
+                    WEAPONS.set(data[0], new Weapon(data[0], data[2], data[3], data[4], data[5], data[6], data[7]));
                 }
+
+                dataRefreshed = true;
 
                 deferredReady.resolve();
             }
@@ -378,24 +385,13 @@
     */
     log('Initializing data refresh timer...');
     setInterval(function() {
-        $.when(
-            rankingsDownloaded(ITEM_DATA_TSVS[0]),
-            rankingsDownloaded(ITEM_DATA_TSVS[1]),
-            rankingsDownloaded(ITEM_DATA_TSVS[2])
-        ).then(function() {
+        $.when(rankingsDownloaded()).then(function() {
             log('Data refresh complete!');
-            dataRefreshed = true;
         });
     }, 30000);
 
     log('Initialized, waiting for items to appear...');
-    $.when(
-        itemsAreLoaded(),
-        rankingsDownloaded(ITEM_DATA_TSVS[0]),
-        rankingsDownloaded(ITEM_DATA_TSVS[1]),
-        rankingsDownloaded(ITEM_DATA_TSVS[2])
-    ).then(function() {
-        dataRefreshed = true;
+    $.when(itemsAreLoaded(), rankingsDownloaded()).then(function() {
         refresh();
         setInterval(function() {
             refresh();
