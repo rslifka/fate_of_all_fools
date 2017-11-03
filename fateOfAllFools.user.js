@@ -195,6 +195,11 @@
     }
 
     function indicateDupes() {
+        /*
+            This is a huge hammer but we have to. If a weapon is deleted out of
+            your inventory, it stands to change the dupe indicators.
+        */
+        $('.dupe-stat').remove();
         var weapons = new Map();
         $('[data-foaf-weapon-name]').each(function(index,element) {
             let weaponName = $(this).attr('data-foaf-weapon-name');
@@ -234,7 +239,12 @@
     }
 
     function indicateInfusion() {
-        // TODO - When do we remove the .infuse-stat in case it needs to be replaced?
+        /*
+            This is a huge hammer but we have to. If a weapon is deleted out of
+            your inventory, it will change the infusion indicators (potentially)
+            of other weapons.
+        */
+        $('.infuse-stat').remove();
 
         var weaponsByType = new Map();
         $('[data-foaf-weapon-type]').each(function(index,element) {
@@ -258,8 +268,11 @@
 
             const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
             for (let weapon of weaponInstances) {
-                $(weapon.domElement).children('.infuse-stat').remove();
                 if (weapon.light === maxLight) {
+                    continue;
+                }
+
+                if (WEAPONS.get($(weapon.domElement).attr('data-foaf-weapon-name')).isJunk()) {
                     continue;
                 }
 
