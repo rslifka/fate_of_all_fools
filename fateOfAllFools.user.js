@@ -183,14 +183,14 @@
                 $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
             } else {
                 if (weapon.pveUseful !== Suitability.UNKNOWN) {
-                    $(this).append($("<div>", {"class": "item-tag foaf-pve " + STATUS_CLASSES.get(weapon.pveUseful)}));
+                    $(this).append($("<div>", {"class": "foaf-pve " + STATUS_CLASSES.get(weapon.pveUseful)}));
                 }
                 if (weapon.pvpUseful !== Suitability.UNKNOWN) {
                     let leftPadding = '';
                     if (weapon.pveUseful === Suitability.UNKNOWN) {
                         leftPadding = 'left:2px;';
                     }
-                    $(this).append($("<div>", {"class": "item-tag foaf-pvp " + STATUS_CLASSES.get(weapon.pvpUseful), "style": leftPadding}));
+                    $(this).append($("<div>", {"class": "foaf-pvp " + STATUS_CLASSES.get(weapon.pvpUseful), "style": leftPadding}));
                 }
             }
         });
