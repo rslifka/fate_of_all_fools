@@ -150,7 +150,7 @@
         $('[data-foaf-weapon-name]').each(function(index,element) {
             const weaponName = $(this).attr('data-foaf-weapon-name');
             if (!WEAPONS.has(weaponName)) {
-                return;
+                return true;
             }
 
             var weapon = WEAPONS.get(weaponName);
@@ -175,7 +175,7 @@
 
             if (!WEAPONS.has(weaponName)) {
                 $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
-                return;
+                return true;
             }
 
             var weapon = WEAPONS.get(weaponName);
@@ -214,10 +214,10 @@
             }
         });
 
-        weapons.forEach(function(weaponInstances, key, map) {
+        for (let [weaponName, weaponInstances] of weapons) {
             if (weaponInstances.length == 1) {
                 $(weaponInstances[0].domElement).children('.dupe-stat').remove();
-                return;
+                continue;
             }
             const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
             weaponInstances.forEach(function(weapon) {
@@ -234,10 +234,12 @@
                     $('.search-hidden').removeClass('search-hidden');
                 });
             });
-        });
+        }
     }
 
     function indicateInfusion() {
+        // TODO - When do we remove the .infuse-stat in case it needs to be replaced?
+
         var weaponsByType = new Map();
         $('[data-foaf-weapon-type]').each(function(index,element) {
             const weaponType = $(this).attr('data-foaf-weapon-type');
@@ -253,20 +255,18 @@
             }
         });
 
-        weaponsByType.forEach(function(weaponInstances, key, map) {
-            $(weaponInstances[0].domElement).children('.infuse-stat').remove();
-
+        for (let [weaponType, weaponInstances] of weaponsByType) {
             if (weaponInstances.length == 1) {
-                return;
+                continue;
             }
 
             const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
-            weaponInstances.forEach(function(weapon) {
+            for (let weapon of weaponInstances) {
+                $(weapon.domElement).children('.infuse-stat').remove();
                 if (weapon.light === maxLight) {
-                    return;
+                    continue;
                 }
 
-                $(weapon.domElement).children('.infuse-stat').remove();
                 $(weapon.domElement).append($("<div>", {"class": "infuse-stat foaf-up"}));
 
                 $(weapon.domElement).children('.infuse-stat').on('mouseenter.infuse', function() {
@@ -281,8 +281,8 @@
                 $(weapon.domElement).children('.infuse-stat').on('mouseleave.infuse', function() {
                     $('.search-hidden').removeClass('search-hidden');
                 });
-            });
-        });
+            }
+        }
     }
 
     function refresh() {
