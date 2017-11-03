@@ -175,10 +175,10 @@ div[drag-channel='Kinetic'] .item-img {
 .infuse-new-light {
     background-color: rgba(0,0,0,0.625);
     color: rgba(245, 202, 31, 1);
+    text-align: center;
     font-size: 18px;
     font-weight: bold;
     line-height: 28px;
     position: relative;
-    text-align: center;
     top: -49px;
 }
