@@ -22,11 +22,7 @@
 (function() {
     'use strict';
 
-    /*
-        **************************************************************
-        C H A N G E   O N L Y   T H E S E   U R L S
-        **************************************************************
-    */
+    // CHANGE ONLY THIS URL
     const ITEM_DATA_TSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv';
 
     const Suitability = {
