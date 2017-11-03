@@ -101,6 +101,7 @@
                 const weaponName = $(this).attr('data-foaf-weapon-name');
                 if (WEAPONS.has(weaponName)) {
                     $(this).attr('data-foaf-weapon-type', WEAPONS.get(weaponName).type);
+                    $(this).attr('data-foaf-weapon-subtype', WEAPONS.get(weaponName).subtype);
                 }
 
                 // Save base light for dupe and infusion calculations

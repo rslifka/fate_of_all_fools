@@ -15,7 +15,7 @@ div[drag-channel='Power'] > .item-stat {
   right: 2px;
 }
 
-div[data-foaf-weapon-type='Exotic'] > .item-stat {
+div[data-foaf-weapon-subtype='Exotic'] > .item-stat {
   background-color: rgba(0,0,0,0.625);
 }
 
