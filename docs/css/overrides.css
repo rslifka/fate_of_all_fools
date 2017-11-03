@@ -171,3 +171,14 @@ div[drag-channel='Kinetic'] .item-img {
   -webkit-user-select: none;
   box-sizing: content-box;
 }
+
+.infuse-new-light {
+    background-color: rgba(0,0,0,0.625);
+    color: rgba(245, 202, 31, 1);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 28px;
+    position: relative;
+    text-align: center;
+    top: -49px;
+}

@@ -279,16 +279,31 @@
                 $(weapon.domElement).append($("<div>", {"class": "infuse-stat foaf-up"}));
 
                 $(weapon.domElement).children('.infuse-stat').on('mouseenter.infuse', function() {
-                    // Hide all weapons not of the this type, since they can't be used for infusion
-                    $('[data-foaf-weapon-type]').not('[data-foaf-weapon-type="'+weapon.type+'"]').addClass('search-hidden');
+                    // Hide all known weapons not of the this type, since they can't be used for infusion
+                    // This means we'll show weapons we don't know about which is fair because they're probably
+                    // blue weapons we might want to infuse anyway. Not sure what to do about this case.
+                    $('[data-foaf-weapon-name]').not('[data-foaf-weapon-type="'+weapon.type+'"]').addClass('search-hidden');
 
                     // Hide all weapons of this type with lower base light
                     $('[data-foaf-weapon-type="'+weapon.type+'"]').filter(function() {
+                        // Don't hide yourself dude!
+                        if (this === weapon.domElement) {
+                            return false;
+                        }
                         return $(this).attr('data-foaf-base-light-level') <= weapon.light;
                     }).addClass('search-hidden');
+
+                    // Show indicator for new light level by infusing this weapon
+                    $('[data-foaf-weapon-type="'+weapon.type+'"]').filter(function() {
+                        return $(this).attr('data-foaf-base-light-level') > weapon.light;
+                    }).each(function(index,element) {
+                        const newLight = $(this).attr('data-foaf-base-light-level');
+                        $(this).append($("<div>", {"class": "infuse-new-light"}).text(newLight));
+                    });
                 });
                 $(weapon.domElement).children('.infuse-stat').on('mouseleave.infuse', function() {
                     $('.search-hidden').removeClass('search-hidden');
+                    $('.infuse-new-light').remove();
                 });
             }
         }
