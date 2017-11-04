@@ -39,7 +39,7 @@
     var rawWeaponDataMD5;
 
     class Weapon {
-        constructor(name, type, subtype, favourite, pveUseful, pvpUseful, comments) {
+        constructor(name, type, subtype, favourite, pveUseful, pvpUseful, raidUseful, comments) {
             this.name = name;
             this.type = type;
             this.subtype = subtype;
@@ -64,6 +64,16 @@
                     break;
                 default:
                     this.pvpUseful = Suitability.UNKNOWN;
+            }
+            switch(raidUseful.toLowerCase()) {
+                case 'y':
+                    this.raidUseful = Suitability.YES;
+                    break;
+                case 'n':
+                    this.raidUseful = Suitability.NO;
+                    break;
+                default:
+                    this.raidUseful = Suitability.UNKNOWN;
             }
         }
 
@@ -385,10 +395,10 @@
                 var dataLines = response.responseText.split(/[\r\n]+/);
                 log('Found ('+(dataLines.length-1)+') weapons');
 
-                // Name=0,Slot,Type,Subtype,Personal Fave?,PvE, PvP, Comments
+                // Name=0,Slot,Type,Subtype,Personal Fave?,PvE,PvP,Raid,Comments
                 for (var i = 1; i < dataLines.length; i++) {
                     var data = dataLines[i].split('\t');
-                    WEAPONS.set(data[0], new Weapon(data[0], data[2], data[3], data[4], data[5], data[6], data[7]));
+                    WEAPONS.set(data[0], new Weapon(data[0], data[2], data[3], data[4], data[5], data[6], data[7], data[8]));
                 }
 
                 dataRefreshed = true;
