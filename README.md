@@ -11,6 +11,8 @@ I've used DIM for years and find it indispensable. There are a few nits I've wan
 
 # Features
 
+![Fate Of All Fools Icons](https://rslifka.github.io/fate_of_all_fools/img/overview.jpg)
+
 ## Additions
 * Displays information at-a-glance derived from an external source of subjective weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below) (**TODO: screenshot**)
 * Duplicate items are indicated with a `D` tag, and duplicate items with a lower light level are indicated with `D-LO`. When hovering over a duplicate item, all other duplicates are highlighted. (**TODO: screenshot**)
