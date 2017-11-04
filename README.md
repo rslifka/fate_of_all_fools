@@ -13,7 +13,7 @@ I've used DIM for years and find it indispensable. There are a few nits I've wan
 
 ## Additions
 * Displays information at-a-glance derived from an external source of subjective weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below) (**TODO: screenshot**)
-* Duplicate items are indicated with a `dup` tag, and duplicate items with a lower light level are indicated with `dup-lo`. When hovering over a duplicate item, all other duplicates are highlighted. (**TODO: screenshot**)
+* Duplicate items are indicated with a `D` tag, and duplicate items with a lower light level are indicated with `D-LO`. When hovering over a duplicate item, all other duplicates are highlighted. (**TODO: screenshot**)
 * Infusable items are indicated with an `infuse` tag. Hovering over an infusable item will highlight items that it can use for infusion. (**TODO: screenshot**)
 
 ## Modifications
@@ -33,9 +33,8 @@ I've used DIM for years and find it indispensable. There are a few nits I've wan
 1. Install [TamperMonkey](https://tampermonkey.net/). It may work with other UserScript extensions though I haven't tried, and won't, but you're welcome to! ¯\\_(ツ)_/¯
 1. FOAF is hosted over on OpenUserJS; [one-click install](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization) from there. **At this point you're good to go!** The only trouble that you'll be look at my weapon assessments and not your own, which is sort of the whole point of this UserScript ;)
 1. Duplicate my [weapon assessments sheet](https://docs.google.com/spreadsheets/d/16BO3r1B5vuLtCnR06l_rtCl_WlWVDkg_9C9Gu-v-xi4/edit?usp=sharing) as a starting point.
-1. Ensure that your sheet is published to the web (`File` => `Publish to the Web...`) and that in publish settings you've selected `Entire Document`.
-1. For each tab, generate a TSV link by choosing `Tab-seperated values` and copying the link Google generates.
+1. Ensure that your sheet is published to the web (`File` => `Publish to the Web...`) and that in publish settings you've selected `Entire Document` and `Tab-seperated values (.tsv)`.
 1. Click on the TamperMonkey extension icon in your browser.
 1. Click on the FOAF script.
-1. Replace the three Google URLs with the three URLs to your Google Sheet (one for each weapon category).
-1. You're done! The script will automatically update from here on out.
+1. Replace the Google Docs URL with the URL to your Google Sheet.
+1. You're done!
