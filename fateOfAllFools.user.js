@@ -186,16 +186,15 @@
                 $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
             } else {
                 statusMarkers = 'pveUseful:'+weapon.pveUseful+';pvpUseful:'+weapon.pvpUseful;
-                if (weapon.pveUseful !== Suitability.UNKNOWN) {
-                    statusMarkers = 'pveUseful:'+weapon.pveUseful;
-                    $(this).append($("<div>", {"class": "foaf-pve " + STATUS_CLASSES.get(weapon.pveUseful)}));
+                if (weapon.pveUseful === Suitability.YES) {
+                    $(this).append($("<div>", {"class": "foaf-pve " + STATUS_CLASSES.get(Suitability.YES)}));
                 }
-                if (weapon.pvpUseful !== Suitability.UNKNOWN) {
+                if (weapon.pvpUseful === Suitability.YES) {
                     let leftPadding = '';
-                    if (weapon.pveUseful === Suitability.UNKNOWN) {
-                        leftPadding = 'left:2px;';
+                    if (weapon.pveUseful !== Suitability.YES) {
+                        leftPadding = 'left:2px';
                     }
-                    $(this).append($("<div>", {"class": "foaf-pvp " + STATUS_CLASSES.get(weapon.pvpUseful), "style": leftPadding}));
+                    $(this).append($("<div>", {"class": "foaf-pvp " + STATUS_CLASSES.get(Suitability.YES), "style": leftPadding}));
                 }
             }
             $(this).attr('foaf-status-markers', statusMarkers);
