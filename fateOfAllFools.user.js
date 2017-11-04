@@ -177,12 +177,17 @@
             }
 
             var weapon = WEAPONS.get(weaponName);
+            let statusMarkers = '';
             if (weapon.isJunk()) {
+                statusMarkers = 'junk;';
                 $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
             } else if (weapon.isUnknown()) {
+                statusMarkers = 'unknown;';
                 $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
             } else {
+                statusMarkers = 'pveUseful:'+weapon.pveUseful+';pvpUseful:'+weapon.pvpUseful;
                 if (weapon.pveUseful !== Suitability.UNKNOWN) {
+                    statusMarkers = 'pveUseful:'+weapon.pveUseful;
                     $(this).append($("<div>", {"class": "foaf-pve " + STATUS_CLASSES.get(weapon.pveUseful)}));
                 }
                 if (weapon.pvpUseful !== Suitability.UNKNOWN) {
@@ -193,6 +198,16 @@
                     $(this).append($("<div>", {"class": "foaf-pvp " + STATUS_CLASSES.get(weapon.pvpUseful), "style": leftPadding}));
                 }
             }
+            $(this).attr('foaf-status-markers', statusMarkers);
+
+            ['pve', 'pvp'].forEach(function(statusIcon) {
+                $('.foaf-'+statusIcon+'.'+STATUS_CLASSES.get(Suitability.YES)).on('mouseenter.status', function() {
+                    $('[data-foaf-weapon-info]:not([foaf-status-markers*="'+statusIcon+'Useful:'+Suitability.YES+'"])').addClass('search-hidden');
+                });
+                $('.foaf-'+statusIcon+'.'+STATUS_CLASSES.get(Suitability.YES)).on('mouseleave.status', function() {
+                    $('.search-hidden').removeClass('search-hidden');
+                });
+            });
         });
     }
 
