@@ -173,7 +173,7 @@
         const exclusion = dataRefreshed ? '' : '[data-foaf-tagged]';
         $('[data-foaf-weapon-name]').not(exclusion).each(function(index,element) {
             if (dataRefreshed) {
-                $(this).children('.item-tag').remove();
+                $(this).children('.foaf-marker').remove();
             }
 
             const weaponName = $(this).attr('data-foaf-weapon-name');
