@@ -434,19 +434,6 @@
         $('.foaf-config').on('click', function() {
             GM_config.open();
         });
-
-        GM_addStyle(`
-            .foaf-config {
-                cursor: pointer;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                padding: 0.5rem;
-                font-weight: bold;
-                color: #f5dc56;
-            }
-            `);
-
     }
 
     log('Applying CSS...');
