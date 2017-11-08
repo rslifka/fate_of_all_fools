@@ -41,7 +41,7 @@
             this.slot = slot;
             this.type = type;
             this.subtype = subtype;
-            this.favourite = favourite.toLowerCase() === 'y';
+            this.isFavourite = favourite.toLowerCase() === 'y';
             this.comments = (comments === '') ? '(no comments entered)' : comments;
             switch(pveUseful.toLowerCase()) {
                 case 'y':
@@ -212,9 +212,14 @@
                 $(this).append($("<div>", {"class": "foaf-marker foaf-raid foaf-skull foaf-yes"}));
             }
 
+            if (weapon.isFavourite) {
+                statusMarkers += ';favouriteUseful:'+Suitability.YES;
+                $(this).append($("<div>", {"class": "foaf-marker foaf-fave"}));
+            }
+
             $(this).attr('foaf-status-markers', statusMarkers);
 
-            ['pve', 'pvp', 'raid'].forEach(function(statusIcon) {
+            ['pve', 'pvp', 'raid', 'favourite'].forEach(function(statusIcon) {
                 $('.foaf-'+statusIcon+'.'+Suitability.YES).on('mouseenter.status', function() {
                     $('[data-foaf-weapon-info]:not([foaf-status-markers*="'+statusIcon+'Useful:'+Suitability.YES+'"])').addClass('search-hidden');
                 });
@@ -274,7 +279,7 @@
             your inventory, it will change the infusion indicators (potentially)
             of other weapons.
         */
-        $('.infuse-stat').remove();
+        $('.foaf-infuse').remove();
 
         var weaponsByType = new Map();
         $('[data-foaf-weapon-type]').each(function(index,element) {
@@ -307,9 +312,13 @@
                     continue;
                 }
 
-                $(weapon.domElement).append($("<div>", {"class": "infuse-stat foaf-up"}));
+                let style = '';
+                if (WEAPONS.get($(weapon.domElement).attr('data-foaf-weapon-name')).isFavourite) {
+                    style = 'top:19px;';
+                }
+                $(weapon.domElement).append($("<div>", {"class": "foaf-infuse foaf-up foaf-yes", "style": style}));
 
-                $(weapon.domElement).children('.infuse-stat').on('mouseenter.infuse', function() {
+                $(weapon.domElement).children('.foaf-infuse').on('mouseenter.infuse', function() {
                     // Hide all known weapons not of the this type, since they can't be used for infusion
                     // This means we'll show weapons we don't know about which is fair because they're probably
                     // blue weapons we might want to infuse anyway. Not sure what to do about this case.
@@ -333,7 +342,7 @@
                         $(this).append($("<div>", {"class": "infuse-new-light"}).text(newLight));
                     });
                 });
-                $(weapon.domElement).children('.infuse-stat').on('mouseleave.infuse', function() {
+                $(weapon.domElement).children('.foaf-infuse').on('mouseleave.infuse', function() {
                     $('.search-hidden').removeClass('search-hidden');
                     $('.infuse-new-light').remove();
                 });

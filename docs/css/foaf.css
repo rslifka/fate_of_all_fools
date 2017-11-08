@@ -37,19 +37,14 @@
   top: 19px;
   left: 2px;
 }
-
-.infuse-stat {
-  position: absolute;
+.foaf-infuse {
   top: 2px;
   right: 2px;
-  font-size: 12px;
-  font-weight: bold;
-  background-color: rgba(0,0,0,0.625);
-  color: rgba(93,181,110,1);
-  padding: 0;
-  text-align: center;
-  -webkit-user-select: none;
-  box-sizing: content-box;
+}
+.foaf-fave {
+  color: rgba(255,144,177,1);
+  top: 2px;
+  right: 2px;
 }
 
 .infuse-new-light {
