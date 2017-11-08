@@ -214,7 +214,7 @@
 
             if (weapon.isFavourite) {
                 statusMarkers += ';favouriteUseful:'+Suitability.YES;
-                $(this).append($("<div>", {"class": "foaf-marker foaf-fave"}));
+                $(this).append($("<div>", {"class": "foaf-marker foaf-favorite foaf-fave"}));
             }
 
             $(this).attr('foaf-status-markers', statusMarkers);
