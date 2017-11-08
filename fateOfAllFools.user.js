@@ -4,8 +4,10 @@
 // @connect  rslifka.github.io
 // @description Customizations on top of the Destiny Item Manager
 // @grant    GM_addStyle
-// @grant    GM_log
 // @grant    GM_getResourceText
+// @grant    GM_getValue
+// @grant    GM_log
+// @grant    GM_setValue
 // @grant    GM_xmlhttpRequest
 // @homepage https://github.com/rslifka/fate_of_all_fools
 // @license   MIT; https://raw.githubusercontent.com/rslifka/fate_of_all_fools/master/LICENSE.txt
@@ -15,6 +17,7 @@
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require  https://unpkg.com/tippy.js@1.4.0/dist/tippy.js
 // @require  https://raw.githubusercontent.com/blueimp/JavaScript-MD5/master/js/md5.min.js
+// @require  https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @run-at   document-start
 // @supportURL https://github.com/rslifka/fate_of_all_fools/issues
 // ==/UserScript==
@@ -385,7 +388,7 @@
         var deferredReady = $.Deferred();
         GM_xmlhttpRequest({
             method: 'GET',
-            url: ITEM_DATA_TSV,
+            url: GM_config.get('weaponDataTSV'),
             context: deferredReady,
             onload: function(response) {
                 log('Processing weapon data...');
@@ -417,6 +420,42 @@
         return deferredReady.promise();
     }
 
+    function registerFoafConfig() {
+        GM_config.init({
+            'id': 'FoafConfig',
+            'fields': {
+                'weaponDataTSV': {
+                    'label': 'Weapon Data Tab-Separated Values',
+                    'type': 'text',
+                    'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv'
+                }
+            },
+            'events': {
+                'save': function() {
+                    rankingsDownloaded();
+                }
+            }
+        });
+
+        $('body').append($("<div>", {"class": "foaf-config"}).text('[FOAF Config]'));
+        $('.foaf-config').on('click', function() {
+            GM_config.open();
+        });
+
+        GM_addStyle(`
+            .foaf-config {
+                cursor: pointer;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                padding: 0.5rem;
+                font-weight: bold;
+                color: #f5dc56;
+            }
+            `);
+
+    }
+
     log('Applying CSS...');
     [
         'https://rslifka.github.io/fate_of_all_fools/css/fontello-foaf.css',
@@ -433,6 +472,8 @@
             }
         });
     });
+
+    registerFoafConfig();
 
     /*
         Pull down new weapon data at a separate interval than the refresh timer.
@@ -453,6 +494,7 @@
 
     log('Initialized, waiting for items to appear...');
     $.when(itemsAreLoaded(), rankingsDownloaded()).then(function() {
+        registerFoafConfig();
         refresh();
         setInterval(function() {
             refresh();
