@@ -25,18 +25,11 @@
 (function() {
     'use strict';
 
-    // CHANGE ONLY THIS URL
-    const ITEM_DATA_TSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv';
-
     const Suitability = {
-        YES: 'y',
-        NO: 'n',
+        YES: 'foaf-yes',
+        NO: 'foaf-no',
         UNKNOWN: '?'
     };
-
-    const STATUS_CLASSES = new Map();
-    STATUS_CLASSES.set(Suitability.YES, 'foaf-yes');
-    STATUS_CLASSES.set(Suitability.NO, 'foaf-no');
 
     const WEAPONS = new Map();
     var rawWeaponDataMD5;
@@ -203,14 +196,14 @@
             } else {
                 statusMarkers = 'pveUseful:'+weapon.pveUseful+';pvpUseful:'+weapon.pvpUseful;
                 if (weapon.pveUseful === Suitability.YES) {
-                    $(this).append($("<div>", {"class": "foaf-marker foaf-pve " + STATUS_CLASSES.get(Suitability.YES)}));
+                    $(this).append($("<div>", {"class": "foaf-marker foaf-pve " + Suitability.YES}));
                 }
                 if (weapon.pvpUseful === Suitability.YES) {
                     let leftPadding = '';
                     if (weapon.pveUseful !== Suitability.YES) {
                         leftPadding = 'left:2px';
                     }
-                    $(this).append($("<div>", {"class": "foaf-marker foaf-pvp " + STATUS_CLASSES.get(Suitability.YES), "style": leftPadding}));
+                    $(this).append($("<div>", {"class": "foaf-marker foaf-pvp " + Suitability.YES, "style": leftPadding}));
                 }
             }
 
@@ -222,10 +215,10 @@
             $(this).attr('foaf-status-markers', statusMarkers);
 
             ['pve', 'pvp', 'raid'].forEach(function(statusIcon) {
-                $('.foaf-'+statusIcon+'.'+STATUS_CLASSES.get(Suitability.YES)).on('mouseenter.status', function() {
+                $('.foaf-'+statusIcon+'.'+Suitability.YES).on('mouseenter.status', function() {
                     $('[data-foaf-weapon-info]:not([foaf-status-markers*="'+statusIcon+'Useful:'+Suitability.YES+'"])').addClass('search-hidden');
                 });
-                $('.foaf-'+statusIcon+'.'+STATUS_CLASSES.get(Suitability.YES)).on('mouseleave.status', function() {
+                $('.foaf-'+statusIcon+'.'+Suitability.YES).on('mouseleave.status', function() {
                     $('.search-hidden').removeClass('search-hidden');
                 });
             });
