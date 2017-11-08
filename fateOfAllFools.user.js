@@ -190,6 +190,7 @@
 
             var weapon = WEAPONS.get(weaponName);
             let statusMarkers = '';
+
             if (weapon.isJunk()) {
                 statusMarkers = 'junk;';
                 $(this).append($("<div>", {"class": "foaf-marker foaf-thumbs-down"}));
@@ -209,9 +210,15 @@
                     $(this).append($("<div>", {"class": "foaf-marker foaf-pvp " + STATUS_CLASSES.get(Suitability.YES), "style": leftPadding}));
                 }
             }
+
+            if (weapon.raidUseful === Suitability.YES) {
+                statusMarkers += ';raidUseful:'+Suitability.YES;
+                $(this).append($("<div>", {"class": "foaf-marker foaf-raid foaf-skull foaf-yes"}));
+            }
+
             $(this).attr('foaf-status-markers', statusMarkers);
 
-            ['pve', 'pvp'].forEach(function(statusIcon) {
+            ['pve', 'pvp', 'raid'].forEach(function(statusIcon) {
                 $('.foaf-'+statusIcon+'.'+STATUS_CLASSES.get(Suitability.YES)).on('mouseenter.status', function() {
                     $('[data-foaf-weapon-info]:not([foaf-status-markers*="'+statusIcon+'Useful:'+Suitability.YES+'"])').addClass('search-hidden');
                 });
@@ -255,10 +262,10 @@
                 $(weapon.domElement).children('.foaf-dupe').remove();
                 $(weapon.domElement).append($("<div>", {"class": "foaf-marker foaf-dupe foaf-knives " + dupeClass}));
 
-                $(weapon.domElement).children('.dupe-stat').on('mouseenter.dupe', function() {
+                $(weapon.domElement).children('.foaf-dupe').on('mouseenter.dupe', function() {
                     $('div[data-foaf-weapon-name]').not('[data-foaf-weapon-name="'+weapon.name+'"]').addClass('search-hidden');
                 });
-                $(weapon.domElement).children('.dupe-stat').on('mouseleave.dupe', function() {
+                $(weapon.domElement).children('.foaf-dupe').on('mouseleave.dupe', function() {
                     $('.search-hidden').removeClass('search-hidden');
                 });
             });
