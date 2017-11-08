@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fateofallfools';
-  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?50152503');
-  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?50152503#iefix') format('embedded-opentype'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff2?50152503') format('woff2'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff?50152503') format('woff'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.ttf?50152503') format('truetype'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?50152503#fateofallfools') format('svg');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?77374648');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?77374648#iefix') format('embedded-opentype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff2?77374648') format('woff2'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff?77374648') format('woff'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.ttf?77374648') format('truetype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?77374648#fateofallfools') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fateofallfools';
-    src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?50152503#fateofallfools') format('svg');
+    src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?77374648#fateofallfools') format('svg');
   }
 }
 */
@@ -57,7 +57,9 @@
 
 .foaf-fave:before { content: '\e800'; } /* '' */
 .foaf-pvp:before { content: '\e801'; } /* '' */
+.foaf-knives:before { content: '\e802'; } /* '' */
 .foaf-question-mark:before { content: '\e803'; } /* '' */
 .foaf-pve:before { content: '\e804'; } /* '' */
 .foaf-thumbs-down:before { content: '\e805'; } /* '' */
 .foaf-up:before { content: '\e806'; } /* '' */
+.foaf-skull:before { content: '\e807'; } /* '' */
