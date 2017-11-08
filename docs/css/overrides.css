@@ -107,63 +107,37 @@ div[drag-channel='Kinetic'] .item-img {
 .foaf-no {
   color: rgba(206,82,70,1);
 }
-.foaf-thumbs-down {
+.foaf-marker {
   background-color: rgba(0,0,0,0.625);
+  font-size: 12px;
+  position: absolute;
+  text-shadow: none;
+}
+.foaf-thumbs-down {
   color:rgba(221,221,221,1);
-  font-size:12px;
-  position:absolute;
   top:2px;
   left:2px;
-  text-shadow: none;
 }
 .foaf-question-mark {
-  background-color: rgba(0,0,0,0.625);
   color:rgba(221,221,221,1);
-  font-size:12px;
-  position:absolute;
   top:2px;
   left:2px;
-  text-shadow: none;
 }
 .foaf-pve {
-  background-color: rgba(0,0,0,0.625);
-  font-size:12px;
-  position:absolute;
   top:2px;
   left:2px;
-  text-shadow: none;
 }
 .foaf-pvp {
-  background-color: rgba(0,0,0,0.625);
-  font-size:12px;
-  position:absolute;
   top:2px;
   left:19px;
-  text-shadow: none;
 }
-
-.dupe-stat {
-  background-color: rgba(0,0,0,0.625);
-  position: absolute;
+.foaf-dupe {
   bottom: 2px;
   left: 2px;
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
-  -webkit-user-select: none;
-  box-sizing: content-box;
 }
-
-/* Muted background; don't need to call too much attention to this */
-.dupe-higher {
-  color: rgba(93,181,110,1);
-  padding: 0 4px;
-}
-
-/* You almost always want to destroy these */
-.dupe-lower {
-  color: rgba(206,82,70,1);
-  padding: 1px 3px;
+.foaf-raid {
+  top: 19px;
+  left: 2px;
 }
 
 .infuse-stat {

@@ -192,21 +192,21 @@
             let statusMarkers = '';
             if (weapon.isJunk()) {
                 statusMarkers = 'junk;';
-                $(this).append($("<div>", {"class": "item-tag foaf-thumbs-down"}));
+                $(this).append($("<div>", {"class": "foaf-marker foaf-thumbs-down"}));
             } else if (weapon.isUnknown()) {
                 statusMarkers = 'unknown;';
-                $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
+                $(this).append($("<div>", {"class": "foaf-marker foaf-question-mark"}));
             } else {
                 statusMarkers = 'pveUseful:'+weapon.pveUseful+';pvpUseful:'+weapon.pvpUseful;
                 if (weapon.pveUseful === Suitability.YES) {
-                    $(this).append($("<div>", {"class": "foaf-pve " + STATUS_CLASSES.get(Suitability.YES)}));
+                    $(this).append($("<div>", {"class": "foaf-marker foaf-pve " + STATUS_CLASSES.get(Suitability.YES)}));
                 }
                 if (weapon.pvpUseful === Suitability.YES) {
                     let leftPadding = '';
                     if (weapon.pveUseful !== Suitability.YES) {
                         leftPadding = 'left:2px';
                     }
-                    $(this).append($("<div>", {"class": "foaf-pvp " + STATUS_CLASSES.get(Suitability.YES), "style": leftPadding}));
+                    $(this).append($("<div>", {"class": "foaf-marker foaf-pvp " + STATUS_CLASSES.get(Suitability.YES), "style": leftPadding}));
                 }
             }
             $(this).attr('foaf-status-markers', statusMarkers);
@@ -250,11 +250,10 @@
             }
             const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
             weaponInstances.forEach(function(weapon) {
-                const dupeDesc = (weapon.light < maxLight) ? ('D-LO') : ('D');
-                const dupeClass = (weapon.light < maxLight) ? ('dupe-lower') : ('dupe-higher');
+                const dupeClass = (weapon.light < maxLight) ? ('foaf-no') : ('foaf-yes');
 
-                $(weapon.domElement).children('.dupe-stat').remove();
-                $(weapon.domElement).append($("<div>", {"class": "dupe-stat " + dupeClass}).text(dupeDesc));
+                $(weapon.domElement).children('.foaf-dupe').remove();
+                $(weapon.domElement).append($("<div>", {"class": "foaf-marker foaf-dupe " + dupeClass}));
 
                 $(weapon.domElement).children('.dupe-stat').on('mouseenter.dupe', function() {
                     $('div[data-foaf-weapon-name]').not('[data-foaf-weapon-name="'+weapon.name+'"]').addClass('search-hidden');
