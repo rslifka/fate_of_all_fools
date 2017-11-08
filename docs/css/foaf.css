@@ -1,0 +1,64 @@
+.foaf-yes {
+  color: rgba(93,181,110,1);
+}
+.foaf-no {
+  color: rgba(206,82,70,1);
+}
+
+.foaf-marker {
+  background-color: rgba(0,0,0,0.625);
+  font-size: 12px;
+  position: absolute;
+  text-shadow: none;
+}
+.foaf-thumbs-down {
+  color:rgba(221,221,221,1);
+  top:2px;
+  left:2px;
+}
+.foaf-question-mark {
+  color:rgba(221,221,221,1);
+  top:2px;
+  left:2px;
+}
+.foaf-pve {
+  top:2px;
+  left:2px;
+}
+.foaf-pvp {
+  top:2px;
+  left:19px;
+}
+.foaf-dupe {
+  bottom: 2px;
+  left: 2px;
+}
+.foaf-raid {
+  top: 19px;
+  left: 2px;
+}
+
+.infuse-stat {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: rgba(0,0,0,0.625);
+  color: rgba(93,181,110,1);
+  padding: 0;
+  text-align: center;
+  -webkit-user-select: none;
+  box-sizing: content-box;
+}
+
+.infuse-new-light {
+    background-color: rgba(0,0,0,0.625);
+    color: rgba(245, 202, 31, 1);
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 28px;
+    position: relative;
+    top: -49px;
+}
