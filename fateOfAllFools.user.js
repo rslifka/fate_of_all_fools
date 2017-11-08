@@ -39,8 +39,10 @@
     var rawWeaponDataMD5;
 
     class Weapon {
-        constructor(name, type, subtype, favourite, pveUseful, pvpUseful, raidUseful, comments) {
+        constructor(name, rarity, slot, type, subtype, favourite, pveUseful, pvpUseful, raidUseful, comments) {
             this.name = name;
+            this.rarity = rarity;
+            this.slot = slot;
             this.type = type;
             this.subtype = subtype;
             this.favourite = favourite.toLowerCase() === 'y';
@@ -395,10 +397,10 @@
                 var dataLines = response.responseText.split(/[\r\n]+/);
                 log('Found ('+(dataLines.length-1)+') weapons');
 
-                // Name=0,Slot,Type,Subtype,Personal Fave?,PvE,PvP,Raid,Comments
+                // Name=0,Rarity,Slot,Type,Subtype,Personal Fave?,PvE,PvP,Raid,Comments
                 for (var i = 1; i < dataLines.length; i++) {
                     var data = dataLines[i].split('\t');
-                    WEAPONS.set(data[0], new Weapon(data[0], data[2], data[3], data[4], data[5], data[6], data[7], data[8]));
+                    WEAPONS.set(data[0], new Weapon(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]));
                 }
 
                 dataRefreshed = true;
