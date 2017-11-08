@@ -184,7 +184,7 @@
             $(this).attr('data-foaf-tagged', true);
 
             if (!WEAPONS.has(weaponName)) {
-                $(this).append($("<div>", {"class": "item-tag foaf-question-mark"}));
+                $(this).append($("<div>", {"class": "foaf-marker foaf-question-mark"}));
                 return true;
             }
 
@@ -253,7 +253,7 @@
                 const dupeClass = (weapon.light < maxLight) ? ('foaf-no') : ('foaf-yes');
 
                 $(weapon.domElement).children('.foaf-dupe').remove();
-                $(weapon.domElement).append($("<div>", {"class": "foaf-marker foaf-dupe " + dupeClass}));
+                $(weapon.domElement).append($("<div>", {"class": "foaf-marker foaf-dupe foaf-knives " + dupeClass}));
 
                 $(weapon.domElement).children('.dupe-stat').on('mouseenter.dupe', function() {
                     $('div[data-foaf-weapon-name]').not('[data-foaf-weapon-name="'+weapon.name+'"]').addClass('search-hidden');
