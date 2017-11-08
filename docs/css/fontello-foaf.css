@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'fateofallfools';
-  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?77374648');
-  src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.eot?77374648#iefix') format('embedded-opentype'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff2?77374648') format('woff2'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.woff?77374648') format('woff'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.ttf?77374648') format('truetype'),
-       url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?77374648#fateofallfools') format('svg');
+  font-family: 'fontello-foaf';
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fontello-foaf.eot?20393754');
+  src: url('https://rslifka.github.io/fate_of_all_fools/font/fontello-foaf.eot?20393754#iefix') format('embedded-opentype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fontello-foaf.woff2?20393754') format('woff2'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fontello-foaf.woff?20393754') format('woff'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fontello-foaf.ttf?20393754') format('truetype'),
+       url('https://rslifka.github.io/fate_of_all_fools/font/fontello-foaf.svg?20393754#fontello-foaf') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,14 +14,14 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'fateofallfools';
-    src: url('https://rslifka.github.io/fate_of_all_fools/font/fateofallfools.svg?77374648#fateofallfools') format('svg');
+    font-family: 'fontello-foaf';
+    src: url('https://rslifka.github.io/fate_of_all_fools/font/fontello-foaf.svg?20393754#fontello-foaf') format('svg');
   }
 }
 */
-
+ 
  [class^="foaf-"]:before, [class*=" foaf-"]:before {
-  font-family: "fateofallfools";
+  font-family: "fontello-foaf";
   font-style: normal;
   font-weight: normal;
   speak: none;

@@ -419,7 +419,7 @@
 
     log('Applying CSS...');
     [
-        'https://rslifka.github.io/fate_of_all_fools/css/fateofallfools.css',
+        'https://rslifka.github.io/fate_of_all_fools/css/fontello-foaf.css',
         'https://rslifka.github.io/fate_of_all_fools/css/overrides.css'
     ].forEach(function(cssPath) {
         log('Downloading style: '+cssPath);
