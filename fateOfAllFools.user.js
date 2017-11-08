@@ -316,7 +316,7 @@
                 if (WEAPONS.get($(weapon.domElement).attr('data-foaf-weapon-name')).isFavourite) {
                     style = 'top:19px;';
                 }
-                $(weapon.domElement).append($("<div>", {"class": "foaf-infuse foaf-up foaf-yes", "style": style}));
+                $(weapon.domElement).append($("<div>", {"class": "foaf-marker foaf-infuse foaf-up foaf-yes", "style": style}));
 
                 $(weapon.domElement).children('.foaf-infuse').on('mouseenter.infuse', function() {
                     // Hide all known weapons not of the this type, since they can't be used for infusion
