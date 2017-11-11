@@ -37,7 +37,7 @@
     class Weapon {
         constructor(name, rarity, slot, type, subtype, favourite, pveUseful, pvpUseful, raidUseful, comments) {
             this.name = name;
-            this.rarity = rarity;
+            this.rarity = rarity.toLowerCase();
             this.slot = slot;
             this.type = type;
             this.subtype = subtype;
@@ -108,6 +108,7 @@
                 // The weapon type never changes, and we need it for infusion calculation
                 const weaponName = $(this).attr('data-foaf-weapon-name');
                 if (WEAPONS.has(weaponName)) {
+                    $(this).attr('data-foaf-rarity', WEAPONS.get(weaponName).rarity);
                     $(this).attr('data-foaf-weapon-type', WEAPONS.get(weaponName).type);
                     $(this).attr('data-foaf-weapon-subtype', WEAPONS.get(weaponName).subtype);
                 }
@@ -282,7 +283,7 @@
         $('.foaf-infuse').remove();
 
         var weaponsByType = new Map();
-        $('[data-foaf-weapon-type]').each(function(index,element) {
+        $('[data-foaf-weapon-type]').not('[data-foaf-rarity="rare"]').each(function(index,element) {
             const weaponType = $(this).attr('data-foaf-weapon-type');
             const weaponData = {
                 type: weaponType,
