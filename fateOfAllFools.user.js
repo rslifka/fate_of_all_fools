@@ -320,6 +320,12 @@
                 $(weapon.domElement).append($("<div>", {"class": "foaf-marker foaf-infuse foaf-up foaf-yes", "style": style}));
 
                 $(weapon.domElement).children('.foaf-infuse').on('mouseenter.infuse', function() {
+                    if ($('body').attr('data-foaf-infusifying') !== undefined) {
+                        return;
+                    }
+
+                    $('body').attr('data-foaf-infusifying', true);
+
                     // Hide all known weapons not of the this type, since they can't be used for infusion
                     // This means we'll show weapons we don't know about which is fair because they're probably
                     // blue weapons we might want to infuse anyway. Not sure what to do about this case.
@@ -344,6 +350,7 @@
                     });
                 });
                 $(weapon.domElement).children('.foaf-infuse').on('mouseleave.infuse', function() {
+                    $('body').removeAttr('data-foaf-infusifying');
                     $('.foaf-search-hidden').removeClass('foaf-search-hidden');
                     $('.infuse-new-light').remove();
                 });
