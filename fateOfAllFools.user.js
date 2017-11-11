@@ -222,10 +222,10 @@
 
             ['pve', 'pvp', 'raid', 'favourite'].forEach(function(statusIcon) {
                 $('.foaf-'+statusIcon+'.'+Suitability.YES).on('mouseenter.status', function() {
-                    $('[data-foaf-weapon-info]:not([foaf-status-markers*="'+statusIcon+'Useful:'+Suitability.YES+'"])').addClass('search-hidden');
+                    $('[data-foaf-weapon-info]:not([foaf-status-markers*="'+statusIcon+'Useful:'+Suitability.YES+'"])').addClass('foaf-search-hidden');
                 });
                 $('.foaf-'+statusIcon+'.'+Suitability.YES).on('mouseleave.status', function() {
-                    $('.search-hidden').removeClass('search-hidden');
+                    $('.foaf-search-hidden').removeClass('foaf-search-hidden');
                 });
             });
         });
@@ -265,10 +265,10 @@
                 $(weapon.domElement).append($("<div>", {"class": "foaf-marker foaf-dupe foaf-knives " + dupeClass}));
 
                 $(weapon.domElement).children('.foaf-dupe').on('mouseenter.dupe', function() {
-                    $('div[data-foaf-weapon-name]').not('[data-foaf-weapon-name="'+weapon.name+'"]').addClass('search-hidden');
+                    $('div[data-foaf-weapon-name]').not('[data-foaf-weapon-name="'+weapon.name+'"]').addClass('foaf-search-hidden');
                 });
                 $(weapon.domElement).children('.foaf-dupe').on('mouseleave.dupe', function() {
-                    $('.search-hidden').removeClass('search-hidden');
+                    $('.foaf-search-hidden').removeClass('foaf-search-hidden');
                 });
             });
         }
@@ -323,7 +323,7 @@
                     // Hide all known weapons not of the this type, since they can't be used for infusion
                     // This means we'll show weapons we don't know about which is fair because they're probably
                     // blue weapons we might want to infuse anyway. Not sure what to do about this case.
-                    $('[data-foaf-weapon-name]').not('[data-foaf-weapon-type="'+weapon.type+'"]').addClass('search-hidden');
+                    $('[data-foaf-weapon-name]').not('[data-foaf-weapon-type="'+weapon.type+'"]').addClass('foaf-search-hidden');
 
                     // Hide all weapons of this type with lower base light
                     $('[data-foaf-weapon-type="'+weapon.type+'"]').filter(function() {
@@ -332,7 +332,7 @@
                             return false;
                         }
                         return $(this).attr('data-foaf-base-light-level') <= weapon.light;
-                    }).addClass('search-hidden');
+                    }).addClass('foaf-search-hidden');
 
                     // Show indicator for new light level by infusing this weapon
                     $('[data-foaf-weapon-type="'+weapon.type+'"]').filter(function() {
@@ -344,7 +344,7 @@
                     });
                 });
                 $(weapon.domElement).children('.foaf-infuse').on('mouseleave.infuse', function() {
-                    $('.search-hidden').removeClass('search-hidden');
+                    $('.foaf-search-hidden').removeClass('foaf-search-hidden');
                     $('.infuse-new-light').remove();
                 });
             }

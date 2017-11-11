@@ -1,3 +1,7 @@
+.foaf-search-hidden {
+  opacity: 0.2;
+}
+
 .foaf-yes {
   color: rgba(93,181,110,1);
 }
