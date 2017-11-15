@@ -14,8 +14,8 @@ I've used DIM for years and find it indispensable. There are a few nits I've wan
 
 ## Additions
 * Displays information at-a-glance derived from an external source of subjective weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below) (**TODO: screenshot**)
-* Duplicate items are indicated with a `D` tag, and duplicate items with a lower light level are indicated with `D-LO`. When hovering over a duplicate item, all other duplicates are highlighted. (**TODO: screenshot**)
-* Infusable items are indicated with an `infuse` tag. Hovering over an infusable item will highlight items that it can use for infusion. (**TODO: screenshot**)
+* Duplicate items are indicated with a double knife icon, and duplicate items with a lower light level are indicated with that icon colored red. When hovering over a these icons, all other duplicates are highlighted. (**TODO: screenshot**)
+* Infusable items are indicated with an up-arrow icon. Hovering over this icon will highlight items that it can use for infusion, as well as what the light will be after infusion (helps remove mod misinterpretation!). (**TODO: screenshot**)
 
 ## Modifications
 * **Consistent, subdued background throughout**: No need for the contrast between toon inventory and vault; the grouping of items is enough. (**TODO: screenshot**)
