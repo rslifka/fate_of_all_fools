@@ -27,13 +27,13 @@ I've used DIM for years and find it indispensable. There are a few nits I've wan
 
 ## Removals
 * **Remove subclass icons**: I've never once switched subclasses this way. OK, maybe once to see if it worked (it does!) but never enough to warrant having this displayed at all times.
-* **Remove collapse controls**: I never use these. Maybe once in a blue moon. Certainly a part of my workflow I can live without. Note that you can still click the section headings for this functionality.
+* **Remove collapse controls**: I never use these. Maybe once in a blue moon. Certainly a part of my workflow I can live without. *Note that you can still click the section headings for this functionality*.
 
 # Installation and Configuration
 
 1. Install [TamperMonkey](https://tampermonkey.net/). It may work with other UserScript extensions though I haven't tried, and won't, but you're welcome to! ¯\\_(ツ)_/¯
 1. FOAF is hosted over on OpenUserJS; [one-click install](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization) from there. **At this point you're good to go!** The only trouble that you'll be look at my weapon assessments and not your own, which is sort of the whole point of this UserScript ;)
-1. Duplicate my [weapon assessments sheet](https://docs.google.com/spreadsheets/d/16BO3r1B5vuLtCnR06l_rtCl_WlWVDkg_9C9Gu-v-xi4/edit?usp=sharing) as a starting point.
+1. Duplicate my [weapon assessments sheet](https://docs.google.com/spreadsheets/d/16BO3r1B5vuLtCnR06l_rtCl_WlWVDkg_9C9Gu-v-xi4/edit?usp=sharing) as a starting point (`File` => `Make a copy...`).
 1. Ensure that your sheet is published to the web (`File` => `Publish to the Web...`) and that in publish settings you've selected `Entire Document` and `Tab-seperated values (.tsv)`.
 1. Open DIM.
 1. Open `FOAF` configuration by clicking the link in the lower left of your screen.
