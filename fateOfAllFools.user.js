@@ -113,14 +113,18 @@
                     $(this).attr('data-foaf-weapon-subtype', WEAPONS.get(weaponName).subtype);
                 }
 
-                // Save base light for dupe and infusion calculations
-                const modifiedLightLevel = $(this).children('.item-stat').text();
-                const isModded = $(this).children('.item-img').hasClass('complete');
-                if (isModded) {
-                    $(this).attr('data-foaf-is-modded', true);
+                // When you're in game and move items around, some parts of the DOM
+                // get reset, which confuses us. We protect against that here.
+                if ($(this).attr('data-foaf-base-light-level') === undefined) {
+                    // Save base light for dupe and infusion calculations
+                    const modifiedLightLevel = $(this).children('.item-stat').text();
+                    const isModded = $(this).children('.item-img').hasClass('complete');
+                    if (isModded) {
+                        $(this).attr('data-foaf-is-modded', true);
+                    }
+                    const baseLightLevel = isModded ? modifiedLightLevel-5 : modifiedLightLevel;
+                    $(this).attr('data-foaf-base-light-level', baseLightLevel);
                 }
-                const baseLightLevel = isModded ? modifiedLightLevel-5 : modifiedLightLevel;
-                $(this).attr('data-foaf-base-light-level', baseLightLevel);
 
                 $(this).attr('data-foaf-weapon-info', true);
             });
