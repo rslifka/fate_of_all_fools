@@ -15,7 +15,6 @@
 // @match    https://*.destinyitemmanager.com/*
 // @name     FateOfAllFools - DIM Customization
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
-// @require  https://unpkg.com/tippy.js@1.4.0/dist/tippy.js
 // @require  https://raw.githubusercontent.com/blueimp/JavaScript-MD5/master/js/md5.min.js
 // @require  https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @run-at   document-start
@@ -113,18 +112,14 @@
                     $(this).attr('data-foaf-weapon-subtype', WEAPONS.get(weaponName).subtype);
                 }
 
-                // When you're in game and move items around, some parts of the DOM
-                // get reset, which confuses us. We protect against that here.
-                if ($(this).attr('data-foaf-base-light-level') === undefined) {
-                    // Save base light for dupe and infusion calculations
-                    const modifiedLightLevel = $(this).children('.item-stat').text();
-                    const isModded = $(this).children('.item-img').hasClass('complete');
-                    if (isModded) {
-                        $(this).attr('data-foaf-is-modded', true);
-                    }
-                    const baseLightLevel = isModded ? modifiedLightLevel-5 : modifiedLightLevel;
-                    $(this).attr('data-foaf-base-light-level', baseLightLevel);
+                // Save base light for dupe and infusion calculations
+                const modifiedLightLevel = $(this).children('.item-equipment').text();
+                const isModded = $(this).children('.item-equipment').hasClass('complete');
+                if (isModded) {
+                    $(this).attr('data-foaf-is-modded', true);
                 }
+                const baseLightLevel = isModded ? modifiedLightLevel-5 : modifiedLightLevel;
+                $(this).attr('data-foaf-base-light-level', baseLightLevel);
 
                 $(this).attr('data-foaf-weapon-info', true);
             });
@@ -148,7 +143,7 @@
         it ends up being visual noise.
     */
     function addLegendaryModInfo() {
-        $('[data-foaf-is-modded]').children('.item-stat').not('[data-original-light]').each(function(index, element) {
+        $('[data-foaf-is-modded]').children('.item-equipment').not('[data-original-light]').each(function(index, element) {
             $(this).attr('data-original-light', $(this).text());
             $(this).text($(this).text()+'M');
         });
