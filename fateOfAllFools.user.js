@@ -114,7 +114,7 @@
 
                 // Save base light for dupe and infusion calculations
                 const modifiedLightLevel = $(this).children('.item-equipment').text();
-                const isModded = $(this).children('.item-equipment').hasClass('complete');
+                const isModded = $(this).children('.item-img').hasClass('complete');
                 if (isModded) {
                     $(this).attr('data-foaf-is-modded', true);
                 }
