@@ -1,4 +1,7 @@
-.idea/
-.sass-cache/
+node_modules/
+
+# Output directory for build. Temporary; we'll fold in to docs/ eventually
+# because that's where GitHub Pages expects everything to go.
+public/
 
 .DS_Store

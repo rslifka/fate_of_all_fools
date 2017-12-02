@@ -1,0 +1,21 @@
+{
+  "name": "fateOfAllFools",
+  "description": "UserScript designed to enhance Destiny Item Manager",
+  "private": true,
+  "author": "Robert Slifka",
+  "version": "0.0.1",
+  "repository": "rslifka/fate_of_all_fools",
+  "scripts": {
+    "start": "brunch watch --server",
+    "build": "brunch build --production"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "auto-reload-brunch": "^2",
+    "brunch": "^2",
+    "clean-css-brunch": "^2",
+    "uglify-js-brunch": "^2"
+  }
+}
