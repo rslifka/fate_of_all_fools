@@ -9,13 +9,15 @@
     "start": "brunch watch --server",
     "build": "brunch build --production"
   },
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "auto-reload-brunch": "^2",
     "brunch": "^2",
     "clean-css-brunch": "^2",
+    "jasmine-core": "^2",
+    "karma": "^1",
+    "karma-chrome-launcher": "^2",
+    "karma-jasmine": "^1",
     "uglify-js-brunch": "^2"
   }
 }

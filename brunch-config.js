@@ -1,9 +1,10 @@
-// See http://brunch.io for documentation.
 exports.files = {
   javascripts: {
-      joinTo: 'fateOfAllFools.js'
+    joinTo: {
+      'fateOfAllFools.js': /^(?!test)/
+    }
   },
   stylesheets: {
-      joinTo: 'fateOfAllFools.css'
+    joinTo: 'fateOfAllFools.css'
   }
 };
