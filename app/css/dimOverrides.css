@@ -1,0 +1,83 @@
+/* Remove all damage type elements from items (little colored notch on top left) */
+.item-element {
+  display: none;
+}
+
+/* Reset background color and font size for increased readability */
+div[drag-channel='Kinetic'] > .item-stat,
+div[drag-channel='Energy'] > .item-stat,
+div[drag-channel='Power'] > .item-stat {
+  background-color: transparent;
+  bottom: 2px;
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  font-weight: bold;
+  right: 2px;
+}
+
+div[data-foaf-weapon-subtype='Exotic'] > .item-stat {
+  background-color: rgba(0,0,0,0.625);
+}
+
+/* We never use the collapse controls */
+.fa.collapse.fa-minus-square-o,
+.fa.collapse.fa-plus-square-o {
+  display: none;
+}
+
+/* We never switch subclasses */
+.sub-section.sort-3284755031 {
+  display: none;
+}
+
+/*
+  We removed the elemental damage color swatches from the weapons, as it was
+  additional decoration we could capture elsewhere. We still want to indicate
+  elemental damage type, so let's use the background of the damage number to
+  indicate that.
+*/
+.item-element.arc ~ .item-stat {
+  border-top: 2px solid rgba(133,197,236,0.9);
+}
+.item-element.solar ~ .item-stat {
+  border-top: 2px solid rgba(242,114,27,0.9);
+}
+.item-element.void ~ .item-stat {
+  border-top: 2px solid rgba(177,132,197,0.9);
+}
+
+/* Go for a more muted background */
+body,
+#header,
+.sticky-header-background,
+.store-cell.vault {
+  background-color: #111 !important;
+}
+
+/* Improve design of section breaks */
+.title {
+  background-color: rgba(221,221,221,0.1) !important;
+  font-family: Arial !important;
+  font-size: 2.5em !important;
+  font-weight: bold !important;
+  height: 50px !important;
+  line-height: 50px !important;
+  margin: 10px 0 !important;
+}
+
+/*
+  Uniform, translucent borders.
+*/
+.item-img,
+.item-img.complete {
+  background-repeat: no-repeat;
+  border: 2px solid #929292;
+}
+
+/*
+  Swap the orientation of Kinetics to make them all uniform and to leave room
+  for the top left icon set.
+*/
+div[drag-channel='Kinetic'] .item-img {
+  transform: scaleX(-1) !important;
+}
