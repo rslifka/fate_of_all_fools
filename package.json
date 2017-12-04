@@ -18,6 +18,7 @@
     "karma": "^1",
     "karma-chrome-launcher": "^2",
     "karma-jasmine": "^1",
+    "karma-notify-reporter": "^1.0.1",
     "uglify-js-brunch": "^2"
   }
 }
