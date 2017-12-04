@@ -8,3 +8,8 @@ exports.files = {
     joinTo: 'fateOfAllFools.css'
   }
 };
+
+// Tests are handled by Karma
+exports.conventions = {
+  ignored: /^test/
+};
