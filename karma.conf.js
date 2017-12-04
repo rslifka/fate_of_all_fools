@@ -4,7 +4,7 @@ module.exports = function(config) {
     browsers: ['ChromeHeadless'],
     files: [
       'public/fateOfAllFools.js',
-      'test/**/*Spec.js'
+      'public/jasmineSpecs.js'
     ],
   })
 }

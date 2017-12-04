@@ -1,7 +1,8 @@
 exports.files = {
   javascripts: {
     joinTo: {
-      'fateOfAllFools.js': /^(?!test)/
+      'fateOfAllFools.js': /^(?!test)/,
+      'jasmineSpecs.js': /^test/
     }
   },
   stylesheets: {
