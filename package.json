@@ -1,6 +1,6 @@
 {
   "name": "fateOfAllFools",
-  "description": "UserScript designed to enhance Destiny Item Manager",
+  "description": "UserScript enhancements to the Destiny Item Manager application",
   "private": true,
   "author": "Robert Slifka",
   "version": "0.0.1",
@@ -9,7 +9,11 @@
     "start": "brunch watch --server",
     "build": "brunch build --production"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3",
+    "md5": "^2",
+    "postal": "^2"
+  },
   "devDependencies": {
     "auto-reload-brunch": "^2",
     "brunch": "^2",
@@ -18,6 +22,8 @@
     "karma": "^1",
     "karma-chrome-launcher": "^2",
     "karma-jasmine": "^1",
+    "karma-jasmine-jquery": "^0",
+    "karma-jquery": "^0",
     "uglify-js-brunch": "^2"
   }
 }
