@@ -1,7 +1,7 @@
-const dimOverrides = require('dimOverrides.js');
-const postal = require('postal');
-
 describe('DIM Overrides', function() {
+
+  const dimOverrides = require('dimOverrides.js');
+  const postal = require('postal');
 
   describe('when a refresh occurs', function() {
 
