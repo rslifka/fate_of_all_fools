@@ -1,12 +1,12 @@
-// Estalibish the default value for our weapons database
+// Install the configuration interface and set default values
 require('configuration.js');
 
-// Apply our custom CSS
+// Use DIM styling overrides and our own custom styling
 require('beautification.js');
 
 const logger = require('logger');
 const postal = require('postal');
 if (process.env.NODE_ENV === 'production') {
-  logger.log('Initializing');
+  logger.log('main.js: Initializing');
   postal.publish({topic:'fate.init'});
 }

@@ -5,7 +5,7 @@ const postal = require('postal');
 postal.subscribe({
 	topic: 'fate.init',
 	callback: function() {
-    logger.log('Initializing GM_config');
+    logger.log('configuration.js (fate.init): Initializing');
 
     GM_config.init({
       'id': 'FoafConfig',
