@@ -17,3 +17,9 @@ exports.files = {
 exports.conventions = {
   ignored: /^spec/
 };
+
+exports.modules = {
+  autoRequire: {
+    'fateOfAllFools.js': ['main.js']
+  }
+}
