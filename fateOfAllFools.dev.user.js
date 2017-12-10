@@ -6,7 +6,9 @@
 // @description (DEVELOPMENT) Enhancements to the Destiny Item Manager
 // @grant       GM_addStyle
 // @grant       GM_getResourceText
+// @grant       GM_getValue
 // @grant       GM_log
+// @grant       GM_setValue
 // @grant       GM_xmlhttpRequest
 // @homepage    https://github.com/rslifka/fate_of_all_fools
 // @license     MIT; https://raw.githubusercontent.com/rslifka/fate_of_all_fools/master/LICENSE.txt
