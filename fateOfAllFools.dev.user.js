@@ -14,6 +14,6 @@
 // @name        (DEVELOPMENT) Fate of All Fools
 // @require     file:///Users/rslifka/Dropbox/workspace/fate_of_all_fools/public/fateOfAllFools.js
 // @resource    fateOfAllFoolsCSS file:///Users/rslifka/Dropbox/workspace/fate_of_all_fools/public/fateOfAllFools.css
-// @run-at      document-start
+// @run-at      document-idle
 // @supportURL  https://github.com/rslifka/fate_of_all_fools/issues
 // ==/UserScript==
