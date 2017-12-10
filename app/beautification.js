@@ -1,7 +1,8 @@
-function applyStyles() {
-  GM_addStyle(GM_getResourceText('fateOfAllFoolsCSS'));
-}
+const postal = require('postal');
 
-applyStyles();
-
-exports.applyStyles = applyStyles;
+postal.subscribe({
+	topic: 'fate.init',
+	callback: function() {
+    GM_addStyle(GM_getResourceText('fateOfAllFoolsCSS'));
+  }
+});
