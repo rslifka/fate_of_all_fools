@@ -6,7 +6,12 @@
 /* Reset background color and font size for increased readability */
 div[drag-channel='Kinetic'] > .item-stat,
 div[drag-channel='Energy'] > .item-stat,
-div[drag-channel='Power'] > .item-stat {
+div[drag-channel='Power'] > .item-stat,
+div[drag-channel='Helmet'] > .item-stat,
+div[drag-channel='Gauntlets'] > .item-stat,
+div[drag-channel='Chest'] > .item-stat,
+div[drag-channel='Leg'] > .item-stat,
+div[drag-channel='ClassItem'] > .item-stat {
   background-color: transparent;
   bottom: 2px;
   color: rgba(255,255,255,0.8);

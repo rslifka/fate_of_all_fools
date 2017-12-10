@@ -11,7 +11,7 @@ describe('DIM Overrides', function() {
         'energyWeapon.html',
         'powerWeapon.html',
         'helmetArmor.html',
-        'gauntletArmor.html',
+        'gauntletsArmor.html',
         'chestArmor.html',
         'legArmor.html',
         'classItemArmor.html',
