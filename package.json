@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
+    "babel-brunch": "^6",
     "brunch": "^2",
     "clean-css-brunch": "^2",
     "jasmine-core": "^2",
