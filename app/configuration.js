@@ -24,7 +24,7 @@ postal.subscribe({
       }
     });
 
-    $('body').append($("<div>", {"class": "foaf-config"}).text('[FOAF Config]'));
+    $('body').append($("<div>", {"class": "foaf-config"}).text('[FATE Config]'));
 
     $('.foaf-config').on('click', function() {
       GM_config.open();
