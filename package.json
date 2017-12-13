@@ -5,10 +5,6 @@
   "author": "Robert Slifka",
   "version": "0.0.1",
   "repository": "rslifka/fate_of_all_fools",
-  "scripts": {
-    "start": "brunch watch",
-    "build": "brunch build --production"
-  },
   "dependencies": {
     "jquery": "^3",
     "md5": "^2",
