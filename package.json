@@ -6,7 +6,7 @@
   "version": "0.0.1",
   "repository": "rslifka/fate_of_all_fools",
   "scripts": {
-    "start": "brunch watch --server",
+    "start": "brunch watch",
     "build": "brunch build --production"
   },
   "dependencies": {
