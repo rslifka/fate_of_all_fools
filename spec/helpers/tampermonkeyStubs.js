@@ -5,3 +5,4 @@
 GM_addStyle = function() { }
 GM_getResourceText = function() { }
 GM_log = function() { }
+GM_xmlhttpRequest = function() { }

@@ -4,6 +4,9 @@ require('configuration.js');
 // Use DIM styling overrides and our own custom styling
 require('beautification.js');
 
+// Pulls down weapon data and broadcasts updates
+require('weaponDataRefresher.js');
+
 const logger = require('logger');
 const postal = require('postal');
 if (process.env.NODE_ENV === 'production') {
