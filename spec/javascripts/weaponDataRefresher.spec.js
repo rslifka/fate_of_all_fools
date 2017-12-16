@@ -1,6 +1,7 @@
 describe('weaponDataRefresher.js', function() {
 
   const postal = require('postal');
+  const fateBus = require('fateBus.js');
 
   describe('in response to "fate.weaponDataStale"', function() {
 
@@ -20,12 +21,15 @@ describe('weaponDataRefresher.js', function() {
           details.onload.call(this, {responseText: `TEST_LINE_1
 TEST_LINE_2`});
         });
-        spyOn(postal, 'publish').and.callThrough();
+        spyOn(fateBus, 'publish');
         postal.publish({topic:'fate.weaponDataStale'});
-        expect(postal.publish).toHaveBeenCalledWith(jasmine.objectContaining({
-          topic:'fate.weaponDataFetched',
-          data:'TEST_LINE_2'
-        }));
+        expect(fateBus.publish).toHaveBeenCalledWith(
+          jasmine.any(Object),
+          jasmine.objectContaining({
+            topic:'fate.weaponDataFetched',
+            data:'TEST_LINE_2'
+          })
+        );
       });
     });
 
@@ -34,11 +38,11 @@ TEST_LINE_2`});
         spyOn(window, 'GM_xmlhttpRequest').and.callFake(function(details) {
           details.onload.call(this, {responseText: '_'});
         });
-        spyOn(postal, 'publish').and.callThrough();
+        spyOn(fateBus, 'publish');
         postal.publish({topic:'fate.weaponDataStale'});
         postal.publish({topic:'fate.weaponDataStale'});
-        const weaponBroadcasts = postal.publish.calls.allArgs().filter(function(callArguments) {
-          return callArguments[0].topic === 'fate.weaponDataFetched';
+        const weaponBroadcasts = fateBus.publish.calls.allArgs().filter(function(callArguments) {
+          return callArguments[1].topic === 'fate.weaponDataFetched';
         });
         expect(weaponBroadcasts.length).toBe(1);
       });
