@@ -1,6 +1,6 @@
-const postal = require('postal');
-
 describe('weaponDataRefresher.js', function() {
+
+  const postal = require('postal');
 
   describe('in response to "fate.weaponDataStale"', function() {
 

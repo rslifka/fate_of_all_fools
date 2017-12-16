@@ -1,6 +1,6 @@
-var weapon = require('weapon.js');
+describe('weapon.js', function() {
 
-describe('Weapon', function() {
+  const weapon = require('weapon.js');
 
   let coldheart;
 
