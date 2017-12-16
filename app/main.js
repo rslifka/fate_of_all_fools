@@ -10,6 +10,9 @@ require('weaponDatabase.js');
 // Pulls down weapon data and broadcasts updates
 require('weaponDataRefresher.js');
 
+// Removes DIM's native tagging elements
+require('dimTagRemover.js');
+
 const logger = require('logger');
 const postal = require('postal');
 if (process.env.NODE_ENV === 'production') {

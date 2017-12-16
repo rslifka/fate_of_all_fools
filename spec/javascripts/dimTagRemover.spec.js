@@ -1,6 +1,6 @@
-describe('dimOverrides.js', function() {
+describe('dimTagRemover.js', function() {
 
-  require('dimOverrides.js');
+  require('dimTagRemover.js');
   const postal = require('postal');
 
   describe('when a refresh occurs', function() {
