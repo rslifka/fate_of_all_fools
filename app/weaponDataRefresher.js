@@ -17,7 +17,7 @@ function onLoadHandler(response) {
   rawWeaponDataMD5 = md5(responseText);
 
   logger.log('weaponDataRefresher.js: Modified data, triggering refresh');
-  postal.publish({
+  fateBus.publish(module, {
     topic: 'fate.weaponDataFetched',
     data: responseText.substring(responseText.indexOf("\n") + 1)
   });
