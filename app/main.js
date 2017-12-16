@@ -4,6 +4,9 @@ require('configuration.js');
 // Use DIM styling overrides and our own custom styling
 require('beautification.js');
 
+// Stores weapons pulled from our custom database
+require('weaponDatabase.js');
+
 // Pulls down weapon data and broadcasts updates
 require('weaponDataRefresher.js');
 

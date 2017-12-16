@@ -1,0 +1,34 @@
+const logger = require('logger');
+const postal = require('postal');
+const weapon = require('weapon.js');
+
+const weaponMap = new Map();
+
+postal.subscribe({
+	topic: 'fate.weaponDataFetched',
+	callback: function(newWeaponData) {
+    refresh(newWeaponData);
+  }
+});
+
+function refresh(newWeaponData) {
+	weaponMap.clear();
+	const dataLines = newWeaponData.split(/[\r\n]+/);
+	logger.log('weaponDatabase.js: Found ('+(dataLines.length-1)+') weapons');
+
+	dataLines.forEach(function(weaponLine) {
+		const data = weaponLine.split('\t');
+		weaponMap.set(data[0], new weapon.Weapon(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]));
+	});
+}
+
+function contains(weaponName) {
+	return weaponMap.has(weaponName);
+}
+
+function get(weaponName) {
+	return weaponMap.get(weaponName);
+}
+
+exports.contains = contains;
+exports.get = get;
