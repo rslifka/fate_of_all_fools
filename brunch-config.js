@@ -39,3 +39,6 @@ exports.modules = {
     'fateOfAllFools.js': ['fateBus.js', 'main.js']
   }
 }
+
+// Doesn't fit our debugging style
+exports.sourceMaps = false;
