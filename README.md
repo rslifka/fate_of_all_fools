@@ -39,3 +39,7 @@ I've used DIM for years and find it indispensable. There are a few nits I've wan
 1. Open `FOAF` configuration by clicking the link in the lower left of your screen.
 1. Replace the URL with your own customized Google Sheet.
 1. [FIGHT FOREVERRRR GUARDIANNN](https://www.youtube.com/watch?v=sAhhgmf6Xg8&feature=youtu.be&t=5)!!!
+
+# Development (TODO)
+
+* Enable "Allow access to file URLs" in Tampermonkey. This allows you to refresh your browser to pick up local changes during active development, using the file URLs present in `fateOfAllFools.dev.user.js`.
