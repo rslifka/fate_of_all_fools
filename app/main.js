@@ -13,9 +13,25 @@ require('weaponDataRefresher.js');
 // Removes DIM's native tagging elements
 require('dimTagRemover.js');
 
-const logger = require('logger');
-const postal = require('postal');
-if (process.env.NODE_ENV === 'production') {
+// Update weapon comments from our database
+require('commentDecorator.js');
+
+/*
+  The nicest change-refresh flow means loading the development version of
+  the script from Tampermonkey while editing. This lets us skip kicking off
+  the app when running under Karma.
+*/
+if (!window.navigator.userAgent.includes('HeadlessChrome')) {
+  const logger = require('logger');
+  const postal = require('postal');
   logger.log('main.js: Initializing');
   postal.publish({topic:'fate.init'});
+
+  setInterval(function() {
+    postal.publish({topic:'fate.refresh'});
+  }, 5000);
+
+  setInterval(function() {
+    postal.publish({topic:'fate.weaponDataStale'});
+  }, 30000);
 }
