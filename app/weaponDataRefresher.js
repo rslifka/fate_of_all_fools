@@ -35,3 +35,8 @@ postal.subscribe({
 	topic: 'fate.weaponDataStale',
 	callback: refresh
 });
+
+postal.subscribe({
+	topic: 'fate.init',
+	callback: refresh
+});
