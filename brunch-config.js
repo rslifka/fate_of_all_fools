@@ -18,8 +18,24 @@ exports.conventions = {
   ignored: /^spec/
 };
 
+/*
+  Inject our message bus (wrapper around Postal) in to each module. We use
+  the bus to communicate and need a hook to be able to silence events when
+  those modules are not under test.
+*/
 exports.modules = {
+  wrapper: (path, data) => {
+    const fateBusTemplate = `
+      const fateBus = require('fateBus.js');
+      fateBus.registerModule(module);
+    `;
+    return `
+      require.register("${path}", function(exports, require, module) {
+        ${(path === 'fateBus.js') ? ('') : (fateBusTemplate)}
+        ${data}
+      });`
+  },
   autoRequire: {
-    'fateOfAllFools.js': ['main.js']
+    'fateOfAllFools.js': ['fateBus.js', 'main.js']
   }
 }
