@@ -1,3 +1,3 @@
 exports.log = function log(message) {
-  GM_log('[FOAF] ' + message);
+  GM_log('[FATE] ' + message);
 }

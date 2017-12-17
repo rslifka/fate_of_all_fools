@@ -4,7 +4,7 @@ const logger = require('logger');
 const weaponDatabase = require('weaponDatabase.js');
 
 function updateTitles() {
-  logger.log('commentDecorator.js (fate.refresh): Updating weapon tooltips');
+  logger.log('commentDecorator.js: Updating weapon tooltips');
   $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').each(function(index,element) {
     const weaponName = $(this).attr('title');
     if (!weaponDatabase.contains(weaponName)) {
