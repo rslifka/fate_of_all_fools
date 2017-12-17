@@ -16,6 +16,9 @@ require('dimTagRemover.js');
 // Update weapon comments from our database
 require('commentDecorator.js');
 
+// Rejigger how weapons with legendary mods are displayed
+require('modIndicator.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
