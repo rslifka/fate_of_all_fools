@@ -12,16 +12,12 @@ div[drag-channel='Gauntlets'] > .item-stat,
 div[drag-channel='Chest'] > .item-stat,
 div[drag-channel='Leg'] > .item-stat,
 div[drag-channel='ClassItem'] > .item-stat {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0.65);
   bottom: 2px;
   color: rgba(255,255,255,0.8);
   font-size: 12px;
   font-weight: bold;
   right: 2px;
-}
-
-div[data-foaf-weapon-subtype='Exotic'] > .item-stat {
-  background-color: rgba(0,0,0,0.625);
 }
 
 /* We never use the collapse controls */
