@@ -4,4 +4,8 @@ node_modules/
 # because that's where GitHub Pages expects everything to go.
 public/
 
+# Temporarily ignoring these until we figure out the deployment model
+docs/fateOfAllFools.js
+docs/fateOfAllFools.css
+
 .DS_Store
