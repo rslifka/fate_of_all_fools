@@ -2,19 +2,24 @@
   opacity: 0.2;
 }
 
-.foaf-yes {
+.fate-positive {
   color: rgba(93,181,110,1);
 }
-.foaf-no {
+.fate-negative {
   color: rgba(206,82,70,1);
 }
 
-.foaf-marker {
-  background-color: rgba(0,0,0,0.625);
+.fate-glyph {
+  background-color: transparent;
   font-size: 12px;
   position: absolute;
   text-shadow: none;
 }
+.fate-dupe {
+  bottom: 2px;
+  left: 2px;
+}
+
 .foaf-thumbs-down {
   color:rgba(221,221,221,1);
   top:2px;
@@ -32,10 +37,6 @@
 .foaf-pvp {
   top:2px;
   left:19px;
-}
-.foaf-dupe {
-  bottom: 2px;
-  left: 2px;
 }
 .foaf-raid {
   top: 19px;
