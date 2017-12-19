@@ -1,5 +1,4 @@
 const $ = require('jquery');
-const postal = require('postal');
 const logger = require('logger');
 const weaponDatabase = require('weaponDatabase.js');
 
@@ -18,7 +17,7 @@ function updateTitles() {
   });
 }
 
-postal.subscribe({
+fateBus.subscribe(module, {
   topic: 'fate.refresh',
   callback: updateTitles
 });
