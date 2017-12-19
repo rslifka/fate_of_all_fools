@@ -1,4 +1,3 @@
-const postal = require('postal');
 const logger = require('logger');
 const md5 = require('md5');
 
@@ -31,12 +30,12 @@ function refresh() {
   });
 }
 
-postal.subscribe({
+fateBus.subscribe(module, {
 	topic: 'fate.weaponDataStale',
 	callback: refresh
 });
 
-postal.subscribe({
+fateBus.subscribe(module, {
 	topic: 'fate.init',
 	callback: refresh
 });

@@ -1,10 +1,9 @@
 const logger = require('logger');
-const postal = require('postal');
 const weapon = require('weapon.js');
 
 const weaponMap = new Map();
 
-postal.subscribe({
+fateBus.subscribe(module, {
 	topic: 'fate.weaponDataFetched',
 	callback: function(newWeaponData) {
     refresh(newWeaponData);
