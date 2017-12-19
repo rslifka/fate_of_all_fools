@@ -5,9 +5,9 @@ describe('commentDecorator.js', function() {
 
   beforeEach(function() {
     loadFixtures(
-      'kineticWeaponDecorated.html',
-      'energyWeaponDecorated.html',
-      'powerWeaponDecorated.html'
+      'kineticWeapon.html',
+      'energyWeapon.html',
+      'powerWeapon.html'
     );
   });
 

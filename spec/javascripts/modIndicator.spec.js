@@ -31,10 +31,7 @@ describe('modIndicator.js', function() {
       const powerLevels = $.map($itemStats, function(element, index) {
         return $(element).text();
       });
-      expect(powerLevels).toEqual([
-        '305M', '305M', '305M', '314M', '304M', '305M', '314M', '316M',
-        '305', '305', '305', '314', '304', '305', '314', '316'
-      ]);
+      expect(powerLevels).toEqual(['306M', '305M', '310M', '314M', '304M', '305', '314M', '316M', '306', '305', '305', '314', '304', '305M', '314', '316']);
     });
 
     it('should not modify them on subsequent refreshes', function() {
@@ -44,10 +41,7 @@ describe('modIndicator.js', function() {
       const powerLevels = $.map($itemStats, function(element, index) {
         return $(element).text();
       });
-      expect(powerLevels).toEqual([
-        '305M', '305M', '305M', '314M', '304M', '305M', '314M', '316M',
-        '305', '305', '305', '314', '304', '305', '314', '316'
-      ]);
+      expect(powerLevels).toEqual(['306M', '305M', '310M', '314M', '304M', '305', '314M', '316M', '306', '305', '305', '314', '304', '305M', '314', '316']);
     });
 
   });

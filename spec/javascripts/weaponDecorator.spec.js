@@ -6,9 +6,9 @@ describe('weaponDecorator.js', function() {
 
     beforeEach(function() {
       loadFixtures(
-        'kineticWeapon.html',
-        'energyWeapon.html',
-        'powerWeapon.html'
+        'kineticWeaponRaw.html',
+        'energyWeaponRaw.html',
+        'powerWeaponRaw.html'
       );
       postal.publish({topic:'fate.refresh'});
     });

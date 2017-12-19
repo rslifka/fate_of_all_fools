@@ -1,5 +1,4 @@
 const $ = require('jquery');
-const postal = require('postal');
 
 /*
     Instead of a yellow border to indicate a mod, we're going to add "M" to the end of
@@ -18,7 +17,7 @@ function indicateMods() {
   });
 }
 
-postal.subscribe({
+fateBus.subscribe(module, {
   topic: 'fate.refresh',
   callback: indicateMods
 })
