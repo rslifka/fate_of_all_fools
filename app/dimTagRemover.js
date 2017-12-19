@@ -1,8 +1,7 @@
 const $ = require('jquery');
 const logger = require('logger');
-const postal = require('postal');
 
-postal.subscribe({
+fateBus.subscribe(module, {
 	topic: 'fate.refresh',
 	callback: function() {
     logger.log('dimTagRemover.js: Removing DIM tagging elements');
