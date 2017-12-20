@@ -40,7 +40,7 @@ exports.modules = {
       });`
   },
   autoRequire: {
-    'fateOfAllFools.js': ['fateBus.js', 'main.js']
+    'fateOfAllFools.js': ['main.js']
   }
 }
 
