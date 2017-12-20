@@ -1,4 +1,4 @@
-fdescribe('dupeIndicator.js', function() {
+describe('dupeIndicator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
