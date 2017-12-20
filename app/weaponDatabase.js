@@ -3,13 +3,6 @@ const weapon = require('weapon.js');
 
 const weaponMap = new Map();
 
-fateBus.subscribe(module, {
-	topic: 'fate.weaponDataFetched',
-	callback: function(newWeaponData) {
-    refresh(newWeaponData);
-  }
-});
-
 function refresh(newWeaponData) {
 	weaponMap.clear();
 	const dataLines = newWeaponData.split(/[\r\n]+/);
@@ -28,6 +21,10 @@ function contains(weaponName) {
 function get(weaponName) {
 	return weaponMap.get(weaponName);
 }
+
+fateBus.subscribe(module, 'fate.weaponDataFetched', function(msg, newWeaponData) {
+  refresh(newWeaponData);
+});
 
 exports.contains = contains;
 exports.get = get;

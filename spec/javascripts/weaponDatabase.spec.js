@@ -2,14 +2,17 @@ describe('weaponDatabase.js', function() {
 
   const weapon = require('weapon.js');
   const weaponDatabase = require('weaponDatabase.js');
-  const postal = require('postal');
 
   // A weapon of each type and one without a comment (only optional data)
   const TEST_TSV_WEAPON_DATA = `Sweet Business	Exotic	Kinetic	Auto Rifle	Exotic	Y	Y	Y	Y	Pre-fire in PvP. Pair with the Rig in PvE and wreck
 Hardlight	Exotic	Energy	Auto Rifle	Exotic	N	N	N	N	`;
 
+  const fateBus = require('fateBus.js');
+  const brunchModule = {id:'test'+this.result.description};
+
   beforeEach(function() {
-    postal.publish({topic:'fate.weaponDataFetched',data:TEST_TSV_WEAPON_DATA})
+    fateBus.registerModule(brunchModule);
+    fateBus.publish(brunchModule, 'fate.weaponDataFetched', TEST_TSV_WEAPON_DATA);
   });
 
   describe('in response to fate.weaponDataFetched', function() {
@@ -22,7 +25,7 @@ Hardlight	Exotic	Energy	Auto Rifle	Exotic	N	N	N	N	`;
         expect(weaponDatabase.contains('_')).toBe(false);
       });
       it('should not contain weapons that were changed', function() {
-        postal.publish({topic:'fate.weaponDataFetched',data:TEST_TSV_WEAPON_DATA.split("\n")[0]});
+        fateBus.publish(brunchModule, 'fate.weaponDataFetched', TEST_TSV_WEAPON_DATA.split("\n")[0]);
         expect(weaponDatabase.contains('Hardlight')).toBe(false);
       });
     });
