@@ -1,6 +1,11 @@
-describe('dupeIndicator.js', function() {
+fdescribe('dupeIndicator.js', function() {
 
-  const postal = require('postal');
+  const fateBus = require('fateBus.js');
+  const brunchModule = {id:'test'+this.result.description};
+
+  beforeEach(function() {
+    fateBus.registerModule(brunchModule);
+  });
 
   describe('in response to a fate.refresh event', function() {
 
@@ -13,8 +18,8 @@ describe('dupeIndicator.js', function() {
         );
       });
       it('should ensure all weapons have a placeholder for a glyph', function() {
-        postal.publish({topic:'fate.refresh'});
-        expect($('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives');
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('[data-fate-weapon-name]')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives');
       });
     });
 
@@ -30,9 +35,9 @@ describe('dupeIndicator.js', function() {
         );
       });
       it('should attach the same glyph styled identically', function() {
-        postal.publish({topic:'fate.refresh'});
-        expect($('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power] > .fate-dupe.fate-glyph.fglyph-knives.fate-positive')).toBeVisible();
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('[data-fate-weapon-name]')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
+        expect($('[data-fate-weapon-name] > .fate-dupe.fate-glyph.fglyph-knives.fate-positive')).toBeVisible();
       });
     });
 
@@ -45,9 +50,9 @@ describe('dupeIndicator.js', function() {
         );
       });
       it('style the ones that are', function() {
-        postal.publish({topic:'fate.refresh'});
-        expect($("[title='Annual Skate']")).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($('[title=Perseverance] > .fate-dupe')).toBeHidden();
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($("[data-fate-weapon-name='Annual Skate']")).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
+        expect($('[data-fate-weapon-name=Perseverance]').children('.fate-dupe')).toBeHidden();
       });
     });
 
@@ -59,10 +64,10 @@ describe('dupeIndicator.js', function() {
         );
       });
       it('should no longer have a dupe indicator', function() {
-        postal.publish({topic:'fate.refresh'});
-        $("[title='Annual Skate']:first").remove();
-        postal.publish({topic:'fate.refresh'});
-        expect($("[title='Annual Skate']").children('.fate-dupe')).toBeHidden();
+        fateBus.publish(brunchModule, 'fate.refresh');
+        $("[data-fate-weapon-name='Annual Skate']:first").remove();
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($("[data-fate-weapon-name='Annual Skate']").children('.fate-dupe')).toBeHidden();
       });
     });
 
@@ -72,12 +77,13 @@ describe('dupeIndicator.js', function() {
           'energyWeapon.html',
           'energyWeapon.html'
         );
-        $("[title='Annual Skate']:first").children('.item-stat').text(200);
+        $(".item-stat:first").text(200);
       });
       it('should attach the same glyph, styled differently', function() {
-        postal.publish({topic:'fate.refresh'});
-        expect($('.item-stat:contains(200)').parent()).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-negative');
-        expect($('.item-stat:contains(305)').parent()).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('.fate-dupe')).toBeVisible();
+        expect($('.item-stat:contains(200)').parent().parent()).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-negative');
+        expect($('.item-stat:contains(305)').parent().parent()).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
       });
     });
 
@@ -94,16 +100,16 @@ describe('dupeIndicator.js', function() {
       );
     });
     it('should highlight duplicates of this weapon', function() {
-      postal.publish({topic:'fate.refresh'});
+      fateBus.publish(brunchModule, 'fate.refresh');
 
-      postal.publish({topic:'fate.test.mouseenter.dupe'});
+      fateBus.publish(brunchModule, 'fate.test.mouseenter.dupe');
       expect($('[drag-channel=Kinetic]')).toHaveClass('fate-search-hidden');
-      expect($('[title=Perseverance]')).toHaveClass('fate-search-hidden');
+      expect($('[data-fate-weapon-name=Perseverance]')).toHaveClass('fate-search-hidden');
       expect($('[drag-channel=Power]')).toHaveClass('fate-search-hidden');
-      expect($('[title="Annual Skate"]')).not.toHaveClass('fate-search-hidden');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveClass('fate-search-hidden');
 
-      postal.publish({topic:'fate.test.mouseleave.dupe'});
-      expect($('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]')).not.toHaveClass('fate-search-hidden');
+      fateBus.publish(brunchModule, 'fate.test.mouseleave.dupe');
+      expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
     });
   });
 

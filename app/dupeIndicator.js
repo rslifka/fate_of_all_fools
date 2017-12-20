@@ -1,9 +1,9 @@
 const $ = require('jquery');
+
 const logger = require('logger.js');
-const postal = require('postal');
 
 function prepareDupeSpace() {
-  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').each(function(index,element) {
+  $('[data-fate-weapon-name]').each(function(index,element) {
     if ($(this).children('.fate-dupe.fate-glyph.fglyph-knives').length > 0) {
       return;
     }
@@ -13,8 +13,8 @@ function prepareDupeSpace() {
 
 function calculateWorkingSet() {
   const weapons = new Map();
-  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').each(function(index,element) {
-    const weaponName = $(this).attr('title');
+  $('[data-fate-weapon-name]').each(function(index,element) {
+    const weaponName = $(this).attr('data-fate-weapon-name');
     const weaponData = {
       name: weaponName,
       domElement: this,
@@ -37,22 +37,20 @@ function styleDupeIndicators(weapons) {
     }
     const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
     weaponInstances.forEach(function(weapon) {
-      $(weapon.domElement).children('.fate-dupe').removeClass('fate-negative fate-positive');
-      $(weapon.domElement).children('.fate-dupe').addClass(weapon.light < maxLight ? 'fate-negative' : 'fate-positive');
-      $(weapon.domElement).children('.fate-dupe').show();
+      $(weapon.domElement).find('.fate-dupe').removeClass('fate-negative fate-positive');
+      $(weapon.domElement).find('.fate-dupe').addClass(weapon.light < maxLight ? 'fate-negative' : 'fate-positive');
+      $(weapon.domElement).find('.fate-dupe').show();
     });
   }
 }
 
 function onMouseEnter() {
-  const dragChannel = $(this).parent().attr('drag-channel');
-  const title = $(this).parent().attr('title');
-  $('[drag-channel='+dragChannel+']').not('[title="'+title+'"]').addClass('fate-search-hidden');
-  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[drag-channel="'+dragChannel+'"]').addClass('fate-search-hidden');
+  const weaponName = $(this).parent().attr('data-fate-weapon-name');
+  $('[data-fate-weapon-name]').not('[data-fate-weapon-name="'+weaponName+'"]').addClass('fate-search-hidden');
 }
 
 function onMouseLeave() {
-  $('.fate-search-hidden').removeClass('fate-search-hidden');
+  $('.fate-search-hidden').toggleClass();
 }
 
 function registerListeners() {
@@ -60,30 +58,22 @@ function registerListeners() {
   $('.fate-dupe:visible').on('mouseleave.dupe', onMouseLeave);
 }
 
-postal.subscribe({
-  topic: 'fate.refresh',
-  callback: function() {
-    logger.log('dupeIndicator.js: Calculating duplicates');
-    prepareDupeSpace();
-    styleDupeIndicators(calculateWorkingSet());
-    registerListeners();
-  }
+fateBus.subscribe(module, 'fate.refresh', function() {
+  logger.log('dupeIndicator.js: Calculating duplicates');
+  prepareDupeSpace();
+  styleDupeIndicators(calculateWorkingSet());
+  registerListeners();
 });
 
 /*
   jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
-  seem to trigger events via $.trigger, so we're going to use postal to test the
+  seem to trigger events via $.trigger, so we're going to use our bus to test the
   events.
 */
-postal.subscribe({
-  topic: 'fate.test.mouseenter.dupe',
-  callback: function() {
-    $('.fate-dupe:visible').each(onMouseEnter);
-  }
-})
-postal.subscribe({
-  topic: 'fate.test.mouseleave.dupe',
-  callback: function() {
-    $('.fate-dupe:visible').each(onMouseLeave);
-  }
-})
+fateBus.subscribe(module, 'fate.test.mouseenter.dupe', function() {
+  $('.fate-dupe:visible').each(onMouseEnter);
+});
+
+fateBus.subscribe(module, 'fate.test.mouseleave.dupe', function() {
+  $('.fate-dupe:visible').each(onMouseLeave);
+});
