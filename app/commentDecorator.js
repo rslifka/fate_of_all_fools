@@ -9,7 +9,7 @@ function updateTitles() {
     if (!weaponDatabase.contains(weaponName)) {
       return true;
     }
-    var weapon = weaponDatabase.get(weaponName);
+    const weapon = weaponDatabase.get(weaponName);
     $(this).attr(
       'title',
       weaponName + ' // ' + weapon.type + ' - ' + weapon.subtype + '\n' + weapon.comments
@@ -17,7 +17,4 @@ function updateTitles() {
   });
 }
 
-fateBus.subscribe(module, {
-  topic: 'fate.refresh',
-  callback: updateTitles
-});
+fateBus.subscribe(module, 'fate.refresh', updateTitles);
