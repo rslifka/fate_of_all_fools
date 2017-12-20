@@ -8,7 +8,7 @@
   "dependencies": {
     "jquery": "^3",
     "md5": "^2",
-    "postal": "^2"
+    "pubsub-js": "^1"
   },
   "devDependencies": {
     "babel-brunch": "^6",
