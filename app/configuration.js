@@ -28,7 +28,4 @@ function init() {
 	});
 }
 
-fateBus.subscribe(module, {
-	topic: 'fate.init',
-	callback: init
-});
+fateBus.subscribe(module, 'fate.init', init);

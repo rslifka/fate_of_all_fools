@@ -1,19 +1,24 @@
 describe('configuration.js', function() {
 
-  const postal = require('postal');
+  const fateBus = require('fateBus.js');
+  const brunchModule = {id:'test'+this.result.description};
+
+  beforeEach(function() {
+    fateBus.registerModule(brunchModule);
+  });
 
   describe('initialization', function() {
 
     it('should register configuration tooling', function() {
       spyOn(GM_config, 'init');
-      postal.publish({topic:'fate.init'});
+      fateBus.publish(brunchModule, 'fate.init');
       expect(GM_config.init).toHaveBeenCalled();
     });
 
     describe('defaults and attachment handling', function() {
 
       beforeEach(function() {
-        postal.publish({topic:'fate.init'});
+        fateBus.publish(brunchModule, 'fate.init');
       });
 
       it('should use Slifs spreadsheet by default', function() {
