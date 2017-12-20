@@ -17,7 +17,4 @@ function indicateMods() {
   });
 }
 
-fateBus.subscribe(module, {
-  topic: 'fate.refresh',
-  callback: indicateMods
-})
+fateBus.subscribe(module, 'fate.refresh', indicateMods);

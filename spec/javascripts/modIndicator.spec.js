@@ -1,6 +1,11 @@
 describe('modIndicator.js', function() {
 
-  const postal = require('postal');
+  const fateBus = require('fateBus.js');
+  const brunchModule = {id:'test'+this.result.description};
+
+  beforeEach(function() {
+    fateBus.registerModule(brunchModule);
+  });
 
   describe('in response to fate.refresh', function() {
 
@@ -26,7 +31,7 @@ describe('modIndicator.js', function() {
     });
 
     it('should modify them', function() {
-      postal.publish({topic:'fate.refresh'});
+      fateBus.publish(brunchModule, 'fate.refresh');
       let $itemStats = $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power],[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]').children('.item-stat');
       const powerLevels = $.map($itemStats, function(element, index) {
         return $(element).text();
@@ -35,8 +40,8 @@ describe('modIndicator.js', function() {
     });
 
     it('should not modify them on subsequent refreshes', function() {
-      postal.publish({topic:'fate.refresh'});
-      postal.publish({topic:'fate.refresh'});
+      fateBus.publish(brunchModule, 'fate.refresh');
+      fateBus.publish(brunchModule, 'fate.refresh');
       let $itemStats = $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power],[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]').children('.item-stat');
       const powerLevels = $.map($itemStats, function(element, index) {
         return $(element).text();
