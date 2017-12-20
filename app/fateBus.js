@@ -1,4 +1,4 @@
-const postal = require('postal');
+const pubsub = require('pubsub-js');
 
 const muteStatus = new Map();
 
@@ -14,27 +14,24 @@ function isMuted(brunchModule) {
   return muteStatus.get(brunchModule.id);
 }
 
-function publish(brunchModule, postalData) {
+function publish(brunchModule, topic, data) {
   if (!muteStatus.has(brunchModule.id)) {
     throw new Error('fateBus.js#publish: Module ['+brunchModule.id+'] is not defined');
     return;
   }
   if (!isMuted(brunchModule)) {
-    postal.publish(postalData);
+    pubsub.publishSync(topic, data);
   }
 }
 
-function subscribe(brunchModule, postalData) {
+function subscribe(brunchModule, topic, callback) {
   if (!muteStatus.has(brunchModule.id)) {
     throw new Error('fateBus.js#subscribe: Module ['+brunchModule.id+'] is not defined');
     return;
   }
-  postal.subscribe({
-    topic: postalData.topic,
-    callback: function(data, envelope) {
-      if (!isMuted(brunchModule)) {
-        postalData.callback(data, envelope);
-      }
+  pubsub.subscribe(topic, function() {
+    if (!isMuted(brunchModule)) {
+      callback();
     }
   });
 }

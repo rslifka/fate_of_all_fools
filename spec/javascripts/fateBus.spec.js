@@ -1,7 +1,7 @@
 describe('fateBus.js', function() {
 
+  const pubsub = require('pubsub-js');
   const fateBus = require('fateBus.js');
-  const postal = require('postal');
 
   beforeEach(function() {
     fateBus.deregisterModules();
@@ -9,10 +9,10 @@ describe('fateBus.js', function() {
 
   describe('when a module is registered', function() {
     it('should be allowed to publish', function() {
-      spyOn(postal, 'publish');
+      spyOn(pubsub, 'publishSync');
       fateBus.registerModule({id:'TEST_MODULE_ID.JS'});
-      fateBus.publish({id:'TEST_MODULE_ID.JS'}, 'TEST_DATA');
-      expect(postal.publish).toHaveBeenCalledWith('TEST_DATA');
+      fateBus.publish({id:'TEST_MODULE_ID.JS'}, 'TEST_TOPIC', 'TEST_DATA');
+      expect(pubsub.publishSync).toHaveBeenCalledWith('TEST_TOPIC', 'TEST_DATA');
     });
   });
 
@@ -20,18 +20,18 @@ describe('fateBus.js', function() {
 
     describe('and attempts to publish', function() {
       it('should be an error', function() {
-        spyOn(postal, 'publish');
+        spyOn(pubsub, 'publishSync');
         expect(function() {
-          fateBus.publish({id:'UNREGISTERED_MODULE.JS'}, '_');
+          fateBus.publish({id:'UNREGISTERED_MODULE.JS'}, '_', '_');
         }).toThrowError(Error, 'fateBus.js#publish: Module [UNREGISTERED_MODULE.JS] is not defined');
-        expect(postal.publish).not.toHaveBeenCalled();
+        expect(pubsub.publishSync).not.toHaveBeenCalled();
       });
     });
 
     describe('and attempts to subscribe', function() {
       it('should be an error', function() {
         expect(function() {
-          fateBus.subscribe({id:'UNREGISTERED_MODULE.JS'}, '_');
+          fateBus.subscribe({id:'UNREGISTERED_MODULE.JS'}, '_', function(){});
         }).toThrowError(Error, 'fateBus.js#subscribe: Module [UNREGISTERED_MODULE.JS] is not defined');
       });
     });
@@ -42,21 +42,22 @@ describe('fateBus.js', function() {
 
     beforeEach(function() {
       fateBus.registerModule({id:'MUTED_MODULE.JS'});
+      fateBus.registerModule({id:'NOT_MUTED_MODULE.JS'});
       fateBus.mute('MUTED_MODULE.JS');
     });
 
     it('should not be allowed to publish', function() {
-      spyOn(postal, 'publish');
-      fateBus.publish({id:'MUTED_MODULE.JS'}, '_');
-      expect(postal.publish).not.toHaveBeenCalled();
+      spyOn(pubsub, 'publishSync');
+      fateBus.publish({id:'MUTED_MODULE.JS'}, '_', '_');
+      expect(pubsub.publishSync).not.toHaveBeenCalled();
     });
 
     it('should not respond to events', function() {
-      let postalData = {topic: 'TEST_TOPIC', callback: function(){}};
-      spyOn(postalData, 'callback');
-      fateBus.subscribe({id:'MUTED_MODULE.JS'}, postalData);
-      postal.publish({topic:'TEST_TOPIC',data:'TEST_DATA'});
-      expect(postalData.callback).not.toHaveBeenCalled();
+      let subscriber = {callback: function(){}};
+      spyOn(subscriber, 'callback');
+      fateBus.subscribe({id:'MUTED_MODULE.JS'}, '_', subscriber.callback);
+      fateBus.publish({id:'NOT_MUTED_MODULE.JS'}, '_', '_');
+      expect(subscriber.callback).not.toHaveBeenCalled();
     });
 
   });
@@ -64,12 +65,12 @@ describe('fateBus.js', function() {
   describe('when a module is unmuted', function() {
 
     it('should be allowed to publish', function() {
-      spyOn(postal, 'publish');
+      spyOn(pubsub, 'publishSync');
       fateBus.registerModule({id:'TOGGLE_MODULE.JS'});
       fateBus.mute('TOGGLE_MODULE.JS');
       fateBus.unmute('TOGGLE_MODULE.JS');
-      fateBus.publish({id:'TOGGLE_MODULE.JS'}, {topic:'TEST_TOPIC',data:'TEST_DATA'});
-      expect(postal.publish).toHaveBeenCalledWith({topic:'TEST_TOPIC',data:'TEST_DATA'});
+      fateBus.publish({id:'TOGGLE_MODULE.JS'}, 'TEST_TOPIC', 'TEST_DATA');
+      expect(pubsub.publishSync).toHaveBeenCalledWith('TEST_TOPIC', 'TEST_DATA');
     });
 
     it('should repsond to events', function() {
@@ -77,24 +78,24 @@ describe('fateBus.js', function() {
         fateBus.registerModule({id:'TEST_PUBLISHER.JS'});
         fateBus.unmute('TEST_PUBLISHER.JS');
 
-        let postalData = {topic: 'TEST_TOPIC', callback: function(){}};
-        spyOn(postalData, 'callback');
-        fateBus.subscribe({id:'TEST_SUBSCRIBER.JS'}, postalData);
-        fateBus.publish({id:'TEST_PUBLISHER.JS'}, {topic:'TEST_TOPIC',data:'TEST_DATA'});
-        expect(postalData.callback).toHaveBeenCalledWith({topic:'TEST_TOPIC',data:'TEST_DATA'});
+        let subscriber = {callback: function(){}};
+        spyOn(pubsub, 'publishSync');
+        fateBus.subscribe({id:'TEST_SUBSCRIBER.JS'}, 'TEST_TOPIC');
+        fateBus.publish({id:'TEST_PUBLISHER.JS'}, 'TEST_TOPIC', 'TEST_DATA');
+        expect(pubsub.publishSync).toHaveBeenCalledWith('TEST_TOPIC', 'TEST_DATA');
       });
     });
   });
 
   describe('when all modules are muted', function() {
     it('should not be allowed to publish', function() {
-      spyOn(postal, 'publish');
+      spyOn(pubsub, 'publishSync');
       fateBus.registerModule({id:'ALL1.JS'});
       fateBus.registerModule({id:'ALL2.JS'});
       fateBus.muteAll();
-      fateBus.publish({id:'ALL1.JS'}, '_');
-      fateBus.publish({id:'ALL2.JS'}, '_');
-      expect(postal.publish).not.toHaveBeenCalled();
+      fateBus.publish({id:'ALL1.JS'}, '_', '_');
+      fateBus.publish({id:'ALL2.JS'}, '_', '_');
+      expect(pubsub.publishSync).not.toHaveBeenCalled();
     });
   });
 });
