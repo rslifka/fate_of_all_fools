@@ -73,17 +73,16 @@ describe('fateBus.js', function() {
       expect(pubsub.publishSync).toHaveBeenCalledWith('TEST_TOPIC', 'TEST_DATA');
     });
 
-    it('should repsond to events', function() {
-      it('should not respond to events', function() {
-        fateBus.registerModule({id:'TEST_PUBLISHER.JS'});
-        fateBus.unmute('TEST_PUBLISHER.JS');
+    it('should respond to events', function() {
+      fateBus.registerModule({id:'TEST_PUBLISHER.JS'});
+      fateBus.registerModule({id:'TEST_SUBSCRIBER.JS'});
+      fateBus.unmute('TEST_PUBLISHER.JS');
 
-        let subscriber = {callback: function(){}};
-        spyOn(pubsub, 'publishSync');
-        fateBus.subscribe({id:'TEST_SUBSCRIBER.JS'}, 'TEST_TOPIC');
-        fateBus.publish({id:'TEST_PUBLISHER.JS'}, 'TEST_TOPIC', 'TEST_DATA');
-        expect(pubsub.publishSync).toHaveBeenCalledWith('TEST_TOPIC', 'TEST_DATA');
-      });
+      let subscriber = {callback: function(){}};
+      spyOn(subscriber, 'callback');
+      fateBus.subscribe({id:'TEST_SUBSCRIBER.JS'}, 'TEST_TOPIC', subscriber.callback);
+      fateBus.publish({id:'TEST_PUBLISHER.JS'}, 'TEST_TOPIC', 'TEST_DATA');
+      expect(subscriber.callback).toHaveBeenCalledWith('TEST_TOPIC', 'TEST_DATA');
     });
   });
 

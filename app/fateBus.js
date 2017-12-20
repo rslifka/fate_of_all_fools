@@ -29,9 +29,9 @@ function subscribe(brunchModule, topic, callback) {
     throw new Error('fateBus.js#subscribe: Module ['+brunchModule.id+'] is not defined');
     return;
   }
-  pubsub.subscribe(topic, function() {
+  pubsub.subscribe(topic, function(msg, data) {
     if (!isMuted(brunchModule)) {
-      callback();
+      callback(msg, data);
     }
   });
 }
