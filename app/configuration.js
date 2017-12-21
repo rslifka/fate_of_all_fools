@@ -15,11 +15,12 @@ function init() {
 		},
 		'events': {
 			'save': function() {
-				// TODO - Emit an event?
-				// rankingsDownloaded();
+				fateBus.subscribe(module, 'fate.refresh', init);
 			}
 		}
 	});
+
+	fateBus.publish(module, 'fate.configurationLoaded', {weaponDataTSV:GM_config.get('weaponDataTSV')});
 
 	$('body').append($("<div>", {"class": "foaf-config"}).text('[FATE Config]'));
 

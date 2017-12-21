@@ -15,6 +15,18 @@ describe('configuration.js', function() {
       expect(GM_config.init).toHaveBeenCalled();
     });
 
+    it('should broadcast the configuration', function() {
+      spyOn(fateBus, 'publish').and.callThrough();
+      fateBus.publish(brunchModule, 'fate.init');
+      expect(fateBus.publish).toHaveBeenCalledWith(
+        jasmine.any(Object),
+        'fate.configurationLoaded',
+        {
+          weaponDataTSV: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv'
+        }
+      )
+    });
+
     describe('defaults and attachment handling', function() {
 
       beforeEach(function() {
