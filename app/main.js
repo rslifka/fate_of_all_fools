@@ -25,6 +25,9 @@ require('modIndicator.js');
 // Show higher/lower dupes
 require('dupeIndicator.js');
 
+// In what way is this weapon not useful?
+require('ignoreStatusIndicator.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off

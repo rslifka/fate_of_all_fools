@@ -1,35 +1,53 @@
-.fate-search-hidden {
-  opacity: 0.2;
+/* Common styling for status indicators */
+.fate-glyph {
+  background-color: rgba(0,0,0,0.65);
+  font-size: 11px;
+  position: absolute;
+  text-shadow: none;
 }
-
 .fate-positive {
   color: rgba(93,181,110,1);
 }
 .fate-negative {
   color: rgba(206,82,70,1);
 }
-
-.fate-glyph {
-  background-color: transparent;
-  font-size: 12px;
-  position: absolute;
-  text-shadow: none;
+.fate-middling {
+  color:rgba(221,221,221,1);
 }
+
+/* STATUS INDICATORS: Positioning */
 .fate-dupe {
+  font-size: 12px;
   bottom: 2px;
   left: 2px;
 }
+.fate-ignore-slot {
+  top: 2px;
+  right: 2px;
+}
 
-.foaf-thumbs-down {
-  color:rgba(221,221,221,1);
-  top:2px;
-  left:2px;
+/* STATUS INDICATORS: Styling */
+.fate-question-mark {
+  padding: 0px 0px 1px 0px;
 }
-.foaf-question-mark {
-  color:rgba(221,221,221,1);
-  top:2px;
-  left:2px;
+.fate-thumbs-down {
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .foaf-pve {
   top:2px;
   left:2px;
@@ -71,4 +89,9 @@
     padding: 0.5rem;
     font-weight: bold;
     color: #f5dc56;
+}
+
+/* Used when focusing on specific weapons (to dim others) */
+.fate-search-hidden {
+  opacity: 0.2;
 }
