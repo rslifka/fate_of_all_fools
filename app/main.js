@@ -31,16 +31,15 @@ require('dupeIndicator.js');
   the app when running under Karma.
 */
 if (!window.navigator.userAgent.includes('HeadlessChrome')) {
-  // const logger = require('logger');
-  // const postal = require('postal');
-  // logger.log('main.js: Initializing');
-  // postal.publish({topic:'fate.init'});
-  //
-  // setInterval(function() {
-  //   postal.publish({topic:'fate.refresh'});
-  // }, 5000);
-  //
-  // setInterval(function() {
-  //   postal.publish({topic:'fate.weaponDataStale'});
-  // }, 30000);
+  const logger = require('logger');
+  logger.log('main.js: Initializing');
+  fateBus.publish(module, 'fate.init');
+
+  setInterval(function() {
+    fateBus.publish(module, 'fate.refresh');
+  }, 5000);
+
+  setInterval(function() {
+    fateBus.publish(module, 'fate.weaponDataStale');
+  }, 30000);
 }
