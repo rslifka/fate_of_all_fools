@@ -1,14 +1,19 @@
 describe('weaponDataRefresher.js', function() {
 
-  const postal = require('postal');
+  const pubsub = require('pubsub-js');
   const fateBus = require('fateBus.js');
+  const brunchModule = {id:'test'+this.result.description};
+
+  beforeEach(function() {
+    fateBus.registerModule(brunchModule);
+  });
 
   describe('in response to "fate.weaponDataStale"', function() {
 
     it('should reach out for weapon data from our configured location', function() {
       spyOn(window, 'GM_xmlhttpRequest');
-      spyOn(GM_config, 'get').and.returnValue('TEST_WEAPON_DATA_URL');
-      postal.publish({topic:'fate.weaponDataStale'});
+      fateBus.publish(brunchModule, 'fate.configurationLoaded', {weaponDataTSV:'TEST_WEAPON_DATA_URL'});
+      fateBus.publish(brunchModule, 'fate.weaponDataStale');
       expect(window.GM_xmlhttpRequest).toHaveBeenCalledWith(jasmine.objectContaining({
         method: 'GET',
         url: 'TEST_WEAPON_DATA_URL'
@@ -21,15 +26,9 @@ describe('weaponDataRefresher.js', function() {
           details.onload.call(this, {responseText: `TEST_LINE_1
 TEST_LINE_2`});
         });
-        spyOn(fateBus, 'publish');
-        postal.publish({topic:'fate.weaponDataStale'});
-        expect(fateBus.publish).toHaveBeenCalledWith(
-          jasmine.any(Object),
-          jasmine.objectContaining({
-            topic:'fate.weaponDataFetched',
-            data:'TEST_LINE_2'
-          })
-        );
+        spyOn(pubsub, 'publishSync').and.callThrough();
+        fateBus.publish(brunchModule, 'fate.weaponDataStale');
+        expect(pubsub.publishSync).toHaveBeenCalledWith('fate.weaponDataFetched', 'TEST_LINE_2');
       });
     });
 
@@ -38,11 +37,11 @@ TEST_LINE_2`});
         spyOn(window, 'GM_xmlhttpRequest').and.callFake(function(details) {
           details.onload.call(this, {responseText: '_'});
         });
-        spyOn(fateBus, 'publish');
-        postal.publish({topic:'fate.weaponDataStale'});
-        postal.publish({topic:'fate.weaponDataStale'});
+        spyOn(fateBus, 'publish').and.callThrough();
+        fateBus.publish(brunchModule, 'fate.weaponDataStale');
+        fateBus.publish(brunchModule, 'fate.weaponDataStale');
         const weaponBroadcasts = fateBus.publish.calls.allArgs().filter(function(callArguments) {
-          return callArguments[1].topic === 'fate.weaponDataFetched';
+          return callArguments[1] === 'fate.weaponDataFetched';
         });
         expect(weaponBroadcasts.length).toBe(1);
       });
@@ -53,7 +52,7 @@ TEST_LINE_2`});
     it('should reach out for weapon data from our configured location', function() {
       spyOn(window, 'GM_xmlhttpRequest');
       spyOn(GM_config, 'get').and.returnValue('TEST_WEAPON_DATA_URL');
-      postal.publish({topic:'fate.init'});
+      fateBus.publish(brunchModule, 'fate.init');
       expect(window.GM_xmlhttpRequest).toHaveBeenCalledWith(jasmine.objectContaining({
         method: 'GET',
         url: 'TEST_WEAPON_DATA_URL'
