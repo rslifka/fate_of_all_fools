@@ -50,7 +50,7 @@ function onMouseEnter() {
 }
 
 function onMouseLeave() {
-  $('.fate-search-hidden').toggleClass();
+  $('.fate-search-hidden').removeClass('fate-search-hidden');
 }
 
 function registerListeners() {
