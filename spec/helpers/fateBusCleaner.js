@@ -11,6 +11,13 @@
     specStarted: function(result) {
       fateBus.muteAll();
       fateBus.unmute(result.fullName.match(/\S+.js/)[0]);
+      /*
+        GM_config is included locally, can run without stubbing and configures
+        a default value for the location of the weaponDataTSV. It can actually
+        run as part of the application during 'fate.init' so it's safe to
+        leave this unmuted.
+      */
+      fateBus.unmute('configuration.js');
     },
   };
 
