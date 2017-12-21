@@ -30,8 +30,10 @@ function subscribe(brunchModule, topic, callback) {
     return;
   }
   pubsub.subscribe(topic, function(msg, data) {
-    if (!isMuted(brunchModule)) {
-      callback(msg, data);
+    if (muteStatus.has(brunchModule.id)) {
+      if (!isMuted(brunchModule)) {
+        callback(msg, data);
+      }
     }
   });
 }

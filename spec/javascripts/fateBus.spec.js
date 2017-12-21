@@ -8,12 +8,28 @@ describe('fateBus.js', function() {
   });
 
   describe('when a module is registered', function() {
+
     it('should be allowed to publish', function() {
       spyOn(pubsub, 'publishSync');
       fateBus.registerModule({id:'TEST_MODULE_ID.JS'});
       fateBus.publish({id:'TEST_MODULE_ID.JS'}, 'TEST_TOPIC', 'TEST_DATA');
       expect(pubsub.publishSync).toHaveBeenCalledWith('TEST_TOPIC', 'TEST_DATA');
     });
+
+    describe('and then is removed from the registry', function() {
+      it('should not be allowed to publish', function() {
+        const subscriber = {callback:function(){}};
+        fateBus.registerModule({id:'TEST_MODULE_ID.JS'});
+        fateBus.subscribe({id:'TEST_MODULE_ID.JS'}, 'TEST_TOPIC', subscriber.callback);
+        fateBus.deregisterModules();
+
+        fateBus.registerModule({id:'NEW_MODULE.JS'});
+        spyOn(subscriber, 'callback');
+        fateBus.publish({id:'NEW_MODULE.JS'}, 'TEST_TOPIC', '_');
+        expect(subscriber.callback).not.toHaveBeenCalled();
+      });
+    });
+
   });
 
   describe('when a module is not registered', function() {
