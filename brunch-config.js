@@ -9,8 +9,11 @@ exports.files = {
   }
 };
 
+/*
+  When in dev/test mode, we go off the assets in build.
+*/
 exports.paths = {
-  public: 'docs'
+  public: 'build'
 }
 
 /*
@@ -41,6 +44,14 @@ exports.modules = {
   },
   autoRequire: {
     'fateOfAllFools.js': ['main.js']
+  }
+}
+
+exports.overrides = {
+  production: {
+    optimize: true,
+    paths: {public: 'build'},
+    plugins: {autoReload: {enabled: false}}
   }
 }
 
