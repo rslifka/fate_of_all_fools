@@ -55,8 +55,46 @@ function styleInfusionIndicators(weaponData) {
   }
 }
 
+function onMouseEnter() {
+  const weaponType = $(this).parent().attr('data-fate-weapon-type');
+  const weaponLight = $(this).parent().attr('data-fate-base-light');
+  $('[data-fate-weapon-type]').not('[data-fate-weapon-type="'+weaponType+'"]').addClass('fate-search-hidden');
+  $('[data-fate-weapon-type="'+weaponType+'"]').
+    filter(function(index) {
+      return parseInt($(this).attr('data-fate-base-light')) <= weaponLight;
+    }).
+    each(function(index,element) {
+      $(this).addClass('fate-search-hidden');
+  });
+  $(this).parent().removeClass('fate-search-hidden');
+}
+
+function onMouseLeave() {
+  $('.fate-search-hidden').removeClass('fate-search-hidden');
+}
+
+function registerListeners() {
+  $('.fate-infusion:visible').on('mouseenter.infuse', onMouseEnter);
+  $('.fate-infusion:visible').on('mouseleave.infuse', onMouseLeave);
+}
+
 fateBus.subscribe(module, 'fate.dupesCalculated', function() {
   logger.log('infusionIndicator.js: Calculating infuseables');
   prepareInfusionSpace();
-  styleInfusionIndicators(calculateWorkingSet());
+  const workingSet = calculateWorkingSet();
+  styleInfusionIndicators(workingSet);
+  registerListeners();
+});
+
+/*
+  jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
+  seem to trigger events via $.trigger, so we're going to use our bus to test the
+  events.
+*/
+fateBus.subscribe(module, 'fate.test.mouseenter.infuse', function() {
+  $('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up').each(onMouseEnter);
+});
+
+fateBus.subscribe(module, 'fate.test.mouseleave.infuse', function() {
+  $('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up').each(onMouseLeave);
 });
