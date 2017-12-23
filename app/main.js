@@ -28,6 +28,9 @@ require('dupeIndicator.js');
 // In what way is this weapon not useful?
 require('ignoreStatusIndicator.js');
 
+// Can this weapon be infused in to another for level?
+require('infusionIndicator.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off

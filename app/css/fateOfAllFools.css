@@ -17,13 +17,20 @@
 
 /* STATUS INDICATORS: Positioning */
 .fate-dupe {
-  font-size: 12px;
+  font-size: 11px;
   bottom: 2px;
   left: 2px;
+  padding: 0px 1px 2px 1px;
 }
 .fate-ignore-slot {
   top: 2px;
   right: 2px;
+}
+.fate-infusion {
+  font-size: 10px;
+  bottom: 2px;
+  left: 19px;
+  padding: 1px 1px 2px 0px;
 }
 
 /* STATUS INDICATORS: Styling */
@@ -60,10 +67,7 @@
   top: 19px;
   left: 2px;
 }
-.foaf-infuse {
-  top: 2px;
-  right: 2px;
-}
+
 .foaf-favourite {
   color: rgba(255,144,177,1);
   top: 2px;
