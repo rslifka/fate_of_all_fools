@@ -34,6 +34,9 @@ require('infusionIndicator.js');
 // Which weapons are our favourites?
 require('favouriteIndicator.js');
 
+// Which weapons work in the raid
+require('raidIndicator.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
