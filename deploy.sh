@@ -4,6 +4,8 @@ setup_git() {
   git config --global user.name "Travis CI (FATE)"
   git config credential.helper "store --file=.git/fate_credentials"
   echo "https://${GH_TOKEN}:@github.com" > .git/fate_credentials
+  git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
+  git checkout master
 }
 
 commit_artifacts() {
@@ -13,7 +15,6 @@ commit_artifacts() {
 }
 
 push_to_github() {
-  git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
   git push --set-upstream origin master
 }
 
