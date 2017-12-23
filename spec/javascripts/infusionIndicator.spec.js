@@ -83,6 +83,7 @@ describe('infusionIndicator.js', function() {
     });
 
     describe('mouse interaction', function() {
+
       it('should show other items of the same type with higher light', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
 
@@ -98,6 +99,21 @@ describe('infusionIndicator.js', function() {
         fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse');
         expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
       });
+
+      it('should display the new light level over infuse targets, taking mods in to account', function() {
+        $('[data-fate-weapon-name="Prosecutor"]').attr('data-fate-is-modded', true);
+        $('[data-fate-weapon-name="Prosecutor"]').attr('data-fate-base-light', 310);
+        fateBus.publish(brunchModule, 'fate.dupesCalculated');
+
+        // Simulating mouseover for Perseverance305
+        fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse');
+        expect($('[data-fate-weapon-name="Origin Story"]')).toContainElement('div.fate-infuse-new-light:contains(306)');
+        expect($('[data-fate-weapon-name="Prosecutor"]')).toContainElement('div.fate-infuse-new-light:contains(310)');
+
+        fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse');
+        expect($('[data-fate-weapon-name]')).not.toContainElement('div.fate-infuse-new-light');
+      });
+
     });
   });
 

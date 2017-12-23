@@ -19,6 +19,22 @@
   color: #f5dc56;
 }
 
+/* Displays on top of weapons that you can infuse in to the focused one */
+.fate-infuse-new-light {
+  background-color: rgba(0,0,0,0.725);
+  color: rgba(245, 202, 31, 1);
+  border-top: 2px solid rgba(245, 202, 31, 1);
+  border-bottom: 2px solid rgba(245, 202, 31, 1);
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 23px;
+  position: absolute;
+  top: 20px;
+  left: 2px;
+  width: 66px;
+}
+
 /* STATUS INDICATORS: Common styling */
 .fate-glyph {
   background-color: rgba(0,0,0,0.65);
@@ -96,15 +112,4 @@
   color: rgba(255,144,177,1);
   top: 2px;
   right: 2px;
-}
-
-.infuse-new-light {
-    background-color: rgba(0,0,0,0.625);
-    color: rgba(245, 202, 31, 1);
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 28px;
-    position: relative;
-    top: -49px;
 }

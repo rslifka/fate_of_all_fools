@@ -61,16 +61,23 @@ function onMouseEnter() {
   $('[data-fate-weapon-type]').not('[data-fate-weapon-type="'+weaponType+'"]').addClass('fate-search-hidden');
   $('[data-fate-weapon-type="'+weaponType+'"]').
     filter(function(index) {
-      return parseInt($(this).attr('data-fate-base-light')) <= weaponLight;
+      const infusable = parseInt($(this).attr('data-fate-base-light')) > weaponLight;
+      if (infusable) {
+        const newLight = parseInt($(this).attr('data-fate-base-light'));
+        $(this).append($("<div>", {"class": "fate-infuse-new-light"}).text(newLight));
+      }
+      return !infusable;
     }).
     each(function(index,element) {
       $(this).addClass('fate-search-hidden');
   });
+
   $(this).parent().removeClass('fate-search-hidden');
 }
 
 function onMouseLeave() {
   $('.fate-search-hidden').removeClass('fate-search-hidden');
+  $('.fate-infuse-new-light').remove();
 }
 
 function registerListeners() {
