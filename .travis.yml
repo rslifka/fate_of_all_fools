@@ -8,6 +8,7 @@ before_install:
   &
 before_script:
 - "./node_modules/.bin/brunch build --production"
+- "sed -i.orig 's/build/docs/g' karma.conf.js"
 after_success:
 - "erb fateOfAllFools.prod.user.js.erb > fateOfAllFools.user.js"
 - "./deploy.sh"
