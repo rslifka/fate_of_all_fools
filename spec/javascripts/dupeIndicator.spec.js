@@ -56,11 +56,15 @@ describe('dupeIndicator.js', function() {
           'energyWeapon.html',
           'energyPerseverance.html'
         );
-      });
-      it('style the ones that are', function() {
         fateBus.publish(brunchModule, 'fate.refresh');
+      });
+      it('should style the ones that are', function() {
         expect($("[data-fate-weapon-name='Annual Skate']")).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
         expect($('[data-fate-weapon-name=Perseverance]').children('.fate-dupe')).toBeHidden();
+      });
+      it('should mark the ones that are', function() {
+        expect($("[data-fate-weapon-name='Annual Skate']")).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($("[data-fate-weapon-name='Perseverance']")).not.toHaveAttr('data-fate-weapon-dupe');
       });
     });
 
@@ -76,6 +80,9 @@ describe('dupeIndicator.js', function() {
         $("[data-fate-weapon-name='Annual Skate']:first").remove();
         fateBus.publish(brunchModule, 'fate.refresh');
         expect($("[data-fate-weapon-name='Annual Skate']").children('.fate-dupe')).toBeHidden();
+      });
+      it('should no longer be marked as being a dupe', function() {
+        expect($("[data-fate-weapon-name='Annual Skate']")).not.toHaveAttr('data-fate-weapon-dupe');
       });
     });
 

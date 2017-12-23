@@ -44,6 +44,11 @@ function styleDupeIndicators(weapons) {
   }
 }
 
+function markDupes() {
+  $('.fate-dupe:visible').parent().attr('data-fate-weapon-dupe', true);
+  $('.fate-dupe:hidden').parent().removeAttr('data-fate-weapon-dupe');
+}
+
 function onMouseEnter() {
   const weaponName = $(this).parent().attr('data-fate-weapon-name');
   $('[data-fate-weapon-name]').not('[data-fate-weapon-name="'+weaponName+'"]').addClass('fate-search-hidden');
@@ -63,6 +68,7 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   prepareDupeSpace();
   styleDupeIndicators(calculateWorkingSet());
   registerListeners();
+  markDupes();
   fateBus.publish(module, 'fate.dupesCalculated');
 });
 
