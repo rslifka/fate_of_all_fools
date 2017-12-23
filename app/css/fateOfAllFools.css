@@ -37,7 +37,7 @@
 
 /* STATUS INDICATORS: Common styling */
 .fate-glyph {
-  background-color: rgba(0,0,0,0.65);
+  background-color: rgba(0,0,0,0.75);
   font-size: 11px;
   position: absolute;
   text-shadow: none;
@@ -80,17 +80,12 @@
 .fate-thumbs-down {
 
 }
-
-
-
-
-
-
-
-
-
-
-
+.fate-fave {
+  color: rgba(255,144,177,1);
+  padding: 0 0 1px 1px;
+  top: 18px;
+  right: 2px;
+}
 
 
 
@@ -106,10 +101,4 @@
 .foaf-raid {
   top: 19px;
   left: 2px;
-}
-
-.foaf-favourite {
-  color: rgba(255,144,177,1);
-  top: 2px;
-  right: 2px;
 }

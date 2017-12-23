@@ -31,6 +31,9 @@ require('ignoreStatusIndicator.js');
 // Can this weapon be infused in to another for level?
 require('infusionIndicator.js');
 
+// Which weapons are our favourites?
+require('favouriteIndicator.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
