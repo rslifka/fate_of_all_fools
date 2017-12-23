@@ -14,7 +14,7 @@ commit_artifacts() {
 
 push_to_github() {
   git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
-  git push --quiet --set-upstream origin master
+  git push --set-upstream origin master
 }
 
 setup_git
