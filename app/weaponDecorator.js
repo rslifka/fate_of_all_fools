@@ -27,7 +27,7 @@ function storeWeaponType() {
 
 function storeModStatus() {
   $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').each(function(index,element) {
-    $(this).attr('data-fate-legmodded', $(this).children('.item-img.complete').length > 0);
+    $(this).attr('data-fate-is-modded', $(this).children('.item-img.complete').length > 0);
   });
 }
 

@@ -51,9 +51,9 @@ describe('weaponDecorator.js', function() {
     });
 
     it('should store whether or not it has a legendary mod', function() {
-      expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-legmodded', 'true');
-      expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-legmodded', 'false');
-      expect($('[drag-channel=Power]')).toHaveAttr('data-fate-legmodded', 'false');
+      expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-is-modded', 'true');
+      expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-is-modded', 'false');
+      expect($('[drag-channel=Power]')).toHaveAttr('data-fate-is-modded', 'false');
     });
 
     it('should store the base light level', function() {
