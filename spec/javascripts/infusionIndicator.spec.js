@@ -72,6 +72,16 @@ describe('infusionIndicator.js', function() {
       });
     });
 
+    describe('when a weapon is also a dupe', function() {
+      beforeEach(function() {
+        $('[data-fate-weapon-name="Origin Story"]').attr('data-fate-weapon-dupe', true);
+      });
+      it('should bump the infusion indicator', function() {
+        fateBus.publish(brunchModule, 'fate.dupesCalculated');
+        expect($('[data-fate-weapon-name="Origin Story"] .fate-infusion')).toHaveClass('fate-left-bump');
+      });
+    });
+
   });
 
 

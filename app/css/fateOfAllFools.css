@@ -16,6 +16,9 @@
 }
 
 /* STATUS INDICATORS: Positioning */
+.fate-left-bump {
+  left: 19px !important;
+}
 .fate-dupe {
   font-size: 11px;
   bottom: 2px;
@@ -29,7 +32,7 @@
 .fate-infusion {
   font-size: 10px;
   bottom: 2px;
-  left: 19px;
+  left: 2px;
   padding: 1px 1px 2px 0px;
 }
 

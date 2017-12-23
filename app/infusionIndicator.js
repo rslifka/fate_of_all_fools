@@ -45,6 +45,11 @@ function styleInfusionIndicators(weaponData) {
     const maxLight = Math.max(...weapons.map(w => w.light));
     const infusables = weapons.filter(w => w.light < maxLight);
     infusables.forEach(function(weapon) {
+      if ($(weapon.domElement).is('[data-fate-weapon-dupe]')) {
+        $(weapon.domElement).children('.fate-infusion').addClass('fate-left-bump');
+      } else {
+        $(weapon.domElement).children('.fate-infusion').removeClass('fate-left-bump');
+      }
       $(weapon.domElement).children('.fate-infusion').show();
     });
   }
