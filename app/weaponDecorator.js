@@ -25,8 +25,24 @@ function storeWeaponType() {
   });
 }
 
+function storeModStatus() {
+  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').each(function(index,element) {
+    $(this).attr('data-fate-legmodded', $(this).children('.item-img.complete').length > 0);
+  });
+}
+
+function storeBaseLightLevel() {
+  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').each(function(index,element) {
+     const itemStatValue = parseInt($(this).children('.item-stat').text().match(/(\d+)/));
+     const baseLightLevel = ($(this).children('.item-img.complete').length > 0) ? itemStatValue-5 : itemStatValue;
+     $(this).attr('data-fate-base-light', baseLightLevel);
+  });
+}
+
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponNames();
   storeWeaponRarity();
   storeWeaponType();
+  storeModStatus();
+  storeBaseLightLevel();
 });

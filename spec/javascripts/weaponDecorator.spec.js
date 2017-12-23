@@ -50,6 +50,18 @@ describe('weaponDecorator.js', function() {
       expect($('[drag-channel=Power]')).toHaveAttr('data-fate-weapon-rarity', 'legendary');
     });
 
+    it('should store whether or not it has a legendary mod', function() {
+      expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-legmodded', 'true');
+      expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-legmodded', 'false');
+      expect($('[drag-channel=Power]')).toHaveAttr('data-fate-legmodded', 'false');
+    });
+
+    it('should store the base light level', function() {
+      expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-base-light', '301');
+      expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-base-light', '305');
+      expect($('[drag-channel=Power]')).toHaveAttr('data-fate-base-light', '310');
+    });
+
     it('should not overwrite the original weapon name on further refreshes', function() {
       $('[drag-channel=Kinetic]').attr('title', '_');
       $('[drag-channel=Energy]').attr('title', '_');
