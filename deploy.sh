@@ -12,12 +12,8 @@ commit_artifacts() {
   git add docs/fateOfAllFools.css
   git add docs/fateOfAllFools.js
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
-}
-
-push_to_github() {
-  git push --set-upstream origin master
+  git push --quiet --set-upstream origin master
 }
 
 setup_git
 commit_artifacts
-push_to_github
