@@ -11,6 +11,7 @@ setup_git() {
 commit_artifacts() {
   git add docs/fateOfAllFools.css
   git add docs/fateOfAllFools.js
+  git add fateOfAllFools.user.js
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
   git push --quiet --set-upstream origin master
 }
