@@ -56,6 +56,13 @@
 .fate-left-bump {
   left: 19px !important;
 }
+.fate-right-bump {
+  right: 19px !important;
+}
+.fate-right-double-bump {
+  right: 38px !important;
+}
+
 .fate-dupe {
   font-size: 11px;
   bottom: 2px;
@@ -87,14 +94,20 @@
   right: 2px;
 }
 .fate-pve {
-  top:2px;
-  left:2px;
+  color: rgba(93,181,110,1);
+  padding: 0 0 1px 1px;
+  top: 2px;
+  right: 2px;
 }
 .fate-pvp {
-  top:2px;
-  left:19px;
+  color: rgba(93,181,110,1);
+  padding: 0 1px 1px 1px;
+  top: 2px;
+  right: 2px;
 }
 .fate-raid {
-  top: 19px;
-  left: 2px;
+  color: rgba(93,181,110,1);
+  padding: 0 1px 1px 1px;
+  top: 2px;
+  right: 2px;
 }
