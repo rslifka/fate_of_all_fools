@@ -23,6 +23,14 @@ describe('dupeIndicator.js', function() {
       });
     });
 
+    describe('announcement', function() {
+      it('should let the world know it is done', function() {
+        spyOn(fateBus, 'publish').and.callThrough();
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect(fateBus.publish).toHaveBeenCalledWith(jasmine.any(Object),'fate.dupesCalculated');
+      });
+    });
+
     describe('when the dupes all have the same light level', function() {
       beforeEach(function() {
         loadFixtures(

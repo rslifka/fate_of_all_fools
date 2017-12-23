@@ -63,6 +63,7 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   prepareDupeSpace();
   styleDupeIndicators(calculateWorkingSet());
   registerListeners();
+  fateBus.publish(module, 'fate.dupesCalculated');
 });
 
 /*
