@@ -8,7 +8,7 @@ describe('pveIndicator.js', function() {
     fateBus.registerModule(brunchModule);
   });
 
-  describe('in response to fate.refresh', function() {
+  describe('in response to fate.pvpsCalculated', function() {
 
     beforeEach(function() {
       loadFixtures(
@@ -34,7 +34,7 @@ describe('pveIndicator.js', function() {
 
     describe('preparation', function() {
       it('should reserve space for a pve useful weapon', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
+        fateBus.publish(brunchModule, 'fate.pvpsCalculated');
         expect($('[data-fate-weapon-registered]')).toContainElement('.fate-pve.fate-glyph.fglyph-pve');
       });
     });
@@ -42,7 +42,7 @@ describe('pveIndicator.js', function() {
     describe('announcement', function() {
       it('should let the world know it is done', function() {
         spyOn(fateBus, 'publish').and.callThrough();
-        fateBus.publish(brunchModule, 'fate.refresh');
+        fateBus.publish(brunchModule, 'fate.pvpsCalculated');
         expect(fateBus.publish).toHaveBeenCalledWith(jasmine.any(Object),'fate.pvesCalculated');
       });
     });
@@ -50,7 +50,7 @@ describe('pveIndicator.js', function() {
     describe('when a weapon is a pveer', function() {
 
       it('should have a visible glyph', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
+        fateBus.publish(brunchModule, 'fate.pvpsCalculated');
         expect($('[data-fate-weapon-name="Midnight Coup"] .fate-pve.fate-glyph.fglyph-pve')).toBeVisible();
         expect($('[data-fate-weapon-name="Perseverance"] .fate-pve.fate-glyph.fglyph-pve')).toBeVisible();
         expect($('[data-fate-weapon-name="The Wizened Rebuke"] .fate-pve.fate-glyph.fglyph-pve')).toBeVisible();
@@ -59,7 +59,7 @@ describe('pveIndicator.js', function() {
       });
 
       it('should be marked as a favourite', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
+        fateBus.publish(brunchModule, 'fate.pvpsCalculated');
         expect($('[data-fate-weapon-name="Midnight Coup"]')).toHaveAttr('data-fate-weapon-pve');
         expect($('[data-fate-weapon-name="Perseverance"]')).toHaveAttr('data-fate-weapon-pve');
         expect($('[data-fate-weapon-name="The Wizened Rebuke"]')).toHaveAttr('data-fate-weapon-pve');
@@ -70,7 +70,7 @@ describe('pveIndicator.js', function() {
       describe('when mousing over the pve indicator', function() {
 
         it('should highlight all pve useful weapons', function() {
-          fateBus.publish(brunchModule, 'fate.refresh');
+          fateBus.publish(brunchModule, 'fate.pvpsCalculated');
 
           fateBus.publish(brunchModule, 'fate.test.mouseenter.pve');
           expect($('[data-fate-weapon-name="Midnight Coup"]')).not.toHaveClass('fate-search-hidden');

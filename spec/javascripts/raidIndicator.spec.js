@@ -8,7 +8,7 @@ describe('raidIndicator.js', function() {
     fateBus.registerModule(brunchModule);
   });
 
-  describe('in response to fate.refresh', function() {
+  describe('in response to fate.pvesCalculated', function() {
 
     beforeEach(function() {
       loadFixtures(
@@ -34,7 +34,7 @@ describe('raidIndicator.js', function() {
 
     describe('preparation', function() {
       it('should reserve space for a favourite', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
+        fateBus.publish(brunchModule, 'fate.pvesCalculated');
         expect($('[data-fate-weapon-registered]')).toContainElement('.fate-raid.fate-glyph.fglyph-skull');
       });
     });
@@ -42,7 +42,7 @@ describe('raidIndicator.js', function() {
     describe('announcement', function() {
       it('should let the world know it is done', function() {
         spyOn(fateBus, 'publish').and.callThrough();
-        fateBus.publish(brunchModule, 'fate.refresh');
+        fateBus.publish(brunchModule, 'fate.pvesCalculated');
         expect(fateBus.publish).toHaveBeenCalledWith(jasmine.any(Object),'fate.raidsCalculated');
       });
     });
@@ -50,7 +50,7 @@ describe('raidIndicator.js', function() {
     describe('when a weapon is a raider', function() {
 
       it('should have a visible glyph', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
+        fateBus.publish(brunchModule, 'fate.pvesCalculated');
         expect($('[data-fate-weapon-name="Midnight Coup"] .fate-raid.fate-glyph.fglyph-skull')).toBeVisible();
         expect($('[data-fate-weapon-name="Perseverance"] .fate-raid.fate-glyph.fglyph-skull')).toBeVisible();
         expect($('[data-fate-weapon-name="The Wizened Rebuke"] .fate-raid.fate-glyph.fglyph-skull')).toBeVisible();
@@ -59,7 +59,7 @@ describe('raidIndicator.js', function() {
       });
 
       it('should be marked as a favourite', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
+        fateBus.publish(brunchModule, 'fate.pvesCalculated');
         expect($('[data-fate-weapon-name="Midnight Coup"]')).toHaveAttr('data-fate-weapon-raid');
         expect($('[data-fate-weapon-name="Perseverance"]')).toHaveAttr('data-fate-weapon-raid');
         expect($('[data-fate-weapon-name="The Wizened Rebuke"]')).toHaveAttr('data-fate-weapon-raid');
@@ -70,7 +70,7 @@ describe('raidIndicator.js', function() {
       describe('when mousing over the raid indicator', function() {
 
         it('should highlight all raid useful weapons', function() {
-          fateBus.publish(brunchModule, 'fate.refresh');
+          fateBus.publish(brunchModule, 'fate.pvesCalculated');
 
           fateBus.publish(brunchModule, 'fate.test.mouseenter.raid');
           expect($('[data-fate-weapon-name="Midnight Coup"]')).not.toHaveClass('fate-search-hidden');

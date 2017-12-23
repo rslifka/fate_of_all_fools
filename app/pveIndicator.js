@@ -40,7 +40,7 @@ function registerListeners() {
   $('.fate-pve:visible').on('mouseleave.pve', onMouseLeave);
 }
 
-fateBus.subscribe(module, 'fate.refresh', function() {
+fateBus.subscribe(module, 'fate.pvpsCalculated', function() {
   logger.log('pveIndicator.js: Calculating pve useful weapons');
   preparePvpSpace();
   stylePvpIndicators();

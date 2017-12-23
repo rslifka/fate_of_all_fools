@@ -40,7 +40,7 @@ function registerListeners() {
   $('.fate-raid:visible').on('mouseleave.raid', onMouseLeave);
 }
 
-fateBus.subscribe(module, 'fate.refresh', function() {
+fateBus.subscribe(module, 'fate.pvesCalculated', function() {
   logger.log('raidIndicator.js: Calculating raid useful weapons');
   prepareRaidSpace();
   styleRaidIndicators();
