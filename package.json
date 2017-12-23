@@ -5,6 +5,9 @@
   "author": "Robert Slifka",
   "version": "0.0.1",
   "repository": "rslifka/fate_of_all_fools",
+  "scripts": {
+    "test": "karma start --single-run"
+  },
   "dependencies": {
     "jquery": "^3",
     "md5": "^2",
