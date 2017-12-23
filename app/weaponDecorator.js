@@ -39,10 +39,21 @@ function storeBaseLightLevel() {
   });
 }
 
+function storeRegistrationStatus() {
+  $('[data-fate-weapon-name]').each(function(index,element) {
+    const weaponName = $(this).attr('data-fate-weapon-name');
+    if (weaponDatabase.contains(weaponName)) {
+      $(this).attr('data-fate-weapon-registered', true);
+    } else {
+    }
+  });
+}
+
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponNames();
   storeWeaponRarity();
   storeWeaponType();
   storeModStatus();
   storeBaseLightLevel();
+  storeRegistrationStatus();
 });

@@ -13,11 +13,14 @@ describe('weaponDecorator.js', function() {
     beforeEach(function() {
       loadFixtures(
         'kineticWeaponRaw.html',
+        'kineticAutumnWindRaw.html',
         'energyWeaponRaw.html',
         'powerWeaponRaw.html'
       );
 
-      spyOn(weaponDatabase, 'contains').and.returnValue(true);
+      spyOn(weaponDatabase, 'contains').and.callFake(function(weaponName) {
+        return ['Origin Story', 'Annual Skate', 'Alone as a god'].includes(weaponName);
+      });
       spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
         switch(weaponName) {
           case 'Origin Story':
@@ -60,6 +63,13 @@ describe('weaponDecorator.js', function() {
       expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-base-light', '301');
       expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-base-light', '305');
       expect($('[drag-channel=Power]')).toHaveAttr('data-fate-base-light', '310');
+    });
+
+    it('should store if the weapon is registered', function() {
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-registered', 'true');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-registered', 'true');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-weapon-registered', 'true');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-registered');
     });
 
     it('should not overwrite the original weapon name on further refreshes', function() {
