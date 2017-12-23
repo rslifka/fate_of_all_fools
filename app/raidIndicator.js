@@ -15,6 +15,14 @@ function styleRaidIndicators() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
     if (weaponDatabase.get(weaponName).raidUseful) {
+      $(this).children('.fate-raid').removeClass('fate-right-bump fate-right-double-bump');
+      if ($(this).is('[data-fate-weapon-pvp]')) {
+        if ($(this).is('[data-fate-weapon-pve]')) {
+          $(this).children('.fate-raid').addClass('fate-right-double-bump');
+        } else {
+          $(this).children('.fate-raid').addClass('fate-right-bump');
+        }
+      }
       $(this).children('.fate-raid').show();
     } else {
       $(this).children('.fate-raid').hide();

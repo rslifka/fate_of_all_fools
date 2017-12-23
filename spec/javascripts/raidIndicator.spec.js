@@ -67,6 +67,27 @@ describe('raidIndicator.js', function() {
         expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-raid');
       });
 
+      describe('when it is also a pvper', function() {
+
+        beforeEach(function() {
+          $('[data-fate-weapon-name="Midnight Coup"]').attr('data-fate-weapon-pvp', true);
+        });
+
+        it('should get a little bumparino', function() {
+          fateBus.publish(brunchModule, 'fate.pvesCalculated');
+          expect($('[data-fate-weapon-name="Midnight Coup"] .fate-raid.fate-glyph.fate-right-bump.fglyph-skull')).toBeVisible();
+        });
+
+        describe('when it is also a pveer', function() {
+          it('should get a double bumperino', function() {
+            $('[data-fate-weapon-name="Midnight Coup"]').attr('data-fate-weapon-pve', true);
+            fateBus.publish(brunchModule, 'fate.pvesCalculated');
+            expect($('[data-fate-weapon-name="Midnight Coup"] .fate-raid.fate-glyph.fate-right-double-bump.fglyph-skull')).toBeVisible();
+          });
+        });
+
+      });
+
       describe('when mousing over the raid indicator', function() {
 
         it('should highlight all raid useful weapons', function() {
