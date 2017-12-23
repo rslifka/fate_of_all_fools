@@ -22,44 +22,42 @@ function styleFaveIndicators() {
   });
 }
 
-//
-// function markDupes() {
-//   $('.fate-dupe:visible').parent().attr('data-fate-weapon-dupe', true);
-//   $('.fate-dupe:hidden').parent().removeAttr('data-fate-weapon-dupe');
-// }
-//
-// function onMouseEnter() {
-//   const weaponName = $(this).parent().attr('data-fate-weapon-name');
-//   $('[data-fate-weapon-name]').not('[data-fate-weapon-name="'+weaponName+'"]').addClass('fate-search-hidden');
-// }
-//
-// function onMouseLeave() {
-//   $('.fate-search-hidden').removeClass('fate-search-hidden');
-// }
-//
-// function registerListeners() {
-//   $('.fate-dupe:visible').on('mouseenter.dupe', onMouseEnter);
-//   $('.fate-dupe:visible').on('mouseleave.dupe', onMouseLeave);
-// }
+function markFaves() {
+  $('.fate-fave:visible').parent().attr('data-fate-weapon-favourite', true);
+  $('.fate-fave:hidden').parent().removeAttr('data-fate-weapon-favourite');
+}
+
+function onMouseEnter() {
+  $('[data-fate-weapon-name]').not('[data-fate-weapon-favourite]').addClass('fate-search-hidden');
+}
+
+function onMouseLeave() {
+  $('.fate-search-hidden').removeClass('fate-search-hidden');
+}
+
+function registerListeners() {
+  $('.fate-fave:visible').on('mouseenter.fave', onMouseEnter);
+  $('.fate-fave:visible').on('mouseleave.fave', onMouseLeave);
+}
 
 fateBus.subscribe(module, 'fate.refresh', function() {
   logger.log('favouritesIndicator.js: Calculating favourites');
   prepareFaveSpace();
   styleFaveIndicators();
-  // registerListeners();
-  // markDupes();
+  registerListeners();
+  markFaves();
   fateBus.publish(module, 'fate.favesCalculated');
 });
-//
-// /*
-//   jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
-//   seem to trigger events via $.trigger, so we're going to use our bus to test the
-//   events.
-// */
-// fateBus.subscribe(module, 'fate.test.mouseenter.dupe', function() {
-//   $('.fate-dupe:visible').each(onMouseEnter);
-// });
-//
-// fateBus.subscribe(module, 'fate.test.mouseleave.dupe', function() {
-//   $('.fate-dupe:visible').each(onMouseLeave);
-// });
+
+/*
+  jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
+  seem to trigger events via $.trigger, so we're going to use our bus to test the
+  events.
+*/
+fateBus.subscribe(module, 'fate.test.mouseenter.fave', function() {
+  $('.fate-fave:visible').each(onMouseEnter);
+});
+
+fateBus.subscribe(module, 'fate.test.mouseleave.fave', function() {
+  $('.fate-fave:visible').each(onMouseLeave);
+});
