@@ -12,12 +12,11 @@
 // @grant       GM_xmlhttpRequest
 // @homepage    https://github.com/rslifka/fate_of_all_fools
 // @license     MIT; https://raw.githubusercontent.com/rslifka/fate_of_all_fools/master/LICENSE.txt
-// @copyright   2017, Robert Slifka (https://github.com/rslifka/fate_of_all_fools)
 // @match       https://*.destinyitemmanager.com/*
 // @name        Fate of All Fools
 // @require     https://rslifka.github.io/fate_of_all_fools/fateOfAllFools.js
 // @resource    fateOfAllFoolsCSS https://rslifka.github.io/fate_of_all_fools/fateOfAllFools.css
 // @run-at      document-start
 // @supportURL  https://github.com/rslifka/fate_of_all_fools/issues
-// @version     24
+// @version     26
 // ==/UserScript==
