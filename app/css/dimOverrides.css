@@ -12,7 +12,7 @@ div[drag-channel='Gauntlets'] > .item-stat,
 div[drag-channel='Chest'] > .item-stat,
 div[drag-channel='Leg'] > .item-stat,
 div[drag-channel='ClassItem'] > .item-stat {
-  background-color: rgba(0,0,0,0.65);
+  background-color: rgba(0,0,0,0.75);
   bottom: 2px;
   color: rgba(255,255,255,0.8);
   font-size: 12px;
@@ -40,13 +40,13 @@ div[drag-channel='ClassItem'] > .item-stat {
   indicate that.
 */
 .item-element.arc ~ .item-stat {
-  border-top: 2px solid rgba(133,197,236,0.8);
+  border-top: 2px solid rgba(133,197,236,1);
 }
 .item-element.solar ~ .item-stat {
-  border-top: 2px solid rgba(242,114,27,0.8);
+  border-top: 2px solid rgba(242,114,27,1);
 }
 .item-element.void ~ .item-stat {
-  border-top: 2px solid rgba(177,132,197,0.8);
+  border-top: 2px solid rgba(177,132,197,1);
 }
 
 /* Masterworks have gold power levels */
