@@ -1,15 +1,15 @@
 dist: trusty
 language: node_js
-node_js:
-  "9"
+node_js: '9'
 addons:
   chrome: stable
 before_install:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost
+  &
 before_script:
-  - ./node_modules/.bin/brunch build --production
+- "./node_modules/.bin/brunch build --production"
 after_success:
-  - ./deploy.sh
+- "./deploy.sh"
 env:
   global:
-    secure: deWKDH4aEMySiyCHRyuKgkAPBAr6NyyR7s2yeCTGWhSfogqNOgH6oPKtGBXFFRi59X0n5F6v0jj4efOM+o2mViY6235XSEssmI8RTbP4XMLaVOkYZlDKpMsgprVkbHZ4yNK437lbD4FPWwsWP/rqTeL5N69ylJQabBn68y44UX3602eIljvev0N+9P7SyODOzFpac4sxSuRJ1PfGoFtgbaV9nataOgzLpw+/mMiQnDsB8A29hL1IGrm1RaWQZhSaBmSWMO/8rzbLTa2+8KcBozfUV9qXvA/q6OZ5Rl2NA2gAe2M9rzxClfMuOgnuQEa94FkYUUXIBbRfyoprOrmZYQJyGzxsK9eqlkRu2oR7KMK74kF06OdKvZjqHyJXKa9qGGEZfvecKKDlRzs49KZPn7apztsr6ngn6X6bsYTT1k5OLWz90VJXA/MlOEEt+V7I+ZMAQxuIC73NhdWzAW7uHk5GET5acmFSEBggNPiu34qMFFWBTM/X6cb/Vl7wQSb7w+KCJXcyXBFibTr718PI8G35YyFWg3awK3d8wMp8YYHpwtjTycKxvs5L7YvFpGmFiJeBKLaw/WXy1cZ4rp4+/3NHzPiBfTgARtWOAfpVHbaL5f/boVl0219k4uHPbtjQS0DzqUiOVfgLtIiMXmOlHe8i1CpB66BUHR0CJiyW19Y=
+    secure: zuyeXjOegjYOSi7o/BfDsm5Z2tDEADVRpiwwEp3tGdQ23B2IJPHAR46tqqm2lMrdvyBVkh3IXH9cQo/JLjRPyyKYRB+JR1JKsjOeYy4M+yEqju9WTAtTc5CY8af9MgCyw8KKI6/DXb1HzdDZf27Bh9kSZi2nYrDoDndIfXSdPKXjwxN6gGBsWzQ5VAWrmlJ6wgolVbPXM38lPL9XqiwwBb3jDKdmecZ3c2rbXTxWZnCJWE7juaSZZbz9QL9LaREHm0oKBmL56wnmIqtB39+BUYGpXPULKkH0UKLhqFaq9QoYhjMBYZCwiuFByydX9/Pk7rPAnMR886iukzhLnicidhNTQu3fHOmDHafPXMNDeVe9N6yWh0XPONeVOQ0ZClaLYhVAXsXtx4PXHlFU8g1UUNvnhr7CX6UTVv1THF2sK7R/cWT4ATE4kv7Q3hw7iVsOY65+L1pHEAvYqq+6XYZgJsZDztRe2yxCUuxkqjbOv+k6RbK21lxZrAhyX9DzFSRBbb+CzSIdoe9Cqi8EZEePWMObiSlSTtglZ07bK2ER7PujfahjmWQkSEaRwK3F5uygbQNoUpNsOgz5jREp4TPKL224XS9IEZpnlDMvvVR44x3oQmQMj1MQABdm9WtqablJbvbtXLe+xg7pRjihrPS7x4QpihTxEde99gmZqOea9zw=
