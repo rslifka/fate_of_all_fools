@@ -81,6 +81,10 @@
     top: -49px;
 }
 
+.fate-mod {
+  padding-left: 1px;
+}
+
 .foaf-config {
     cursor: pointer;
     position: fixed;
