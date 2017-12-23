@@ -8,3 +8,8 @@ before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_script:
   - ./node_modules/.bin/brunch build --production
+deploy:
+  - ./deploy.sh
+env:
+  global:
+    secure: deWKDH4aEMySiyCHRyuKgkAPBAr6NyyR7s2yeCTGWhSfogqNOgH6oPKtGBXFFRi59X0n5F6v0jj4efOM+o2mViY6235XSEssmI8RTbP4XMLaVOkYZlDKpMsgprVkbHZ4yNK437lbD4FPWwsWP/rqTeL5N69ylJQabBn68y44UX3602eIljvev0N+9P7SyODOzFpac4sxSuRJ1PfGoFtgbaV9nataOgzLpw+/mMiQnDsB8A29hL1IGrm1RaWQZhSaBmSWMO/8rzbLTa2+8KcBozfUV9qXvA/q6OZ5Rl2NA2gAe2M9rzxClfMuOgnuQEa94FkYUUXIBbRfyoprOrmZYQJyGzxsK9eqlkRu2oR7KMK74kF06OdKvZjqHyJXKa9qGGEZfvecKKDlRzs49KZPn7apztsr6ngn6X6bsYTT1k5OLWz90VJXA/MlOEEt+V7I+ZMAQxuIC73NhdWzAW7uHk5GET5acmFSEBggNPiu34qMFFWBTM/X6cb/Vl7wQSb7w+KCJXcyXBFibTr718PI8G35YyFWg3awK3d8wMp8YYHpwtjTycKxvs5L7YvFpGmFiJeBKLaw/WXy1cZ4rp4+/3NHzPiBfTgARtWOAfpVHbaL5f/boVl0219k4uHPbtjQS0DzqUiOVfgLtIiMXmOlHe8i1CpB66BUHR0CJiyW19Y=
