@@ -37,6 +37,9 @@ require('favouriteIndicator.js');
 // Which weapons work in the raid
 require('raidIndicator.js');
 
+// Which weapons are good for PvP?
+require('pvpIndicator.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
