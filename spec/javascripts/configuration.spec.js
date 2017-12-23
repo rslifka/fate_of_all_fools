@@ -38,10 +38,10 @@ describe('configuration.js', function() {
       });
 
       it('should register a handler', function() {
-        const spyEvent = spyOnEvent('.foaf-config', 'click');
+        const spyEvent = spyOnEvent('.fate-config', 'click');
         spyOn(GM_config, 'open');
 
-        $('.foaf-config').click();
+        $('.fate-config').click();
 
         expect(spyEvent).toHaveBeenTriggered();
         expect(GM_config.open).toHaveBeenCalled();

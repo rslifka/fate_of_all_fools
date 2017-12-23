@@ -1,4 +1,25 @@
-/* Common styling for status indicators */
+/* Used when focusing on specific weapons (to dim others) */
+.fate-search-hidden {
+  opacity: 0.2;
+}
+
+/* Dot indicator next to light level that indicates mod-ness */
+.fate-mod {
+  padding-left: 1px;
+}
+
+/* [FATE Config] link in the lower left that allows you to change feed URL */
+.fate-config {
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0.5rem;
+  font-weight: bold;
+  color: #f5dc56;
+}
+
+/* STATUS INDICATORS: Common styling */
 .fate-glyph {
   background-color: rgba(0,0,0,0.65);
   font-size: 11px;
@@ -86,23 +107,4 @@
     line-height: 28px;
     position: relative;
     top: -49px;
-}
-
-.fate-mod {
-  padding-left: 1px;
-}
-
-.foaf-config {
-    cursor: pointer;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    padding: 0.5rem;
-    font-weight: bold;
-    color: #f5dc56;
-}
-
-/* Used when focusing on specific weapons (to dim others) */
-.fate-search-hidden {
-  opacity: 0.2;
 }

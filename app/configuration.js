@@ -5,7 +5,7 @@ function init() {
 	logger.log('configuration.js: Initializing');
 
 	GM_config.init({
-		'id': 'FoafConfig',
+		'id': 'FateConfig',
 		'fields': {
 			'weaponDataTSV': {
 				'label': 'Weapon Data Tab-Separated Values',
@@ -22,9 +22,9 @@ function init() {
 
 	fateBus.publish(module, 'fate.configurationLoaded', {weaponDataTSV:GM_config.get('weaponDataTSV')});
 
-	$('body').append($("<div>", {"class": "foaf-config"}).text('[FATE Config]'));
+	$('body').append($("<div>", {"class": "fate-config"}).text('[FATE Config]'));
 
-	$('.foaf-config').on('click', function() {
+	$('.fate-config').on('click', function() {
 		GM_config.open();
 	});
 }
