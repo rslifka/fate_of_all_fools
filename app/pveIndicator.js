@@ -15,6 +15,11 @@ function stylePvpIndicators() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
     if (weaponDatabase.get(weaponName).pveUseful) {
+      $(this).children('.fate-pve').removeClass('fate-right-bump');
+      
+      if ($(this).is('[data-fate-weapon-pvp]')) {
+        $(this).children('.fate-pve').addClass('fate-right-bump');
+      }
       $(this).children('.fate-pve').show();
     } else {
       $(this).children('.fate-pve').hide();

@@ -67,6 +67,14 @@ describe('pveIndicator.js', function() {
         expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pve');
       });
 
+      describe('when it is also a pvper', function() {
+        it('should get a little bumparino from the right', function() {
+          $('[data-fate-weapon-name="Midnight Coup"]').attr('data-fate-weapon-pvp', true);
+          fateBus.publish(brunchModule, 'fate.pvpsCalculated');
+          expect($('[data-fate-weapon-name="Midnight Coup"] .fate-pve.fate-glyph.fate-right-bump.fglyph-pve')).toBeVisible();
+        });
+      });
+
       describe('when mousing over the pve indicator', function() {
 
         it('should highlight all pve useful weapons', function() {
