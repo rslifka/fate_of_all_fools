@@ -8,7 +8,7 @@ module.exports = function(config) {
       'build/fateOfAllFools.js',
       'docs/fateOfAllFools.js',
       'spec/helpers/!(tampermonkeyStubs).js',
-      {pattern: 'spec/javascripts/fixtures/*.html', included: false},
+      {pattern: 'spec/javascripts/fixtures/**/*.html', included: false},
       'spec/javascripts/*.spec.js'
     ]
   })
