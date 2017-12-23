@@ -1,5 +1,6 @@
 module.exports = function(config) {
   config.set({
+    basePath: '.',
     frameworks: ['jquery-3.2.1', 'jasmine-jquery', 'jasmine'],
     browsers: ['ChromeHeadless'],
     files: [
