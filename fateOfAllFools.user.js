@@ -18,5 +18,5 @@
 // @resource    fateOfAllFoolsCSS https://rslifka.github.io/fate_of_all_fools/fateOfAllFools.css
 // @run-at      document-start
 // @supportURL  https://github.com/rslifka/fate_of_all_fools/issues
-// @version     297
+// @version     298
 // ==/UserScript==
