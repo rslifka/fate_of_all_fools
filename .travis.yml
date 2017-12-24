@@ -12,7 +12,14 @@ before_script:
 after_success:
 - erb fateOfAllFools.prod.user.js.erb > fateOfAllFools.user.js
 before_deploy:
-- git tag -d current && git push origin :refs/tags/current
+- git config --global user.email "travis@travis-ci.org"
+- git config --global user.name "Travis CI"
+- git config credential.helper "store --file=.git/fate_credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/fate_credentials
+- git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
+- git checkout master
+- git tag -d current
+- git push origin :refs/tags/current
 - git tag current
 deploy:
   provider: releases
