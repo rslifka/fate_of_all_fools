@@ -2,6 +2,7 @@ describe('pvpIndicator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
+  const weapon = require('weapon.js');
   const weaponDatabase = require('weaponDatabase.js');
 
   beforeEach(function() {
@@ -22,11 +23,11 @@ describe('pvpIndicator.js', function() {
 
       spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
         const database = {
-          'Midnight Coup': {pvpUseful: true},
-          'Annual Skate': {pvpUseful: false},
-          'Perseverance': {pvpUseful: true},
-          'Alone as a god': {pvpUseful: false},
-          'The Wizened Rebuke': {pvpUseful: true}
+          'Midnight Coup': {pvpUtility: weapon.Utility.YES},
+          'Annual Skate': {pvpUtility: weapon.Utility.NO},
+          'Perseverance': {pvpUtility: weapon.Utility.YES},
+          'Alone as a god': {pvpUtility: weapon.Utility.NO},
+          'The Wizened Rebuke': {pvpUtility: weapon.Utility.YES}
         };
         return database[weaponName];
       });

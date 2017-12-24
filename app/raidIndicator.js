@@ -1,5 +1,6 @@
 const $ = require('jquery');
 const logger = require('logger.js');
+const weapon = require('weapon.js');
 const weaponDatabase = require('weaponDatabase.js');
 
 function prepareRaidSpace() {
@@ -14,7 +15,7 @@ function prepareRaidSpace() {
 function styleRaidIndicators() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
-    if (weaponDatabase.get(weaponName).raidUseful) {
+    if (weaponDatabase.get(weaponName).raidUtility === weapon.Utility.YES) {
       $(this).children('.fate-raid').removeClass('fate-right-bump fate-right-double-bump');
       if ($(this).is('[data-fate-weapon-pvp]')) {
         if ($(this).is('[data-fate-weapon-pve]')) {

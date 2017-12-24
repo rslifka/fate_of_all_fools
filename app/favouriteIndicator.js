@@ -1,5 +1,6 @@
 const $ = require('jquery');
 const logger = require('logger.js');
+const weapon = require('weapon.js');
 const weaponDatabase = require('weaponDatabase.js');
 
 function prepareFaveSpace() {
@@ -14,7 +15,7 @@ function prepareFaveSpace() {
 function styleFaveIndicators() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
-    if (weaponDatabase.get(weaponName).isFavourite) {
+    if (weaponDatabase.get(weaponName).favouriteUtility === weapon.Utility.YES) {
       $(this).children('.fate-fave').show();
     } else {
       $(this).children('.fate-fave').hide();

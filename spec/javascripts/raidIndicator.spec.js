@@ -2,6 +2,7 @@ describe('raidIndicator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
+  const weapon = require('weapon.js');
   const weaponDatabase = require('weaponDatabase.js');
 
   beforeEach(function() {
@@ -22,11 +23,11 @@ describe('raidIndicator.js', function() {
 
       spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
         const database = {
-          'Midnight Coup': {raidUseful: true},
-          'Annual Skate': {raidUseful: false},
-          'Perseverance': {raidUseful: true},
-          'Alone as a god': {raidUseful: false},
-          'The Wizened Rebuke': {raidUseful: true}
+          'Midnight Coup': {raidUtility: weapon.Utility.YES},
+          'Annual Skate': {raidUtility: weapon.Utility.NO},
+          'Perseverance': {raidUtility: weapon.Utility.YES},
+          'Alone as a god': {raidUtility: weapon.Utility.NO},
+          'The Wizened Rebuke': {raidUtility: weapon.Utility.YES}
         };
         return database[weaponName];
       });

@@ -4,8 +4,8 @@ describe('weaponDatabase.js', function() {
   const weaponDatabase = require('weaponDatabase.js');
 
   // A weapon of each type and one without a comment (only optional data)
-  const TEST_TSV_WEAPON_DATA = `Sweet Business	Exotic	Kinetic	Auto Rifle	Exotic	Y	Y	Y	Y	Pre-fire in PvP. Pair with the Rig in PvE and wreck
-Hardlight	Exotic	Energy	Auto Rifle	Exotic	N	N	N	N	`;
+  const TEST_TSV_WEAPON_DATA = `Sweet Business	Exotic	Kinetic	Auto Rifle	Exotic	?	?	Y	Y	Pre-fire in PvP. Pair with the Rig in PvE and wreck
+Hardlight	Exotic	Energy	Auto Rifle	Exotic	N	N	?	?	`;
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
@@ -45,10 +45,10 @@ Hardlight	Exotic	Energy	Auto Rifle	Exotic	N	N	N	N	`;
         expect(sweetBusiness.slot).toEqual('Kinetic');
         expect(sweetBusiness.type).toEqual('Auto Rifle');
         expect(sweetBusiness.subtype).toEqual('Exotic');
-        expect(sweetBusiness.isFavourite).toBe(true);
-        expect(sweetBusiness.pveUseful).toBe(true);
-        expect(sweetBusiness.pvpUseful).toBe(true);
-        expect(sweetBusiness.raidUseful ).toBe(true);
+        expect(sweetBusiness.favouriteUtility).toEqual(weapon.Utility.UNKNOWN);
+        expect(sweetBusiness.pveUtility).toEqual(weapon.Utility.UNKNOWN);
+        expect(sweetBusiness.pvpUtility).toEqual(weapon.Utility.YES);
+        expect(sweetBusiness.raidUtility).toEqual(weapon.Utility.YES);
         expect(sweetBusiness.comments).toEqual('Pre-fire in PvP. Pair with the Rig in PvE and wreck');
 
         expect(hardLight).toEqual(jasmine.any(weapon.Weapon));
@@ -57,10 +57,10 @@ Hardlight	Exotic	Energy	Auto Rifle	Exotic	N	N	N	N	`;
         expect(hardLight.slot).toEqual('Energy');
         expect(hardLight.type).toEqual('Auto Rifle');
         expect(hardLight.subtype).toEqual('Exotic');
-        expect(hardLight.isFavourite).toBe(false);
-        expect(hardLight.pveUseful).toBe(false);
-        expect(hardLight.pvpUseful).toBe(false);
-        expect(hardLight.raidUseful ).toBe(false);
+        expect(hardLight.favouriteUtility).toEqual(weapon.Utility.NO);
+        expect(hardLight.pveUtility).toEqual(weapon.Utility.NO);
+        expect(hardLight.pvpUtility).toEqual(weapon.Utility.UNKNOWN);
+        expect(hardLight.raidUtility).toEqual(weapon.Utility.UNKNOWN);
         expect(hardLight.comments).toEqual('');
       });
     });

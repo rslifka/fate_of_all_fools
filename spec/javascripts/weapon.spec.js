@@ -2,30 +2,26 @@ describe('weapon.js', function() {
 
   const weapon = require('weapon.js');
 
-  let coldheart;
+  const coldheartParams = ['Coldheart','Exotic','Energy','Auto Rifle','Exotic','N','Y','N','?',
+    'Solid for bullet sponge DPS (whenever you have time to ramp up on a single target)'];
 
-  beforeEach(function() {
-    coldheart = new weapon.Weapon('Coldheart','Exotic','Energy','Auto Rifle','Exotic','N','Y','N','?',
-      'Solid for bullet sponge DPS (whenever you have time to ramp up on a single target)');
-  });
+  let coldheart;
 
   describe('initialization', function() {
     it('should create a Weapon', function() {
+      const coldheart = new weapon.Weapon(...coldheartParams);
       expect(coldheart instanceof weapon.Weapon).toBeTruthy();
     });
   });
 
   describe('fields', function() {
     it('should assign paramters to the proper fields', function() {
+      const coldheart = new weapon.Weapon(...coldheartParams);
       expect(coldheart.name).toBe('Coldheart');
       expect(coldheart.rarity).toBe('exotic');
       expect(coldheart.slot).toBe('Energy');
       expect(coldheart.type).toBe('Auto Rifle');
       expect(coldheart.subtype).toBe('Exotic');
-      expect(coldheart.isFavourite).toBe(false);
-      expect(coldheart.pveUseful).toBe(true);
-      expect(coldheart.pvpUseful).toBe(false);
-      expect(coldheart.raidUseful).toBe(false);
       expect(coldheart.favouriteUtility).toBe(weapon.Utility.NO);
       expect(coldheart.pveUtility).toBe(weapon.Utility.YES);
       expect(coldheart.pvpUtility).toBe(weapon.Utility.NO);
@@ -35,20 +31,33 @@ describe('weapon.js', function() {
   });
 
   describe('#isJunk', function() {
-    beforeEach(function() {
-      coldheart.pveUseful = false;
-      coldheart.pvpUseful = false;
+
+    describe('when pve and pvp utility is badness', function() {
+      it('should be junk', function() {
+        coldheartParams[6] = 'N';
+        coldheartParams[7] = 'N';
+        const coldheart = new weapon.Weapon(...coldheartParams);
+        expect(coldheart.isJunk()).toEqual(true);
+      });
     });
-    it('should be junk if no good in PvE or PvP', function() {
-      expect(coldheart.isJunk()).toBeTruthy();
+
+    describe('when only pvp is badness', function() {
+      it('should not be junk', function() {
+        coldheartParams[6] = '?';
+        coldheartParams[7] = 'N';
+        const coldheart = new weapon.Weapon(...coldheartParams);
+        expect(coldheart.isJunk()).toEqual(false);
+      });
     });
-    it('should not be junk if good in PvE', function() {
-      coldheart.pveUseful = true;
-      expect(coldheart.isJunk()).not.toBeTruthy();
+
+    describe('when only pve is badness', function() {
+      it('should not be junk', function() {
+        coldheartParams[6] = 'N';
+        coldheartParams[7] = '?';
+        const coldheart = new weapon.Weapon(...coldheartParams);
+        expect(coldheart.isJunk()).toEqual(false);
+      });
     });
-    it('should not be junk if good in PvP', function() {
-      coldheart.pvpUseful = true;
-      expect(coldheart.isJunk()).not.toBeTruthy();
-    });
+
   });
 });

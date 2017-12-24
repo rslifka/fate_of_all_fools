@@ -1,5 +1,6 @@
 const $ = require('jquery');
 const logger = require('logger.js');
+const weapon = require('weapon.js');
 const weaponDatabase = require('weaponDatabase.js');
 
 function preparePvpSpace() {
@@ -14,7 +15,7 @@ function preparePvpSpace() {
 function stylePvpIndicators() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
-    if (weaponDatabase.get(weaponName).pvpUseful) {
+    if (weaponDatabase.get(weaponName).pvpUtility === weapon.Utility.YES) {
       $(this).children('.fate-pvp').show();
     } else {
       $(this).children('.fate-pvp').hide();

@@ -12,10 +12,6 @@ exports.Weapon = class Weapon {
     this.slot = slot;
     this.type = type;
     this.subtype = subtype;
-    this.isFavourite = favourite.toLowerCase() === 'y';
-    this.pveUseful = pveUseful.toLowerCase() === 'y';
-    this.pvpUseful = pvpUseful.toLowerCase() === 'y';
-    this.raidUseful = raidUseful.toLowerCase() === 'y';
     this.fave = favourite.toLowerCase();
     this.pve = pveUseful.toLowerCase();
     this.pvp = pvpUseful.toLowerCase();
@@ -48,7 +44,7 @@ exports.Weapon = class Weapon {
   }
 
   isJunk() {
-    return !this.pveUseful && !this.pvpUseful;
+    return this.pveUtility === Utility.NO && this.pvpUtility === Utility.NO;
   }
 
 }

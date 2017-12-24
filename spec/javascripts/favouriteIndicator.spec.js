@@ -2,6 +2,7 @@ describe('favouriteIndicator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
+  const weapon = require('weapon.js');
   const weaponDatabase = require('weaponDatabase.js');
 
   beforeEach(function() {
@@ -22,11 +23,11 @@ describe('favouriteIndicator.js', function() {
 
       spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
         const database = {
-          'Midnight Coup': {isFavourite: true},
-          'Annual Skate': {isFavourite: false},
-          'Perseverance': {isFavourite: true},
-          'Alone as a god': {isFavourite: false},
-          'The Wizened Rebuke': {isFavourite: true}
+          'Midnight Coup': {favouriteUtility: weapon.Utility.YES},
+          'Annual Skate': {favouriteUtility: weapon.Utility.NO},
+          'Perseverance': {favouriteUtility: weapon.Utility.YES},
+          'Alone as a god': {favouriteUtility: weapon.Utility.NO},
+          'The Wizened Rebuke': {favouriteUtility: weapon.Utility.YES}
         };
         return database[weaponName];
       });
