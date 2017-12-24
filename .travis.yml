@@ -1,4 +1,4 @@
-if: env(TRAVIS_COMMIT_MESSAGE) ~= ^(?!AUTO-CREATED)
+if: env(TRAVIS_COMMIT_MESSAGE) = boogety
 dist: trusty
 language: node_js
 node_js: '9'
