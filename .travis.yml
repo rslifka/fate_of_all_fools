@@ -21,5 +21,3 @@ deploy:
   - docs/fateOfAllFools.js
   - docs/fateOfAllFools.css
   skip_cleanup: true
-  on:
-    tags: true
