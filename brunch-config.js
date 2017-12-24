@@ -10,13 +10,6 @@ exports.files = {
 };
 
 /*
-  When in dev/test mode, we go off the assets in build.
-*/
-exports.paths = {
-  public: 'build'
-}
-
-/*
   Tests are handled by Karma. This is to silence a warning that Brunch
   reports (which is helpful actually in most cases!) because it sees JS files
   outside the scope of its purview.
@@ -50,7 +43,6 @@ exports.modules = {
 exports.overrides = {
   production: {
     optimize: true,
-    paths: {public: 'docs'},
     plugins: {autoReload: {enabled: false}}
   }
 }
