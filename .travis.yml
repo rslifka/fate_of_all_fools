@@ -12,7 +12,8 @@ before_script:
 after_success:
 - erb fateOfAllFools.prod.user.js.erb > fateOfAllFools.user.js
 before_deploy:
-- git tag -a -m "Latest release" -f "current"
+- git tag -d current && git push origin :refs/tags/current
+- git tag current
 deploy:
   provider: releases
   api_key:
