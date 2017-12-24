@@ -1,4 +1,4 @@
-if: sender = rslifka
+if: sender = buildymcgee
 dist: trusty
 language: node_js
 node_js: '9'
