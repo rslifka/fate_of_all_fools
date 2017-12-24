@@ -20,6 +20,7 @@ deploy:
   file:
   - public/fateOfAllFools.js
   - public/fateOfAllFools.css
+  - fateOfAllFools.user.js
   overwrite: true
   skip_cleanup: true
   on:
