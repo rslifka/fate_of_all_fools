@@ -12,7 +12,7 @@ before_script:
 after_success:
 - erb fateOfAllFools.prod.user.js.erb > fateOfAllFools.user.js
 before_deploy:
-- git tag -f current
+- git tag -f "current"
 deploy:
   provider: releases
   api_key:
