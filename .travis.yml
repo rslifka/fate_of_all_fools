@@ -1,5 +1,4 @@
-# if: sender != travis
-if: branch = BLARGH
+if: sender = rslifka
 dist: trusty
 language: node_js
 node_js: '9'
