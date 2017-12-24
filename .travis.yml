@@ -8,7 +8,7 @@ before_install:
 - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost
   &
 before_script:
-- "echo []$TRAVIS_COMMIT_MESSAGE]"
+- "echo "Hi I'm [$TRAVIS_COMMIT_MESSAGE]"
 - "./node_modules/.bin/brunch build --production"
 - "sed -i.orig 's/build/docs/g' karma.conf.js"
 after_success:
