@@ -5,18 +5,8 @@ describe('weapon.js', function() {
   let coldheart;
 
   beforeEach(function() {
-    coldheart = new weapon.Weapon(
-      'Coldheart',
-      'Exotic',
-      'Energy',
-      'Auto Rifle',
-      'Exotic',
-      'N',
-      'Y',
-      'N',
-      'Y',
-      'Solid for bullet sponge DPS (whenever you have time to ramp up on a single target)'
-    );
+    coldheart = new weapon.Weapon('Coldheart','Exotic','Energy','Auto Rifle','Exotic','N','Y','N','?',
+      'Solid for bullet sponge DPS (whenever you have time to ramp up on a single target)');
   });
 
   describe('initialization', function() {
@@ -35,7 +25,11 @@ describe('weapon.js', function() {
       expect(coldheart.isFavourite).toBe(false);
       expect(coldheart.pveUseful).toBe(true);
       expect(coldheart.pvpUseful).toBe(false);
-      expect(coldheart.raidUseful).toBe(true);
+      expect(coldheart.raidUseful).toBe(false);
+      expect(coldheart.favouriteUtility).toBe(weapon.Utility.NO);
+      expect(coldheart.pveUtility).toBe(weapon.Utility.YES);
+      expect(coldheart.pvpUtility).toBe(weapon.Utility.NO);
+      expect(coldheart.raidUtility).toBe(weapon.Utility.UNKNOWN);
       expect(coldheart.comments).toBe('Solid for bullet sponge DPS (whenever you have time to ramp up on a single target)');
     });
   });
