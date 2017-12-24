@@ -7,20 +7,12 @@ before_install:
 - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost
   &
 before_script:
-- "./node_modules/.bin/brunch build --production"
+- ./node_modules/.bin/brunch build --production
 - sed -i.orig 's/build/docs/g' karma.conf.js
 after_success:
 - erb fateOfAllFools.prod.user.js.erb > fateOfAllFools.user.js
 before_deploy:
-- git config --global user.email "travis@travis-ci.org"
-- git config --global user.name "Travis CI"
-- git config credential.helper "store --file=.git/fate_credentials"
-- echo "https://${GH_TOKEN}:@github.com" > .git/fate_credentials
-- git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
-- git checkout master
-- git tag -d current
-- git push origin :refs/tags/current
-- git tag current
+- ./reset_tags.sh
 deploy:
   provider: releases
   api_key:
@@ -31,4 +23,4 @@ deploy:
   overwrite: true
   skip_cleanup: true
   on:
-    all_branches: true
+    tags: true
