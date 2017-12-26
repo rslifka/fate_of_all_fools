@@ -14,8 +14,8 @@
 // @license     MIT; https://raw.githubusercontent.com/rslifka/fate_of_all_fools/master/LICENSE.txt
 // @match       https://*.destinyitemmanager.com/*
 // @name        (DEVELOPMENT) Fate of All Fools
-// @require     file:///Users/rslifka/Dropbox/workspace/fate_of_all_fools/build/fateOfAllFools.js
-// @resource    fateOfAllFoolsCSS file:///Users/rslifka/Dropbox/workspace/fate_of_all_fools/build/fateOfAllFools.css
+// @require     file:///Users/rslifka/Dropbox/workspace/fate_of_all_fools/public/fateOfAllFools.js
+// @resource    fateOfAllFoolsCSS file:///Users/rslifka/Dropbox/workspace/fate_of_all_fools/public/fateOfAllFools.css
 // @run-at      document-idle
 // @supportURL  https://github.com/rslifka/fate_of_all_fools/issues
 // ==/UserScript==
