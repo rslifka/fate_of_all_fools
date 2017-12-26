@@ -21,13 +21,14 @@ describe('infusionIndicator.js', function() {
 
     beforeEach(function() {
       loadFixtures(
+        'infusion/kineticSurosThrowback200.html',   // Auto - Uncommon
         'infusion/kineticCuboidARu303.html',   // Auto - Rare
         'infusion/kineticOriginStory306.html', // Auto
         'infusion/energyPerseverance300.html', // Auto
         'infusion/energyPerseverance305.html', // Auto
         'infusion/energyProsecutor315.html',   // Auto
         'infusion/kineticTraxLysisII312.html', // Pulse
-        'infusion/powerAloneAsAGod305.html'    // Sniper
+        'infusion/powerAloneAsAGod305.html'   // Sniper
       );
     });
 
@@ -47,10 +48,11 @@ describe('infusionIndicator.js', function() {
       });
     });
 
-    describe('when a weapon is a rare', function() {
+    describe('when a weapon is not a legendary or exotic', function() {
       it('should not be considered for upwards infusion', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
         expect($('[data-fate-weapon-name="Cuboid ARu"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
+        expect($('[data-fate-weapon-name="Suros Throwback"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
       });
     });
 
@@ -90,6 +92,7 @@ describe('infusionIndicator.js', function() {
         // Simulating mouseover for Perseverance305
         fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse');
         expect($('[data-fate-weapon-name="Cuboid ARu"]')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Suros Throwback"]')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(300))')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305))')).not.toHaveClass('fate-search-hidden');

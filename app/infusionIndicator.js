@@ -14,7 +14,7 @@ function prepareInfusionSpace() {
 function calculateWorkingSet() {
   const weapons = new Map();
 
-  $('[data-fate-weapon-type]').not('[data-fate-weapon-rarity=rare]').each(function(index,element) {
+  $('[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
     if (weaponDatabase.contains(weaponName) && weaponDatabase.get(weaponName).isJunk()) {
       return;
@@ -59,19 +59,17 @@ function onMouseEnter() {
   const weaponType = $(this).parent().attr('data-fate-weapon-type');
   const weaponLight = $(this).parent().attr('data-fate-base-light');
   $('[data-fate-weapon-type]').not('[data-fate-weapon-type="'+weaponType+'"]').addClass('fate-search-hidden');
-  $('[data-fate-weapon-type="'+weaponType+'"]').
-    filter(function(index) {
-      const infusable = parseInt($(this).attr('data-fate-base-light')) > weaponLight;
-      if (infusable) {
-        const newLight = parseInt($(this).attr('data-fate-base-light'));
-        $(this).append($("<div>", {"class": "fate-infuse-new-light"}).text(newLight));
-      }
-      return !infusable;
-    }).
-    each(function(index,element) {
+  $('[data-fate-weapon-type="'+weaponType+'"]').each(function(index,element) {
+    const infusable = parseInt($(this).attr('data-fate-base-light')) > weaponLight;
+    if (infusable) {
+      const newLight = parseInt($(this).attr('data-fate-base-light'));
+      $(this).append($("<div>", {"class": "fate-infuse-new-light"}).text(newLight));
+    } else {
       $(this).addClass('fate-search-hidden');
+    }
   });
 
+  // Don't hide yourself!
   $(this).parent().removeClass('fate-search-hidden');
 }
 
@@ -88,8 +86,7 @@ function registerListeners() {
 fateBus.subscribe(module, 'fate.dupesCalculated', function() {
   logger.log('infusionIndicator.js: Calculating infuseables');
   prepareInfusionSpace();
-  const workingSet = calculateWorkingSet();
-  styleInfusionIndicators(workingSet);
+  styleInfusionIndicators(calculateWorkingSet());
   registerListeners();
 });
 
