@@ -20,7 +20,8 @@
 
 .fate-filter:hover {
   /* background-color: rgba(205, 174, 52, 1); */
-  background-color: rgba(221,221,221,1);
+  color: rgba(221,221,221,1);
+  background-color: rgba(93,181,110,1);
 }
 
 .fate-filter-pve {
