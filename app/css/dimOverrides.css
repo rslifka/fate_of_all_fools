@@ -83,3 +83,11 @@ body,
   background-repeat: no-repeat;
   border: 2px solid #929292;
 }
+
+/*
+  With the weapons banner gone, we need a little bit of spacing at the top
+  so the weapons aren't jammed up right against the top.
+*/
+.section.ng-scope.weapons {
+  padding-top: 10px;
+}

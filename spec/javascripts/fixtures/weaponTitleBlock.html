@@ -1,0 +1,6 @@
+<div ng-repeat="(category, buckets) in ::vm.buckets.byCategory track by category" class="section ng-scope weapons" ng-class="::category | lowercase">
+    <div class="title">
+        <span class="collapse-handle" ng-click="vm.toggleSection(category)" role="button" tabindex="0"><i class="fa collapse fa-minus-square-o" ng-class="vm.settings.collapsedSections[category] ? 'fa-plus-square-o': 'fa-minus-square-o'"></i> <span ng-i18next="Bucket.Weapons">Weapons</span></span>
+        <!-- ngIf: ::vm.stores[0].destinyVersion != 2 && vm.vault.vaultCounts[category] !== undefined -->
+    </div>
+</div>

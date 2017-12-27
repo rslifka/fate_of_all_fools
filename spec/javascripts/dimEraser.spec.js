@@ -1,4 +1,4 @@
-describe('dimTagRemover.js', function() {
+describe('dimEraser.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
@@ -8,6 +8,7 @@ describe('dimTagRemover.js', function() {
     beforeEach(function() {
       fateBus.registerModule(brunchModule);
       loadFixtures(
+        'weaponTitleBlock.html',
         'kineticWeapon.html',
         'energyWeapon.html',
         'powerWeapon.html',
@@ -30,6 +31,12 @@ describe('dimTagRemover.js', function() {
       expect($('[drag-channel=Ghost]').children('.item-tag').length).toBe(1);
       fateBus.publish(brunchModule, 'fate.refresh');
       expect($('[drag-channel=Ghost]').children('.item-tag').length).toBe(1);
+    });
+
+    it('should remove the title from the weapons section', function() {
+      expect($('.section.ng-scope.weapons > .title').length).toBe(1);
+      fateBus.publish(brunchModule, 'fate.refresh');
+      expect($('.section.ng-scope.weapons > .title').length).toBe(0);
     });
   });
 });

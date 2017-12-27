@@ -11,7 +11,7 @@ require('weaponDatabase.js');
 require('weaponDataRefresher.js');
 
 // Removes DIM's native tagging elements
-require('dimTagRemover.js');
+require('dimEraser.js');
 
 // Store original details about the weapon in 'data-fate' attributes
 require('weaponDecorator.js');
