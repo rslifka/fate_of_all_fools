@@ -45,9 +45,9 @@ Check out the [walkthrough video!](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 1. [FIGHT FOREVERRRR GUARDIANNN](https://www.youtube.com/watch?v=sAhhgmf6Xg8&feature=youtu.be&t=5)!!!
 
 # Development
+`Fate of All Fools` is a node-based project. Please see [package.json](https://github.com/rslifka/fate_of_all_fools/blob/master/package.json) for a list of dependencies. Much of the complexity of the project settings has been done to have the modify => refresh => evaluate loop happen as quickly as possible when working locally, so that you can see your changes in DIM the most quickly, since that's where you spend most of your time.
 
-`Fate of All Fools` is a node-based project. Please see [package.json](https://github.com/rslifka/fate_of_all_fools/blob/master/package.json) for a list of dependencies. Much of the complexity of the project settings has been done to maximize the modify => refresh => evaluate loop when working locally, so that you can see your changes in DIM the most quickly, since that's where you spend most of your time.
-
+## Environment
 1. [Install TamperMonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) from the Chrome Web Store.
 1. Enable `Allow access to file URLs` in Tampermonkey extension configuration inside of Chrome. This allows you to refresh your browser to pick up local changes during active development, using the file URLs present in the next steps.
 1. Add a script, and paste the contents of [fateOfAllFools.dev.user.js](https://github.com/rslifka/fate_of_all_fools/blob/master/fateOfAllFools.dev.user.js).
@@ -56,7 +56,6 @@ Check out the [walkthrough video!](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 1. `brunch watch` Monitors filesystem for changes to JS and CSS, building as appropriate.
 1. `karma start` Starts the karma server, which refreshes based on changes to the watched scripts, and continuously runs the tests.
 
-# Deployment
-
+## Deployment
 * Build and deploy is done via Travis. After each successful build, the version number is ticked and the source files published as the `current` GitHub release.
 * Ticking the version number is signal to Tampermonkey to invalidate the `@require` and `@resource` assets (i.e. JavaScript and CSS).
