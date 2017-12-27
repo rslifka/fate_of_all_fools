@@ -6,7 +6,7 @@
 ***This is only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another.***
 
 # TL;DR
-1. Install a UserScript hosting environment (e.g. Tampermonkey in Chrome).
+1. Install a UserScript hosting environment (e.g. [Tampermonkey in Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [Greasemonkey in Firefox](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)).
 2. One-click install the UserScript from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization).
 
 # Introduction
