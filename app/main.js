@@ -43,6 +43,9 @@ require('pvpIndicator.js');
 // Which weapons are good for PvE?
 require('pveIndicator.js');
 
+// Filter functionality
+require('fateFilters.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off

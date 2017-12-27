@@ -1,3 +1,52 @@
+.fate-filters {
+  position: fixed;
+  top: 143px;
+  left: 8px;
+  font-family: Arial;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: rgba(221,221,221,1);
+}
+
+.fate-filter {
+  cursor: pointer;
+  position: fixed;
+  top: 185px;
+  font-size: 33px;
+  padding-top: 2px;
+  border: 2px solid rgba(93,181,110,1);
+}
+
+.fate-filter:hover {
+  /* background-color: rgba(205, 174, 52, 1); */
+  background-color: rgba(221,221,221,1);
+}
+
+.fate-filter-pve {
+  color: rgba(93,181,110,1);
+  left: 10px;
+}
+
+.fate-filter-pvp {
+  color: rgba(93,181,110,1);
+  left: 66px;
+  font-size: 30px;
+  padding: 4px 0 2px 0;
+}
+
+.fate-filter-raid {
+  color: rgba(93,181,110,1);
+  left: 118px;
+}
+
+.fate-filter-fave {
+  color: rgba(255,144,177,1);
+  left: 174px;
+  padding: 3px 0px 1px 1px;
+  font-size: 31px;
+}
+
 /* Used when focusing on specific weapons (to dim others) */
 .fate-search-hidden {
   opacity: 0.2;
@@ -49,7 +98,7 @@
   color: rgba(206,82,70,1);
 }
 .fate-middling {
-  color:rgba(221,221,221,1);
+  color: rgba(221,221,221,1);
 }
 
 /* STATUS INDICATORS: Positioning */
