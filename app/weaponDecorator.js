@@ -1,4 +1,5 @@
 const $ = require('jquery');
+const weapon = require('weapon.js');
 const weaponDatabase = require('weaponDatabase.js');
 
 function storeWeaponNames() {
@@ -44,7 +45,32 @@ function storeRegistrationStatus() {
     const weaponName = $(this).attr('data-fate-weapon-name');
     if (weaponDatabase.contains(weaponName)) {
       $(this).attr('data-fate-weapon-registered', true);
+    }
+  });
+}
+
+function storeJudgementStatus() {
+  $('[data-fate-weapon-registered]').each(function(index,element) {
+    const w = weaponDatabase.get($(this).attr('data-fate-weapon-name'));
+    if (w.favouriteUtility === weapon.Utility.YES) {
+      $(this).attr('data-fate-weapon-favourite', true);
     } else {
+      $(this).removeAttr('data-fate-weapon-favourite');
+    }
+    if (w.pvpUtility === weapon.Utility.YES) {
+      $(this).attr('data-fate-weapon-pvp', true);
+    } else {
+      $(this).removeAttr('data-fate-weapon-pvp');
+    }
+    if (w.pveUtility === weapon.Utility.YES) {
+      $(this).attr('data-fate-weapon-pve', true);
+    } else {
+      $(this).removeAttr('data-fate-weapon-pve');
+    }
+    if (w.raidUtility === weapon.Utility.YES) {
+      $(this).attr('data-fate-weapon-raid', true);
+    } else {
+      $(this).removeAttr('data-fate-weapon-raid');
     }
   });
 }
@@ -56,4 +82,5 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   storeModStatus();
   storeBaseLightLevel();
   storeRegistrationStatus();
+  storeJudgementStatus();
 });

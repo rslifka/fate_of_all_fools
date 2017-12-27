@@ -2,6 +2,7 @@ describe('weaponDecorator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
+  const weapon = require('weapon.js');
   const weaponDatabase = require('weaponDatabase');
 
   beforeEach(function() {
@@ -24,11 +25,11 @@ describe('weaponDecorator.js', function() {
       spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
         switch(weaponName) {
           case 'Origin Story':
-            return {name: 'Origin Story', rarity: 'legendary', type: 'Auto Rifle'};
+            return {name: 'Origin Story', rarity: 'legendary', type: 'Auto Rifle', favouriteUtility: weapon.Utility.YES, pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, raidUtility: weapon.Utility.YES};
           case 'Annual Skate':
-            return {name: 'Annual Skate', rarity: 'legendary', type: 'Hand Cannon'};
+            return {name: 'Annual Skate', rarity: 'legendary', type: 'Hand Cannon', favouriteUtility: weapon.Utility.NO, pveUtility: weapon.Utility.NO, pvpUtility: weapon.Utility.NO, raidUtility: weapon.Utility.NO};
           case 'Alone as a god':
-            return {name: 'Alone as a god', rarity: 'legendary', type: 'Sniper Rifle'};
+            return {name: 'Alone as a god', rarity: 'legendary', type: 'Sniper Rifle', favouriteUtility: weapon.Utility.UNKNOWN, pveUtility: weapon.Utility.UNKNOWN, pvpUtility: weapon.Utility.UNKNOWN, raidUtility: weapon.Utility.UNKNOWN};
         }
       });
 
@@ -70,6 +71,30 @@ describe('weaponDecorator.js', function() {
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-registered', 'true');
       expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-weapon-registered', 'true');
       expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-registered');
+    });
+
+    it('should store if the weapon is good for pve', function() {
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-pve', 'true');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-pve');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pve');
+    });
+
+    it('should store if the weapon is a favourite', function() {
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-favourite', 'true');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-favourite');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-favourite');
+    });
+
+    it('should store if the weapon is good for pvp', function() {
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-pvp', 'true');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-pvp');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pvp');
+    });
+
+    it('should store if the weapon is good for raiding', function() {
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-raid', 'true');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-raid');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-raid');
     });
 
     it('should not overwrite the original weapon name on further refreshes', function() {
