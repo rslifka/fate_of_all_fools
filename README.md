@@ -5,6 +5,12 @@
 
 ***This is only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another.***
 
+# TL;DR
+1. Install a UserScript hosting environment (e.g. [Tampermonkey in Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [Greasemonkey in Firefox](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)).
+2. One-click install the UserScript from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization).
+
+# Introduction
+
 I've used DIM for years and find it indispensable. There are a few nits I've wanted to fix from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I play Destiny. These changes range from slight preferences to how I prefer to organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core. Some examples:
 
 * With Destiny 2's static weapon drops, it's far easier to have a tidy vault. [I've been tracking drops](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pubhtml) and capturing my ratings. I'd like these to make their way back in to DIM without having to refer to a separate sheet.
@@ -12,7 +18,9 @@ I've used DIM for years and find it indispensable. There are a few nits I've wan
 * Let's say I get a drop I'm not a fan of (e.g. `Bad News`). I break it down. Another `Bad News` drops a month later. Rather than have to drop in to the EDZ and shoot Cabal to re-assess the weapon, I'd prefer to know if I previously did that, what the results were and any comments I had about it (e.g. `"So close! Give this one a go once hand cannons are buffed"`).
 
 # Features
-Check out the [![walkthrough video!](http://rslifka.github.io/img/fate-youtube-screenshot.jpg)](https://www.youtube.com/watch?v=AW5kWLvGKqI)
+Check out the [walkthrough video!](https://www.youtube.com/watch?v=AW5kWLvGKqI)
+
+[![Fate of All Fools Walkthrough Video!](https://rslifka.github.io/fate_of_all_fools/img/fate-youtube-screenshot.jpg)](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 
 ## Additions
 * Displays information at-a-glance derived from your custom external source of weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below)
@@ -43,9 +51,9 @@ Check out the [![walkthrough video!](http://rslifka.github.io/img/fate-youtube-s
 1. [FIGHT FOREVERRRR GUARDIANNN](https://www.youtube.com/watch?v=sAhhgmf6Xg8&feature=youtu.be&t=5)!!!
 
 # Development
+`Fate of All Fools` is a node-based project. Please see [package.json](https://github.com/rslifka/fate_of_all_fools/blob/master/package.json) for a list of dependencies. Much of the complexity of the project settings has been done to have the modify => refresh => evaluate loop happen as quickly as possible when working locally, so that you can see your changes in DIM the most quickly, since that's where you spend most of your time.
 
-`Fate of All Fools` is a node-based project. Please see [package.json](https://github.com/rslifka/fate_of_all_fools/blob/master/package.json) for a list of dependencies. Much of the complexity of the project settings has been done to maximize the modify => refresh => evaluate loop when working locally, so that you can see your changes in DIM the most quickly, since that's where you spend most of your time.
-
+## Environment
 1. [Install TamperMonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) from the Chrome Web Store.
 1. Enable `Allow access to file URLs` in Tampermonkey extension configuration inside of Chrome. This allows you to refresh your browser to pick up local changes during active development, using the file URLs present in the next steps.
 1. Add a script, and paste the contents of [fateOfAllFools.dev.user.js](https://github.com/rslifka/fate_of_all_fools/blob/master/fateOfAllFools.dev.user.js).
@@ -54,7 +62,6 @@ Check out the [![walkthrough video!](http://rslifka.github.io/img/fate-youtube-s
 1. `brunch watch` Monitors filesystem for changes to JS and CSS, building as appropriate.
 1. `karma start` Starts the karma server, which refreshes based on changes to the watched scripts, and continuously runs the tests.
 
-# Deployment
-
+## Deployment
 * Build and deploy is done via Travis. After each successful build, the version number is ticked and the source files published as the `current` GitHub release.
 * Ticking the version number is signal to Tampermonkey to invalidate the `@require` and `@resource` assets (i.e. JavaScript and CSS).
