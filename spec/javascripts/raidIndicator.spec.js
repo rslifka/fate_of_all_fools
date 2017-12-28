@@ -2,8 +2,6 @@ describe('raidIndicator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
-  const weapon = require('weapon.js');
-  const weaponDatabase = require('weaponDatabase.js');
 
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
@@ -21,16 +19,9 @@ describe('raidIndicator.js', function() {
         'powerWizenedRebuke.html'
       );
 
-      spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
-        const database = {
-          'Midnight Coup': {raidUtility: weapon.Utility.YES},
-          'Annual Skate': {raidUtility: weapon.Utility.NO},
-          'Perseverance': {raidUtility: weapon.Utility.YES},
-          'Alone as a god': {raidUtility: weapon.Utility.NO},
-          'The Wizened Rebuke': {raidUtility: weapon.Utility.YES}
-        };
-        return database[weaponName];
-      });
+      $('[data-fate-weapon-name="Midnight Coup"]').attr('data-fate-weapon-raid', true);
+      $('[data-fate-weapon-name="Perseverance"]').attr('data-fate-weapon-raid', true);
+      $('[data-fate-weapon-name="The Wizened Rebuke"]').attr('data-fate-weapon-raid', true);
     });
 
     describe('preparation', function() {
@@ -87,23 +78,6 @@ describe('raidIndicator.js', function() {
           });
         });
 
-      });
-
-      describe('when mousing over the raid indicator', function() {
-
-        it('should highlight all raid useful weapons', function() {
-          fateBus.publish(brunchModule, 'fate.pvesCalculated');
-
-          fateBus.publish(brunchModule, 'fate.test.mouseenter.raid');
-          expect($('[data-fate-weapon-name="Midnight Coup"]')).not.toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="Perseverance"]')).not.toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="The Wizened Rebuke"]')).not.toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveClass('fate-search-hidden');
-
-          fateBus.publish(brunchModule, 'fate.test.mouseleave.raid');
-          expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
-        });
       });
 
     });
