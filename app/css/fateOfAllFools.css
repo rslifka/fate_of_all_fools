@@ -1,6 +1,6 @@
 .fate-filters {
   position: fixed;
-  top: 143px;
+  top: 142px;
   left: 8px;
   font-family: Arial;
   font-size: 36px;
@@ -19,9 +19,13 @@
 }
 
 .fate-filter:hover {
-  /* background-color: rgba(205, 174, 52, 1); */
   color: rgba(221,221,221,1);
   background-color: rgba(93,181,110,1);
+}
+
+.fate-filter-active {
+  color: rgba(221,221,221,1) !important;
+  background-color: rgba(93,181,110,1) !important;
 }
 
 .fate-filter-pve {
