@@ -65,6 +65,39 @@ describe('fateFilters.js', function() {
 
     });
 
+    describe('when clicking on the pvp filter', function() {
+
+      beforeEach(function() {
+        $('.fate-filter-pvp').click();
+      });
+
+      it('should highlight the filter as active', function() {
+        expect('.fate-filter.fate-filter-pvp.fglyph-pvp').toHaveClass('fate-filter-active');
+      });
+
+      it('should darken all non-pvp weapons', function() {
+        expect($('[data-fate-weapon-pvp]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name]').not('[data-fate-weapon-pvp]')).toHaveClass('fate-search-hidden');
+      });
+
+      describe('when clicking on the pvp filter a second time', function() {
+
+        beforeEach(function() {
+          $('.fate-filter-pvp').click();
+        });
+
+        it('should highlight the filter as inactive', function() {
+          expect('.fate-filter.fate-filter-pvp.fglyph-pvp').not.toHaveClass('fate-filter-active');
+        });
+
+        it('should show all weapons', function() {
+          expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
+        });
+
+      });
+
+    });
+
 
   });
 });
