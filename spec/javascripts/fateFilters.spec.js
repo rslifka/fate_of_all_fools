@@ -131,6 +131,39 @@ describe('fateFilters.js', function() {
 
     });
 
+    describe('when clicking on the favourites filter', function() {
+
+      beforeEach(function() {
+        $('.fate-filter-fave').click();
+      });
+
+      it('should highlight the filter as active', function() {
+        expect('.fate-filter.fate-filter-fave.fglyph-fave').toHaveClass('fate-filter-active');
+      });
+
+      it('should darken all non-fave weapons', function() {
+        expect($('[data-fate-weapon-favourite]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name]').not('[data-fate-weapon-fave]')).toHaveClass('fate-search-hidden');
+      });
+
+      describe('when clicking on the fave filter a second time', function() {
+
+        beforeEach(function() {
+          $('.fate-filter-fave').click();
+        });
+
+        it('should highlight the filter as inactive', function() {
+          expect('.fate-filter.fate-filter-fave.fglyph-fave').not.toHaveClass('fate-filter-active');
+        });
+
+        it('should show all weapons', function() {
+          expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
+        });
+
+      });
+
+    });
+
 
   });
 });
