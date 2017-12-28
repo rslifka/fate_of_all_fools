@@ -30,9 +30,20 @@ function clickHandlerPvp() {
   }
 }
 
+function clickHandlerRaid() {
+  if ($(this).is('.fate-filter-active')) {
+    $(this).removeClass('fate-filter-active');
+    $('[data-fate-weapon-name]').removeClass('fate-search-hidden');
+  } else {
+    $(this).addClass('fate-filter-active');
+    $('[data-fate-weapon-name]').not('[data-fate-weapon-raid]').addClass('fate-search-hidden');
+  }
+}
+
 function registerMouseHandlers() {
   $('.fate-filter-pve').on('click', clickHandlerPve);
   $('.fate-filter-pvp').on('click', clickHandlerPvp);
+  $('.fate-filter-raid').on('click', clickHandlerRaid);
 }
 
 fateBus.subscribe(module, 'fate.init', function() {

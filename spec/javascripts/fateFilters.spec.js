@@ -98,6 +98,39 @@ describe('fateFilters.js', function() {
 
     });
 
+    describe('when clicking on the raid filter', function() {
+
+      beforeEach(function() {
+        $('.fate-filter-raid').click();
+      });
+
+      it('should highlight the filter as active', function() {
+        expect('.fate-filter.fate-filter-raid.fglyph-skull').toHaveClass('fate-filter-active');
+      });
+
+      it('should darken all non-raid weapons', function() {
+        expect($('[data-fate-weapon-raid]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name]').not('[data-fate-weapon-raid]')).toHaveClass('fate-search-hidden');
+      });
+
+      describe('when clicking on the raid filter a second time', function() {
+
+        beforeEach(function() {
+          $('.fate-filter-raid').click();
+        });
+
+        it('should highlight the filter as inactive', function() {
+          expect('.fate-filter.fate-filter-raid.fglyph-skull').not.toHaveClass('fate-filter-active');
+        });
+
+        it('should show all weapons', function() {
+          expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
+        });
+
+      });
+
+    });
+
 
   });
 });
