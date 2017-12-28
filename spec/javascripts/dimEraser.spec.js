@@ -33,10 +33,5 @@ describe('dimEraser.js', function() {
       expect($('[drag-channel=Ghost]').children('.item-tag').length).toBe(1);
     });
 
-    it('should remove the title from the weapons section', function() {
-      expect($('.section.ng-scope.weapons > .title').length).toBe(1);
-      fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('.section.ng-scope.weapons > .title').length).toBe(0);
-    });
   });
 });
