@@ -49,6 +49,17 @@ function storeRegistrationStatus() {
   });
 }
 
+function storeJunkStatus() {
+  $('[data-fate-weapon-registered]').each(function(index,element) {
+    const weaponName = $(this).attr('data-fate-weapon-name');
+    if (weaponDatabase.contains(weaponName)) {
+      if (weaponDatabase.get(weaponName).isJunk()) {
+        $(this).attr('data-fate-weapon-junk', true);
+      }
+    }
+  });
+}
+
 function storeJudgementStatus() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const w = weaponDatabase.get($(this).attr('data-fate-weapon-name'));
@@ -83,4 +94,5 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   storeBaseLightLevel();
   storeRegistrationStatus();
   storeJudgementStatus();
+  storeJunkStatus();
 });
