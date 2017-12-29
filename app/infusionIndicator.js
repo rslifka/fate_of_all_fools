@@ -116,10 +116,10 @@ fateBus.subscribe(module, 'fate.dupesCalculated', function() {
   seem to trigger events via $.trigger, so we're going to use our bus to test the
   events.
 */
-fateBus.subscribe(module, 'fate.test.mouseenter.infuse', function() {
-  $('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up').each(onMouseEnter);
+fateBus.subscribe(module, 'fate.test.mouseenter.infuse', function(msg, selector) {
+  $(selector).each(onMouseEnter);
 });
 
-fateBus.subscribe(module, 'fate.test.mouseleave.infuse', function() {
-  $('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up').each(onMouseLeave);
+fateBus.subscribe(module, 'fate.test.mouseleave.infuse', function(msg, selector) {
+  $(selector).each(onMouseLeave);
 });
