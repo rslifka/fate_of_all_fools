@@ -1,6 +1,5 @@
 const $ = require('jquery');
 const logger = require('logger.js');
-const weaponDatabase = require('weaponDatabase.js');
 
 function prepareInfusionSpace() {
   $('[data-fate-weapon-name]').each(function(index,element) {
@@ -12,36 +11,55 @@ function prepareInfusionSpace() {
 }
 
 function calculateWorkingSet() {
-  const weapons = new Map();
+  const workingSet = new Map();
 
   $('[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
-    if (weaponDatabase.contains(weaponName) && weaponDatabase.get(weaponName).isJunk()) {
-      return;
-    }
-
     const weaponType = $(this).attr('data-fate-weapon-type');
+    const weaponLight = $(this).attr('data-fate-base-light');
+    const weaponModded = $(this).is('[data-fate-is-modded]');
     const weaponData = {
       type: weaponType,
-      isModded: $(this).is('[data-fate-is-modded]'),
-      light: parseInt($(this).attr('data-fate-base-light')),
-      domElement: this
+      isModded: weaponModded,
+      light: weaponLight,
+      domElement: this,
+      toString: function() {return weaponType + ' - ' + weaponName + ' ('+weaponLight+')';}
     };
-    if (weapons.has(weaponType)) {
-      weapons.set(weaponType, weapons.get(weaponType).concat(weaponData));
+    if (workingSet.has(weaponType)) {
+      workingSet.set(weaponType, workingSet.get(weaponType).concat(weaponData));
     } else {
-      weapons.set(weaponType, [weaponData]);
+      workingSet.set(weaponType, [weaponData]);
     }
   });
-  return weapons;
+
+  for (let [weaponType, weapons] of workingSet) {
+    weapons = removePreciousWeapons(weapons, weapons.length-1);
+    workingSet.set(weaponType, weapons.filter(weapon => weapon !== undefined));
+  }
+
+  return workingSet;
 }
 
-function styleInfusionIndicators(weaponData) {
-  for (let [weaponType, weapons] of weaponData) {
-    if (weapons.length === 1) {
-      $(weapons[0].domElement).children('.fate-infusion').hide();
-      continue;
-    }
+function removePreciousWeapons(weapons, nextIndex) {
+  if (nextIndex == -1) {
+    return weapons;
+  }
+  const w = weapons[nextIndex];
+  if ($(w.domElement).is('[data-fate-weapon-dupe],[data-fate-weapon-junk]')) {
+    return removePreciousWeapons(weapons, nextIndex-1);
+  }
+  const previouslyExamined = weapons.slice(nextIndex+1,weapons.length).filter(weapon => weapon !== undefined);
+  if (previouslyExamined.length > 0) {
+    return removePreciousWeapons(weapons, nextIndex-1);
+  }
+  weapons[nextIndex] = undefined;
+  return removePreciousWeapons(weapons, nextIndex-1);
+}
+
+function styleInfusionIndicators(workingSet) {
+  $('.fate-infusion').hide();
+
+  for (let [weaponType, weapons] of workingSet) {
     const maxLight = Math.max(...weapons.map(w => w.light));
     const infusables = weapons.filter(w => w.light < maxLight);
     infusables.forEach(function(weapon) {
@@ -53,6 +71,9 @@ function styleInfusionIndicators(weaponData) {
       $(weapon.domElement).children('.fate-infusion').show();
     });
   }
+
+  // Ensure "junk" weapons never get an infuse-up icon
+  $('[data-fate-weapon-junk]').children('.fate-infusion').hide();
 }
 
 function onMouseEnter() {

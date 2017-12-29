@@ -1,0 +1,24 @@
+<dim-store-item ng-repeat="item in vm.items | equipped:false | sortItems:vm.settings.itemSort track by item.index" item-data="item" class="ng-scope ng-isolate-scope">
+    <div ui-draggable="true" id="6917529048447773445-ps325" drag-channel="Energy" title="Solemn Hymn // Auto Rifle - Adaptive
+Kicks too much" drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0" data-fate-weapon-name="Solemn Hymn" data-fate-weapon-rarity="legendary"
+        data-fate-weapon-type="Auto Rifle" data-fate-is-modded="false" data-fate-base-light="310" data-fate-weapon-registered="true" data-fate-weapon-junk="true">
+        <!-- ngIf: ::vm.item.percentComplete && !vm.item.complete -->
+        <div class="item-img" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)"
+            tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/f9ae1292679e8eea137d4357da7c3162.jpg&quot;);"></div>
+        <!-- ngIf: ::vm.item.quality -->
+        <!-- ngIf: vm.item.dtrRating && (vm.item.dtrRatingCount > (vm.item.destinyVersion == 2 ? 0 : 1) || vm.item.dtrHighlightedRatingCount > 0) -->
+        <div class="item-element arc" ng-class="::vm.item.dmg"></div>
+
+        <!-- ngIf: vm.item.isNew -->
+        <!-- ngIf: ::vm.showBadge -->
+        <div ng-class="::vm.badgeClassNames" ng-if="::vm.showBadge" ng-bind="::vm.badgeCount" class="ng-binding ng-scope item-equipment item-stat">310</div>
+        <!-- end ngIf: ::vm.showBadge -->
+        <div class="fate-glyph fate-dupe fglyph-knives" style="display:none"></div>
+        <div class="fate-infusion fate-positive fate-glyph fglyph-up" style="display:none"></div>
+        <div class="fate-ignore-slot fate-glyph fate-middling fate-thumbs-down fglyph-thumbs-down" style=""></div>
+        <div class="fate-fave fate-glyph fglyph-fave" style="display:none"></div>
+        <div class="fate-pvp fate-glyph fglyph-pvp" style="display:none"></div>
+        <div class="fate-pve fate-glyph fglyph-pve" style="display:none"></div>
+        <div class="fate-raid fate-glyph fglyph-skull" style="display:none"></div>
+    </div>
+</dim-store-item>

@@ -1,0 +1,24 @@
+<dim-store-item ng-repeat="item in vm.items | equipped:false | sortItems:vm.settings.itemSort track by item.index" item-data="item" class="ng-scope ng-isolate-scope">
+    <div ui-draggable="true" id="6917529047345446103-ps330" drag-channel="Power" title="It Stared Back // Sword - Adaptive
+Strictly better than Complex Solution?" drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0" data-fate-weapon-name="It Stared Back" data-fate-weapon-rarity="legendary"
+        data-fate-weapon-type="Sword" data-fate-is-modded="false" data-fate-base-light="330" data-fate-weapon-registered="true" data-fate-weapon-pve="true" data-fate-weapon-raid="true">
+        <!-- ngIf: ::vm.item.percentComplete && !vm.item.complete -->
+        <div class="item-img" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)"
+            tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/8ba6a44f16129231360d2910e60a0268.jpg&quot;);"></div>
+        <!-- ngIf: ::vm.item.quality -->
+        <!-- ngIf: vm.item.dtrRating && (vm.item.dtrRatingCount > (vm.item.destinyVersion == 2 ? 0 : 1) || vm.item.dtrHighlightedRatingCount > 0) -->
+        <div class="item-element solar" ng-class="::vm.item.dmg"></div>
+
+        <!-- ngIf: vm.item.isNew -->
+        <!-- ngIf: ::vm.showBadge -->
+        <div ng-class="::vm.badgeClassNames" ng-if="::vm.showBadge" ng-bind="::vm.badgeCount" class="ng-binding ng-scope item-equipment item-stat">330</div>
+        <!-- end ngIf: ::vm.showBadge -->
+        <div class="fate-glyph fate-dupe fglyph-knives" style="display:none"></div>
+        <div class="fate-infusion fate-positive fate-glyph fglyph-up" style="display:none"></div>
+        <div class="fate-ignore-slot fate-glyph" style="display:none"></div>
+        <div class="fate-fave fate-glyph fglyph-fave" style="display:none"></div>
+        <div class="fate-pvp fate-glyph fglyph-pvp" style="display:none"></div>
+        <div class="fate-pve fate-glyph fglyph-pve" style=""></div>
+        <div class="fate-raid fate-glyph fglyph-skull" style=""></div>
+    </div>
+</dim-store-item>
