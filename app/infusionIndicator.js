@@ -2,7 +2,7 @@ const $ = require('jquery');
 const logger = require('logger.js');
 
 function prepareInfusionSpace() {
-  $('[data-fate-weapon-name]').each(function(index,element) {
+  $('[data-fate-weapon-registered]').each(function(index,element) {
     if ($(this).children('.fate-infusion.fate-glyph.fglyph-up').length > 0) {
       return;
     }
@@ -77,21 +77,19 @@ function styleInfusionIndicators(workingSet) {
 }
 
 function onMouseEnter() {
+  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').addClass('fate-search-hidden');
+  $(this).parent().removeClass('fate-search-hidden');
+
   const weaponType = $(this).parent().attr('data-fate-weapon-type');
   const weaponLight = $(this).parent().attr('data-fate-base-light');
-  $('[data-fate-weapon-type]').not('[data-fate-weapon-type="'+weaponType+'"]').addClass('fate-search-hidden');
   $('[data-fate-weapon-type="'+weaponType+'"]').each(function(index,element) {
     const infusable = parseInt($(this).attr('data-fate-base-light')) > weaponLight;
     if (infusable) {
       const newLight = parseInt($(this).attr('data-fate-base-light'));
       $(this).append($("<div>", {"class": "fate-infuse-new-light"}).text(newLight));
-    } else {
-      $(this).addClass('fate-search-hidden');
+      $(this).removeClass('fate-search-hidden');
     }
   });
-
-  // Don't hide yourself!
-  $(this).parent().removeClass('fate-search-hidden');
 }
 
 function onMouseLeave() {

@@ -1,6 +1,6 @@
 <dim-store-item ng-repeat="item in vm.items | equipped:false | sortItems:vm.settings.itemSort track by item.index" item-data="item" class="ng-scope ng-isolate-scope">
     <div ui-draggable="true" id="6917529048444825588-ps330" drag-channel="Power" title="Double-Edged Answer
-Sword" drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0" data-fate-weapon-name="Double-Edged Answer" data-fate-is-modded="false" data-fate-base-light="330">
+Sword" drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0">
         <!-- ngIf: ::vm.item.percentComplete && !vm.item.complete -->
         <div class="item-img" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)"
             tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/792a5deb12adcd7f9618930ff124827c.jpg&quot;);"></div>

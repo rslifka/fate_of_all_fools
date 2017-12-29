@@ -1,5 +1,5 @@
 <dim-store-item ng-repeat="item in vm.items | equipped:false | sortItems:vm.settings.itemSort track by item.index" item-data="item" class="ng-scope ng-isolate-scope">
-    <div data-fate-weapon-rarity="rare" data-fate-base-light="312" data-fate-weapon-type="Scout Rifle" ui-draggable="true" id="6917529046733958942-ps312" drag-channel="Kinetic" title="Trax Lysis II // Scout Rifle - High-Impact
+    <div data-fate-weapon-registered="true" data-fate-weapon-rarity="rare" data-fate-base-light="312" data-fate-weapon-type="Scout Rifle" ui-draggable="true" id="6917529046733958942-ps312" drag-channel="Kinetic" title="Trax Lysis II // Scout Rifle - High-Impact
 " drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0" data-fate-weapon-name="Trax Lysis II">
         <!-- ngIf: ::vm.item.percentComplete && !vm.item.complete -->
         <div class="item-img" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)" tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/8186683846a76164567d5765dadeaa2c.jpg&quot;);"></div>

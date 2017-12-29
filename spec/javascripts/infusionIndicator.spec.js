@@ -57,7 +57,7 @@ describe('infusionIndicator.js', function() {
     describe('when a weapon is not registered', function() {
       it('should not get an infusion icon', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Double-Edged Answer"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
+        expect($('[title*="Double-Edged Answer"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
       });
     });
 
@@ -73,15 +73,17 @@ describe('infusionIndicator.js', function() {
       it('should show other items of the same type with higher light', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
 
-        // Simulating mouseover for Perseverance305
         fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse', '[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-        expect($('[data-fate-weapon-name="Cuboid ARu"]')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Suros Throwback"]')).toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Cuboid ARu"]')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(300))')).toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305))')).not.toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Prosecutor"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Trax Lysis II"]')).toHaveClass('fate-search-hidden');
+        expect($('[title*="Double-Edged Answer"]')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305))')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Solemn Hymn"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Prosecutor"]')).not.toHaveClass('fate-search-hidden');
 
         fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse', '[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up');
         expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
@@ -92,7 +94,6 @@ describe('infusionIndicator.js', function() {
         $('[data-fate-weapon-name="Prosecutor"]').attr('data-fate-base-light', 310);
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
 
-        // Simulating mouseover for Perseverance305
         fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse', '[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up');
         expect($('[data-fate-weapon-name="Origin Story"]')).toContainElement('div.fate-infuse-new-light:contains(306)');
         expect($('[data-fate-weapon-name="Prosecutor"]')).toContainElement('div.fate-infuse-new-light:contains(310)');
