@@ -46,6 +46,7 @@ function removePreciousWeapons(weapons, nextIndex) {
   }
   const w = weapons[nextIndex];
   if ($(w.domElement).is('[data-fate-weapon-dupe],[data-fate-weapon-junk]')) {
+    $(w.domElement).attr('data-fate-infuse-ok', true);
     return removePreciousWeapons(weapons, nextIndex-1);
   }
   const previouslyExamined = weapons.slice(nextIndex+1,weapons.length).filter(weapon => weapon !== undefined);
@@ -73,6 +74,7 @@ function styleInfusionIndicators(workingSet) {
   }
 
   // Ensure "junk" weapons never get an infuse-up icon
+  // TODO - No tests fail when leaving this out; is that OK?
   $('[data-fate-weapon-junk]').children('.fate-infusion').hide();
 }
 
@@ -82,9 +84,10 @@ function onMouseEnter() {
 
   const weaponType = $(this).parent().attr('data-fate-weapon-type');
   const weaponLight = $(this).parent().attr('data-fate-base-light');
+
   $('[data-fate-weapon-type="'+weaponType+'"]').each(function(index,element) {
-    const infusable = parseInt($(this).attr('data-fate-base-light')) > weaponLight;
-    if (infusable) {
+    const higherLight = parseInt($(this).attr('data-fate-base-light')) > weaponLight;
+    if ($(this).attr('data-fate-infuse-ok') != undefined && higherLight) {
       const newLight = parseInt($(this).attr('data-fate-base-light'));
       $(this).append($("<div>", {"class": "fate-infuse-new-light"}).text(newLight));
       $(this).removeClass('fate-search-hidden');
