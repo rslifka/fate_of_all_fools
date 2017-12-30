@@ -13,9 +13,9 @@ describe('infusionIndicator.js', function() {
       loadFixtures(
         'infusion/kineticSurosThrowback200.html',  // Auto - Uncommon
         'infusion/kineticCuboidARu303.html',       // Auto - Rare
-        'infusion/kineticOriginStory306.html',     // Auto
         'infusion/energyPerseverance300.html',     // Auto - Dupe
         'infusion/energyPerseverance305.html',     // Auto - Dupe
+        'infusion/kineticOriginStory306.html',     // Auto
         'infusion/energySolemnHymn310.html',       // Auto - Junk
         'infusion/energyProsecutor315.html',       // Auto - Dupe
         'infusion/energyProsecutor315.html',       // Auto - Dupe
@@ -44,22 +44,22 @@ describe('infusionIndicator.js', function() {
     describe('when a weapon is not a legendary or exotic', function() {
       it('should not be considered for upwards infusion', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Cuboid ARu"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
-        expect($('[data-fate-weapon-name="Suros Throwback"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
+        expect($('[data-fate-weapon-name="Cuboid ARu"]')).not.toContainElement('.fate-infusion.fate-positive.fate-glyph.fglyph-up');
+        expect($('[data-fate-weapon-name="Suros Throwback"]')).not.toContainElement('.fate-infusion.fate-positive.fate-glyph.fglyph-up');
       });
     });
 
     describe('when a weapon is junk', function() {
       it('should not get an infusion icon', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Solemn Hymn"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
+        expect($('[data-fate-weapon-name="Solemn Hymn"]')).not.toContainElement('.fate-infusion.fate-positive.fate-glyph.fglyph-up');
       });
     });
 
     describe('when a weapon is not registered', function() {
       it('should not get an infusion icon', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[title*="Double-Edged Answer"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
+        expect($('[title*="Double-Edged Answer"]')).not.toContainElement('.fate-infusion.fate-positive.fate-glyph.fglyph-up');
       });
     });
 
@@ -79,13 +79,13 @@ describe('infusionIndicator.js', function() {
         expect($('[data-fate-weapon-name="Suros Throwback"]')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Cuboid ARu"]')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(300))')).toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Trax Lysis II"]')).toHaveClass('fate-search-hidden');
-        expect($('[title*="Double-Edged Answer"]')).toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305))')).not.toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Origin Story"]')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Solemn Hymn"]')).not.toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Prosecutor"]')).not.toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305))')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Trax Lysis II"]')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveClass('fate-search-hidden');
+        expect($('[title*="Double-Edged Answer"]')).toHaveClass('fate-search-hidden');
 
         fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse', '[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up');
         expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');

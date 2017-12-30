@@ -1,8 +1,11 @@
 const $ = require('jquery');
 const logger = require('logger.js');
 
-function prepareInfusionSpace() {
-  $('[data-fate-weapon-registered]').each(function(index,element) {
+function prepareInfusionIndicator() {
+  $('[data-fate-weapon-registered]').not('[data-fate-weapon-junk]').each(function(index,element) {
+    if (!$(this).is('[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]')) {
+      return;
+    }
     if ($(this).children('.fate-infusion.fate-glyph.fglyph-up').length > 0) {
       return;
     }
@@ -10,10 +13,13 @@ function prepareInfusionSpace() {
   });
 }
 
-function calculateWorkingSet() {
-  const workingSet = new Map();
-
-  $('[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]').each(function(index,element) {
+function calculateInfusionFodder() {
+  const infusionFodder = new Map();
+  $('[data-fate-weapon-registered]').each(function(index,element) {
+    if (!$(this).is('[data-fate-weapon-dupe],[data-fate-weapon-junk]')) {
+      return;
+    }
+    $(this).attr('data-fate-infuse-ok', true);
     const weaponName = $(this).attr('data-fate-weapon-name');
     const weaponType = $(this).attr('data-fate-weapon-type');
     const weaponLight = $(this).attr('data-fate-base-light');
@@ -21,61 +27,39 @@ function calculateWorkingSet() {
     const weaponData = {
       type: weaponType,
       isModded: weaponModded,
-      light: weaponLight,
+      light: parseInt(weaponLight),
       domElement: this,
       toString: function() {return weaponType + ' - ' + weaponName + ' ('+weaponLight+')';}
     };
-    if (workingSet.has(weaponType)) {
-      workingSet.set(weaponType, workingSet.get(weaponType).concat(weaponData));
+    console.log('Adding fodder: ' + weaponData);
+    if (infusionFodder.has(weaponType)) {
+      infusionFodder.set(weaponType, infusionFodder.get(weaponType).concat(weaponData));
     } else {
-      workingSet.set(weaponType, [weaponData]);
+      infusionFodder.set(weaponType, [weaponData]);
     }
   });
-
-  for (let [weaponType, weapons] of workingSet) {
-    weapons = removePreciousWeapons(weapons, weapons.length-1);
-    workingSet.set(weaponType, weapons.filter(weapon => weapon !== undefined));
-  }
-
-  return workingSet;
+  return infusionFodder;
 }
 
-function removePreciousWeapons(weapons, nextIndex) {
-  if (nextIndex == -1) {
-    return weapons;
-  }
-  const w = weapons[nextIndex];
-  if ($(w.domElement).is('[data-fate-weapon-dupe],[data-fate-weapon-junk]')) {
-    $(w.domElement).attr('data-fate-infuse-ok', true);
-    return removePreciousWeapons(weapons, nextIndex-1);
-  }
-  const previouslyExamined = weapons.slice(nextIndex+1,weapons.length).filter(weapon => weapon !== undefined);
-  if (previouslyExamined.length > 0) {
-    return removePreciousWeapons(weapons, nextIndex-1);
-  }
-  weapons[nextIndex] = undefined;
-  return removePreciousWeapons(weapons, nextIndex-1);
-}
-
-function styleInfusionIndicators(workingSet) {
+function styleInfusionIndicators(infusionFodder) {
   $('.fate-infusion').hide();
-
-  for (let [weaponType, weapons] of workingSet) {
-    const maxLight = Math.max(...weapons.map(w => w.light));
-    const infusables = weapons.filter(w => w.light < maxLight);
-    infusables.forEach(function(weapon) {
-      if ($(weapon.domElement).is('[data-fate-weapon-dupe]')) {
-        $(weapon.domElement).children('.fate-infusion').addClass('fate-left-bump');
-      } else {
-        $(weapon.domElement).children('.fate-infusion').removeClass('fate-left-bump');
+  $('.fate-infusion').parent().each(function(index,element) {
+    // console.log('Considering icon for ('+$(this).attr('data-fate-weapon-name')+')');
+    const weaponType = $(this).attr('data-fate-weapon-type');
+    const fodder = infusionFodder.get(weaponType);
+    if (fodder === undefined) {
+      // console.log(' => Couldnt find fodder for my weapon type ('+weaponType+')');
+      return;
+    }
+    const light = parseInt($(this).attr('data-fate-base-light'));
+    if ((fodder.filter(w => w.light > light)).length > 0) {
+      $(this).children('.fate-infusion').removeClass('fate-left-bump');
+      if ($(this).is('[data-fate-weapon-dupe]')) {
+        $(this).children('.fate-infusion').addClass('fate-left-bump');
       }
-      $(weapon.domElement).children('.fate-infusion').show();
-    });
-  }
-
-  // Ensure "junk" weapons never get an infuse-up icon
-  // TODO - No tests fail when leaving this out; is that OK?
-  $('[data-fate-weapon-junk]').children('.fate-infusion').hide();
+      $(this).children('.fate-infusion').show();
+    }
+  });
 }
 
 function onMouseEnter() {
@@ -107,8 +91,9 @@ function registerListeners() {
 
 fateBus.subscribe(module, 'fate.dupesCalculated', function() {
   logger.log('infusionIndicator.js: Calculating infuseables');
-  prepareInfusionSpace();
-  styleInfusionIndicators(calculateWorkingSet());
+  prepareInfusionIndicator();
+  const infusionFodder = calculateInfusionFodder();
+  styleInfusionIndicators(infusionFodder);
   registerListeners();
 });
 
