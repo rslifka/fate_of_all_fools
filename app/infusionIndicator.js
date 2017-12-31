@@ -31,7 +31,6 @@ function calculateInfusionFodder() {
       domElement: this,
       toString: function() {return weaponType + ' - ' + weaponName + ' ('+weaponLight+')';}
     };
-    console.log('Adding fodder: ' + weaponData);
     if (infusionFodder.has(weaponType)) {
       infusionFodder.set(weaponType, infusionFodder.get(weaponType).concat(weaponData));
     } else {
@@ -44,11 +43,9 @@ function calculateInfusionFodder() {
 function styleInfusionIndicators(infusionFodder) {
   $('.fate-infusion').hide();
   $('.fate-infusion').parent().each(function(index,element) {
-    // console.log('Considering icon for ('+$(this).attr('data-fate-weapon-name')+')');
     const weaponType = $(this).attr('data-fate-weapon-type');
     const fodder = infusionFodder.get(weaponType);
     if (fodder === undefined) {
-      // console.log(' => Couldnt find fodder for my weapon type ('+weaponType+')');
       return;
     }
     const light = parseInt($(this).attr('data-fate-base-light'));
