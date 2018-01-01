@@ -58,9 +58,9 @@ if (!window.navigator.userAgent.includes('HeadlessChrome')) {
 
   setInterval(function() {
     fateBus.publish(module, 'fate.refresh');
-  }, 5000);
+  }, 10000);
 
   setInterval(function() {
     fateBus.publish(module, 'fate.weaponDataStale');
-  }, 30000);
+  }, 60000);
 }
