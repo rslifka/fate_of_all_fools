@@ -114,7 +114,7 @@
   right: 19px !important;
 }
 .fate-right-double-bump {
-  right: 35px !important;
+  right: 36px !important;
 }
 
 .fate-dupe {
@@ -148,12 +148,12 @@
 .fate-fave {
   color: rgba(255,144,177,1);
   padding: 0 1px 1px 1px;
-  top: 17px;
+  top: 18px;
   right: 2px;
 }
 .fate-pve {
   color: rgba(93,181,110,1);
-  padding: 0 0 1px 1px;
+  padding: 0 1px 1px 1px;
   top: 2px;
   right: 2px;
 }
