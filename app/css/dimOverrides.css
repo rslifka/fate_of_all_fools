@@ -51,7 +51,7 @@ div[drag-channel='ClassItem'] > .item-stat {
 
 /* Masterworks have gold power levels */
 .item-img.masterwork ~ .item-stat {
-  color: rgba(255,215,0,0.8);
+  color: rgba(232,165,52,1);
 }
 
 /* Go for a more muted background */
@@ -94,4 +94,11 @@ body,
 */
 .section.ng-scope.weapons {
   padding-top: 10px;
+}
+
+/*
+  Remove orange masterwork glow
+*/
+.item-img.masterwork::after {
+  display: none;
 }
