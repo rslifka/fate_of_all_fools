@@ -1,0 +1,16 @@
+<dim-store-item ng-repeat="item in vm.items | equipped:false | sortItems:vm.settings.itemSort track by item.index" item-data="item" class="ng-scope ng-isolate-scope">
+    <div ui-draggable="true" id="6917529044428519818-ps335" drag-channel="Gauntlets" title="Iron Truage Gauntlets
+Gauntlets" drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0">
+        <!-- ngIf: ::vm.item.percentComplete && !vm.item.complete -->
+        <div class="item-img complete" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)"
+            tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/c578ee8407e74e94223a796e52d90752.jpg&quot;);"></div>
+        <!-- ngIf: ::vm.item.quality -->
+        <!-- ngIf: vm.item.dtrRating && (vm.item.dtrRatingCount > (vm.item.destinyVersion == 2 ? 0 : 1) || vm.item.dtrHighlightedRatingCount > 0) -->
+        <div class="item-element" ng-class="::vm.item.dmg"></div>
+
+        <!-- ngIf: vm.item.isNew -->
+        <!-- ngIf: ::vm.showBadge -->
+        <div ng-class="::vm.badgeClassNames" ng-if="::vm.showBadge" ng-bind="::vm.badgeCount" class="ng-binding ng-scope item-equipment item-stat">335<span class="fate-mod">•</span></div>
+        <!-- end ngIf: ::vm.showBadge -->
+    </div>
+</dim-store-item>

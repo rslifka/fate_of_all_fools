@@ -16,6 +16,9 @@ require('dimEraser.js');
 // Store original details about the weapon in 'data-fate' attributes
 require('weaponDecorator.js');
 
+// Store original details about the armor in 'data-fate' attributes
+require('armorDecorator.js');
+
 // Update weapon comments from our database
 require('commentDecorator.js');
 
