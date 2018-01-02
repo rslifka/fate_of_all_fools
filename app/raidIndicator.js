@@ -25,6 +25,10 @@ function styleRaidIndicators() {
       } else {
         $(this).children('.fate-raid').addClass('fate-right-bump');
       }
+    } else {
+      if ($(this).is('[data-fate-weapon-pve]')) {
+        $(this).children('.fate-raid').addClass('fate-right-bump');
+      }
     }
 
     $(this).children('.fate-raid').show();

@@ -80,6 +80,17 @@ describe('raidIndicator.js', function() {
 
       });
 
+      describe('when it is also a pveer', function() {
+        beforeEach(function() {
+          $('[data-fate-weapon-name="Midnight Coup"]').attr('data-fate-weapon-pve', true);
+        });
+
+        it('should get a little bumparino', function() {
+          fateBus.publish(brunchModule, 'fate.pvesCalculated');
+          expect($('[data-fate-weapon-name="Midnight Coup"] .fate-raid.fate-glyph.fate-right-bump.fglyph-skull')).toBeVisible();
+        });
+      });
+
     });
 
   });
