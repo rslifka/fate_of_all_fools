@@ -40,6 +40,14 @@ exports.modules = {
   }
 }
 
+exports.plugins = {
+  uglify: {
+    output: {
+      comments: true
+    }
+  }
+}
+
 exports.overrides = {
   production: {
     optimize: true,
