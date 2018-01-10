@@ -1,6 +1,7 @@
 dist: trusty
 language: node_js
 node_js: '9'
+sudo: required
 addons:
   chrome: stable
 before_install:
