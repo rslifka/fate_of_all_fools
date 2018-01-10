@@ -4,21 +4,27 @@ describe('fateFilters.js', function() {
   const brunchModule = {id:'test'+this.result.description};
 
   beforeEach(function() {
+    $('body').append($('<div>', {'class': 'store-row store-header'}));
     fateBus.registerModule(brunchModule);
-    fateBus.publish(brunchModule, 'fate.init');
+    fateBus.publish(brunchModule, 'fate.refresh');
   });
 
   afterEach(function() {
-    $('.fate-filters').remove();
+    $('.store-row.store-header').remove();
   });
 
-  describe('in response to fate.init', function() {
+  describe('in response to fate.refresh', function() {
     it('should install the filter markup', function() {
-      expect($('body')).toContainElement('.fate-filters');
+      expect($('.store-row.store-header')).toContainElement('.fate-filters');
       expect($('.fate-filters')).toContainElement($('.fate-filter.fate-filter-pve.fglyph-pve'));
       expect($('.fate-filters')).toContainElement($('.fate-filter.fate-filter-pvp.fglyph-pvp'));
       expect($('.fate-filters')).toContainElement($('.fate-filter.fate-filter-raid.fglyph-skull'));
       expect($('.fate-filters')).toContainElement($('.fate-filter.fate-filter-fave.fglyph-fave'));
+    });
+
+    it('should not install the filter markup more than once', function() {
+      fateBus.publish(brunchModule, 'fate.refresh');
+      expect($('.fate-filters').length).toEqual(1);
     });
   })
 

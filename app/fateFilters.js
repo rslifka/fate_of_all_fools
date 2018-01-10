@@ -2,12 +2,11 @@ const $ = require('jquery');
 const logger = require('logger.js');
 
 function createMarkup(filterParentSelector) {
-  $('body').append($('<div>', {'class': 'fate-filters'}).text('FILTERS'));
-
-  $('.fate-filters').append($('<div>', {'class': 'fate-filter fate-filter-pve  fglyph-pve'}));
-  $('.fate-filters').append($('<div>', {'class': 'fate-filter fate-filter-pvp  fglyph-pvp'}));
-  $('.fate-filters').append($('<div>', {'class': 'fate-filter fate-filter-raid fglyph-skull'}));
-  $('.fate-filters').append($('<div>', {'class': 'fate-filter fate-filter-fave fglyph-fave'}));
+  $('.store-row.store-header').append($('<div>', {'class': 'fate-filters'}));
+  $('.fate-filters').append($('<div>', {'class': 'fate-filter fate-filter-pve  fglyph-pve'}).append($('<div>', {'class': 'fate-filter-text'}).text('PvE')));
+  $('.fate-filters').append($('<div>', {'class': 'fate-filter fate-filter-pvp  fglyph-pvp'}).append($('<div>', {'class': 'fate-filter-text'}).text('PvP')));
+  $('.fate-filters').append($('<div>', {'class': 'fate-filter fate-filter-raid fglyph-skull'}).append($('<div>', {'class': 'fate-filter-text'}).text('RAID')));
+  $('.fate-filters').append($('<div>', {'class': 'fate-filter fate-filter-fave fglyph-fave'}).append($('<div>', {'class': 'fate-filter-text'}).text('FAVE!')));
 }
 
 function clickHandlerPve() {
@@ -56,7 +55,10 @@ function registerMouseHandlers() {
   $('.fate-filter-fave').on('click', clickHandlerFave);
 }
 
-fateBus.subscribe(module, 'fate.init', function() {
+fateBus.subscribe(module, 'fate.refresh', function() {
+  if ($('.fate-filters').length > 0) {
+    return;
+  }
   createMarkup();
   registerMouseHandlers();
 });
