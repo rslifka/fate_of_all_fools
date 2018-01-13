@@ -9,8 +9,8 @@
     "test": "./node_modules/.bin/karma start --single-run --browsers ChromeHeadless"
   },
   "dependencies": {
+    "blueimp-md5": "^2",
     "jquery": "^3",
-    "md5": "^2",
     "pubsub-js": "^1"
   },
   "devDependencies": {

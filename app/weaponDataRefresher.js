@@ -1,5 +1,5 @@
 const logger = require('logger');
-const md5 = require('md5');
+const md5 = require('blueimp-md5');
 
 let rawWeaponDataMD5;
 let weaponDataTSVURL;
