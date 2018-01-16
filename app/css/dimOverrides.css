@@ -100,5 +100,5 @@ body,
   Remove orange masterwork glow
 */
 .item-img.masterwork::after {
-  display: none;
+  display: none !important;
 }
