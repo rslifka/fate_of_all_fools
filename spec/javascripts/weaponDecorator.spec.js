@@ -14,7 +14,6 @@ describe('weaponDecorator.js', function() {
     beforeEach(function() {
       loadFixtures(
         'kineticWeaponRaw.html',
-        'kineticAutumnWindRaw.html',
         'energyWeaponRaw.html',
         'powerWeaponRaw.html'
       );
@@ -103,14 +102,28 @@ describe('weaponDecorator.js', function() {
       expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-junk');
     });
 
-    it('should not overwrite the original weapon name on further refreshes', function() {
-      $('[drag-channel=Kinetic]').attr('title', '_');
-      $('[drag-channel=Energy]').attr('title', '_');
-      $('[drag-channel=Power]').attr('title', '_');
-      fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-weapon-name', 'Origin Story');
-      expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-weapon-name', 'Annual Skate');
-      expect($('[drag-channel=Power]')).toHaveAttr('data-fate-weapon-name', 'Alone as a god');
+    describe('on subsequent refreshes', function() {
+
+      it('should not overwrite the original weapon name', function() {
+        $('[drag-channel=Kinetic]').attr('title', '_');
+        $('[drag-channel=Energy]').attr('title', '_');
+        $('[drag-channel=Power]').attr('title', '_');
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-weapon-name', 'Origin Story');
+        expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-weapon-name', 'Annual Skate');
+        expect($('[drag-channel=Power]')).toHaveAttr('data-fate-weapon-name', 'Alone as a god');
+      });
+
+      it('should not overwrite the base light', function() {
+        $('[drag-channel=Kinetic]').children('.item-stat').text('335');
+        $('[drag-channel=Energy]').children('.item-stat').text('334');
+        $('[drag-channel=Power]').children('.item-stat').text('333');
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-base-light', '301');
+        expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-base-light', '305');
+        expect($('[drag-channel=Power]')).toHaveAttr('data-fate-base-light', '310');
+      });
+
     });
 
   });

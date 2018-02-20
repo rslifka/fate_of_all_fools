@@ -33,9 +33,9 @@ function storeModStatus() {
 }
 
 function storeBaseLightLevel() {
-  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').each(function(index,element) {
+  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[data-fate-base-light]').each(function(index,element) {
      const itemStatValue = parseInt($(this).children('.item-stat').text().match(/(\d+)/));
-     const baseLightLevel = ($(this).children('.item-img.complete').length > 0) ? itemStatValue-5 : itemStatValue;
+     const baseLightLevel = ($(this).attr('data-fate-is-modded')==='true') ? itemStatValue-5 : itemStatValue;
      $(this).attr('data-fate-base-light', baseLightLevel);
   });
 }
