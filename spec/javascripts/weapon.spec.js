@@ -32,31 +32,57 @@ describe('weapon.js', function() {
 
   describe('#isJunk', function() {
 
-    describe('when pve and pvp utility is badness', function() {
+    describe('when all stats are badness', function() {
       it('should be junk', function() {
+        coldheartParams[5] = 'N';
         coldheartParams[6] = 'N';
         coldheartParams[7] = 'N';
+        coldheartParams[8] = 'N';
         const coldheart = new weapon.Weapon(...coldheartParams);
         expect(coldheart.isJunk()).toEqual(true);
       });
     });
 
-    describe('when only pvp is badness', function() {
-      it('should not be junk', function() {
-        coldheartParams[6] = '?';
-        coldheartParams[7] = 'N';
-        const coldheart = new weapon.Weapon(...coldheartParams);
-        expect(coldheart.isJunk()).toEqual(false);
+    describe('when one of the stats is badness', function() {
+      beforeEach(function() {
+        coldheartParams[5] = 'Y';
+        coldheartParams[6] = 'Y';
+        coldheartParams[7] = 'Y';
+        coldheartParams[8] = 'Y';
       });
-    });
 
-    describe('when only pve is badness', function() {
-      it('should not be junk', function() {
-        coldheartParams[6] = 'N';
-        coldheartParams[7] = '?';
-        const coldheart = new weapon.Weapon(...coldheartParams);
-        expect(coldheart.isJunk()).toEqual(false);
+      describe('when only fave is badness', function() {
+        it('should not be junk', function() {
+          coldheartParams[5] = 'N';
+          const coldheart = new weapon.Weapon(...coldheartParams);
+          expect(coldheart.isJunk()).toEqual(false);
+        });
       });
+
+      describe('when only pve is badness', function() {
+        it('should not be junk', function() {
+          coldheartParams[6] = 'N';
+          const coldheart = new weapon.Weapon(...coldheartParams);
+          expect(coldheart.isJunk()).toEqual(false);
+        });
+      });
+
+      describe('when only pvp is badness', function() {
+        it('should not be junk', function() {
+          coldheartParams[7] = 'N';
+          const coldheart = new weapon.Weapon(...coldheartParams);
+          expect(coldheart.isJunk()).toEqual(false);
+        });
+      });
+
+      describe('when only raid is badness', function() {
+        it('should not be junk', function() {
+          coldheartParams[8] = 'N';
+          const coldheart = new weapon.Weapon(...coldheartParams);
+          expect(coldheart.isJunk()).toEqual(false);
+        });
+      });
+
     });
 
   });

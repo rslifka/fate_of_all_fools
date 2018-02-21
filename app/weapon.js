@@ -44,7 +44,7 @@ exports.Weapon = class Weapon {
   }
 
   isJunk() {
-    return this.pveUtility === Utility.NO && this.pvpUtility === Utility.NO;
+    return this.favouriteUtility === Utility.NO && this.pveUtility === Utility.NO && this.pvpUtility === Utility.NO && this.raidUtility === Utility.NO;
   }
 
 }
