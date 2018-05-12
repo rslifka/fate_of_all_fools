@@ -26,6 +26,14 @@ describe('infusionIndicator.js', function() {
       $('[data-fate-weapon-name="Prosecutor"]').attr('data-fate-weapon-dupe', true);
     });
 
+    describe('messaging', function() {
+      it('should announce that infusion calculation is complete', function() {
+        spyOn(fateBus, 'publish').and.callThrough();
+        fateBus.publish(brunchModule, 'fate.dupesCalculated');
+        expect(fateBus.publish).toHaveBeenCalledWith(jasmine.any(Object),'fate.infusionCalculated');
+      });
+    });
+
     describe('when a weapon has lower light than another of the same type', function() {
       it('should get an infusion icon', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');

@@ -88,6 +88,7 @@ fateBus.subscribe(module, 'fate.dupesCalculated', function() {
   const infusionFodder = calculateInfusionFodder();
   styleInfusionIndicators(infusionFodder);
   registerListeners();
+  fateBus.publish(module, 'fate.infusionCalculated');
 });
 
 /*
