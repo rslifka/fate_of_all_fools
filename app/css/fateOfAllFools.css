@@ -102,9 +102,12 @@
 
 .fate-dupe {
   font-size: 11px;
-  bottom: 2px;
-  left: 2px;
-  padding: 0px 1px 2px 1px;
+  bottom: 21px;
+  right: 2px;
+  padding: 0px 0px 0px 2px;
+}
+div[drag-channel='Kinetic'] > .fate-dupe {
+  bottom: 19px;
 }
 .fate-ignore-slot {
   top: 2px;

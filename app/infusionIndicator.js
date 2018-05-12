@@ -50,10 +50,6 @@ function styleInfusionIndicators(infusionFodder) {
     }
     const light = parseInt($(this).attr('data-fate-base-light'));
     if ((fodder.filter(w => w.light > light)).length > 0) {
-      $(this).children('.fate-infusion').removeClass('fate-left-bump');
-      if ($(this).is('[data-fate-weapon-dupe]')) {
-        $(this).children('.fate-infusion').addClass('fate-left-bump');
-      }
       $(this).children('.fate-infusion').show();
     }
   });

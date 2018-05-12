@@ -63,13 +63,6 @@ describe('infusionIndicator.js', function() {
       });
     });
 
-    describe('when a weapon is also a dupe', function() {
-      it('should bump the infusion indicator', function() {
-        fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Perseverance"] .fate-infusion')).toHaveClass('fate-left-bump');
-      });
-    });
-
     describe('mouse interaction', function() {
 
       it('should show other items of the same type with higher light', function() {
