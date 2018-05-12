@@ -39,6 +39,9 @@ function styleDupeIndicators(weapons) {
     weaponInstances.forEach(function(weapon) {
       $(weapon.domElement).find('.fate-dupe').removeClass('fate-negative fate-positive');
       $(weapon.domElement).find('.fate-dupe').addClass(weapon.light < maxLight ? 'fate-negative' : 'fate-positive');
+      if ($(weapon.domElement).attr('data-fate-weapon-junk') === 'true') {
+        return;
+      }
       $(weapon.domElement).find('.fate-dupe').show();
     });
   }

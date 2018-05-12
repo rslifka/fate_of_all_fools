@@ -102,6 +102,20 @@ describe('dupeIndicator.js', function() {
       });
     });
 
+    describe('when a dupe is junk', function() {
+      beforeEach(function() {
+        loadFixtures(
+          'energyWeapon.html',
+          'energyWeapon.html'
+        );
+        $('[data-fate-weapon-name="Annual Skate"]').attr('data-fate-weapon-junk', 'true')
+      });
+      it('should not get a dupe indicator', function() {
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('.fate-dupe')).toBeHidden();
+      });
+    })
+
   });
 
   describe('when mousing over the dupe indicator', function() {
