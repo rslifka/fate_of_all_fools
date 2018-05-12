@@ -77,10 +77,39 @@ describe('fodderIndicator.js', function() {
           expect($('[data-fate-weapon-name="Origin Story"] .fate-fodder.fate-middling.fate-glyph.fglyph-up')).toBeVisible();
         });
       });
-    });
 
-    describe('mouse interaction', function() {
-      xit('should do some fun stuff with the mouse');
+      describe('mouse interaction', function() {
+
+        beforeEach(function() {
+          loadFixtures(
+            'infusion/kineticSurosThrowback200.html', // Auto - Uncommon
+            'infusion/kineticSweetBusiness200.html',  // Auto - Exotic
+            'infusion/energyPerseverance300.html',    // Auto - Legendary
+            'infusion/energySolemnHymn300.html',      // Auto - Junk
+            'infusion/kineticCuboidARu303.html',      // Auto - Rare
+            'infusion/kineticOriginStory306.html',    // Auto - Legendary
+          );
+        });
+
+        it('should show other items of the same type with lower light', function() {
+          fateBus.publish(brunchModule, 'fate.infusionCalculated');
+
+          fateBus.publish(brunchModule, 'fate.test.mouseenter.fodder', '[data-fate-weapon-name="Origin Story"] .fate-fodder');
+
+          expect($('[data-fate-weapon-name="Suros Throwback"]')).toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Sweet Business"]')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Perseverance"]')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Solemn Hymn"]')).toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Cuboid ARu"]')).toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveClass('fate-search-hidden');
+
+          fateBus.publish(brunchModule, 'fate.test.mouseleave.fodder', '[data-fate-weapon-name="Origin Story"] .fate-fodder');
+
+          expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
+        });
+
+      });
+
     });
 
   });

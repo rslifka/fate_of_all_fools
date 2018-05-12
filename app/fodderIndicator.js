@@ -58,8 +58,52 @@ function styleFodderIndicators(goodWeaponsToBoost) {
   });
 }
 
+function onMouseEnter() {
+  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').addClass('fate-search-hidden');
+  $(this).parent().removeClass('fate-search-hidden');
+
+  const weaponType = $(this).parent().attr('data-fate-weapon-type');
+  const weaponLight = $(this).parent().attr('data-fate-base-light');
+
+  $('[data-fate-weapon-type="'+weaponType+'"]').each(function(index,element) {
+    if ($(this).attr('data-fate-weapon-junk') === 'true') {
+      return;
+    }
+    if (!$(this).is('[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]')) {
+      return;
+    }
+    const lowerLight = parseInt($(this).attr('data-fate-base-light')) < weaponLight;
+    if (lowerLight) {
+      $(this).removeClass('fate-search-hidden');
+    }
+  });
+}
+
+function onMouseLeave() {
+  $('.fate-search-hidden').removeClass('fate-search-hidden');
+}
+
+function registerListeners() {
+  $('.fate-fodder:visible').on('mouseenter.fodder', onMouseEnter);
+  $('.fate-fodder:visible').on('mouseleave.fodder', onMouseLeave);
+}
+
 fateBus.subscribe(module, 'fate.infusionCalculated', function() {
   logger.log('fodderIndicator.js: Calculating fodder');
   prepareFodderIndicator();
   styleFodderIndicators(calculateFodder());
+  registerListeners();
+});
+
+/*
+  jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
+  seem to trigger events via $.trigger, so we're going to use our bus to test the
+  events.
+*/
+fateBus.subscribe(module, 'fate.test.mouseenter.fodder', function(msg, selector) {
+  $(selector).each(onMouseEnter);
+});
+
+fateBus.subscribe(module, 'fate.test.mouseleave.fodder', function(msg, selector) {
+  $(selector).each(onMouseLeave);
 });
