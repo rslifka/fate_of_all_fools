@@ -6,7 +6,7 @@
 ***This is only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another.***
 
 # TL;DR
-1. Install a UserScript hosting environment (e.g. [Tampermonkey in Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [Greasemonkey in Firefox](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)).
+1. Install a UserScript hosting environment (e.g. [Tampermonkey in Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)).
 2. One-click install the UserScript from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization).
 
 # Introduction
@@ -26,18 +26,18 @@ Check out the [walkthrough video!](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 * Displays information at-a-glance derived from your custom external source of weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below)
 * **Duplicate items are shown at-a-glance**, and duplicate items with a lower light level are indicated as well. When hovering over a these icons, all other duplicates are highlighted.
 * **Infusable items are indicated with an up-arrow icon.** Hovering over this icon will highlight items that it can use for infusion, as well as what the light will be after infusion (helps remove mod misinterpretation!).
+* **Infusion fodder are indicated with an up-arrow icon.** This is the reverse of the previous feature. Hovering over this icon will show you what weapons will benefit from infusing the focused weapon.
 
 ## Modifications
-* **Consistent, subdued background throughout**: No need for the contrast between toon inventory and vault; the grouping of items is enough.
+* **Consistent, subdued background throughout**: No need for the contrast between guardian inventory and vault; the grouping of items is enough.
 * **Improved display of power level**: Maybe it's because I'm forty now :) that the font for power level was too small and difficult to read. Slight increase to the font size and decrease (increase?) to the opacity to make it stand out more.
 * **The tooltip has been repurposed** with information from the aforementioned Google Sheet.
-* **Light level border indicates element**: The elemental damage type tags were another visual cue that seems excessive in a screen full of gear, so I've moved them back to the background of the power level.
-* **Flipped Kinetic weapon orientation**: Kinetic weapons now face the same direction as Energy and Power Weapons (bottom-left to top-right). This was so that the LL and any icons would not be on top of the weapon itself.
+* **Light level border indicates element**: By default, the elemental damage type was the background color of the power level. That's a visual cue that seems excessive in a screen full of gear, so I've used a thin top border of the power level itself.
 * **Removed yellow border for mods**: This has been replaced with a dot after the light level of a weapon or piece of armor. The yellow border was too much visual distraction for this small bit of information, and overwhelming to look at a vault full of yellows. It's also hard to turn off the part of my brain that thinks this is a "fully leveled item" from Destiny 1 :)
 
 ## Removals
-* **Remove subclass icons**: I've never once switched subclasses this way. OK, maybe once to see if it worked (it does!) but never enough to warrant having this displayed at all times.
-* **Remove collapse controls**: I never use these. Maybe once in a blue moon. Certainly a part of my workflow I can live without. *Note that you can still click the section headings for this functionality*.
+* **Remove subclass icons**: I've never switched subclasses this way. OK, maybe once to see if it worked (it does!) but never enough to warrant having this displayed at all times.
+* **Remove collapse controls**: I never use these, especially now that DIM split Progress out to another tab. Certainly a part of my workflow I can live without. *Note that you can still click the section headings for this functionality*.
 
 # Installation and Configuration
 
@@ -51,7 +51,7 @@ Check out the [walkthrough video!](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 1. [FIGHT FOREVERRRR GUARDIANNN](https://www.youtube.com/watch?v=sAhhgmf6Xg8&feature=youtu.be&t=5)!!!
 
 # Development
-`Fate of All Fools` is a node-based project. Please see [package.json](https://github.com/rslifka/fate_of_all_fools/blob/master/package.json) for a list of dependencies. Much of the complexity of the project settings has been done to have the modify => refresh => evaluate loop happen as quickly as possible when working locally, so that you can see your changes in DIM the most quickly, since that's where you spend most of your time.
+`Fate of All Fools` is a node-based project. Please see [package.json](https://github.com/rslifka/fate_of_all_fools/blob/master/package.json) for a list of dependencies. Much of the complexity of the project settings has been done to have the modify => refresh => evaluate loop happen as quickly as possible when working locally.
 
 ## Environment
 1. [Install TamperMonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) from the Chrome Web Store.
