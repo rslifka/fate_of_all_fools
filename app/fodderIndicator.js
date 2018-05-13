@@ -43,6 +43,12 @@ function styleFodderIndicators(goodWeaponsToBoost) {
   $('.fate-fodder').hide();
   $('.fate-fodder').removeClass('fate-left-bump');
   $('.fate-fodder').parent().each(function(index,element) {
+    const isJunk = $(this).attr('data-fate-weapon-junk') === 'true';
+    const isDupe = $(this).attr('data-fate-weapon-dupe') === 'true';
+    if (!(isJunk || isDupe)) {
+      return;
+    }
+
     const weaponType = $(this).attr('data-fate-weapon-type');
     const boostableWeapons = goodWeaponsToBoost.get(weaponType);
     if (boostableWeapons === undefined) {

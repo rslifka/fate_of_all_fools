@@ -56,7 +56,8 @@ describe('fodderIndicator.js', function() {
         beforeEach(function() {
           loadFixtures(
             'infusion/energyPerseverance300.html', // Auto - Legendary
-            'infusion/kineticOriginStory306.html', // Auto - Legendary
+            'infusion/kineticOriginStory306Junk.html', // Auto - Legendary
+            'infusion/kineticOriginStory306Junk.html', // Auto - Legendary
           );
         });
         it('should get a fodder indicator', function() {
@@ -69,12 +70,26 @@ describe('fodderIndicator.js', function() {
         beforeEach(function() {
           loadFixtures(
             'infusion/kineticSweetBusiness200.html', // Auto - Exotic
-            'infusion/kineticOriginStory306.html',   // Auto - Legendary
+            'infusion/kineticOriginStory306Dupe.html',   // Auto - Legendary
+            'infusion/kineticOriginStory306Dupe.html',   // Auto - Legendary
           );
         });
         it('should get a fodder indicator', function() {
           fateBus.publish(brunchModule, 'fate.infusionCalculated');
           expect($('[data-fate-weapon-name="Origin Story"] .fate-fodder.fate-middling.fate-glyph.fglyph-up')).toBeVisible();
+        });
+      });
+
+      describe('when i am higher light, not junk and not a dupe', function() {
+        beforeEach(function() {
+          loadFixtures(
+            'infusion/energyPerseverance300.html', // Auto - Legendary
+            'infusion/kineticOriginStory306.html', // Auto - Legendary
+          );
+        });
+        it('should not get a fodder icon because i am the last of my kind', function() {
+          fateBus.publish(brunchModule, 'fate.infusionCalculated');
+          expect($('[data-fate-weapon-name="Origin Story"] .fate-fodder.fate-middling.fate-glyph.fglyph-up')).not.toBeVisible();
         });
       });
 
