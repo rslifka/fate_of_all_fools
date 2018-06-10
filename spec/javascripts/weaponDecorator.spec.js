@@ -16,7 +16,7 @@ describe('weaponDecorator.js', function() {
         'kineticWeaponRaw.html',
         'energyWeaponRaw.html',
         'powerWeaponRaw.html',
-        'shaders/arcticDreamscapeShader.html'
+        'shaders/arcticDreamscapeShaderRaw.html'
       );
 
       spyOn(weaponDatabase, 'contains').and.callFake(function(weaponName) {
