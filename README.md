@@ -23,7 +23,7 @@ Check out the [walkthrough video!](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 [![Fate of All Fools Walkthrough Video!](https://rslifka.github.io/fate_of_all_fools/img/fate-youtube-screenshot.jpg)](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 
 ## Additions
-* Displays information at-a-glance derived from your custom external source of weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below)
+* Displays information at-a-glance derived from your custom external source of weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below). There is limited support for armor and shaders as well. Since armor is armor, there's only mod-presence support. Since shaders are shaders, there's only binary quality support.
 * **Duplicate items are shown at-a-glance**, and duplicate items with a lower light level are indicated as well. When hovering over a these icons, all other duplicates are highlighted.
 * **Infusable items are indicated with an up-arrow icon.** Hovering over this icon will highlight items that it can use for infusion, as well as what the light will be after infusion (helps remove mod misinterpretation!).
 * **Infusion fodder are indicated with an up-arrow icon.** This is the reverse of the previous feature. Hovering over this icon will show you what weapons will benefit from infusing the focused weapon.
