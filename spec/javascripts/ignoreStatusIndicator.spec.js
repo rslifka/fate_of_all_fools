@@ -15,20 +15,24 @@ describe('ignoreStatusIndicator.js', function() {
       loadFixtures(
         'kineticWeapon.html',
         'energyWeapon.html',
-        'powerWeapon.html'
+        'powerWeapon.html',
+        'shaders/arcticDreamscapeShader.html',
+        'shaders/atlantisWashShader.html'
       );
     });
 
-    describe('when the weapon is not in the database', function() {
+    describe('when the item is not in the database', function() {
       it('should display the appropriate glyph', function() {
         spyOn(weaponDatabase, 'contains').and.returnValue(false);
         fateBus.publish(brunchModule, 'fate.refresh');
         expect($('[data-fate-weapon-name]')).toContainElement('.fate-ignore-slot.fate-question-mark.fate-glyph.fglyph-question-mark.fate-middling');
         expect($('[data-fate-weapon-name] > .fate-ignore-slot.fate-question-mark.fate-glyph.fglyph-question-mark.fate-middling')).toBeVisible();
+        expect($('[data-fate-shader-name]')).toContainElement('.fate-ignore-slot.fate-question-mark.fate-glyph.fglyph-question-mark.fate-middling');
+        expect($('[data-fate-shader-name] > .fate-ignore-slot.fate-question-mark.fate-glyph.fglyph-question-mark.fate-middling')).toBeVisible();
       });
     });
 
-    describe('when the weapon is in the database', function() {
+    describe('when the item is in the database', function() {
 
       beforeEach(function() {
         spyOn(weaponDatabase, 'contains').and.returnValue(true);
@@ -43,12 +47,18 @@ describe('ignoreStatusIndicator.js', function() {
               case 'Annual Skate':
                 return {name: 'Annual Skate', isJunk: function(){return true}};
               case 'Alone as a god':
-                return {name: 'Alone as a god', isJunk: function(){return false}};
+                return {name: 'Alone as a god', isJunk: function(){return true}};
+              case 'Arctic Dreamscape':
+                return {name: 'Arctic Dreamscape', isJunk: function(){return true}};
+              case 'Atlantis Wash':
+                return {name: 'Atlantis Wash', isJunk: function(){return true}};
             }
           });
           fateBus.publish(brunchModule, 'fate.refresh');
           expect($('[data-fate-weapon-name]')).toContainElement('.fate-ignore-slot.fate-thumbs-down.fate-glyph.fglyph-thumbs-down.fate-middling');
           expect($('[data-fate-weapon-name] > .fate-ignore-slot.fate-thumbs-down.fate-glyph.fglyph-thumbs-down.fate-middling')).toBeVisible();
+          expect($('[data-fate-shader-name]')).toContainElement('.fate-ignore-slot.fate-thumbs-down.fate-glyph.fglyph-thumbs-down.fate-middling');
+          expect($('[data-fate-shader-name] > .fate-ignore-slot.fate-thumbs-down.fate-glyph.fglyph-thumbs-down.fate-middling')).toBeVisible();
         });
       });
 
@@ -62,10 +72,15 @@ describe('ignoreStatusIndicator.js', function() {
                 return {name: 'Annual Skate', isJunk: function(){return false}};
               case 'Alone as a god':
                 return {name: 'Alone as a god', isJunk: function(){return false}};
+              case 'Arctic Dreamscape':
+                return {name: 'Arctic Dreamscape', isJunk: function(){return false}};
+              case 'Atlantis Wash':
+                return {name: 'Atlantis Wash', isJunk: function(){return false}};
             }
           });
           fateBus.publish(brunchModule, 'fate.refresh');
           expect($('[data-fate-weapon-name] > .fate-ignore-slot')).toBeHidden();
+          expect($('[data-fate-shader-name] > .fate-ignore-slot')).toBeHidden();
         });
       });
 
