@@ -8,6 +8,12 @@ function storeWeaponNames() {
   });
 }
 
+function storeShaderNames() {
+  $('[drag-channel=Shaders]').not('[data-fate-shader-name]').each(function(index,element) {
+    $(this).attr('data-fate-shader-name', $(this).attr('title').split("\n")[0]);
+  });
+}
+
 function storeWeaponRarity() {
   $('[data-fate-weapon-name]').not('data-fate-weapon-rarity').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
@@ -88,6 +94,7 @@ function storeJudgementStatus() {
 
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponNames();
+  storeShaderNames();
   storeWeaponRarity();
   storeWeaponType();
   storeModStatus();
