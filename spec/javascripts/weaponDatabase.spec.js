@@ -4,8 +4,8 @@ describe('weaponDatabase.js', function() {
   const weaponDatabase = require('weaponDatabase.js');
 
   // A weapon of each type and one without a comment (only optional data)
-  const TEST_TSV_WEAPON_DATA = `Sweet Business	Exotic	Auto Rifle	?	Y	Y	Pre-fire in PvP. Pair with the Rig in PvE and wreck
-Hardlight	Exotic	Auto Rifle	N	?	?	`;
+  const TEST_TSV_WEAPON_DATA = `Sweet Business	Exotic	Auto Rifle	?	Y	Pre-fire in PvP. Pair with the Rig in PvE and wreck
+Hardlight	Exotic	Auto Rifle	N	?	`;
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
@@ -45,8 +45,6 @@ Hardlight	Exotic	Auto Rifle	N	?	?	`;
         expect(sweetBusiness.type).toEqual('Auto Rifle');
         expect(sweetBusiness.pveUtility).toEqual(weapon.Utility.UNKNOWN);
         expect(sweetBusiness.pvpUtility).toEqual(weapon.Utility.YES);
-        expect(sweetBusiness.raidUtility).toEqual(weapon.Utility.YES);
-        expect(sweetBusiness.comments).toEqual('Pre-fire in PvP. Pair with the Rig in PvE and wreck');
 
         expect(hardLight).toEqual(jasmine.any(weapon.Weapon));
         expect(hardLight.name).toEqual('Hardlight');
@@ -54,7 +52,6 @@ Hardlight	Exotic	Auto Rifle	N	?	?	`;
         expect(hardLight.type).toEqual('Auto Rifle');
         expect(hardLight.pveUtility).toEqual(weapon.Utility.NO);
         expect(hardLight.pvpUtility).toEqual(weapon.Utility.UNKNOWN);
-        expect(hardLight.raidUtility).toEqual(weapon.Utility.UNKNOWN);
         expect(hardLight.comments).toEqual('');
       });
     });

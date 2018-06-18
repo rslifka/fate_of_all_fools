@@ -69,11 +69,6 @@ function storeJunkStatus() {
 function storeJudgementStatus() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const w = weaponDatabase.get($(this).attr('data-fate-weapon-name'));
-    if (w.favouriteUtility === weapon.Utility.YES) {
-      $(this).attr('data-fate-weapon-favourite', true);
-    } else {
-      $(this).removeAttr('data-fate-weapon-favourite');
-    }
     if (w.pvpUtility === weapon.Utility.YES) {
       $(this).attr('data-fate-weapon-pvp', true);
     } else {
@@ -83,11 +78,6 @@ function storeJudgementStatus() {
       $(this).attr('data-fate-weapon-pve', true);
     } else {
       $(this).removeAttr('data-fate-weapon-pve');
-    }
-    if (w.raidUtility === weapon.Utility.YES) {
-      $(this).attr('data-fate-weapon-raid', true);
-    } else {
-      $(this).removeAttr('data-fate-weapon-raid');
     }
   });
 }

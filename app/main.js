@@ -37,9 +37,6 @@ require('infusionIndicator.js');
 // Is this weapon infusion fodder for other weapons?
 require('fodderIndicator.js');
 
-// Which weapons work in the raid
-require('raidIndicator.js');
-
 // Which weapons are good for PvP?
 require('pvpIndicator.js');
 
