@@ -18,11 +18,11 @@ describe('commentDecorator.js', function() {
       spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
         switch(weaponName) {
           case 'Origin Story':
-            return {name: 'Origin Story', type: 'Auto Rifle', subtype: 'Precision', comments: 'Rampage makes this great for lots of adds killing'};
+            return {name: 'Origin Story', type: 'Auto Rifle', comments: 'Rampage makes this great for lots of adds killing'};
           case 'Annual Skate':
-            return {name: 'Annual Skate', type: 'Hand Cannon', subtype: 'Adaptive', comments: 'Seems strictly worse than the Minuet?'};
+            return {name: 'Annual Skate', type: 'Hand Cannon', comments: 'Seems strictly worse than the Minuet?'};
           case 'Alone as a god':
-            return {name: 'Alone as a god', type: 'Sniper Rifle', subtype: 'Rapid-Fire', comments: 'TT, fast ADS, fast reload, awesome'};
+            return {name: 'Alone as a god', type: 'Sniper Rifle', comments: 'TT, fast ADS, fast reload, awesome'};
         }
       });
 

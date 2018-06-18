@@ -6,12 +6,10 @@ const Utility = {
 
 exports.Weapon = class Weapon {
 
-  constructor(name, rarity, slot, type, subtype, favourite, pveUseful, pvpUseful, raidUseful, comments) {
+  constructor(name, rarity, type, favourite, pveUseful, pvpUseful, raidUseful, comments) {
     this.name = name;
     this.rarity = rarity.toLowerCase();
-    this.slot = slot;
     this.type = type;
-    this.subtype = subtype;
     this.fave = favourite.toLowerCase();
     this.pve = pveUseful.toLowerCase();
     this.pvp = pvpUseful.toLowerCase();
