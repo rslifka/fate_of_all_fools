@@ -6,11 +6,10 @@ const Utility = {
 
 exports.Weapon = class Weapon {
 
-  constructor(name, rarity, type, favourite, pveUseful, pvpUseful, raidUseful, comments) {
+  constructor(name, rarity, type, pveUseful, pvpUseful, raidUseful, comments) {
     this.name = name;
     this.rarity = rarity.toLowerCase();
     this.type = type;
-    this.fave = favourite.toLowerCase();
     this.pve = pveUseful.toLowerCase();
     this.pvp = pvpUseful.toLowerCase();
     this.raid = raidUseful.toLowerCase();
@@ -23,10 +22,6 @@ exports.Weapon = class Weapon {
       case('n'): return Utility.NO;
       default: return Utility.UNKNOWN;
     }
-  }
-
-  get favouriteUtility() {
-    return Weapon.mapToStatus(this.fave);
   }
 
   get pveUtility() {
@@ -42,7 +37,7 @@ exports.Weapon = class Weapon {
   }
 
   isJunk() {
-    return this.favouriteUtility === Utility.NO && this.pveUtility === Utility.NO && this.pvpUtility === Utility.NO && this.raidUtility === Utility.NO;
+    return this.pveUtility === Utility.NO && this.pvpUtility === Utility.NO && this.raidUtility === Utility.NO;
   }
 
 }

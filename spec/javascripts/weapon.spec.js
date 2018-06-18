@@ -2,7 +2,7 @@ describe('weapon.js', function() {
 
   const weapon = require('weapon.js');
 
-  const coldheartParams = ['Coldheart','Exotic','Auto Rifle','N','Y','N','?',
+  const coldheartParams = ['Coldheart','Exotic','Auto Rifle','Y','N','?',
     'Solid for bullet sponge DPS (whenever you have time to ramp up on a single target)'];
 
   let coldheart;
@@ -20,7 +20,6 @@ describe('weapon.js', function() {
       expect(coldheart.name).toBe('Coldheart');
       expect(coldheart.rarity).toBe('exotic');
       expect(coldheart.type).toBe('Auto Rifle');
-      expect(coldheart.favouriteUtility).toBe(weapon.Utility.NO);
       expect(coldheart.pveUtility).toBe(weapon.Utility.YES);
       expect(coldheart.pvpUtility).toBe(weapon.Utility.NO);
       expect(coldheart.raidUtility).toBe(weapon.Utility.UNKNOWN);
@@ -35,7 +34,6 @@ describe('weapon.js', function() {
         coldheartParams[3] = 'N';
         coldheartParams[4] = 'N';
         coldheartParams[5] = 'N';
-        coldheartParams[6] = 'N';
         const coldheart = new weapon.Weapon(...coldheartParams);
         expect(coldheart.isJunk()).toEqual(true);
       });
@@ -46,10 +44,9 @@ describe('weapon.js', function() {
         coldheartParams[3] = 'Y';
         coldheartParams[4] = 'Y';
         coldheartParams[5] = 'Y';
-        coldheartParams[6] = 'Y';
       });
 
-      describe('when only fave is badness', function() {
+      describe('when only pve is badness', function() {
         it('should not be junk', function() {
           coldheartParams[3] = 'N';
           const coldheart = new weapon.Weapon(...coldheartParams);
@@ -57,7 +54,7 @@ describe('weapon.js', function() {
         });
       });
 
-      describe('when only pve is badness', function() {
+      describe('when only pvp is badness', function() {
         it('should not be junk', function() {
           coldheartParams[4] = 'N';
           const coldheart = new weapon.Weapon(...coldheartParams);
@@ -65,17 +62,9 @@ describe('weapon.js', function() {
         });
       });
 
-      describe('when only pvp is badness', function() {
-        it('should not be junk', function() {
-          coldheartParams[5] = 'N';
-          const coldheart = new weapon.Weapon(...coldheartParams);
-          expect(coldheart.isJunk()).toEqual(false);
-        });
-      });
-
       describe('when only raid is badness', function() {
         it('should not be junk', function() {
-          coldheartParams[6] = 'N';
+          coldheartParams[5] = 'N';
           const coldheart = new weapon.Weapon(...coldheartParams);
           expect(coldheart.isJunk()).toEqual(false);
         });

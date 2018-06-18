@@ -37,9 +37,6 @@ require('infusionIndicator.js');
 // Is this weapon infusion fodder for other weapons?
 require('fodderIndicator.js');
 
-// Which weapons are our favourites?
-require('favouriteIndicator.js');
-
 // Which weapons work in the raid
 require('raidIndicator.js');
 
