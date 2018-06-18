@@ -12,7 +12,7 @@ function updateTitles() {
     const weapon = weaponDatabase.get(weaponName);
     $(this).attr(
       'title',
-      weaponName + ' // ' + weapon.type + ' - ' + weapon.subtype + '\n' + weapon.comments
+      weaponName + ' // ' + weapon.type + '\n' + weapon.comments
     );
   });
 }

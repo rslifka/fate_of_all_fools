@@ -29,9 +29,9 @@ describe('commentDecorator.js', function() {
       fateBus.registerModule(brunchModule);
       fateBus.publish(brunchModule, 'fate.refresh');
 
-      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('title', "Origin Story // Auto Rifle - Precision\nRampage makes this great for lots of adds killing");
-      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('title', "Annual Skate // Hand Cannon - Adaptive\nSeems strictly worse than the Minuet?");
-      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('title', "Alone as a god // Sniper Rifle - Rapid-Fire\nTT, fast ADS, fast reload, awesome");
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('title', "Origin Story // Auto Rifle\nRampage makes this great for lots of adds killing");
+      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('title', "Annual Skate // Hand Cannon\nSeems strictly worse than the Minuet?");
+      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('title', "Alone as a god // Sniper Rifle\nTT, fast ADS, fast reload, awesome");
     });
 
   });
