@@ -51,7 +51,8 @@ exports.plugins = {
 exports.overrides = {
   production: {
     optimize: true,
-    plugins: {autoReload: {enabled: false}}
+    plugins: {autoReload: {enabled: false}},
+    paths: {public: 'docs'}
   }
 }
 

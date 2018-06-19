@@ -20,8 +20,6 @@ after_script:
 - echo "https://${GH_TOKEN}:@github.com" > .git/fate_credentials
 - git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
 - git checkout master
-- git add fateOfAllFools.user.js
+- git add docs/*
 - git commit -m "[skip ci] Publishing build ${TRAVIS_BUILD_NUMBER}"
 - git push
-- echo "Status"
-- git status
