@@ -11,8 +11,8 @@ before_script:
 - ./node_modules/.bin/brunch build --production
 - sed -i.orig 's/build/docs/g' karma.conf.js
 after_success:
+- echo "Generating latest UserScript..."
 - erb fateOfAllFools.prod.user.js.erb > fateOfAllFools.user.js
-after_script:
 - echo "Setting up Git..."
 - git config --global user.email "travis@travis-ci.org"
 - git config --global user.name "Travis CI"
@@ -20,6 +20,8 @@ after_script:
 - echo "https://${GH_TOKEN}:@github.com" > .git/fate_credentials
 - git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
 - git checkout master
+- echo "Committing latest UserScript..."
 - git add docs/*
 - git commit -m "[skip ci] Publishing build ${TRAVIS_BUILD_NUMBER}"
 - git push
+- echo "Done!"
