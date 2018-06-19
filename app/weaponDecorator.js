@@ -82,6 +82,12 @@ function storeJudgementStatus() {
   });
 }
 
+function storeSerialNumber() {
+  $('[data-fate-weapon-registered]').not('[data-fate-serial]').each(function(index,element) {
+    $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0])
+  });
+}
+
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponNames();
   storeShaderNames();
@@ -92,4 +98,5 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   storeRegistrationStatus();
   storeJudgementStatus();
   storeJunkStatus();
+  storeSerialNumber();
 });

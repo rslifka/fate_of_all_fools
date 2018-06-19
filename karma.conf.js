@@ -5,8 +5,8 @@ module.exports = function(config) {
     browsers: ['ChromeHeadless'],
     files: [
       'spec/helpers/tampermonkeyStubs.js',
-      'public/fateOfAllFools.js',
       'docs/fateOfAllFools.js',
+      'public/fateOfAllFools.js',
       'spec/helpers/!(tampermonkeyStubs).js',
       {pattern: 'spec/javascripts/fixtures/**/*.html', included: false},
       'spec/javascripts/*.spec.js'
