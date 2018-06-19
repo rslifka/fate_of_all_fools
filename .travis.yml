@@ -21,4 +21,4 @@ after_script:
 - git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
 - git checkout master
 - echo "Status"
-- git st
+- git status
