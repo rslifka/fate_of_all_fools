@@ -12,17 +12,13 @@ before_script:
 - sed -i.orig 's/build/docs/g' karma.conf.js
 after_success:
 - erb fateOfAllFools.prod.user.js.erb > fateOfAllFools.user.js
-before_deploy:
-- ./reset_tags.sh
-deploy:
-  provider: releases
-  api_key:
-    secure: ONkkrle4J9ekMNqpUmb4rlgLu9zeSE+gtx97gGxXwUMxL1aCtlMtMp9k84O8t/ZIPe3RnIfg9e9M0vLcsVMJ1H0MDW3xQc0Brfhh4Ci5NBnI91bhcXLGDBIFUf4LyhrEImVio+Po59UoqGTHgDbMbOXJ21zbdgLOxZBf3DgEWYxZ67dEDllo8HXbMHBeisNTQuHvrCPN5Ug+b7d7qdsRz77vF4Ud9cRinwCD9xqGSN8Z47W2NsyZHxwQghp8yYXYnM5oc2IBk7JY2LX7vfk5ytWI1VJml1kJJqs4marzB/jOAJmVAVvQ9n/Oe/g1KZlEPN/TT3jSicPfU6HKW618roYgMproIwUz8Krbbv8tB+FOeOMihcjGghl+2Jh+/ne8YMfcwtXSeZYbGIeT1hAD+2esdWeUPx1svg0Pb+bOf36CU8Cuuf8N78fhcLoqH9I970DT/g4rdXf3asChbPu/dnEfr/XqApkokS6UQXuCiXxIXvbwVhPRAB/aCZpALwZFbGuueIH5UW3vzxz1JPSNQBRZjUGFQOlimcNcQzORXT7Txtzll9ZK1vm/xJ9cpJNpJWVrXJ+MrCf0PLDEccNSQvAcjAGPs7zT9Bx/hPsotYfa6FESaXYdxujxEkrKHQXfk3EEWEpz4pODVEBbzWvIt8BUsKPS4KpjtTg4sCyRxkI=
-  file:
-  - public/fateOfAllFools.js
-  - public/fateOfAllFools.css
-  - fateOfAllFools.user.js
-  overwrite: true
-  skip_cleanup: true
-  on:
-    all_branches: true
+after_script:
+- echo "Setting up Git..."
+- git config --global user.email "travis@travis-ci.org"
+- git config --global user.name "Travis CI"
+- git config credential.helper "store --file=.git/fate_credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/fate_credentials
+- git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
+- git checkout master
+- echo "Status"
+- git st
