@@ -21,6 +21,8 @@ after_success:
 - git remote add origin https://github.com/rslifka/fate_of_all_fools.git > /dev/null 2>&1
 - git checkout master
 # Commit releases so openuserjs can be notified
+- cp public/fateOfAllFools.js docs/
+- cp public/fateOfAllFools.css docs/
 - git add docs/*
 - git commit -m "[skip ci] Publishing build ${TRAVIS_BUILD_NUMBER}"
 - git push
