@@ -9,9 +9,9 @@ const $ = require('jquery');
 function indicateMods() {
   $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power],[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]').each(function(index,element) {
     if ($(this).children('.item-img.complete').length > 0) {
-      const currentLight = $(this).children('.item-stat').text();
+      const currentLight = $(this).children('.item-stat.item-equipment').text();
       if (!currentLight.endsWith('•')) {
-        $(this).children('.item-stat').append($("<span class='fate-mod'>•</span>"));
+        $(this).children('.item-stat.item-equipment').append($("<span class='fate-mod'>•</span>"));
       }
     }
   });

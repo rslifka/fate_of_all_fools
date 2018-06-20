@@ -4,20 +4,38 @@
 }
 
 /* Reset background color and font size for increased readability */
-div[drag-channel='Kinetic'] > .item-stat,
-div[drag-channel='Energy'] > .item-stat,
-div[drag-channel='Power'] > .item-stat,
-div[drag-channel='Helmet'] > .item-stat,
-div[drag-channel='Gauntlets'] > .item-stat,
-div[drag-channel='Chest'] > .item-stat,
-div[drag-channel='Leg'] > .item-stat,
-div[drag-channel='ClassItem'] > .item-stat {
+div[drag-channel='Kinetic'] > .item-stat.item-equipment,
+div[drag-channel='Energy'] > .item-stat.item-equipment,
+div[drag-channel='Power'] > .item-stat.item-equipment,
+div[drag-channel='Helmet'] > .item-stat.item-equipment,
+div[drag-channel='Gauntlets'] > .item-stat.item-equipment,
+div[drag-channel='Chest'] > .item-stat.item-equipment,
+div[drag-channel='Leg'] > .item-stat.item-equipment,
+div[drag-channel='ClassItem'] > .item-stat.item-equipment {
   background-color: rgba(0,0,0,0.75);
   bottom: 2px;
   color: rgba(255,255,255,0.8);
   font-size: 12px;
   font-weight: bold;
   padding: 0 3px 0 4px;
+  right: 2px;
+  text-align: right;
+}
+
+/* Align with the top of the power level */
+div[drag-channel='Kinetic'] > .item-review {
+  bottom: 19px !important;
+}
+
+.item-review {
+  background-color: rgba(0,0,0,0.75);
+  bottom: 21px !important;
+  color: rgba(255,255,255,0.8) !important;
+  font-size: 9px;
+  font-weight: normal;
+  left: unset;
+  padding: 0 3px 0 4px;
+  position: absolute;
   right: 2px;
   text-align: right;
 }
