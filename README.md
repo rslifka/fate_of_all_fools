@@ -1,3 +1,9 @@
+***UPDATE 2: 6/19/2018***
+Breaking change to how `FOAF` is deployed. Please re-install from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization). This was to both make auto-update possible from OUJS as well and fix an intermittent hosting issue with GitHub's releases.
+
+***UPDATE 1: 6/15/2018***
+With the recent news that Forsaken will have random rolls, the current strategy for listing and rating weapons and armor will no longer work as you cannot rate a weapon by the name any more (well, going forward since D2Y1 items will stay statically rolled). I'm going to have to split the sheets apart either in to separate tabs within one sheet or multiple sheets.
+
 # Fate of All Fools
 [![Build Status](https://travis-ci.org/rslifka/fate_of_all_fools.svg?branch=master)](https://travis-ci.org/rslifka/fate_of_all_fools)
 
@@ -5,12 +11,12 @@
 
 ***This is only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another.***
 
-***UPDATE 6/17/2018***
-With the recent news that Forsaken will have random rolls, the current strategy for listing and rating weapons and armor will no longer work as you cannot rate a weapon by the name any more (well, going forward since D2Y1 items will stay statically rolled).
-
 # TL;DR
 1. Install a UserScript hosting environment (e.g. [Tampermonkey in Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)).
-2. One-click install the UserScript from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization).
+1. One-click install the UserScript from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization).
+1. DIM Settings (optional): Increase the size of the item icon.
+1. DIM Settings (optional): Set your vault width to ~6 or so.
+1. DIM Settings (required): Disable reviews (for now; they were released after I created FOAF so I don't yet take them in to account).
 
 # Introduction
 
