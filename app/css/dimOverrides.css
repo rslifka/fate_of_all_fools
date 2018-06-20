@@ -23,7 +23,12 @@ div[drag-channel='ClassItem'] > .item-stat.item-equipment {
 }
 
 /* Align with the top of the power level */
-div[drag-channel='Kinetic'] > .item-review {
+div[drag-channel='Kinetic'] > .item-review,
+div[drag-channel='Helmet'] > .item-review,
+div[drag-channel='Gauntlets'] > .item-review,
+div[drag-channel='Chest'] > .item-review,
+div[drag-channel='Leg'] > .item-review,
+div[drag-channel='ClassItem'] > .item-review {
   bottom: 19px !important;
 }
 
@@ -69,7 +74,7 @@ div[drag-channel='Kinetic'] > .item-review {
 
 /* Masterworks have gold power levels */
 .item-img.masterwork ~ .item-stat {
-  color: rgba(232,165,52,1);
+  color: rgba(232,165,52,1) !important;
 }
 
 /* Go for a more muted background */
