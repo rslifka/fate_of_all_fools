@@ -37,7 +37,7 @@
 
 /* STATUS INDICATORS: Common styling */
 .fate-glyph {
-  background-color: rgba(0,0,0,0.75);
+  background-color: rgba(0,0,0,1.0);
   font-size: 11px;
   position: absolute;
   text-shadow: none;
@@ -92,14 +92,12 @@ div[drag-channel='Kinetic'] > .fate-dupe {
 
 /* STATUS INDICATORS: Styling */
 .fate-question-mark {
-  padding: 0px 0px 1px 0px;
-  font-size: 19px;
-  background-color: rgba(0,0,0,0.75);
+  padding: 0px 1px 1px 1px;
+  font-size: 11px;
 }
 .fate-thumbs-down {
   color: rgba(206,82,70,1);
   font-size: 12px;
-  background-color: rgba(0,0,0,0.75);
 }
 .fate-pve {
   color: rgba(93,181,110,1);
