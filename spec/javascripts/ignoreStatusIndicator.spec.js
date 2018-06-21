@@ -40,20 +40,14 @@ describe('ignoreStatusIndicator.js', function() {
 
       describe('and it is junk', function() {
         it('should display the appropriate glyph', function() {
-          spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
-            switch(weaponName) {
-              case 'Origin Story':
-                return {name: 'Origin Story', isJunk: function(){return true}};
-              case 'Annual Skate':
-                return {name: 'Annual Skate', isJunk: function(){return true}};
-              case 'Alone as a god':
-                return {name: 'Alone as a god', isJunk: function(){return true}};
-              case 'Arctic Dreamscape':
-                return {name: 'Arctic Dreamscape', isJunk: function(){return true}};
-              case 'Atlantis Wash':
-                return {name: 'Atlantis Wash', isJunk: function(){return true}};
-            }
-          });
+          const WEAPONS = ['Origin Story','Annual Skate','Alone as a god'];
+          const SHADERS = ['Arctic Dreamscape','Atlantis Wash'];
+          for(let name of WEAPONS) {
+            $('[data-fate-weapon-name="'+name+'"]').attr('data-fate-weapon-junk', true);
+          }
+          for(let name of SHADERS) {
+            $('[data-fate-shader-name="'+name+'"]').attr('data-fate-weapon-junk', true);
+          }
           fateBus.publish(brunchModule, 'fate.refresh');
           expect($('[data-fate-weapon-name]')).toContainElement('.fate-ignore-slot.fate-thumbs-down.fate-glyph.fglyph-thumbs-down.fate-middling');
           expect($('[data-fate-weapon-name] > .fate-ignore-slot.fate-thumbs-down.fate-glyph.fglyph-thumbs-down.fate-middling')).toBeVisible();
@@ -64,20 +58,14 @@ describe('ignoreStatusIndicator.js', function() {
 
       describe('and it is not junk', function() {
         it('should not use any ignore glyph', function() {
-          spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
-            switch(weaponName) {
-              case 'Origin Story':
-                return {name: 'Origin Story', isJunk: function(){return false}};
-              case 'Annual Skate':
-                return {name: 'Annual Skate', isJunk: function(){return false}};
-              case 'Alone as a god':
-                return {name: 'Alone as a god', isJunk: function(){return false}};
-              case 'Arctic Dreamscape':
-                return {name: 'Arctic Dreamscape', isJunk: function(){return false}};
-              case 'Atlantis Wash':
-                return {name: 'Atlantis Wash', isJunk: function(){return false}};
-            }
-          });
+          const WEAPONS = ['Origin Story','Annual Skate','Alone as a god'];
+          const SHADERS = ['Arctic Dreamscape','Atlantis Wash'];
+          for(let name of WEAPONS) {
+            $('[data-fate-weapon-name="'+name+'"]').attr('data-fate-weapon-junk', false);
+          }
+          for(let name of SHADERS) {
+            $('[data-fate-shader-name="'+name+'"]').attr('data-fate-weapon-junk', false);
+          }
           fateBus.publish(brunchModule, 'fate.refresh');
           expect($('[data-fate-weapon-name] > .fate-ignore-slot')).toBeHidden();
           expect($('[data-fate-shader-name] > .fate-ignore-slot')).toBeHidden();
