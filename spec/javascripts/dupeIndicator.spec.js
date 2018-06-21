@@ -92,6 +92,7 @@ describe('dupeIndicator.js', function() {
           'energyWeapon.html',
           'energyWeapon.html'
         );
+        $("[data-fate-weapon-name='Annual Skate']:first").attr('data-fate-base-light', 200);
         $(".item-stat:first").text(200);
       });
       it('should attach the same glyph, styled differently', function() {

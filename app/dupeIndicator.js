@@ -18,7 +18,7 @@ function calculateWorkingSet() {
     const weaponData = {
       name: weaponName,
       domElement: this,
-      light: parseInt($(this).children('.item-stat').text().replace(/M/,''))
+      light: parseInt($(this).attr('data-fate-base-light'))
     };
     if (weapons.has(weaponName)) {
         weapons.set(weaponName, weapons.get(weaponName).concat(weaponData));
