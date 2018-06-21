@@ -18,7 +18,7 @@ function placeIgnoreStatusWeapons() {
     if (!weaponDatabase.contains(weaponName)) {
       $(this).children('.fate-ignore-slot').addClass('fate-question-mark fglyph-question-mark fate-middling');
       $(this).children('.fate-ignore-slot').show();
-    } else if (weaponDatabase.get(weaponName).isJunk()) {
+    } else if ($(this).attr('data-fate-weapon-junk') === 'true') {
       $(this).children('.fate-ignore-slot').addClass('fate-thumbs-down fglyph-thumbs-down fate-middling');
       $(this).children('.fate-ignore-slot').show();
     } else {
@@ -34,7 +34,7 @@ function placeIgnoreStatusShaders() {
     if (!weaponDatabase.contains(shaderName)) {
       $(this).children('.fate-ignore-slot').addClass('fate-question-mark fglyph-question-mark fate-middling');
       $(this).children('.fate-ignore-slot').show();
-    } else if (weaponDatabase.get(shaderName).isJunk()) {
+    } else if ($(this).attr('data-fate-weapon-junk') === 'true') {
       $(this).children('.fate-ignore-slot').addClass('fate-thumbs-down fglyph-thumbs-down fate-middling');
       $(this).children('.fate-ignore-slot').show();
     } else {
