@@ -28,25 +28,10 @@ describe('configuration.js', function() {
     });
 
     describe('defaults and attachment handling', function() {
-
-      beforeEach(function() {
-        fateBus.publish(brunchModule, 'fate.init');
-      });
-
       it('should use Slifs spreadsheet by default', function() {
+        fateBus.publish(brunchModule, 'fate.init');
         expect(GM_config.get('weaponDataTSV')).toBe('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv');
       });
-
-      it('should register a handler', function() {
-        const spyEvent = spyOnEvent('.fate-config', 'click');
-        spyOn(GM_config, 'open');
-
-        $('.fate-config').click();
-
-        expect(spyEvent).toHaveBeenTriggered();
-        expect(GM_config.open).toHaveBeenCalled();
-      });
-
     });
 
   });

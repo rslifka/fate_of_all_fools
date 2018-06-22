@@ -8,15 +8,10 @@
   padding-left: 1px;
 }
 
-/* [FATE Config] link in the lower left that allows you to change feed URL */
+/* Allows you to change feed URL */
 .fate-config {
-  cursor: pointer;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 0.5rem;
-  font-weight: bold;
-  color: #f5dc56;
+  font-weight: bold !important;
+  color: #f5dc56 !important;
 }
 
 /* Displays on top of weapons that you can infuse in to the focused one */

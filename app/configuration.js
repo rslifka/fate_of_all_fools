@@ -21,12 +21,18 @@ function init() {
 	});
 
 	fateBus.publish(module, 'fate.configurationLoaded', {weaponDataTSV:GM_config.get('weaponDataTSV')});
+}
 
-	$('body').append($("<div>", {"class": "fate-config"}).text('[FATE Config]'));
+function install() {
+	if ($('.fate-config').length > 0) {
+		return;
+	}
 
+	$('.header-links').prepend("<a class='link fate-config'>FATE Config</a>");
 	$('.fate-config').on('click', function() {
 		GM_config.open();
 	});
 }
 
 fateBus.subscribe(module, 'fate.init', init);
+fateBus.subscribe(module, 'fate.refresh', install);
