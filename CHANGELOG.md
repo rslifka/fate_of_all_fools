@@ -1,3 +1,7 @@
+# 2018/06/23
+* Decreased border width to reclaim a bunch of pixels and reduce visual noise.
+* Styled "stat" field in all channels (+Shaders, +Consumables).
+
 # 2018/06/22
 * Issue #57: Dupe icon on kinetic weapons is in its old place (and new place).
 

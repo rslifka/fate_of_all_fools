@@ -13,12 +13,29 @@ div[drag-channel='Chest'] > .item-stat.item-equipment,
 div[drag-channel='Leg'] > .item-stat.item-equipment,
 div[drag-channel='ClassItem'] > .item-stat.item-equipment {
   background-color: rgba(0,0,0,1);
-  bottom: 2px;
-  color: rgba(255,255,255,0.8);
+  bottom: 3px;
+  color: rgba(255,255,255,0.65);
   font-size: 12px;
   font-weight: bold;
   padding: 0 3px 0 4px;
-  right: 2px;
+  right: 3px;
+  text-align: right;
+}
+
+div[drag-channel='Consumables'] > .item-stat,
+/* This seems like a bug in the Bungie API or DIM? */
+div[drag-channel='2305843009325795828Consumables'] > .item-stat,
+div[drag-channel='Modifications'] > .item-stat,
+div[drag-channel='Shaders'] > .item-stat
+{
+  background-color: rgba(0,0,0,1);
+  bottom: 3px;
+  color: rgba(255,255,255,0.65);
+  font-size: 12px;
+  font-weight: bold;
+  min-width: unset;
+  padding: 0 4px 0 4px;
+  right: 3px;
   text-align: right;
 }
 
@@ -104,7 +121,7 @@ body,
 .item-img.complete,
 .item-img.masterwork {
   background-repeat: no-repeat;
-  border: 2px solid #929292;
+  border: 1px solid #808080;
 }
 
 .section.ng-scope.weapons > .title {
