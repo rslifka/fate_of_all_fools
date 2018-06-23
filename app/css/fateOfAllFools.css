@@ -62,10 +62,7 @@
   font-size: 11px;
   top: 18px;
   right: 2px;
-  padding: 0px 0px 0px 2px;
-}
-div[drag-channel='Kinetic'] > .fate-dupe {
-  bottom: 19px;
+  padding: 0px 0px 2px 2px;
 }
 .fate-ignore-slot {
   top: 2px;
@@ -93,6 +90,7 @@ div[drag-channel='Kinetic'] > .fate-dupe {
 .fate-thumbs-down {
   color: rgba(206,82,70,1);
   font-size: 12px;
+  padding: 0 1px;
 }
 .fate-pve {
   color: rgba(93,181,110,1);

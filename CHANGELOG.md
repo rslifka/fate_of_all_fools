@@ -1,3 +1,6 @@
+# 2018/06/22
+* Issue #57: Dupe icon on kinetic weapons is in its old place (and new place).
+
 # 2018/06/21
 * Issue #54: Shrink size of question mark and thumbs-down icons for consistency. (things looked a bit hokey with a massive THUMBS-DOWN in the middle of your vault :)
 * Issue #53: Relocate "FATE Config" as it overlays / is hidden by character and vault contents. (moved to the nav now)
