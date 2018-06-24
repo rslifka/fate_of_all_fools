@@ -49,13 +49,10 @@
 
 /* STATUS INDICATORS: Positioning */
 .fate-left-bump {
-  left: 17px !important;
+  left: 18px !important;
 }
 .fate-right-bump {
   right: 19px !important;
-}
-.fate-right-double-bump {
-  right: 36px !important;
 }
 
 .fate-dupe {
