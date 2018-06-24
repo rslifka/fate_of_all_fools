@@ -1,5 +1,4 @@
 const $ = require('jquery');
-
 const logger = require('logger.js');
 
 function prepareDupeSpace() {
@@ -37,10 +36,13 @@ function styleDupeIndicators(weapons) {
     }
     const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
     weaponInstances.forEach(function(weapon) {
-      $(weapon.domElement).find('.fate-dupe').removeClass('fate-negative fate-positive');
-      $(weapon.domElement).find('.fate-dupe').addClass(weapon.light < maxLight ? 'fate-negative' : 'fate-positive');
       if ($(weapon.domElement).attr('data-fate-weapon-junk') === 'true') {
         return;
+      }
+      $(weapon.domElement).find('.fate-dupe').removeClass('fate-negative fate-positive');
+      $(weapon.domElement).find('.fate-dupe').addClass(weapon.light < maxLight ? 'fate-negative' : 'fate-positive');
+      if ($(weapon.domElement).is('[data-fate-weapon-pvp]') || $(weapon.domElement).is('[data-fate-weapon-pve]')) {
+        $(weapon.domElement).find('.fate-dupe').addClass('fate-top-bump');
       }
       $(weapon.domElement).find('.fate-dupe').show();
     });

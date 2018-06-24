@@ -54,10 +54,13 @@
 .fate-right-bump {
   right: 19px !important;
 }
+.fate-top-bump {
+  top: 17px !important;
+}
 
 .fate-dupe {
   font-size: 11px;
-  top: 17px;
+  top: 1px;
   right: 3px;
   padding: 0px 0px 2px 2px;
 }

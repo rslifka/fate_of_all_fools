@@ -115,7 +115,35 @@ describe('dupeIndicator.js', function() {
         fateBus.publish(brunchModule, 'fate.refresh');
         expect($('.fate-dupe')).toBeHidden();
       });
-    })
+    });
+
+    describe('when a dupe is useful in PvP', function() {
+      beforeEach(function() {
+        loadFixtures(
+          'energyWeapon.html',
+          'energyWeapon.html'
+        );
+        $('[data-fate-weapon-name="Annual Skate"]').attr('data-fate-weapon-pvp', 'true');
+      });
+      it('should have its dupe indicator bumped down so it does not overlap', function() {
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('.fate-dupe')).toHaveClass('fate-top-bump');
+      });
+    });
+
+    describe('when a dupe is useful in PvE', function() {
+      beforeEach(function() {
+        loadFixtures(
+          'energyWeapon.html',
+          'energyWeapon.html'
+        );
+        $('[data-fate-weapon-name="Annual Skate"]').attr('data-fate-weapon-pve', 'true');
+      });
+      it('should have its dupe indicator bumped down so it does not overlap', function() {
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('.fate-dupe')).toHaveClass('fate-top-bump');
+      });
+    });
 
   });
 
