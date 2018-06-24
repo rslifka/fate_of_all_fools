@@ -34,4 +34,3 @@ function refresh() {
 
 fateBus.subscribe(module, 'fate.configurationLoaded', storeConfiguration);
 fateBus.subscribe(module, 'fate.weaponDataStale', refresh);
-fateBus.subscribe(module, 'fate.init', refresh);

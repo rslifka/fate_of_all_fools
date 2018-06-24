@@ -48,16 +48,4 @@ TEST_LINE_2`});
     });
   });
 
-  describe('in response to "fate.init"', function() {
-    it('should reach out for weapon data from our configured location', function() {
-      spyOn(window, 'GM_xmlhttpRequest');
-      spyOn(GM_config, 'get').and.returnValue('TEST_WEAPON_DATA_URL');
-      fateBus.publish(brunchModule, 'fate.init');
-      expect(window.GM_xmlhttpRequest).toHaveBeenCalledWith(jasmine.objectContaining({
-        method: 'GET',
-        url: 'TEST_WEAPON_DATA_URL'
-      }));
-    });
-  });
-
 });

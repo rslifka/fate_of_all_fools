@@ -52,7 +52,8 @@ if (!window.navigator.userAgent.includes('HeadlessChrome')) {
   const logger = require('logger');
   logger.log('main.js: Initializing');
   fateBus.publish(module, 'fate.init');
-
+  fateBus.publish(module, 'fate.weaponDataStale');
+  
   setInterval(function() {
     fateBus.publish(module, 'fate.refresh');
   }, 10000);
