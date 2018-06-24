@@ -14,9 +14,6 @@ With the recent news that Forsaken will have random rolls, the current strategy 
 # TL;DR
 1. Install a UserScript hosting environment (e.g. [Tampermonkey in Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)).
 1. One-click install the UserScript from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization).
-1. DIM Settings (optional): Increase the size of the item icon.
-1. DIM Settings (optional): Set your vault width to ~6 or so.
-1. DIM Settings (required): Disable reviews (for now; they were released after I created FOAF so I don't yet take them in to account).
 
 # Introduction
 
