@@ -43,6 +43,9 @@ require('pvpIndicator.js');
 // Which weapons are good for PvE?
 require('pveIndicator.js');
 
+// Retrieve and publish data for all item types
+require('itemDataRefresher.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
