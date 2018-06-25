@@ -1,6 +1,7 @@
 const $ = require('jquery');
 const weapon = require('weapon.js');
 const weaponDatabase = require('weaponDatabase.js').weaponDB;
+const rollDatabase = require('rollDatabase.js').rollDB;
 
 function storeWeaponNames() {
   $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[data-fate-weapon-name]').each(function(index,element) {
@@ -51,10 +52,17 @@ function storeRegistrationStatus() {
 
 function storeJunkStatus() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
-    const weaponName = $(this).attr('data-fate-weapon-name');
-    if (weaponDatabase.contains(weaponName)) {
-      if (weaponDatabase.get(weaponName).isJunk()) {
+    if (rollDatabase.contains($(this).attr('data-fate-serial'))) {
+      if (rollDatabase.get($(this).attr('data-fate-serial')).isJunk()) {
         $(this).attr('data-fate-weapon-junk', true);
+      } else {
+        $(this).removeAttr('data-fate-weapon-junk');
+      }
+    } else {
+      if (weaponDatabase.get($(this).attr('data-fate-weapon-name')).isJunk()) {
+        $(this).attr('data-fate-weapon-junk', true);
+      } else {
+        $(this).removeAttr('data-fate-weapon-junk');
       }
     }
   });
@@ -62,7 +70,7 @@ function storeJunkStatus() {
 
 function storeJudgementStatus() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
-    const w = weaponDatabase.get($(this).attr('data-fate-weapon-name'));
+    const w = getRoleOrWeapon($(this));
     if (w.pvpUtility === weapon.Utility.YES) {
       $(this).attr('data-fate-weapon-pvp', true);
     } else {
@@ -84,20 +92,29 @@ function storeSerialNumber() {
 
 function storeComments() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
-    const w = weaponDatabase.get($(this).attr('data-fate-weapon-name'));
-    $(this).attr('data-fate-comment', w.comments);
+    $(this).attr('data-fate-comment', getRoleOrWeapon($(this)).comments);
   });
 }
 
+function getRoleOrWeapon($element) {
+  if (rollDatabase.contains($element.attr('data-fate-serial'))) {
+    return rollDatabase.get($element.attr('data-fate-serial'));
+  }
+  if (weaponDatabase.contains($element.attr('data-fate-weapon-name'))) {
+    return weaponDatabase.get($element.attr('data-fate-weapon-name'));
+  }
+  return undefined;
+};
+
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponNames();
+  storeRegistrationStatus();
+  storeSerialNumber();
   storeWeaponRarity();
   storeWeaponType();
   storeModStatus();
   storeBaseLightLevel();
-  storeRegistrationStatus();
   storeJudgementStatus();
   storeJunkStatus();
-  storeSerialNumber();
   storeComments();
 });

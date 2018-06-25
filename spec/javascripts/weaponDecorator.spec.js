@@ -3,7 +3,8 @@ describe('weaponDecorator.js', function() {
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
   const weapon = require('weapon.js');
-  const weaponDatabase = require('weaponDatabase').weaponDB;
+  const weaponDatabase = require('weaponDatabase.js').weaponDB;
+  const rollDatabase = require('rollDatabase.js').rollDB;
 
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
@@ -14,21 +15,34 @@ describe('weaponDecorator.js', function() {
     beforeEach(function() {
       loadFixtures(
         'kineticWeaponRaw.html',
+        'kineticAutumnWindRaw.html',
         'energyWeaponRaw.html',
         'powerWeaponRaw.html'
       );
 
       spyOn(weaponDatabase, 'contains').and.callFake(function(weaponName) {
-        return ['Origin Story', 'Annual Skate', 'Alone as a god'].includes(weaponName);
+        return ['Alone as a god', 'Annual Skate', 'Autumn Wind', 'Origin Story'].includes(weaponName);
       });
       spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
         switch(weaponName) {
-          case 'Origin Story':
-            return {name: 'Origin Story', rarity: 'legendary', type: 'Auto Rifle', pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, isJunk: function(){return false}, comments: 'It\'s an auto rifle'};
-          case 'Annual Skate':
-            return {name: 'Annual Skate', rarity: 'legendary', type: 'Hand Cannon', pveUtility: weapon.Utility.NO, pvpUtility: weapon.Utility.NO, isJunk: function(){return true}, comments: 'This is a hankey hc'};
           case 'Alone as a god':
             return {name: 'Alone as a god', rarity: 'legendary', type: 'Sniper Rifle', pveUtility: weapon.Utility.UNKNOWN, pvpUtility: weapon.Utility.UNKNOWN, isJunk: function(){return false}, comments: 'Pretty solid sniperino'};
+          case 'Annual Skate':
+            return {name: 'Annual Skate', rarity: 'legendary', type: 'Hand Cannon', pveUtility: weapon.Utility.NO, pvpUtility: weapon.Utility.NO, isJunk: function(){return true}, comments: 'This is a hankey hc'};
+          case 'Autumn Wind':
+            return {name: 'Autumn Wind', rarity: 'legendary', type: 'Pulse Rifle', pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, isJunk: function(){return false}, comments: 'It\'s a pulse'};
+          case 'Origin Story':
+            return {name: 'Origin Story', rarity: 'legendary', type: 'Auto Rifle', pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, isJunk: function(){return false}, comments: 'It\'s an auto rifle'};
+        }
+      });
+
+      spyOn(rollDatabase, 'contains').and.callFake(function(rollID) {
+        return ['6917529046405702307'].includes(rollID);
+      });
+      spyOn(rollDatabase, 'get').and.callFake(function(weaponName) {
+        switch(weaponName) {
+          case '6917529046405702307':
+            return {rollID: '6917529046405702307', name: 'Autumn Wind', pveUtility: weapon.Utility.NO, pvpUtility: weapon.Utility.NO, isJunk: function(){return true}, comments: 'Not a fan of this roll'};
         }
       });
 
@@ -69,37 +83,42 @@ describe('weaponDecorator.js', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-registered', 'true');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-registered', 'true');
       expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-weapon-registered', 'true');
-      expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-registered');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-weapon-registered', 'true');
     });
 
     it('should store if the weapon is good for pve', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-pve', 'true');
       expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-pve');
       expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pve');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-pve');
     });
 
     it('should store if the weapon is good for pvp', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-pvp', 'true');
       expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-pvp');
       expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pvp');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-pvp');
     });
 
     it('should store if the weapon is junk or not', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveAttr('data-fate-weapon-junk');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-junk');
       expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-junk');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-weapon-junk');
     });
 
     it('should store the weapon serial number', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-serial', '6917529046110379521');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-serial', '6917529045725684849');
       expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-serial', '6917529036439050577');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-serial', '6917529046405702307');
     });
 
     it('should store the comments', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-comment', 'It\'s an auto rifle');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-comment', 'This is a hankey hc');
       expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-comment', 'Pretty solid sniperino');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-comment', 'Not a fan of this roll');
     });
 
     describe('on subsequent refreshes', function() {
