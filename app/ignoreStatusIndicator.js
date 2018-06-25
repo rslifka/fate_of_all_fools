@@ -1,6 +1,5 @@
 const $ = require('jquery');
 const logger = require('logger.js');
-const weaponDatabase = require('weaponDatabase.js');
 
 function prepareIgnoreSpace() {
   $('[data-fate-weapon-name],[data-fate-shader-name]').each(function(index,element) {
@@ -13,9 +12,8 @@ function prepareIgnoreSpace() {
 
 function placeIgnoreStatusWeapons() {
   $('[data-fate-weapon-name]').each(function(index,element) {
-    const weaponName = $(this).attr('data-fate-weapon-name');
     $(this).children('.fate-ignore-slot').removeClass('fate-question-mark fglyph-question-mark fate-thumbs-down fglyph-thumbs-down');
-    if (!weaponDatabase.contains(weaponName)) {
+    if (!$(this).is('[data-fate-weapon-registered]')) {
       $(this).children('.fate-ignore-slot').addClass('fate-question-mark fglyph-question-mark fate-middling');
       $(this).children('.fate-ignore-slot').show();
     } else if ($(this).attr('data-fate-weapon-junk') === 'true') {
@@ -29,9 +27,8 @@ function placeIgnoreStatusWeapons() {
 
 function placeIgnoreStatusShaders() {
   $('[data-fate-shader-name]').each(function(index,element) {
-    const shaderName = $(this).attr('data-fate-shader-name');
     $(this).children('.fate-ignore-slot').removeClass('fate-question-mark fglyph-question-mark fate-thumbs-down fglyph-thumbs-down');
-    if (!weaponDatabase.contains(shaderName)) {
+    if (!$(this).is('[data-fate-weapon-registered]')) {
       $(this).children('.fate-ignore-slot').addClass('fate-question-mark fglyph-question-mark fate-middling');
       $(this).children('.fate-ignore-slot').show();
     } else if ($(this).attr('data-fate-weapon-junk') === 'true') {

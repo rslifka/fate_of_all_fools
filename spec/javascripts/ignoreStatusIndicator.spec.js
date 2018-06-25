@@ -3,8 +3,6 @@ describe('ignoreStatusIndicator.js', function() {
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
 
-  const weaponDatabase = require('weaponDatabase.js');
-
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
   });
@@ -23,7 +21,6 @@ describe('ignoreStatusIndicator.js', function() {
 
     describe('when the item is not in the database', function() {
       it('should display the appropriate glyph', function() {
-        spyOn(weaponDatabase, 'contains').and.returnValue(false);
         fateBus.publish(brunchModule, 'fate.refresh');
         expect($('[data-fate-weapon-name]')).toContainElement('.fate-ignore-slot.fate-question-mark.fate-glyph.fglyph-question-mark.fate-middling');
         expect($('[data-fate-weapon-name] > .fate-ignore-slot.fate-question-mark.fate-glyph.fglyph-question-mark.fate-middling')).toBeVisible();
@@ -35,7 +32,8 @@ describe('ignoreStatusIndicator.js', function() {
     describe('when the item is in the database', function() {
 
       beforeEach(function() {
-        spyOn(weaponDatabase, 'contains').and.returnValue(true);
+        $('[data-fate-weapon-name]').attr('data-fate-weapon-registered', true);
+        $('[data-fate-shader-name]').attr('data-fate-weapon-registered', true);
       });
 
       describe('and it is junk', function() {
