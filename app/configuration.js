@@ -12,6 +12,11 @@ function init() {
 				'type': 'text',
 				'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv'
 			},
+			'rollDataTSV': {
+				'label': 'Roll Data Tab-Separated Values',
+				'type': 'text',
+				'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1131147082&single=true&output=tsv'
+			},
 			'shaderDataTSV': {
 				'label': 'Shader Data Tab-Separated Values',
 				'type': 'text',
@@ -27,6 +32,7 @@ function init() {
 
 	fateBus.publish(module, 'fate.configurationLoaded', {
 		weaponDataTSV: GM_config.get('weaponDataTSV'),
+		rollDataTSV: GM_config.get('rollDataTSV'),
 		shaderDataTSV: GM_config.get('shaderDataTSV')
 	});
 }
