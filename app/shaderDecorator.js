@@ -22,6 +22,8 @@ function storeKeepStatus() {
     const s = shaderDatabase.get($(this).attr('data-fate-shader-name'));
     if (s.keepStatus === shader.Keep.YES) {
       $(this).attr('data-fate-shader-keep', true);
+    } else if (s.keepStatus === shader.Keep.NO) {
+      $(this).attr('data-fate-shader-keep', false);
     } else {
       $(this).removeAttr('data-fate-shader-keep');
     }

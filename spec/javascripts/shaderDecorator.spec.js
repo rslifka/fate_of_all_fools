@@ -41,8 +41,8 @@ describe('shaderDecorator.js', function() {
       expect($('[data-fate-shader-name="Metallic Sunrise"]')).not.toHaveAttr('data-fate-shader-registered');
     });
     it('should store if we should keep the shader', function() {
-      expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toHaveAttr('data-fate-shader-keep');
-      expect($('[data-fate-shader-name="Atlantis Wash"]')).not.toHaveAttr('data-fate-shader-keep');
+      expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toHaveAttr('data-fate-shader-keep', 'true');
+      expect($('[data-fate-shader-name="Atlantis Wash"]')).toHaveAttr('data-fate-shader-keep', 'false');
       expect($('[data-fate-shader-name="Metallic Sunrise"]')).not.toHaveAttr('data-fate-shader-keep');
     });
     it('should store the comments', function() {
