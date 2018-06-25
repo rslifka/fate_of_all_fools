@@ -52,6 +52,9 @@ require('shaderDatabase.js');
 require('shaderDecorator.js');
 require('shaderDataRefresher.js');
 
+// Qualification of individual rolls
+require('rollAssessment.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
