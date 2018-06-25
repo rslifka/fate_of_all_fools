@@ -156,7 +156,7 @@ function a(e,t,n){
 // Complex selector, compare the two sets, removing non-Elements
 return ge.isFunction(t)?ge.grep(e,function(e,r){return!!t.call(e,r,e)!==n}):t.nodeType?ge.grep(e,function(e){return e===t!==n}):"string"!=typeof t?ge.grep(e,function(e){return se.call(t,e)>-1!==n}):ke.test(t)?ge.filter(t,e,n):(t=ge.filter(t,e),ge.grep(e,function(e){return se.call(t,e)>-1!==n&&1===e.nodeType}))}function o(e,t){for(;(e=e[t])&&1!==e.nodeType;);return e}
 // Convert String-formatted options into Object-formatted ones
-function s(e){var t={};return ge.each(e.match(_e)||[],function(e,n){t[n]=!0}),t}function u(e){return e}function c(e){throw e}function l(e,t,n,r){var i;try{
+function s(e){var t={};return ge.each(e.match(Me)||[],function(e,n){t[n]=!0}),t}function u(e){return e}function c(e){throw e}function l(e,t,n,r){var i;try{
 // Check for promise aspect first to privilege synchronous behavior
 e&&ge.isFunction(i=e.promise)?i.call(e).done(t).fail(n):e&&ge.isFunction(i=e.then)?i.call(e,t,n):
 // Control `resolve` arguments by letting Array#slice cast boolean `noValue` to integer:
@@ -169,12 +169,12 @@ n.apply(void 0,[e])}}
 // The ready event handler and self cleanup method
 function f(){ne.removeEventListener("DOMContentLoaded",f),e.removeEventListener("load",f),ge.ready()}function d(){this.expando=ge.expando+d.uid++}function p(e){
 // Only convert to a number if it doesn't change the string
-return"true"===e||"false"!==e&&("null"===e?null:e===+e+""?+e:He.test(e)?JSON.parse(e):e)}function h(e,t,n){var r;
+return"true"===e||"false"!==e&&("null"===e?null:e===+e+""?+e:Fe.test(e)?JSON.parse(e):e)}function h(e,t,n){var r;
 // If nothing was found internally, try to fetch any
 // data from the HTML5 data-* attribute
 if(void 0===n&&1===e.nodeType)if(r="data-"+t.replace(Pe,"-$&").toLowerCase(),n=e.getAttribute(r),"string"==typeof n){try{n=p(n)}catch(i){}
 // Make sure we set the data so it isn't changed later
-Fe.set(e,t,n)}else n=void 0;return n}function g(e,t,n,r){var i,a=1,o=20,s=r?function(){return r.cur()}:function(){return ge.css(e,t,"")},u=s(),c=n&&n[3]||(ge.cssNumber[t]?"":"px"),
+He.set(e,t,n)}else n=void 0;return n}function g(e,t,n,r){var i,a=1,o=20,s=r?function(){return r.cur()}:function(){return ge.css(e,t,"")},u=s(),c=n&&n[3]||(ge.cssNumber[t]?"":"px"),
 // Starting value computation is required for potential unit mismatches
 l=(ge.cssNumber[t]||"px"!==c&&+u)&&Be.exec(ge.css(e,t));if(l&&l[3]!==c){
 // Trust units reported by jQuery.css
@@ -189,7 +189,7 @@ a=a||".5",
 // Adjust and apply
 l/=a,ge.style(e,t,l+c);while(a!==(a=s()/u)&&1!==a&&--o)}
 // Apply relative offset (+=/-=) if specified
-return n&&(l=+l||+u||0,i=n[1]?l+(n[1]+1)*n[2]:+n[2],r&&(r.unit=c,r.start=l,r.end=i)),i}function m(e){var t,n=e.ownerDocument,r=e.nodeName,i=ze[r];return i?i:(t=n.body.appendChild(n.createElement(r)),i=ge.css(t,"display"),t.parentNode.removeChild(t),"none"===i&&(i="block"),ze[r]=i,i)}function v(e,t){
+return n&&(l=+l||+u||0,i=n[1]?l+(n[1]+1)*n[2]:+n[2],r&&(r.unit=c,r.start=l,r.end=i)),i}function m(e){var t,n=e.ownerDocument,r=e.nodeName,i=Ve[r];return i?i:(t=n.body.appendChild(n.createElement(r)),i=ge.css(t,"display"),t.parentNode.removeChild(t),"none"===i&&(i="block"),Ve[r]=i,i)}function v(e,t){
 // Determine new display value for elements that need to change
 for(var n,r,i=[],a=0,o=e.length;a<o;a++)r=e[a],r.style&&(n=r.style.display,t?(
 // Since we force visibility upon cascade-hidden elements, an immediate (and slow)
@@ -211,7 +211,7 @@ if("object"===ge.type(a))
 // push.apply(_, arraylike) throws on ancient WebKit
 ge.merge(d,a.nodeType?[a]:a);else if(Ye.test(a)){for(o=o||f.appendChild(t.createElement("div")),
 // Deserialize a standard representation
-s=(Ve.exec(a)||["",""])[1].toLowerCase(),u=Ke[s]||Ke._default,o.innerHTML=u[1]+ge.htmlPrefilter(a)+u[2],
+s=(Ue.exec(a)||["",""])[1].toLowerCase(),u=Ke[s]||Ke._default,o.innerHTML=u[1]+ge.htmlPrefilter(a)+u[2],
 // Descend through wrappers to the right content
 l=u[0];l--;)o=o.lastChild;
 // Support: Android <=4.0 only, PhantomJS 1 only
@@ -257,11 +257,11 @@ function E(e){return e.type=(null!==e.getAttribute("type"))+"/"+e.type,e}functio
 // 1. Copy private data: events, handlers, etc.
 if(Ie.hasData(e)&&(a=Ie.access(e),o=Ie.set(t,a),c=a.events)){delete o.handle,o.events={};for(i in c)for(n=0,r=c[i].length;n<r;n++)ge.event.add(t,i,c[i][n])}
 // 2. Copy user data
-Fe.hasData(e)&&(s=Fe.access(e),u=ge.extend({},s),Fe.set(t,u))}}
+He.hasData(e)&&(s=He.access(e),u=ge.extend({},s),He.set(t,u))}}
 // Fix IE bugs, see support tests
 function N(e,t){var n=t.nodeName.toLowerCase();
 // Fails to persist the checked state of a cloned checkbox or radio button.
-"input"===n&&Ue.test(e.type)?t.checked=e.checked:"input"!==n&&"textarea"!==n||(t.defaultValue=e.defaultValue)}function q(e,t,r,i){
+"input"===n&&ze.test(e.type)?t.checked=e.checked:"input"!==n&&"textarea"!==n||(t.defaultValue=e.defaultValue)}function q(e,t,r,i){
 // Flatten any nested arrays
 t=ae.apply([],t);var a,o,s,u,c,l,f=0,d=e.length,p=d-1,h=t[0],g=ge.isFunction(h);
 // We can't cloneNode fragments that contain checked, in WebKit
@@ -280,7 +280,7 @@ for(l=s[s.length-1].ownerDocument,
 // Reenable scripts
 ge.map(s,S),f=0;f<u;f++)c=s[f],Xe.test(c.type||"")&&!Ie.access(c,"globalEval")&&ge.contains(l,c)&&(c.src?
 // Optional AJAX dependency, but won't run scripts if not present
-ge._evalUrl&&ge._evalUrl(c.src):n(c.textContent.replace(at,""),l))}return e}function _(e,t,n){for(var r,i=t?ge.filter(t,e):e,a=0;null!=(r=i[a]);a++)n||1!==r.nodeType||ge.cleanData(y(r)),r.parentNode&&(n&&ge.contains(r.ownerDocument,r)&&b(y(r,"script")),r.parentNode.removeChild(r));return e}function M(e,t,n){var r,i,a,o,
+ge._evalUrl&&ge._evalUrl(c.src):n(c.textContent.replace(at,""),l))}return e}function M(e,t,n){for(var r,i=t?ge.filter(t,e):e,a=0;null!=(r=i[a]);a++)n||1!==r.nodeType||ge.cleanData(y(r)),r.parentNode&&(n&&ge.contains(r.ownerDocument,r)&&b(y(r,"script")),r.parentNode.removeChild(r));return e}function _(e,t,n){var r,i,a,o,
 // Support: Firefox 51+
 // Retrieving style before computed somehow
 // fixes an issue with getting wrong values
@@ -318,7 +318,7 @@ function L(e){var t=ge.cssProps[e];return t||(t=ge.cssProps[e]=O(e)||e),t}functi
 // normalized at this point
 var r=Be.exec(t);
 // Guard against undefined "subtract", e.g., when used as in cssHooks
-return r?Math.max(0,r[2]-(n||0))+(r[3]||"px"):t}function F(e,t,n,r,i){var a,o=0;for(
+return r?Math.max(0,r[2]-(n||0))+(r[3]||"px"):t}function H(e,t,n,r,i){var a,o=0;for(
 // If we already have the right measurement, avoid augmentation
 a=n===(r?"border":"content")?4:"width"===t?1:0;a<4;a+=2)
 // Both box models exclude margin, so add it if we want it
@@ -330,9 +330,9 @@ a=n===(r?"border":"content")?4:"width"===t?1:0;a<4;a+=2)
 // At this point, extra isn't content, so add padding
 o+=ge.css(e,"padding"+Ge[a],!0,i),
 // At this point, extra isn't content nor padding, so add border
-"padding"!==n&&(o+=ge.css(e,"border"+Ge[a]+"Width",!0,i)));return o}function H(e,t,n){
+"padding"!==n&&(o+=ge.css(e,"border"+Ge[a]+"Width",!0,i)));return o}function F(e,t,n){
 // Start with computed style
-var r,i=ut(e),a=M(e,t,i),o="border-box"===ge.css(e,"boxSizing",!1,i);
+var r,i=ut(e),a=_(e,t,i),o="border-box"===ge.css(e,"boxSizing",!1,i);
 // Computed unit is not pixels. Stop here and return.
 // Computed unit is not pixels. Stop here and return.
 // Check for style in case a browser which returns unreliable values
@@ -340,14 +340,14 @@ var r,i=ut(e),a=M(e,t,i),o="border-box"===ge.css(e,"boxSizing",!1,i);
 // Fall back to offsetWidth/Height when value is "auto"
 // This happens for inline elements with no explicit setting (gh-3571)
 // Normalize "", auto, and prepare for extra
-return st.test(a)?a:(r=o&&(pe.boxSizingReliable()||a===e.style[t]),"auto"===a&&(a=e["offset"+t[0].toUpperCase()+t.slice(1)]),a=parseFloat(a)||0,a+F(e,t,n||(o?"border":"content"),r,i)+"px")}function P(e,t,n,r,i){return new P.prototype.init(e,t,n,r,i)}function R(){mt&&(ne.hidden===!1&&e.requestAnimationFrame?e.requestAnimationFrame(R):e.setTimeout(R,ge.fx.interval),ge.fx.tick())}
+return st.test(a)?a:(r=o&&(pe.boxSizingReliable()||a===e.style[t]),"auto"===a&&(a=e["offset"+t[0].toUpperCase()+t.slice(1)]),a=parseFloat(a)||0,a+H(e,t,n||(o?"border":"content"),r,i)+"px")}function P(e,t,n,r,i){return new P.prototype.init(e,t,n,r,i)}function R(){mt&&(ne.hidden===!1&&e.requestAnimationFrame?e.requestAnimationFrame(R):e.setTimeout(R,ge.fx.interval),ge.fx.tick())}
 // Animations created synchronously will run synchronously
 function B(){return e.setTimeout(function(){gt=void 0}),gt=ge.now()}
 // Generate parameters to create a standard animation
 function G(e,t){var n,r=0,i={height:e};for(
 // If we include width, step value is 1 to do all cssExpand values,
 // otherwise step value is 2 to skip over Left and Right
-t=t?1:0;r<4;r+=2-t)n=Ge[r],i["margin"+n]=i["padding"+n]=e;return t&&(i.opacity=i.width=e),i}function W(e,t,n){for(var r,i=(U.tweeners[t]||[]).concat(U.tweeners["*"]),a=0,o=i.length;a<o;a++)if(r=i[a].call(n,t,e))
+t=t?1:0;r<4;r+=2-t)n=Ge[r],i["margin"+n]=i["padding"+n]=e;return t&&(i.opacity=i.width=e),i}function W(e,t,n){for(var r,i=(z.tweeners[t]||[]).concat(z.tweeners["*"]),a=0,o=i.length;a<o;a++)if(r=i[a].call(n,t,e))
 // We're done with this property
 return r}function $(e,t,n){var r,i,a,o,s,u,c,l,f="width"in t||"height"in t,d=this,p={},h=e.style,g=e.nodeType&&We(e),m=Ie.get(e,"fxshow");
 // Queue-skipping animations hijack the fx hooks
@@ -387,12 +387,12 @@ d.done(function(){/* eslint-enable no-loop-func */
 // The final step of a "hide" animation is actually hiding the element
 g||v([e]),Ie.remove(e,"fxshow");for(r in p)ge.style(e,r,p[r])})),
 // Per-property setup
-u=W(g?m[r]:0,r,d),r in m||(m[r]=u.start,g&&(u.end=u.start,u.start=0))}}function z(e,t){var n,r,i,a,o;
+u=W(g?m[r]:0,r,d),r in m||(m[r]=u.start,g&&(u.end=u.start,u.start=0))}}function V(e,t){var n,r,i,a,o;
 // camelCase, specialEasing and expand cssHook pass
 for(n in e)if(r=ge.camelCase(n),i=t[r],a=e[n],Array.isArray(a)&&(i=a[1],a=e[n]=a[0]),n!==r&&(e[r]=a,delete e[n]),o=ge.cssHooks[r],o&&"expand"in o){a=o.expand(a),delete e[r];
 // Not quite $.extend, this won't overwrite existing keys.
 // Reusing 'index' because we have the correct "name"
-for(n in a)n in e||(e[n]=a[n],t[n]=i)}else t[r]=i}function U(e,t,n){var r,i,a=0,o=U.prefilters.length,s=ge.Deferred().always(function(){
+for(n in a)n in e||(e[n]=a[n],t[n]=i)}else t[r]=i}function z(e,t,n){var r,i,a=0,o=z.prefilters.length,s=ge.Deferred().always(function(){
 // Don't match elem in the :animated selector
 delete u.elem}),u=function(){if(i)return!1;for(var t=gt||B(),n=Math.max(0,c.startTime+c.duration-t),
 // Support: Android 2.3 only
@@ -407,12 +407,12 @@ return s.notifyWith(e,[c,a,n]),a<1&&u?n:(u||s.notifyWith(e,[c,1,0]),s.resolveWit
 // otherwise we skip this part
 r=t?c.tweens.length:0;if(i)return this;for(i=!0;n<r;n++)c.tweens[n].run(1);
 // Resolve when we played the last frame; otherwise, reject
-return t?(s.notifyWith(e,[c,1,0]),s.resolveWith(e,[c,t])):s.rejectWith(e,[c,t]),this}}),l=c.props;for(z(l,c.opts.specialEasing);a<o;a++)if(r=U.prefilters[a].call(c,e,l,c.opts))return ge.isFunction(r.stop)&&(ge._queueHooks(c.elem,c.opts.queue).stop=ge.proxy(r.stop,r)),r;
+return t?(s.notifyWith(e,[c,1,0]),s.resolveWith(e,[c,t])):s.rejectWith(e,[c,t]),this}}),l=c.props;for(V(l,c.opts.specialEasing);a<o;a++)if(r=z.prefilters[a].call(c,e,l,c.opts))return ge.isFunction(r.stop)&&(ge._queueHooks(c.elem,c.opts.queue).stop=ge.proxy(r.stop,r)),r;
 // Attach callbacks from options
 return ge.map(l,W,c),ge.isFunction(c.opts.start)&&c.opts.start.call(e,c),c.progress(c.opts.progress).done(c.opts.done,c.opts.complete).fail(c.opts.fail).always(c.opts.always),ge.fx.timer(ge.extend(u,{elem:e,anim:c,queue:c.opts.queue})),c}
 // Strip and collapse whitespace according to HTML spec
 // https://html.spec.whatwg.org/multipage/infrastructure.html#strip-and-collapse-whitespace
-function V(e){var t=e.match(_e)||[];return t.join(" ")}function X(e){return e.getAttribute&&e.getAttribute("class")||""}function K(e,t,n,r){var i;if(Array.isArray(t))
+function U(e){var t=e.match(Me)||[];return t.join(" ")}function X(e){return e.getAttribute&&e.getAttribute("class")||""}function K(e,t,n,r){var i;if(Array.isArray(t))
 // Serialize array item.
 ge.each(t,function(t,i){n||Dt.test(e)?
 // Treat each array item as a scalar.
@@ -426,7 +426,7 @@ for(i in t)K(e+"["+i+"]",t[i],n,r)}
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
 function Y(e){
 // dataTypeExpression is optional and defaults to "*"
-return function(t,n){"string"!=typeof t&&(n=t,t="*");var r,i=0,a=t.toLowerCase().match(_e)||[];if(ge.isFunction(n))
+return function(t,n){"string"!=typeof t&&(n=t,t="*");var r,i=0,a=t.toLowerCase().match(Me)||[];if(ge.isFunction(n))
 // For each dataType in the dataTypeExpression
 for(;r=a[i++];)
 // Prepend if requested
@@ -611,7 +611,7 @@ h=t?t.nodeType:9;
 // Return early from calls with invalid selector or context
 if(n=n||[],"string"!=typeof e||!e||1!==h&&9!==h&&11!==h)return n;
 // Try to shortcut find operations (as opposed to filters) in HTML documents
-if(!r&&((t?t.ownerDocument||t:B)!==A&&M(t),t=t||A,L)){
+if(!r&&((t?t.ownerDocument||t:B)!==A&&_(t),t=t||A,L)){
 // If the selector is sufficiently simple, try using a "get*By*" DOM method
 // (excepting DocumentFragment context, where the methods don't exist)
 if(11!==h&&(u=ve.exec(e)))
@@ -628,7 +628,7 @@ if(o.id===i)return n.push(o),n}else
 // getElementById can match elements by name instead of ID
 if(d&&(o=d.getElementById(i))&&P(t,o)&&o.id===i)return n.push(o),n}else{if(u[2])return Q.apply(n,t.getElementsByTagName(e)),n;if((i=u[3])&&C.getElementsByClassName&&t.getElementsByClassName)return Q.apply(n,t.getElementsByClassName(i)),n}
 // Take advantage of querySelectorAll
-if(C.qsa&&!U[e+" "]&&(!I||!I.test(e))){if(1!==h)d=t,l=e;else if("object"!==t.nodeName.toLowerCase()){for(
+if(C.qsa&&!z[e+" "]&&(!I||!I.test(e))){if(1!==h)d=t,l=e;else if("object"!==t.nodeName.toLowerCase()){for(
 // Capture the context ID, setting it first if necessary
 (s=t.getAttribute("id"))?s=s.replace(xe,Ce):t.setAttribute("id",s=R),
 // Prefix every selector in the list
@@ -770,7 +770,7 @@ w=G+=null==y?1:Math.random()||.1,x=b.length;
 // Add elements passing elementMatchers directly to results
 // Support: IE<9, Safari
 // Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
-for(c&&(N=o===A||o||c);h!==x&&null!=(l=b[h]);h++){if(a&&l){for(f=0,o||l.ownerDocument===A||(M(l),s=!L);d=e[f++];)if(d(l,o||A,s)){u.push(l);break}c&&(G=w)}
+for(c&&(N=o===A||o||c);h!==x&&null!=(l=b[h]);h++){if(a&&l){for(f=0,o||l.ownerDocument===A||(_(l),s=!L);d=e[f++];)if(d(l,o||A,s)){u.push(l);break}c&&(G=w)}
 // Track unmatched elements for set filters
 i&&(
 // They will have gone through all possible matchers
@@ -797,11 +797,11 @@ Q.apply(u,m),
 // Seedless set matches succeeding multiple successful matchers stipulate sorting
 c&&!r&&m.length>0&&p+n.length>1&&t.uniqueSort(u)}
 // Override manipulation of globals by nested matchers
-return c&&(G=w,N=y),g};return i?r(o):o}var x,C,j,T,k,E,S,D,N,q,_,
+return c&&(G=w,N=y),g};return i?r(o):o}var x,C,j,T,k,E,S,D,N,q,M,
 // Local document vars
-M,A,O,L,I,F,H,P,
+_,A,O,L,I,H,F,P,
 // Instance-specific data
-R="sizzle"+1*new Date,B=e.document,G=0,W=0,$=n(),z=n(),U=n(),V=function(e,t){return e===t&&(_=!0),0},
+R="sizzle"+1*new Date,B=e.document,G=0,W=0,$=n(),V=n(),z=n(),U=function(e,t){return e===t&&(M=!0),0},
 // Instance methods
 X={}.hasOwnProperty,K=[],Y=K.pop,J=K.push,Q=K.push,Z=K.slice,
 // Use a stripped-down indexOf as it's faster than native
@@ -843,7 +843,7 @@ return t?"\0"===e?"�":e.slice(0,-1)+"\\"+e.charCodeAt(e.length-1).toString(16)
 // See setDocument()
 // Removing the function wrapper causes a "Permission Denied"
 // error in IE
-je=function(){M()},Te=h(function(e){return e.disabled===!0&&("form"in e||"label"in e)},{dir:"parentNode",next:"legend"});
+je=function(){_()},Te=h(function(e){return e.disabled===!0&&("form"in e||"label"in e)},{dir:"parentNode",next:"legend"});
 // Optimize for push.apply( _, NodeList )
 try{Q.apply(K=Z.call(B.childNodes),B.childNodes),
 // Support: Android<4.0
@@ -870,7 +870,7 @@ var t=e&&(e.ownerDocument||e).documentElement;return!!t&&"HTML"!==t.nodeName},/*
  * @param {Element|Object} [doc] An element or document object to use to set the document
  * @returns {Object} Returns the current document
  */
-M=t.setDocument=function(e){var t,n,r=e?e.ownerDocument||e:B;
+_=t.setDocument=function(e){var t,n,r=e?e.ownerDocument||e:B;
 // Return early if doc is invalid or already selected
 // Return early if doc is invalid or already selected
 // Update global variables
@@ -922,7 +922,7 @@ i=t.getElementsByName(e),r=0;a=i[r++];)if(n=a.getAttributeNode("id"),n&&n.value=
 // By happy coincidence, a (broken) gEBTN appears on DocumentFragment nodes too
 a=t.getElementsByTagName(e);
 // Filter out possible comments
-if("*"===e){for(;n=a[i++];)1===n.nodeType&&r.push(n);return r}return a},j.find.CLASS=C.getElementsByClassName&&function(e,t){if("undefined"!=typeof t.getElementsByClassName&&L)return t.getElementsByClassName(e)},F=[],I=[],(C.qsa=me.test(A.querySelectorAll))&&(i(function(e){
+if("*"===e){for(;n=a[i++];)1===n.nodeType&&r.push(n);return r}return a},j.find.CLASS=C.getElementsByClassName&&function(e,t){if("undefined"!=typeof t.getElementsByClassName&&L)return t.getElementsByClassName(e)},H=[],I=[],(C.qsa=me.test(A.querySelectorAll))&&(i(function(e){
 // Select is set to empty string on purpose
 // This is to test IE's treatment of not explicitly
 // setting a boolean content attribute,
@@ -960,15 +960,15 @@ e.querySelectorAll("[name=d]").length&&I.push("name"+ne+"*[*^$|!~]?="),
 // IE's :disabled selector does not pick up the children of disabled fieldsets
 O.appendChild(e).disabled=!0,2!==e.querySelectorAll(":disabled").length&&I.push(":enabled",":disabled"),
 // Opera 10-11 does not throw on post-comma invalid pseudos
-e.querySelectorAll("*,:x"),I.push(",.*:")})),(C.matchesSelector=me.test(H=O.matches||O.webkitMatchesSelector||O.mozMatchesSelector||O.oMatchesSelector||O.msMatchesSelector))&&i(function(e){
+e.querySelectorAll("*,:x"),I.push(",.*:")})),(C.matchesSelector=me.test(F=O.matches||O.webkitMatchesSelector||O.mozMatchesSelector||O.oMatchesSelector||O.msMatchesSelector))&&i(function(e){
 // Check to see if it's possible to do matchesSelector
 // on a disconnected node (IE 9)
-C.disconnectedMatch=H.call(e,"*"),
+C.disconnectedMatch=F.call(e,"*"),
 // This should fail with an exception
 // Gecko does not error, returns false instead
-H.call(e,"[s!='']:x"),F.push("!=",ae)}),I=I.length&&new RegExp(I.join("|")),F=F.length&&new RegExp(F.join("|")),t=me.test(O.compareDocumentPosition),P=t||me.test(O.contains)?function(e,t){var n=9===e.nodeType?e.documentElement:e,r=t&&t.parentNode;return e===r||!(!r||1!==r.nodeType||!(n.contains?n.contains(r):e.compareDocumentPosition&&16&e.compareDocumentPosition(r)))}:function(e,t){if(t)for(;t=t.parentNode;)if(t===e)return!0;return!1},V=t?function(e,t){
+F.call(e,"[s!='']:x"),H.push("!=",ae)}),I=I.length&&new RegExp(I.join("|")),H=H.length&&new RegExp(H.join("|")),t=me.test(O.compareDocumentPosition),P=t||me.test(O.contains)?function(e,t){var n=9===e.nodeType?e.documentElement:e,r=t&&t.parentNode;return e===r||!(!r||1!==r.nodeType||!(n.contains?n.contains(r):e.compareDocumentPosition&&16&e.compareDocumentPosition(r)))}:function(e,t){if(t)for(;t=t.parentNode;)if(t===e)return!0;return!1},U=t?function(e,t){
 // Flag for duplicate removal
-if(e===t)return _=!0,0;
+if(e===t)return M=!0,0;
 // Sort on method existence if only one input has compareDocumentPosition
 var n=!e.compareDocumentPosition-!t.compareDocumentPosition;
 // Calculate position if both inputs belong to the same document
@@ -977,7 +977,7 @@ var n=!e.compareDocumentPosition-!t.compareDocumentPosition;
 // Choose the first element that is related to our preferred document
 return n?n:(n=(e.ownerDocument||e)===(t.ownerDocument||t)?e.compareDocumentPosition(t):1,1&n||!C.sortDetached&&t.compareDocumentPosition(e)===n?e===A||e.ownerDocument===B&&P(B,e)?-1:t===A||t.ownerDocument===B&&P(B,t)?1:q?ee(q,e)-ee(q,t):0:4&n?-1:1)}:function(e,t){
 // Exit early if the nodes are identical
-if(e===t)return _=!0,0;var n,r=0,i=e.parentNode,a=t.parentNode,s=[e],u=[t];
+if(e===t)return M=!0,0;var n,r=0,i=e.parentNode,a=t.parentNode,s=[e],u=[t];
 // Parentless nodes are either documents or disconnected
 if(!i||!a)return e===A?-1:t===A?1:i?-1:a?1:q?ee(q,e)-ee(q,t):0;if(i===a)return o(e,t);for(
 // Otherwise we need full lists of their ancestors for comparison
@@ -988,18 +988,18 @@ for(;s[r]===u[r];)r++;
 // Otherwise nodes in our document sort first
 return r?o(s[r],u[r]):s[r]===B?-1:u[r]===B?1:0},A):A},t.matches=function(e,n){return t(e,null,null,n)},t.matchesSelector=function(e,n){if(
 // Set document vars if needed
-(e.ownerDocument||e)!==A&&M(e),
+(e.ownerDocument||e)!==A&&_(e),
 // Make sure that attribute selectors are quoted
-n=n.replace(le,"='$1']"),C.matchesSelector&&L&&!U[n+" "]&&(!F||!F.test(n))&&(!I||!I.test(n)))try{var r=H.call(e,n);
+n=n.replace(le,"='$1']"),C.matchesSelector&&L&&!z[n+" "]&&(!H||!H.test(n))&&(!I||!I.test(n)))try{var r=F.call(e,n);
 // IE 9's matchesSelector returns false on disconnected nodes
 if(r||C.disconnectedMatch||
 // As well, disconnected nodes are said to be in a document
 // fragment in IE 9
 e.document&&11!==e.document.nodeType)return r}catch(i){}return t(n,A,null,[e]).length>0},t.contains=function(e,t){
 // Set document vars if needed
-return(e.ownerDocument||e)!==A&&M(e),P(e,t)},t.attr=function(e,t){
+return(e.ownerDocument||e)!==A&&_(e),P(e,t)},t.attr=function(e,t){
 // Set document vars if needed
-(e.ownerDocument||e)!==A&&M(e);var n=j.attrHandle[t.toLowerCase()],
+(e.ownerDocument||e)!==A&&_(e);var n=j.attrHandle[t.toLowerCase()],
 // Don't get fooled by Object.prototype properties (jQuery #13807)
 r=n&&X.call(j.attrHandle,t.toLowerCase())?n(e,t,!L):void 0;return void 0!==r?r:C.attributes||!L?e.getAttribute(t):(r=e.getAttributeNode(t))&&r.specified?r.value:null},t.escape=function(e){return(e+"").replace(xe,Ce)},t.error=function(e){throw new Error("Syntax error, unrecognized expression: "+e)},/**
  * Document sorting and removing duplicates
@@ -1007,7 +1007,7 @@ r=n&&X.call(j.attrHandle,t.toLowerCase())?n(e,t,!L):void 0;return void 0!==r?r:C
  */
 t.uniqueSort=function(e){var t,n=[],r=0,i=0;if(
 // Unless we *know* we can detect duplicates, assume their presence
-_=!C.detectDuplicates,q=!C.sortStable&&e.slice(0),e.sort(V),_){for(;t=e[i++];)t===e[i]&&(r=n.push(i));for(;r--;)e.splice(n[r],1)}
+M=!C.detectDuplicates,q=!C.sortStable&&e.slice(0),e.sort(U),M){for(;t=e[i++];)t===e[i]&&(r=n.push(i));for(;r--;)e.splice(n[r],1)}
 // Clear input after sorting to release objects
 // See https://github.com/jquery/sizzle/pull/225
 return q=null,e},/**
@@ -1166,7 +1166,7 @@ for(x in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})j.pseudos[x]=s(x);fo
 // Use defaultValue in place of getAttribute("value")
 // Support: IE<9
 // Use getAttributeNode to fetch booleans when getAttribute lies
-return d.prototype=j.filters=j.pseudos,j.setFilters=new d,E=t.tokenize=function(e,n){var r,i,a,o,s,u,c,l=z[e+" "];if(l)return n?0:l.slice(0);for(s=e,u=[],c=j.preFilter;s;){
+return d.prototype=j.filters=j.pseudos,j.setFilters=new d,E=t.tokenize=function(e,n){var r,i,a,o,s,u,c,l=V[e+" "];if(l)return n?0:l.slice(0);for(s=e,u=[],c=j.preFilter;s;){
 // Comma and first run
 r&&!(i=ue.exec(s))||(i&&(
 // Don't consume trailing commas as valid
@@ -1181,11 +1181,11 @@ for(o in j.filter)!(i=pe[o].exec(s))||c[o]&&!(i=c[o](i))||(r=i.shift(),a.push({v
 // if we're just parsing
 // Otherwise, throw an error or return tokens
 // Cache the tokens
-return n?s.length:s?t.error(e):z(e,u).slice(0)},S=t.compile=function(e,t){var n,r=[],i=[],a=U[e+" "];if(!a){for(
+return n?s.length:s?t.error(e):V(e,u).slice(0)},S=t.compile=function(e,t){var n,r=[],i=[],a=z[e+" "];if(!a){for(
 // Generate a function of recursive functions that can be used to check each element
 t||(t=E(e)),n=t.length;n--;)a=b(t[n]),a[R]?r.push(a):i.push(a);
 // Cache the compiled function
-a=U(e,w(i,r)),
+a=z(e,w(i,r)),
 // Save selector and tokenization
 a.selector=e}return a},D=t.select=function(e,t,n,r){var i,a,o,s,u,c="function"==typeof e&&e,l=!r&&E(e=c.selector||e);
 // Try to minimize operations if there is only one selector in the list and no seed
@@ -1199,7 +1199,7 @@ i=pe.needsContext.test(e)?0:a.length;i--&&(o=a[i],!j.relative[s=o.type]);)if((u=
 a.splice(i,1),e=r.length&&p(a),!e)return Q.apply(n,r),n;break}}
 // Compile and execute a filtering function if one is not provided
 // Provide `match` to avoid retokenization if we modified the selector above
-return(c||S(e,l))(r,t,!L,n,!t||ye.test(e)&&f(t.parentNode)||t),n},C.sortStable=R.split("").sort(V).join("")===R,C.detectDuplicates=!!_,M(),C.sortDetached=i(function(e){
+return(c||S(e,l))(r,t,!L,n,!t||ye.test(e)&&f(t.parentNode)||t),n},C.sortStable=R.split("").sort(U).join("")===R,C.detectDuplicates=!!M,_(),C.sortDetached=i(function(e){
 // Should return 1, but returns 4 (following)
 return 1&e.compareDocumentPosition(A.createElement("fieldset"))}),i(function(e){return e.innerHTML="<a href='#'></a>","#"===e.firstChild.getAttribute("href")})||a("type|href|height|width",function(e,t,n){if(!n)return e.getAttribute(t,"type"===t.toLowerCase()?1:2)}),C.attributes&&i(function(e){return e.innerHTML="<input/>",e.firstChild.setAttribute("value",""),""===e.firstChild.getAttribute("value")})||a("value",function(e,t,n){if(!n&&"input"===e.nodeName.toLowerCase())return e.defaultValue}),i(function(e){return null==e.getAttribute("disabled")})||a(te,function(e,t,n){var r;if(!n)return e[t]===!0?t.toLowerCase():(r=e.getAttributeNode(t))&&r.specified?r.value:null}),t}(e);ge.find=we,ge.expr=we.selectors,
 // Deprecated
@@ -1264,7 +1264,7 @@ return e?"string"==typeof e?se.call(ge(e),this[0]):se.call(this,e.jquery?e[0]:e)
 return i(e,"iframe")?e.contentDocument:(i(e,"template")&&(e=e.content||e),ge.merge([],e.childNodes))}},function(e,t){ge.fn[e]=function(n,r){var i=ge.map(this,t,n);
 // Remove duplicates
 // Reverse order for parents* and prev-derivatives
-return"Until"!==e.slice(-5)&&(r=n),r&&"string"==typeof r&&(i=ge.filter(r,i)),this.length>1&&(qe[e]||ge.uniqueSort(i),Ne.test(e)&&i.reverse()),this.pushStack(i)}});var _e=/[^\x20\t\r\n\f]+/g;/*
+return"Until"!==e.slice(-5)&&(r=n),r&&"string"==typeof r&&(i=ge.filter(r,i)),this.length>1&&(qe[e]||ge.uniqueSort(i),Ne.test(e)&&i.reverse()),this.pushStack(i)}});var Me=/[^\x20\t\r\n\f]+/g;/*
  * Create a callback list using the following parameters:
  *
  *	options: an optional list of space-separated options that will change how
@@ -1465,10 +1465,10 @@ if(t<=1&&(l(e,a.done(o(n)).resolve,a.reject,!t),"pending"===a.state()||ge.isFunc
 for(;n--;)l(i[n],o(n),a.reject);return a.promise()}});
 // These usually indicate a programmer mistake during development,
 // warn about them ASAP rather than swallowing them by default.
-var Me=/^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;ge.Deferred.exceptionHook=function(t,n){
+var _e=/^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;ge.Deferred.exceptionHook=function(t,n){
 // Support: IE 8 - 9 only
 // Console exists when dev tools are open, which can happen at any time
-e.console&&e.console.warn&&t&&Me.test(t.name)&&e.console.warn("jQuery.Deferred exception: "+t.message,t.stack,n)},ge.readyException=function(t){e.setTimeout(function(){throw t})};
+e.console&&e.console.warn&&t&&_e.test(t.name)&&e.console.warn("jQuery.Deferred exception: "+t.message,t.stack,n)},ge.readyException=function(t){e.setTimeout(function(){throw t})};
 // The deferred used on DOM ready
 var Ae=ge.Deferred();ge.fn.ready=function(e){return Ae.then(e)["catch"](function(e){ge.readyException(e)}),this},ge.extend({
 // Is the DOM ready to be used? Set to true once it occurs.
@@ -1565,25 +1565,25 @@ Array.isArray(t)?
 t=t.map(ge.camelCase):(t=ge.camelCase(t),
 // If a key with the spaces exists, use it.
 // Otherwise, create an array by matching non-whitespace
-t=t in r?[t]:t.match(_e)||[]),n=t.length;for(;n--;)delete r[t[n]]}
+t=t in r?[t]:t.match(Me)||[]),n=t.length;for(;n--;)delete r[t[n]]}
 // Remove the expando if there's no more data
 (void 0===t||ge.isEmptyObject(r))&&(
 // Support: Chrome <=35 - 45
 // Webkit & Blink performance suffers when deleting properties
 // from DOM nodes, so set to undefined instead
 // https://bugs.chromium.org/p/chromium/issues/detail?id=378607 (bug restricted)
-e.nodeType?e[this.expando]=void 0:delete e[this.expando])}},hasData:function(e){var t=e[this.expando];return void 0!==t&&!ge.isEmptyObject(t)}};var Ie=new d,Fe=new d,He=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,Pe=/[A-Z]/g;ge.extend({hasData:function(e){return Fe.hasData(e)||Ie.hasData(e)},data:function(e,t,n){return Fe.access(e,t,n)},removeData:function(e,t){Fe.remove(e,t)},
+e.nodeType?e[this.expando]=void 0:delete e[this.expando])}},hasData:function(e){var t=e[this.expando];return void 0!==t&&!ge.isEmptyObject(t)}};var Ie=new d,He=new d,Fe=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,Pe=/[A-Z]/g;ge.extend({hasData:function(e){return He.hasData(e)||Ie.hasData(e)},data:function(e,t,n){return He.access(e,t,n)},removeData:function(e,t){He.remove(e,t)},
 // TODO: Now that all calls to _data and _removeData have been replaced
 // with direct calls to dataPriv methods, these can be deprecated.
 _data:function(e,t,n){return Ie.access(e,t,n)},_removeData:function(e,t){Ie.remove(e,t)}}),ge.fn.extend({data:function(e,t){var n,r,i,a=this[0],o=a&&a.attributes;
 // Gets all values
-if(void 0===e){if(this.length&&(i=Fe.get(a),1===a.nodeType&&!Ie.get(a,"hasDataAttrs"))){for(n=o.length;n--;)
+if(void 0===e){if(this.length&&(i=He.get(a),1===a.nodeType&&!Ie.get(a,"hasDataAttrs"))){for(n=o.length;n--;)
 // Support: IE 11 only
 // The attrs elements can be null (#14894)
 o[n]&&(r=o[n].name,0===r.indexOf("data-")&&(r=ge.camelCase(r.slice(5)),h(a,r,i[r])));Ie.set(a,"hasDataAttrs",!0)}return i}
 // Sets multiple values
 // Sets multiple values
-return"object"==typeof e?this.each(function(){Fe.set(this,e)}):Oe(this,function(t){var n;
+return"object"==typeof e?this.each(function(){He.set(this,e)}):Oe(this,function(t){var n;
 // The calling jQuery object (element matches) is not empty
 // (and therefore has an element appears at this[ 0 ]) and the
 // `value` parameter was not undefined. An empty jQuery object
@@ -1592,14 +1592,14 @@ return"object"==typeof e?this.each(function(){Fe.set(this,e)}):Oe(this,function(
 if(a&&void 0===t){if(
 // Attempt to get data from the cache
 // The key will always be camelCased in Data
-n=Fe.get(a,e),void 0!==n)return n;if(
+n=He.get(a,e),void 0!==n)return n;if(
 // Attempt to "discover" the data in
 // HTML5 custom data-* attrs
 n=h(a,e),void 0!==n)return n}else
 // Set the data...
 this.each(function(){
 // We always store the camelCased key
-Fe.set(this,e,t)})},null,t,arguments.length>1,null,!0)},removeData:function(e){return this.each(function(){Fe.remove(this,e)})}}),ge.extend({queue:function(e,t,n){var r;if(e)
+He.set(this,e,t)})},null,t,arguments.length>1,null,!0)},removeData:function(e){return this.each(function(){He.remove(this,e)})}}),ge.extend({queue:function(e,t,n){var r;if(e)
 // Speed up dequeue by getting out quickly if this is just a lookup
 return t=(t||"fx")+"queue",r=Ie.get(e,t),n&&(!r||Array.isArray(n)?r=Ie.access(e,t,ge.makeArray(n)):r.push(n)),r||[]},dequeue:function(e,t){t=t||"fx";var n=ge.queue(e,t),r=n.length,i=n.shift(),a=ge._queueHooks(e,t),o=function(){ge.dequeue(e,t)};
 // If the fx queue is dequeued, always remove the progress sentinel
@@ -1627,7 +1627,7 @@ return e=t||e,"none"===e.style.display||""===e.style.display&&ge.contains(e.owne
 // Remember the old values, and insert the new ones
 for(a in t)o[a]=e.style[a],e.style[a]=t[a];i=n.apply(e,r||[]);
 // Revert the old values
-for(a in t)e.style[a]=o[a];return i},ze={};ge.fn.extend({show:function(){return v(this,!0)},hide:function(){return v(this)},toggle:function(e){return"boolean"==typeof e?e?this.show():this.hide():this.each(function(){We(this)?ge(this).show():ge(this).hide()})}});var Ue=/^(?:checkbox|radio)$/i,Ve=/<([a-z][^\/\0>\x20\t\r\n\f]+)/i,Xe=/^$|\/(?:java|ecma)script/i,Ke={
+for(a in t)e.style[a]=o[a];return i},Ve={};ge.fn.extend({show:function(){return v(this,!0)},hide:function(){return v(this)},toggle:function(e){return"boolean"==typeof e?e?this.show():this.hide():this.each(function(){We(this)?ge(this).show():ge(this).hide()})}});var ze=/^(?:checkbox|radio)$/i,Ue=/<([a-z][^\/\0>\x20\t\r\n\f]+)/i,Xe=/^$|\/(?:java|ecma)script/i,Ke={
 // Support: IE <=9 only
 option:[1,"<select multiple='multiple'>","</select>"],
 // XHTML parsers do not magically insert elements in the
@@ -1666,7 +1666,7 @@ n.guid||(n.guid=ge.guid++),
 // when an event is called after a page has unloaded
 return"undefined"!=typeof ge&&ge.event.triggered!==t.type?ge.event.dispatch.apply(e,arguments):void 0}),
 // Handle multiple events separated by a space
-t=(t||"").match(_e)||[""],c=t.length;c--;)s=et.exec(t[c])||[],p=g=s[1],h=(s[2]||"").split(".").sort(),
+t=(t||"").match(Me)||[""],c=t.length;c--;)s=et.exec(t[c])||[],p=g=s[1],h=(s[2]||"").split(".").sort(),
 // There *must* be a type, no attaching namespace-only handlers
 p&&(
 // If event changes its type, use the special event handlers for the changed type
@@ -1688,7 +1688,7 @@ ge.event.global[p]=!0)},
 // Detach an event or set of events from an element
 remove:function(e,t,n,r,i){var a,o,s,u,c,l,f,d,p,h,g,m=Ie.hasData(e)&&Ie.get(e);if(m&&(u=m.events)){for(
 // Once for each type.namespace in types; type may be omitted
-t=(t||"").match(_e)||[""],c=t.length;c--;)
+t=(t||"").match(Me)||[""],c=t.length;c--;)
 // Unbind all events (on this namespace, if provided) for the element
 if(s=et.exec(t[c])||[],p=g=s[1],h=(s[2]||"").split(".").sort(),p){for(f=ge.event.special[p]||{},p=(r?f.delegateType:f.bindType)||p,d=u[p]||[],s=s[2]&&new RegExp("(^|\\.)"+h.join("\\.(?:.*\\.|)")+"(\\.|$)"),
 // Remove matching events
@@ -1803,16 +1803,16 @@ if(t)if(n)for(a=a||y(e),o=o||y(s),r=0,i=a.length;r<i;r++)D(a[r],o[r]);else D(e,s
 return o=y(s,"script"),o.length>0&&b(o,!u&&y(e,"script")),s},cleanData:function(e){for(var t,n,r,i=ge.event.special,a=0;void 0!==(n=e[a]);a++)if(Le(n)){if(t=n[Ie.expando]){if(t.events)for(r in t.events)i[r]?ge.event.remove(n,r):ge.removeEvent(n,r,t.handle);
 // Support: Chrome <=35 - 45+
 // Assign undefined instead of using delete, see Data#remove
-n[Ie.expando]=void 0}n[Fe.expando]&&(
+n[Ie.expando]=void 0}n[He.expando]&&(
 // Support: Chrome <=35 - 45+
 // Assign undefined instead of using delete, see Data#remove
-n[Fe.expando]=void 0)}}}),ge.fn.extend({detach:function(e){return _(this,e,!0)},remove:function(e){return _(this,e)},text:function(e){return Oe(this,function(e){return void 0===e?ge.text(this):this.empty().each(function(){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||(this.textContent=e)})},null,e,arguments.length)},append:function(){return q(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=k(this,e);t.appendChild(e)}})},prepend:function(){return q(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=k(this,e);t.insertBefore(e,t.firstChild)}})},before:function(){return q(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this)})},after:function(){return q(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this.nextSibling)})},empty:function(){for(var e,t=0;null!=(e=this[t]);t++)1===e.nodeType&&(
+n[He.expando]=void 0)}}}),ge.fn.extend({detach:function(e){return M(this,e,!0)},remove:function(e){return M(this,e)},text:function(e){return Oe(this,function(e){return void 0===e?ge.text(this):this.empty().each(function(){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||(this.textContent=e)})},null,e,arguments.length)},append:function(){return q(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=k(this,e);t.appendChild(e)}})},prepend:function(){return q(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=k(this,e);t.insertBefore(e,t.firstChild)}})},before:function(){return q(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this)})},after:function(){return q(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this.nextSibling)})},empty:function(){for(var e,t=0;null!=(e=this[t]);t++)1===e.nodeType&&(
 // Prevent memory leaks
 ge.cleanData(y(e,!1)),
 // Remove any remaining nodes
 e.textContent="");return this},clone:function(e,t){return e=null!=e&&e,t=null==t?e:t,this.map(function(){return ge.clone(this,e,t)})},html:function(e){return Oe(this,function(e){var t=this[0]||{},n=0,r=this.length;if(void 0===e&&1===t.nodeType)return t.innerHTML;
 // See if we can take a shortcut and just use innerHTML
-if("string"==typeof e&&!nt.test(e)&&!Ke[(Ve.exec(e)||["",""])[1].toLowerCase()]){e=ge.htmlPrefilter(e);try{for(;n<r;n++)t=this[n]||{},
+if("string"==typeof e&&!nt.test(e)&&!Ke[(Ue.exec(e)||["",""])[1].toLowerCase()]){e=ge.htmlPrefilter(e);try{for(;n<r;n++)t=this[n]||{},
 // Remove element nodes and prevent memory leaks
 1===t.nodeType&&(ge.cleanData(y(t,!1)),t.innerHTML=e);t=0}catch(i){}}t&&this.empty().append(e)},null,e,arguments.length)},replaceWith:function(){var e=[];
 // Make the changes, replacing each non-ignored context element with the new content
@@ -1850,7 +1850,7 @@ ct=/^(none|table(?!-c[ea]).+)/,lt=/^--/,ft={position:"absolute",visibility:"hidd
 // behavior of getting and setting a style property
 cssHooks:{opacity:{get:function(e,t){if(t){
 // We should always get a number back from opacity
-var n=M(e,"opacity");return""===n?"1":n}}}},
+var n=_(e,"opacity");return""===n?"1":n}}}},
 // Don't automatically add "px" to these possibly-unitless properties
 cssNumber:{animationIterationCount:!0,columnCount:!0,fillOpacity:!0,flexGrow:!0,flexShrink:!0,fontWeight:!0,lineHeight:!0,opacity:!0,order:!0,orphans:!0,widows:!0,zIndex:!0,zoom:!0},
 // Add in properties whose names you wish to fix before
@@ -1885,7 +1885,7 @@ return u||(t=L(s)),o=ge.cssHooks[t]||ge.cssHooks[s],void 0===n?o&&"get"in o&&voi
 // Otherwise, if a way to get the computed value exists, use that
 // Convert "normal" to computed value
 // Make numeric if forced or a qualifier was provided and val looks numeric
-return u||(t=L(s)),o=ge.cssHooks[t]||ge.cssHooks[s],o&&"get"in o&&(i=o.get(e,!0,n)),void 0===i&&(i=M(e,t,r)),"normal"===i&&t in dt&&(i=dt[t]),""===n||n?(a=parseFloat(i),n===!0||isFinite(a)?a||0:i):i}}),ge.each(["height","width"],function(e,t){ge.cssHooks[t]={get:function(e,n,r){if(n)
+return u||(t=L(s)),o=ge.cssHooks[t]||ge.cssHooks[s],o&&"get"in o&&(i=o.get(e,!0,n)),void 0===i&&(i=_(e,t,r)),"normal"===i&&t in dt&&(i=dt[t]),""===n||n?(a=parseFloat(i),n===!0||isFinite(a)?a||0:i):i}}),ge.each(["height","width"],function(e,t){ge.cssHooks[t]={get:function(e,n,r){if(n)
 // Certain elements can have dimension info if we invisibly show them
 // but it must have a current display style that would benefit
 // Support: Safari 8+
@@ -1894,9 +1894,9 @@ return u||(t=L(s)),o=ge.cssHooks[t]||ge.cssHooks[s],o&&"get"in o&&(i=o.get(e,!0,
 // Support: IE <=11 only
 // Running getBoundingClientRect on a disconnected node
 // in IE throws an error.
-return!ct.test(ge.css(e,"display"))||e.getClientRects().length&&e.getBoundingClientRect().width?H(e,t,r):$e(e,ft,function(){return H(e,t,r)})},set:function(e,n,r){var i,a=r&&ut(e),o=r&&F(e,t,r,"border-box"===ge.css(e,"boxSizing",!1,a),a);
+return!ct.test(ge.css(e,"display"))||e.getClientRects().length&&e.getBoundingClientRect().width?F(e,t,r):$e(e,ft,function(){return F(e,t,r)})},set:function(e,n,r){var i,a=r&&ut(e),o=r&&H(e,t,r,"border-box"===ge.css(e,"boxSizing",!1,a),a);
 // Convert to pixels if value adjustment is needed
-return o&&(i=Be.exec(n))&&"px"!==(i[3]||"px")&&(e.style[t]=n,n=ge.css(e,t)),I(e,n,o)}}}),ge.cssHooks.marginLeft=A(pe.reliableMarginLeft,function(e,t){if(t)return(parseFloat(M(e,"marginLeft"))||e.getBoundingClientRect().left-$e(e,{marginLeft:0},function(){return e.getBoundingClientRect().left}))+"px"}),
+return o&&(i=Be.exec(n))&&"px"!==(i[3]||"px")&&(e.style[t]=n,n=ge.css(e,t)),I(e,n,o)}}}),ge.cssHooks.marginLeft=A(pe.reliableMarginLeft,function(e,t){if(t)return(parseFloat(_(e,"marginLeft"))||e.getBoundingClientRect().left-$e(e,{marginLeft:0},function(){return e.getBoundingClientRect().left}))+"px"}),
 // These hooks are used by animate to expand properties
 ge.each({margin:"",padding:"",border:"Width"},function(e,t){ge.cssHooks[e+t]={expand:function(n){for(var r=0,i={},
 // Assumes a single number if not a string
@@ -1918,7 +1918,7 @@ ge.fx.step[e.prop]?ge.fx.step[e.prop](e):1!==e.elem.nodeType||null==e.elem.style
 // Panic based approach to setting things on disconnected nodes
 P.propHooks.scrollTop=P.propHooks.scrollLeft={set:function(e){e.elem.nodeType&&e.elem.parentNode&&(e.elem[e.prop]=e.now)}},ge.easing={linear:function(e){return e},swing:function(e){return.5-Math.cos(e*Math.PI)/2},_default:"swing"},ge.fx=P.prototype.init,
 // Back compat <1.8 extension point
-ge.fx.step={};var gt,mt,vt=/^(?:toggle|show|hide)$/,yt=/queueHooks$/;ge.Animation=ge.extend(U,{tweeners:{"*":[function(e,t){var n=this.createTween(e,t);return g(n.elem,e,Be.exec(t),n),n}]},tweener:function(e,t){ge.isFunction(e)?(t=e,e=["*"]):e=e.match(_e);for(var n,r=0,i=e.length;r<i;r++)n=e[r],U.tweeners[n]=U.tweeners[n]||[],U.tweeners[n].unshift(t)},prefilters:[$],prefilter:function(e,t){t?U.prefilters.unshift(e):U.prefilters.push(e)}}),ge.speed=function(e,t,n){var r=e&&"object"==typeof e?ge.extend({},e):{complete:n||!n&&t||ge.isFunction(e)&&e,duration:e,easing:n&&t||t&&!ge.isFunction(t)&&t};
+ge.fx.step={};var gt,mt,vt=/^(?:toggle|show|hide)$/,yt=/queueHooks$/;ge.Animation=ge.extend(z,{tweeners:{"*":[function(e,t){var n=this.createTween(e,t);return g(n.elem,e,Be.exec(t),n),n}]},tweener:function(e,t){ge.isFunction(e)?(t=e,e=["*"]):e=e.match(Me);for(var n,r=0,i=e.length;r<i;r++)n=e[r],z.tweeners[n]=z.tweeners[n]||[],z.tweeners[n].unshift(t)},prefilters:[$],prefilter:function(e,t){t?z.prefilters.unshift(e):z.prefilters.push(e)}}),ge.speed=function(e,t,n){var r=e&&"object"==typeof e?ge.extend({},e):{complete:n||!n&&t||ge.isFunction(e)&&e,duration:e,easing:n&&t||t&&!ge.isFunction(t)&&t};
 // Go to the end state if fx are off
 // Normalize opt.queue - true/undefined/null -> "fx"
 // Queueing
@@ -1926,7 +1926,7 @@ return ge.fx.off?r.duration=0:"number"!=typeof r.duration&&(r.duration in ge.fx.
 // Show any hidden elements after setting opacity to 0
 return this.filter(We).css("opacity",0).show().end().animate({opacity:t},e,n,r)},animate:function(e,t,n,r){var i=ge.isEmptyObject(e),a=ge.speed(t,n,r),o=function(){
 // Operate on a copy of prop so per-property easing won't be lost
-var t=U(this,ge.extend({},e),a);
+var t=z(this,ge.extend({},e),a);
 // Empty animations, or finishing resolves immediately
 (i||Ie.get(this,"finish"))&&t.stop(!0)};return o.finish=o,i||a.queue===!1?this.each(o):this.queue(a.queue,o)},stop:function(e,t,n){var r=function(e){var t=e.stop;delete e.stop,t(n)};return"string"!=typeof e&&(n=t,t=e,e=void 0),t&&e!==!1&&this.queue(e||"fx",[]),this.each(function(){var t=!0,i=null!=e&&e+"queueHooks",a=ge.timers,o=Ie.get(this);if(i)o[i]&&o[i].stop&&r(o[i]);else for(i in o)o[i]&&o[i].stop&&yt.test(i)&&r(o[i]);for(i=a.length;i--;)a[i].elem!==this||null!=e&&a[i].queue!==e||(a[i].anim.stop(n),t=!1,a.splice(i,1));
 // Start the next in the queue if the last step wasn't forced.
@@ -1970,7 +1970,7 @@ if(3!==a&&8!==a&&2!==a)
 return"undefined"==typeof e.getAttribute?ge.prop(e,t,n):(1===a&&ge.isXMLDoc(e)||(i=ge.attrHooks[t.toLowerCase()]||(ge.expr.match.bool.test(t)?bt:void 0)),void 0!==n?null===n?void ge.removeAttr(e,t):i&&"set"in i&&void 0!==(r=i.set(e,n,t))?r:(e.setAttribute(t,n+""),n):i&&"get"in i&&null!==(r=i.get(e,t))?r:(r=ge.find.attr(e,t),null==r?void 0:r))},attrHooks:{type:{set:function(e,t){if(!pe.radioValue&&"radio"===t&&i(e,"input")){var n=e.value;return e.setAttribute("type",t),n&&(e.value=n),t}}}},removeAttr:function(e,t){var n,r=0,
 // Attribute names can contain non-HTML whitespace characters
 // https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
-i=t&&t.match(_e);if(i&&1===e.nodeType)for(;n=i[r++];)e.removeAttribute(n)}}),
+i=t&&t.match(Me);if(i&&1===e.nodeType)for(;n=i[r++];)e.removeAttribute(n)}}),
 // Hooks for boolean attributes
 bt={set:function(e,t,n){
 // Remove boolean attributes when set to false
@@ -1997,17 +1997,17 @@ var t=ge.find.attr(e,"tabindex");return t?parseInt(t,10):xt.test(e.nodeName)||Ct
 // since it considers such accessions noop
 pe.optSelected||(ge.propHooks.selected={get:function(e){/* eslint no-unused-expressions: "off" */
 var t=e.parentNode;return t&&t.parentNode&&t.parentNode.selectedIndex,null},set:function(e){/* eslint no-unused-expressions: "off" */
-var t=e.parentNode;t&&(t.selectedIndex,t.parentNode&&t.parentNode.selectedIndex)}}),ge.each(["tabIndex","readOnly","maxLength","cellSpacing","cellPadding","rowSpan","colSpan","useMap","frameBorder","contentEditable"],function(){ge.propFix[this.toLowerCase()]=this}),ge.fn.extend({addClass:function(e){var t,n,r,i,a,o,s,u=0;if(ge.isFunction(e))return this.each(function(t){ge(this).addClass(e.call(this,t,X(this)))});if("string"==typeof e&&e)for(t=e.match(_e)||[];n=this[u++];)if(i=X(n),r=1===n.nodeType&&" "+V(i)+" "){for(o=0;a=t[o++];)r.indexOf(" "+a+" ")<0&&(r+=a+" ");
+var t=e.parentNode;t&&(t.selectedIndex,t.parentNode&&t.parentNode.selectedIndex)}}),ge.each(["tabIndex","readOnly","maxLength","cellSpacing","cellPadding","rowSpan","colSpan","useMap","frameBorder","contentEditable"],function(){ge.propFix[this.toLowerCase()]=this}),ge.fn.extend({addClass:function(e){var t,n,r,i,a,o,s,u=0;if(ge.isFunction(e))return this.each(function(t){ge(this).addClass(e.call(this,t,X(this)))});if("string"==typeof e&&e)for(t=e.match(Me)||[];n=this[u++];)if(i=X(n),r=1===n.nodeType&&" "+U(i)+" "){for(o=0;a=t[o++];)r.indexOf(" "+a+" ")<0&&(r+=a+" ");
 // Only assign if different to avoid unneeded rendering.
-s=V(r),i!==s&&n.setAttribute("class",s)}return this},removeClass:function(e){var t,n,r,i,a,o,s,u=0;if(ge.isFunction(e))return this.each(function(t){ge(this).removeClass(e.call(this,t,X(this)))});if(!arguments.length)return this.attr("class","");if("string"==typeof e&&e)for(t=e.match(_e)||[];n=this[u++];)if(i=X(n),
+s=U(r),i!==s&&n.setAttribute("class",s)}return this},removeClass:function(e){var t,n,r,i,a,o,s,u=0;if(ge.isFunction(e))return this.each(function(t){ge(this).removeClass(e.call(this,t,X(this)))});if(!arguments.length)return this.attr("class","");if("string"==typeof e&&e)for(t=e.match(Me)||[];n=this[u++];)if(i=X(n),
 // This expression is here for better compressibility (see addClass)
-r=1===n.nodeType&&" "+V(i)+" "){for(o=0;a=t[o++];)
+r=1===n.nodeType&&" "+U(i)+" "){for(o=0;a=t[o++];)
 // Remove *all* instances
 for(;r.indexOf(" "+a+" ")>-1;)r=r.replace(" "+a+" "," ");
 // Only assign if different to avoid unneeded rendering.
-s=V(r),i!==s&&n.setAttribute("class",s)}return this},toggleClass:function(e,t){var n=typeof e;return"boolean"==typeof t&&"string"===n?t?this.addClass(e):this.removeClass(e):ge.isFunction(e)?this.each(function(n){ge(this).toggleClass(e.call(this,n,X(this),t),t)}):this.each(function(){var t,r,i,a;if("string"===n)for(
+s=U(r),i!==s&&n.setAttribute("class",s)}return this},toggleClass:function(e,t){var n=typeof e;return"boolean"==typeof t&&"string"===n?t?this.addClass(e):this.removeClass(e):ge.isFunction(e)?this.each(function(n){ge(this).toggleClass(e.call(this,n,X(this),t),t)}):this.each(function(){var t,r,i,a;if("string"===n)for(
 // Toggle individual class names
-r=0,i=ge(this),a=e.match(_e)||[];t=a[r++];)
+r=0,i=ge(this),a=e.match(Me)||[];t=a[r++];)
 // Check each className given, space separated list
 i.hasClass(t)?i.removeClass(t):i.addClass(t);else void 0!==e&&"boolean"!==n||(t=X(this),t&&
 // Store className if set
@@ -2016,7 +2016,7 @@ Ie.set(this,"__className__",t),
 // then remove the whole classname (if there was one, the above saved it).
 // Otherwise bring back whatever was previously saved (if anything),
 // falling back to the empty string if nothing was stored.
-this.setAttribute&&this.setAttribute("class",t||e===!1?"":Ie.get(this,"__className__")||""))})},hasClass:function(e){var t,n,r=0;for(t=" "+e+" ";n=this[r++];)if(1===n.nodeType&&(" "+V(X(n))+" ").indexOf(t)>-1)return!0;return!1}});var jt=/\r/g;ge.fn.extend({val:function(e){var t,n,r,i=this[0];{if(arguments.length)return r=ge.isFunction(e),this.each(function(n){var i;1===this.nodeType&&(i=r?e.call(this,n,ge(this).val()):e,
+this.setAttribute&&this.setAttribute("class",t||e===!1?"":Ie.get(this,"__className__")||""))})},hasClass:function(e){var t,n,r=0;for(t=" "+e+" ";n=this[r++];)if(1===n.nodeType&&(" "+U(X(n))+" ").indexOf(t)>-1)return!0;return!1}});var jt=/\r/g;ge.fn.extend({val:function(e){var t,n,r,i=this[0];{if(arguments.length)return r=ge.isFunction(e),this.each(function(n){var i;1===this.nodeType&&(i=r?e.call(this,n,ge(this).val()):e,
 // Treat null/undefined as ""; convert numbers to string
 null==i?i="":"number"==typeof i?i+="":Array.isArray(i)&&(i=ge.map(i,function(e){return null==e?"":e+""})),t=ge.valHooks[this.type]||ge.valHooks[this.nodeName.toLowerCase()],
 // If set returns undefined, fall back to normal setting
@@ -2027,7 +2027,7 @@ return t=ge.valHooks[i.type]||ge.valHooks[i.nodeName.toLowerCase()],t&&"get"in t
 // option.text throws exceptions (#14686, #14858)
 // Strip and collapse whitespace
 // https://html.spec.whatwg.org/#strip-and-collapse-whitespace
-return null!=t?t:V(ge.text(e))}},select:{get:function(e){var t,n,r,a=e.options,o=e.selectedIndex,s="select-one"===e.type,u=s?null:[],c=s?o+1:a.length;
+return null!=t?t:U(ge.text(e))}},select:{get:function(e){var t,n,r,a=e.options,o=e.selectedIndex,s="select-one"===e.type,u=s?null:[],c=s?o+1:a.length;
 // Loop through all the selected options
 for(r=o<0?c:s?o:0;r<c;r++)
 // Support: IE <=9 only
@@ -2099,7 +2099,7 @@ var n=function(e){ge.event.simulate(t,e.target,ge.event.fix(e))};ge.event.specia
 ge.parseXML=function(t){var n;if(!t||"string"!=typeof t)return null;
 // Support: IE 9 - 11 only
 // IE throws on parseFromString with invalid input.
-try{n=(new e.DOMParser).parseFromString(t,"text/xml")}catch(r){n=void 0}return n&&!n.getElementsByTagName("parsererror").length||ge.error("Invalid XML: "+t),n};var Dt=/\[\]$/,Nt=/\r?\n/g,qt=/^(?:submit|button|image|reset|file)$/i,_t=/^(?:input|select|textarea|keygen)/i;
+try{n=(new e.DOMParser).parseFromString(t,"text/xml")}catch(r){n=void 0}return n&&!n.getElementsByTagName("parsererror").length||ge.error("Invalid XML: "+t),n};var Dt=/\[\]$/,Nt=/\r?\n/g,qt=/^(?:submit|button|image|reset|file)$/i,Mt=/^(?:input|select|textarea|keygen)/i;
 // Serialize an array of form elements or a set of
 // key/values into a query string
 ge.param=function(e,t){var n,r=[],i=function(e,t){
@@ -2117,9 +2117,9 @@ return r.join("&")},ge.fn.extend({serialize:function(){return ge.param(this.seri
 // Can add propHook for "elements" to filter or add form elements
 var e=ge.prop(this,"elements");return e?ge.makeArray(e):this}).filter(function(){var e=this.type;
 // Use .is( ":disabled" ) so that fieldset[disabled] works
-return this.name&&!ge(this).is(":disabled")&&_t.test(this.nodeName)&&!qt.test(e)&&(this.checked||!Ue.test(e))}).map(function(e,t){var n=ge(this).val();return null==n?null:Array.isArray(n)?ge.map(n,function(e){return{name:t.name,value:e.replace(Nt,"\r\n")}}):{name:t.name,value:n.replace(Nt,"\r\n")}}).get()}});var Mt=/%20/g,At=/#.*$/,Ot=/([?&])_=[^&]*/,Lt=/^(.*?):[ \t]*([^\r\n]*)$/gm,
+return this.name&&!ge(this).is(":disabled")&&Mt.test(this.nodeName)&&!qt.test(e)&&(this.checked||!ze.test(e))}).map(function(e,t){var n=ge(this).val();return null==n?null:Array.isArray(n)?ge.map(n,function(e){return{name:t.name,value:e.replace(Nt,"\r\n")}}):{name:t.name,value:n.replace(Nt,"\r\n")}}).get()}});var _t=/%20/g,At=/#.*$/,Ot=/([?&])_=[^&]*/,Lt=/^(.*?):[ \t]*([^\r\n]*)$/gm,
 // #7653, #8125, #8152: local protocol detection
-It=/^(?:about|app|app-storage|.+-extension|file|res|widget):$/,Ft=/^(?:GET|HEAD)$/,Ht=/^\/\//,/* Prefilters
+It=/^(?:about|app|app-storage|.+-extension|file|res|widget):$/,Ht=/^(?:GET|HEAD)$/,Ft=/^\/\//,/* Prefilters
 	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
 	 * 2) These are called:
 	 *    - BEFORE asking for a transport
@@ -2274,11 +2274,11 @@ v.promise(j),
 // Add protocol if not provided (prefilters might expect it)
 // Handle falsy url in the settings object (#10093: consistency with old signature)
 // We also use the url parameter if available
-h.url=((t||h.url||kt.href)+"").replace(Ht,kt.protocol+"//"),
+h.url=((t||h.url||kt.href)+"").replace(Ft,kt.protocol+"//"),
 // Alias method option to type as per ticket #12004
 h.type=n.method||n.type||h.method||h.type,
 // Extract dataTypes list
-h.dataTypes=(h.dataType||"*").toLowerCase().match(_e)||[""],null==h.crossDomain){c=ne.createElement("a");
+h.dataTypes=(h.dataType||"*").toLowerCase().match(Me)||[""],null==h.crossDomain){c=ne.createElement("a");
 // Support: IE <=8 - 11, Edge 12 - 13
 // IE throws exception on accessing the href property if url is malformed,
 // e.g. http://example.com:80x/
@@ -2303,13 +2303,13 @@ f&&0===ge.active++&&ge.event.trigger("ajaxStart"),
 // Uppercase the type
 h.type=h.type.toUpperCase(),
 // Determine if request has content
-h.hasContent=!Ft.test(h.type),
+h.hasContent=!Ht.test(h.type),
 // Save the URL in case we're toying with the If-Modified-Since
 // and/or If-None-Match header later on
 // Remove hash to simplify url manipulation
 a=h.url.replace(At,""),
 // More options handling for requests with no content
-h.hasContent?h.data&&h.processData&&0===(h.contentType||"").indexOf("application/x-www-form-urlencoded")&&(h.data=h.data.replace(Mt,"+")):(
+h.hasContent?h.data&&h.processData&&0===(h.contentType||"").indexOf("application/x-www-form-urlencoded")&&(h.data=h.data.replace(_t,"+")):(
 // Remember the hash so we can put it back
 p=h.url.slice(a.length),
 // If data is available, append data to url
@@ -2418,11 +2418,11 @@ ge.ajaxTransport("script",function(e){
 // This transport only deals with cross domain requests
 if(e.crossDomain){var t,n;return{send:function(r,i){t=ge("<script>").prop({charset:e.scriptCharset,src:e.url}).on("load error",n=function(e){t.remove(),n=null,e&&i("error"===e.type?404:200,e.type)}),
 // Use native DOM manipulation to avoid our domManip AJAX trickery
-ne.head.appendChild(t[0])},abort:function(){n&&n()}}}});var zt=[],Ut=/(=)\?(?=&|$)|\?\?/;
+ne.head.appendChild(t[0])},abort:function(){n&&n()}}}});var Vt=[],zt=/(=)\?(?=&|$)|\?\?/;
 // Default jsonp settings
-ge.ajaxSetup({jsonp:"callback",jsonpCallback:function(){var e=zt.pop()||ge.expando+"_"+Et++;return this[e]=!0,e}}),
+ge.ajaxSetup({jsonp:"callback",jsonpCallback:function(){var e=Vt.pop()||ge.expando+"_"+Et++;return this[e]=!0,e}}),
 // Detect, normalize options and install callbacks for jsonp requests
-ge.ajaxPrefilter("json jsonp",function(t,n,r){var i,a,o,s=t.jsonp!==!1&&(Ut.test(t.url)?"url":"string"==typeof t.data&&0===(t.contentType||"").indexOf("application/x-www-form-urlencoded")&&Ut.test(t.data)&&"data");
+ge.ajaxPrefilter("json jsonp",function(t,n,r){var i,a,o,s=t.jsonp!==!1&&(zt.test(t.url)?"url":"string"==typeof t.data&&0===(t.contentType||"").indexOf("application/x-www-form-urlencoded")&&zt.test(t.data)&&"data");
 // Handle iff the expected data type is "jsonp" or we have a parameter to set
 if(s||"jsonp"===t.dataTypes[0])
 // Delegate to script
@@ -2432,7 +2432,7 @@ if(s||"jsonp"===t.dataTypes[0])
 // Force json dataType
 // Install callback
 // Clean-up function (fires after converters)
-return i=t.jsonpCallback=ge.isFunction(t.jsonpCallback)?t.jsonpCallback():t.jsonpCallback,s?t[s]=t[s].replace(Ut,"$1"+i):t.jsonp!==!1&&(t.url+=(St.test(t.url)?"&":"?")+t.jsonp+"="+i),t.converters["script json"]=function(){return o||ge.error(i+" was not called"),o[0]},t.dataTypes[0]="json",a=e[i],e[i]=function(){o=arguments},r.always(function(){
+return i=t.jsonpCallback=ge.isFunction(t.jsonpCallback)?t.jsonpCallback():t.jsonpCallback,s?t[s]=t[s].replace(zt,"$1"+i):t.jsonp!==!1&&(t.url+=(St.test(t.url)?"&":"?")+t.jsonp+"="+i),t.converters["script json"]=function(){return o||ge.error(i+" was not called"),o[0]},t.dataTypes[0]="json",a=e[i],e[i]=function(){o=arguments},r.always(function(){
 // If previous value didn't exist - remove it
 void 0===a?ge(e).removeProp(i):e[i]=a,
 // Save back as free
@@ -2440,7 +2440,7 @@ t[i]&&(
 // Make sure that re-using the options doesn't screw things around
 t.jsonpCallback=n.jsonpCallback,
 // Save the callback name for future use
-zt.push(i)),
+Vt.push(i)),
 // Call if it was a function and we have a response
 o&&ge.isFunction(a)&&a(o[0]),o=a=void 0}),"script"}),
 // Support: Safari 8 only
@@ -2468,7 +2468,7 @@ ge.fn.load=function(e,t,n){var r,i,a,o=this,s=e.indexOf(" ");
 // If it's a function
 // We assume that it's the callback
 // If we have elements to modify, make the request
-return s>-1&&(r=V(e.slice(s)),e=e.slice(0,s)),ge.isFunction(t)?(n=t,t=void 0):t&&"object"==typeof t&&(i="POST"),o.length>0&&ge.ajax({url:e,
+return s>-1&&(r=U(e.slice(s)),e=e.slice(0,s)),ge.isFunction(t)?(n=t,t=void 0):t&&"object"==typeof t&&(i="POST"),o.length>0&&ge.ajax({url:e,
 // If "type" variable is undefined, then "GET" method will be used.
 // Make value of this field explicit since
 // user can override it through ajaxSetup method
@@ -2531,7 +2531,7 @@ var a;return ge.isWindow(e)?a=e:9===e.nodeType&&(a=e.defaultView),void 0===i?a?a
 // rather than make the css module depend on the offset module, just check for it here
 ge.each(["top","left"],function(e,t){ge.cssHooks[t]=A(pe.pixelPosition,function(e,n){if(n)
 // If curCSS returns percentage, fallback to offset
-return n=M(e,t),st.test(n)?ge(e).position()[t]+"px":n})}),
+return n=_(e,t),st.test(n)?ge(e).position()[t]+"px":n})}),
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
 ge.each({Height:"height",Width:"width"},function(e,t){ge.each({padding:"inner"+e,content:t,"":"outer"+e},function(n,r){
 // Margin is only for outerHeight, outerWidth
@@ -2555,13 +2555,13 @@ return 1===arguments.length?this.off(e,"**"):this.off(t,e||"**",n)}}),ge.holdRea
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 "function"==typeof define&&define.amd&&define("jquery",[],function(){return ge});var
 // Map over jQuery in case of overwrite
-Vt=e.jQuery,
+Ut=e.jQuery,
 // Map over the $ in case of overwrite
 Xt=e.$;
 // Expose jQuery and $ identifiers, even in AMD
 // (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
 // and CommonJS for browser emulators (#13566)
-return ge.noConflict=function(t){return e.$===ge&&(e.$=Xt),t&&e.jQuery===ge&&(e.jQuery=Vt),ge},t||(e.jQuery=e.$=ge),ge})}()}),require.register("process/browser.js",function(e,n,r){n=t(n,{},"process"),function(){function e(){throw new Error("setTimeout has not been defined")}function t(){throw new Error("clearTimeout has not been defined")}function n(t){if(c===setTimeout)
+return ge.noConflict=function(t){return e.$===ge&&(e.$=Xt),t&&e.jQuery===ge&&(e.jQuery=Ut),ge},t||(e.jQuery=e.$=ge),ge})}()}),require.register("process/browser.js",function(e,n,r){n=t(n,{},"process"),function(){function e(){throw new Error("setTimeout has not been defined")}function t(){throw new Error("clearTimeout has not been defined")}function n(t){if(c===setTimeout)
 //normal enviroments in sane situations
 return setTimeout(t,0);
 // if setTimeout wasn't available but was latter defined
@@ -2657,12 +2657,12 @@ e.unsubscribe=function(t){var n,r,i,a=function(e){var t;for(t in c)if(c.hasOwnPr
 // a descendant of the topic exists:
 return!0;return!1},o="string"==typeof t&&(c.hasOwnProperty(t)||a(t)),s=!o&&"string"==typeof t,u="function"==typeof t,l=!1;if(o)return void e.clearSubscriptions(t);for(n in c)if(c.hasOwnProperty(n)){if(r=c[n],s&&r[t]){delete r[t],l=t;
 // tokens are unique, so we can just stop here
-break}if(u)for(i in r)r.hasOwnProperty(i)&&r[i]===t&&(delete r[i],l=!0)}return l}})}()}),require.register("armorDecorator.js",function(e,t,n){function r(){u("[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").not("[data-fate-armor-name]").each(function(e,t){u(this).attr("data-fate-armor-name",u(this).attr("title").split("\n")[0])})}function i(){u("[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").not("[data-fate-base-light]").each(function(e,t){var n=parseInt(u(this).children(".item-stat").text().match(/(\d+)/)),r="true"===u(this).attr("data-fate-is-modded")?n-5:n;u(this).attr("data-fate-base-light",r)})}function a(){u("[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").each(function(e,t){u(this).attr("data-fate-is-modded",u(this).children(".item-img.complete").length>0)})}function o(){u("[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").not("[data-fate-serial]").each(function(e,t){u(this).attr("data-fate-serial",u(this).attr("id").split("-")[0])})}const s=t("fateBus.js");s.registerModule(n);var u=t("jquery");s.subscribe(n,"fate.refresh",function(){r(),a(),i(),o()})}),require.register("beautification.js",function(e,t,n){const r=t("fateBus.js");r.registerModule(n),r.subscribe(n,"fate.init",function(){GM_addStyle(GM_getResourceText("fateOfAllFoolsCSS"))})}),require.register("commentDecorator.js",function(e,t,n){function r(){o.log("commentDecorator.js: Updating weapon tooltips"),a("[data-fate-weapon-registered=true]").each(function(e,t){var n=a(this).attr("data-fate-weapon-name"),r=a(this).attr("data-fate-weapon-type"),i=a(this).attr("data-fate-comment");a(this).attr("title",n+" // "+r+"\n"+i)})}const i=t("fateBus.js");i.registerModule(n);var a=t("jquery"),o=t("logger");i.subscribe(n,"fate.refresh",r)}),require.register("configuration.js",function(e,t,n){function r(){s.log("configuration.js: Initializing"),GM_config.init({id:"FateConfig",fields:{weaponDataTSV:{label:"Weapon Data Tab-Separated Values",type:"text","default":"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv"}},events:{save:function(){a.subscribe(n,"fate.refresh",r)}}}),a.publish(n,"fate.configurationLoaded",{weaponDataTSV:GM_config.get("weaponDataTSV")})}function i(){o(".fate-config").length>0||(o(".header-links").prepend("<a class='link fate-config'>FATE Config</a>"),o(".fate-config").on("click",function(){GM_config.open()}))}const a=t("fateBus.js");a.registerModule(n);var o=t("jquery"),s=t("logger");a.subscribe(n,"fate.init",r),a.subscribe(n,"fate.refresh",i)}),require.register("dimEraser.js",function(e,t,n){function r(){a("[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power],[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").children(".item-tag").remove()}const i=t("fateBus.js");i.registerModule(n);var a=t("jquery"),o=t("logger");i.subscribe(n,"fate.refresh",function(){o.log("dimEraser.js: Removing DIM elements"),r()})}),require.register("dupeIndicator.js",function(e,t,n){function r(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}function i(){p("[data-fate-weapon-name]").each(function(e,t){p(this).children(".fate-dupe.fate-glyph.fglyph-knives").length>0||p(this).append(p("<div>",{"class":"fate-glyph fate-dupe fglyph-knives",style:"display:none"}))})}function a(){var e=new Map;return p("[data-fate-weapon-name]").each(function(t,n){var r=p(this).attr("data-fate-weapon-name"),i={name:r,domElement:this,light:parseInt(p(this).attr("data-fate-base-light"))};e.has(r)?e.set(r,e.get(r).concat(i)):e.set(r,[i])}),e}function o(e){var t=!0,n=!1,i=void 0;try{for(var a,o=function(){var e=d(a.value,2),t=(e[0],e[1]);if(1===t.length)return p(t[0].domElement).children(".fate-dupe").hide(),"continue";var n=Math.max.apply(Math,r(t.map(function(e){return e.light})));t.forEach(function(e){"true"!==p(e.domElement).attr("data-fate-weapon-junk")&&(p(e.domElement).find(".fate-dupe").removeClass("fate-negative fate-positive"),p(e.domElement).find(".fate-dupe").addClass(e.light<n?"fate-negative":"fate-positive"),(p(e.domElement).is("[data-fate-weapon-pvp]")||p(e.domElement).is("[data-fate-weapon-pve]"))&&p(e.domElement).find(".fate-dupe").addClass("fate-top-bump"),p(e.domElement).find(".fate-dupe").show())})},s=e[Symbol.iterator]();!(t=(a=s.next()).done);t=!0){o()}}catch(u){n=!0,i=u}finally{try{!t&&s["return"]&&s["return"]()}finally{if(n)throw i}}}function s(){p(".fate-dupe:visible").parent().attr("data-fate-weapon-dupe",!0),p(".fate-dupe:hidden").parent().removeAttr("data-fate-weapon-dupe")}function u(){var e=p(this).parent().attr("data-fate-weapon-name");p("[data-fate-weapon-name]").not('[data-fate-weapon-name="'+e+'"]').addClass("fate-search-hidden")}function c(){p(".fate-search-hidden").removeClass("fate-search-hidden")}function l(){p(".fate-dupe:visible").on("mouseenter.dupe",u),p(".fate-dupe:visible").on("mouseleave.dupe",c)}const f=t("fateBus.js");f.registerModule(n);var d=function(){function e(e,t){var n=[],r=!0,i=!1,a=void 0;try{for(var o,s=e[Symbol.iterator]();!(r=(o=s.next()).done)&&(n.push(o.value),!t||n.length!==t);r=!0);}catch(u){i=!0,a=u}finally{try{!r&&s["return"]&&s["return"]()}finally{if(i)throw a}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),p=t("jquery"),h=t("logger.js");f.subscribe(n,"fate.refresh",function(){h.log("dupeIndicator.js: Calculating duplicates"),i(),o(a()),l(),s(),f.publish(n,"fate.dupesCalculated")}),/*
+break}if(u)for(i in r)r.hasOwnProperty(i)&&r[i]===t&&(delete r[i],l=!0)}return l}})}()}),require.register("armorDecorator.js",function(e,t,n){function r(){u("[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").not("[data-fate-armor-name]").each(function(e,t){u(this).attr("data-fate-armor-name",u(this).attr("title").split("\n")[0])})}function i(){u("[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").not("[data-fate-base-light]").each(function(e,t){var n=parseInt(u(this).children(".item-stat").text().match(/(\d+)/)),r="true"===u(this).attr("data-fate-is-modded")?n-5:n;u(this).attr("data-fate-base-light",r)})}function a(){u("[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").each(function(e,t){u(this).attr("data-fate-is-modded",u(this).children(".item-img.complete").length>0)})}function o(){u("[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").not("[data-fate-serial]").each(function(e,t){u(this).attr("data-fate-serial",u(this).attr("id").split("-")[0])})}const s=t("fateBus.js");s.registerModule(n);var u=t("jquery");s.subscribe(n,"fate.refresh",function(){r(),a(),i(),o()})}),require.register("beautification.js",function(e,t,n){const r=t("fateBus.js");r.registerModule(n),r.subscribe(n,"fate.init",function(){GM_addStyle(GM_getResourceText("fateOfAllFoolsCSS"))})}),require.register("commentDecorator.js",function(e,t,n){function r(){o.log("commentDecorator.js: Updating weapon tooltips"),a("[data-fate-weapon-registered=true]").each(function(e,t){var n=a(this).attr("data-fate-weapon-name"),r=a(this).attr("data-fate-weapon-type"),i=a(this).attr("data-fate-comment");a(this).attr("title",n+" // "+r+"\n"+i)})}const i=t("fateBus.js");i.registerModule(n);var a=t("jquery"),o=t("logger");i.subscribe(n,"fate.refresh",r)}),require.register("configuration.js",function(e,t,n){function r(){s.log("configuration.js: Initializing"),GM_config.init({id:"FateConfig",fields:{weaponDataTSV:{label:"Weapon Data Tab-Separated Values",type:"text","default":"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=2031623180&single=true&output=tsv"},shaderDataTSV:{label:"Shader Data Tab-Separated Values",type:"text","default":"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1194152043&single=true&output=tsv"}},events:{save:function(){a.subscribe(n,"fate.refresh",r)}}}),a.publish(n,"fate.configurationLoaded",{weaponDataTSV:GM_config.get("weaponDataTSV"),shaderDataTSV:GM_config.get("shaderDataTSV")})}function i(){o(".fate-config").length>0||(o(".header-links").prepend("<a class='link fate-config'>FATE Config</a>"),o(".fate-config").on("click",function(){GM_config.open()}))}const a=t("fateBus.js");a.registerModule(n);var o=t("jquery"),s=t("logger");a.subscribe(n,"fate.init",r),a.subscribe(n,"fate.refresh",i)}),require.register("dimEraser.js",function(e,t,n){function r(){a("[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power],[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]").children(".item-tag").remove()}const i=t("fateBus.js");i.registerModule(n);var a=t("jquery"),o=t("logger");i.subscribe(n,"fate.refresh",function(){o.log("dimEraser.js: Removing DIM elements"),r()})}),require.register("dupeIndicator.js",function(e,t,n){function r(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}function i(){p("[data-fate-weapon-name]").each(function(e,t){p(this).children(".fate-dupe.fate-glyph.fglyph-knives").length>0||p(this).append(p("<div>",{"class":"fate-glyph fate-dupe fglyph-knives",style:"display:none"}))})}function a(){var e=new Map;return p("[data-fate-weapon-name]").each(function(t,n){var r=p(this).attr("data-fate-weapon-name"),i={name:r,domElement:this,light:parseInt(p(this).attr("data-fate-base-light"))};e.has(r)?e.set(r,e.get(r).concat(i)):e.set(r,[i])}),e}function o(e){var t=!0,n=!1,i=void 0;try{for(var a,o=function(){var e=d(a.value,2),t=(e[0],e[1]);if(1===t.length)return p(t[0].domElement).children(".fate-dupe").hide(),"continue";var n=Math.max.apply(Math,r(t.map(function(e){return e.light})));t.forEach(function(e){"true"!==p(e.domElement).attr("data-fate-weapon-junk")&&(p(e.domElement).find(".fate-dupe").removeClass("fate-negative fate-positive"),p(e.domElement).find(".fate-dupe").addClass(e.light<n?"fate-negative":"fate-positive"),(p(e.domElement).is("[data-fate-weapon-pvp]")||p(e.domElement).is("[data-fate-weapon-pve]"))&&p(e.domElement).find(".fate-dupe").addClass("fate-top-bump"),p(e.domElement).find(".fate-dupe").show())})},s=e[Symbol.iterator]();!(t=(a=s.next()).done);t=!0){o()}}catch(u){n=!0,i=u}finally{try{!t&&s["return"]&&s["return"]()}finally{if(n)throw i}}}function s(){p(".fate-dupe:visible").parent().attr("data-fate-weapon-dupe",!0),p(".fate-dupe:hidden").parent().removeAttr("data-fate-weapon-dupe")}function u(){var e=p(this).parent().attr("data-fate-weapon-name");p("[data-fate-weapon-name]").not('[data-fate-weapon-name="'+e+'"]').addClass("fate-search-hidden")}function c(){p(".fate-search-hidden").removeClass("fate-search-hidden")}function l(){p(".fate-dupe:visible").on("mouseenter.dupe",u),p(".fate-dupe:visible").on("mouseleave.dupe",c)}const f=t("fateBus.js");f.registerModule(n);var d=function(){function e(e,t){var n=[],r=!0,i=!1,a=void 0;try{for(var o,s=e[Symbol.iterator]();!(r=(o=s.next()).done)&&(n.push(o.value),!t||n.length!==t);r=!0);}catch(u){i=!0,a=u}finally{try{!r&&s["return"]&&s["return"]()}finally{if(i)throw a}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),p=t("jquery"),h=t("logger.js");f.subscribe(n,"fate.refresh",function(){h.log("dupeIndicator.js: Calculating duplicates"),i(),o(a()),l(),s(),f.publish(n,"fate.dupesCalculated")}),/*
   jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
   seem to trigger events via $.trigger, so we're going to use our bus to test the
   events.
 */
-f.subscribe(n,"fate.test.mouseenter.dupe",function(){p(".fate-dupe:visible").each(u)}),f.subscribe(n,"fate.test.mouseleave.dupe",function(){p(".fate-dupe:visible").each(c)})}),require.register("fateBus.js",function(e,t,n){"use strict";function r(e){d.set(e.id,!1)}function i(){d.clear()}function a(e){return d.get(e.id)}function o(e,t,n){if(!d.has(e.id))throw new Error("fateBus.js#publish: Module ["+e.id+"] is not defined");a(e)||f.publishSync(t,n)}function s(e,t,n){if(!d.has(e.id))throw new Error("fateBus.js#subscribe: Module ["+e.id+"] is not defined");f.subscribe(t,function(t,r){d.has(e.id)&&(a(e)||n(t,r))})}function u(e){d.set(e,!0)}function c(){var e=Array.from(d.keys());e.forEach(function(e){u(e)})}function l(e){d.set(e,!1)}var f=t("pubsub-js"),d=new Map;e.registerModule=r,e.deregisterModules=i,e.publish=o,e.subscribe=s,e.mute=u,e.muteAll=c,e.unmute=l}),require.register("fodderIndicator.js",function(e,t,n){function r(){l("[data-fate-weapon-registered]").each(function(e,t){l(this).children(".fate-fodder.fate-glyph.fglyph-up").length>0||l(this).append(l("<div>",{"class":"fate-fodder fate-middling fate-glyph fglyph-up",style:"display:none"}))})}function i(){var e=new Map;return l("[data-fate-weapon-registered]").each(function(t,n){if("true"!==l(this).attr("data-fate-weapon-junk")&&l(this).is("[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]")){var r=l(this).attr("data-fate-weapon-name"),i=l(this).attr("data-fate-weapon-type"),a=l(this).attr("data-fate-base-light"),o=l(this).is("[data-fate-is-modded]"),s={type:i,isModded:o,light:parseInt(a),domElement:this,toString:function(){return i+" - "+r+" ("+a+")"}};e.has(i)?e.set(i,e.get(i).concat(s)):e.set(i,[s])}}),e}function a(e){l(".fate-fodder").hide(),l(".fate-fodder").removeClass("fate-left-bump"),l(".fate-fodder").parent().each(function(t,n){var r="true"===l(this).attr("data-fate-weapon-junk"),i="true"===l(this).attr("data-fate-weapon-dupe");if(r||i){var a=l(this).attr("data-fate-weapon-type"),o=e.get(a);if(void 0!==o){var s=parseInt(l(this).attr("data-fate-base-light"));o.filter(function(e){return e.light<s}).length>0&&(l(this).children(".fate-infusion:visible").length>0&&l(this).children(".fate-fodder").addClass("fate-left-bump"),l(this).children(".fate-fodder").show())}}})}function o(){l("[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]").addClass("fate-search-hidden"),l(this).parent().removeClass("fate-search-hidden");var e=l(this).parent().attr("data-fate-weapon-type"),t=l(this).parent().attr("data-fate-base-light");l('[data-fate-weapon-type="'+e+'"]').each(function(e,n){if("true"!==l(this).attr("data-fate-weapon-junk")&&l(this).is("[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]")){var r=parseInt(l(this).attr("data-fate-base-light"))<t;r&&l(this).removeClass("fate-search-hidden")}})}function s(){l(".fate-search-hidden").removeClass("fate-search-hidden")}function u(){l(".fate-fodder:visible").on("mouseenter.fodder",o),l(".fate-fodder:visible").on("mouseleave.fodder",s)}const c=t("fateBus.js");c.registerModule(n);var l=t("jquery"),f=t("logger.js");c.subscribe(n,"fate.infusionCalculated",function(){f.log("fodderIndicator.js: Calculating fodder"),r(),a(i()),u()}),/*
+f.subscribe(n,"fate.test.mouseenter.dupe",function(){p(".fate-dupe:visible").each(u)}),f.subscribe(n,"fate.test.mouseleave.dupe",function(){p(".fate-dupe:visible").each(c)})}),require.register("fateBus.js",function(e,t,n){"use strict";function r(e){p.set(e.id,!1)}function i(){p.clear()}function a(e){return p.get(e.id)}function o(e,t,n){if(!p.has(e.id))throw new Error("fateBus.js#publish: Module ["+e.id+"] is not defined");a(e)||d.publishSync(t,n)}function s(e,t,n){if(!p.has(e.id))throw new Error("fateBus.js#subscribe: Module ["+e.id+"] is not defined");d.subscribe(t,function(t,r){p.has(e.id)&&(a(e)||n(t,r))})}function u(e){p.set(e,!0)}function c(){var e=Array.from(p.keys());e.forEach(function(e){u(e)})}function l(e){p.set(e,!1)}function f(e){d.unsubscribe(e)}var d=t("pubsub-js"),p=new Map;e.registerModule=r,e.deregisterModules=i,e.publish=o,e.subscribe=s,e.mute=u,e.muteAll=c,e.unmute=l,e.unsubscribeFunctionFromAllTopics=f}),require.register("fodderIndicator.js",function(e,t,n){function r(){l("[data-fate-weapon-registered]").each(function(e,t){l(this).children(".fate-fodder.fate-glyph.fglyph-up").length>0||l(this).append(l("<div>",{"class":"fate-fodder fate-middling fate-glyph fglyph-up",style:"display:none"}))})}function i(){var e=new Map;return l("[data-fate-weapon-registered]").each(function(t,n){if("true"!==l(this).attr("data-fate-weapon-junk")&&l(this).is("[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]")){var r=l(this).attr("data-fate-weapon-name"),i=l(this).attr("data-fate-weapon-type"),a=l(this).attr("data-fate-base-light"),o=l(this).is("[data-fate-is-modded]"),s={type:i,isModded:o,light:parseInt(a),domElement:this,toString:function(){return i+" - "+r+" ("+a+")"}};e.has(i)?e.set(i,e.get(i).concat(s)):e.set(i,[s])}}),e}function a(e){l(".fate-fodder").hide(),l(".fate-fodder").removeClass("fate-left-bump"),l(".fate-fodder").parent().each(function(t,n){var r="true"===l(this).attr("data-fate-weapon-junk"),i="true"===l(this).attr("data-fate-weapon-dupe");if(r||i){var a=l(this).attr("data-fate-weapon-type"),o=e.get(a);if(void 0!==o){var s=parseInt(l(this).attr("data-fate-base-light"));o.filter(function(e){return e.light<s}).length>0&&(l(this).children(".fate-infusion:visible").length>0&&l(this).children(".fate-fodder").addClass("fate-left-bump"),l(this).children(".fate-fodder").show())}}})}function o(){l("[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]").addClass("fate-search-hidden"),l(this).parent().removeClass("fate-search-hidden");var e=l(this).parent().attr("data-fate-weapon-type"),t=l(this).parent().attr("data-fate-base-light");l('[data-fate-weapon-type="'+e+'"]').each(function(e,n){if("true"!==l(this).attr("data-fate-weapon-junk")&&l(this).is("[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]")){var r=parseInt(l(this).attr("data-fate-base-light"))<t;r&&l(this).removeClass("fate-search-hidden")}})}function s(){l(".fate-search-hidden").removeClass("fate-search-hidden")}function u(){l(".fate-fodder:visible").on("mouseenter.fodder",o),l(".fate-fodder:visible").on("mouseleave.fodder",s)}const c=t("fateBus.js");c.registerModule(n);var l=t("jquery"),f=t("logger.js");c.subscribe(n,"fate.infusionCalculated",function(){f.log("fodderIndicator.js: Calculating fodder"),r(),a(i()),u()}),/*
   jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
   seem to trigger events via $.trigger, so we're going to use our bus to test the
   events.
