@@ -1,6 +1,6 @@
 const $ = require('jquery');
 const weapon = require('weapon.js');
-const weaponDatabase = require('weaponDatabase.js');
+const weaponDatabase = require('weaponDatabase.js').weaponDB;
 
 function storeWeaponNames() {
   $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[data-fate-weapon-name]').each(function(index,element) {

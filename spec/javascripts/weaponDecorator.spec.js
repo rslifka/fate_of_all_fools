@@ -3,7 +3,7 @@ describe('weaponDecorator.js', function() {
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
   const weapon = require('weapon.js');
-  const weaponDatabase = require('weaponDatabase');
+  const weaponDatabase = require('weaponDatabase').weaponDB;
 
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
