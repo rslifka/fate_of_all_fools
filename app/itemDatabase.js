@@ -1,0 +1,36 @@
+const logger = require('logger');
+const weapon = require('weapon.js');
+
+class ItemDatabase {
+
+  constructor(itemType) {
+    this.itemType = itemType;
+    this.itemMap = new Map();
+    fateBus.subscribe(module, 'fate.'+this.itemType+'DataFetched', this.refresh.bind(this));
+  }
+
+  refresh(message, newItemData) {
+    this.itemMap.clear();
+
+  	const dataLines = newItemData.split(/[\r\n]+/);
+    for (let line of dataLines) {
+      this.createItemFromData(line.split('\t'));
+    }
+
+    logger.log('itemDatabase.js ('+this.itemType+'): Found ('+(dataLines.length-1)+') items');
+  }
+
+  createItemFromData(data) {
+    // Overidden in subclasses
+  }
+
+  contains(itemName) {
+  	return this.itemMap.has(itemName);
+  }
+
+  get(itemName) {
+  	return this.itemMap.get(itemName);
+  }
+}
+
+exports.ItemDatabase = ItemDatabase;
