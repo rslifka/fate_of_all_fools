@@ -6,7 +6,9 @@ exports.ItemDataRefresher = class ItemDataRefresher {
   constructor(itemType, dataTSVURL) {
     this.itemType = itemType;
     this.dataTSVURL = dataTSVURL;
-    fateBus.subscribe(module, 'fate.itemDataStale', this.refresh.bind(this));
+    this.subscriptionFunction = this.refresh.bind(this);
+    fateBus.subscribe(module, 'fate.itemDataStale', this.subscriptionFunction);
+    fateBus.subscribe(module, 'fate.configurationLoaded', this.deregister.bind(this));
   }
 
   onLoadHandler(response) {
@@ -28,5 +30,9 @@ exports.ItemDataRefresher = class ItemDataRefresher {
 
   refresh() {
     GM_xmlhttpRequest({method: 'GET', url: this.dataTSVURL, onload: this.onLoadHandler.bind(this)});
+  }
+
+  deregister() {
+    fateBus.unsubscribeFunctionFromAllTopics(this.subscriptionFunction);
   }
 }

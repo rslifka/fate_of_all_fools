@@ -10,6 +10,15 @@ describe('itemDataRefresher.js', function() {
     fateBus.registerModule(brunchModule);
   });
 
+  describe('in response to "fate.configurationLoaded"', function() {
+    it('should remove its listeners', function() {
+      const refresher = new idr.ItemDataRefresher('_', '_');
+      spyOn(fateBus, 'unsubscribeFunctionFromAllTopics');
+      fateBus.publish(brunchModule, 'fate.configurationLoaded');
+      expect(fateBus.unsubscribeFunctionFromAllTopics).toHaveBeenCalled();
+    });
+  });
+
   describe('in response to "fate.itemDataStale"', function() {
 
     it('should reach out for item data', function() {
