@@ -46,10 +46,11 @@ require('pveIndicator.js');
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
 
-// Individual shaders
+// Support for shader
 require('shader.js');
 require('shaderDatabase.js');
 require('shaderDecorator.js');
+require('shaderDataRefresher.js');
 
 /*
   The nicest change-refresh flow means loading the development version of
@@ -60,13 +61,14 @@ if (!window.navigator.userAgent.includes('HeadlessChrome')) {
   const logger = require('logger');
   logger.log('main.js: Initializing');
   fateBus.publish(module, 'fate.init');
-  fateBus.publish(module, 'fate.weaponDataStale');
+  fateBus.publish(module, 'fate.itemDataStale');
+  fateBus.publish(module, 'fate.refresh');
 
   setInterval(function() {
     fateBus.publish(module, 'fate.refresh');
   }, 10000);
 
   setInterval(function() {
-    fateBus.publish(module, 'fate.weaponDataStale');
+    fateBus.publish(module, 'fate.itemDataStale');
   }, 60000);
 }
