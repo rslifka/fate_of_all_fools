@@ -113,4 +113,13 @@ describe('fateBus.js', function() {
       expect(pubsub.publishSync).not.toHaveBeenCalled();
     });
   });
+
+  describe('when a subscriber wants to unsubscribe', function() {
+    it('should unsubscribe them', function() {
+      const fn = function(){}
+      spyOn(pubsub, 'unsubscribe');
+      fateBus.unsubscribeFunctionFromAllTopics(fn);
+      expect(pubsub.unsubscribe).toHaveBeenCalledWith(fn);
+    });
+  });
 });

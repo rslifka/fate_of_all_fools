@@ -53,6 +53,10 @@ function unmute(moduleId) {
   muteStatus.set(moduleId, false);
 }
 
+function unsubscribeFunctionFromAllTopics(fn) {
+  pubsub.unsubscribe(fn);
+}
+
 exports.registerModule = registerModule;
 exports.deregisterModules = deregisterModules;
 exports.publish = publish;
@@ -60,3 +64,4 @@ exports.subscribe = subscribe;
 exports.mute = mute;
 exports.muteAll = muteAll;
 exports.unmute = unmute;
+exports.unsubscribeFunctionFromAllTopics = unsubscribeFunctionFromAllTopics;
