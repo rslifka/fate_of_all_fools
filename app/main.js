@@ -48,6 +48,7 @@ require('itemDataRefresher.js');
 
 // Individual shaders
 require('shader.js');
+require('shaderDatabase.js');
 
 /*
   The nicest change-refresh flow means loading the development version of
