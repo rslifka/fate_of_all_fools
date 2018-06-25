@@ -88,6 +88,13 @@ function storeSerialNumber() {
   });
 }
 
+function storeComments() {
+  $('[data-fate-weapon-registered]').each(function(index,element) {
+    const w = weaponDatabase.get($(this).attr('data-fate-weapon-name'));
+    $(this).attr('data-fate-comment', w.comments);
+  });
+}
+
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponNames();
   storeShaderNames();
@@ -99,4 +106,5 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   storeJudgementStatus();
   storeJunkStatus();
   storeSerialNumber();
+  storeComments();
 });
