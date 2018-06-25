@@ -46,6 +46,9 @@ require('pveIndicator.js');
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
 
+// Individual shaders
+require('shader.js');
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
@@ -56,7 +59,7 @@ if (!window.navigator.userAgent.includes('HeadlessChrome')) {
   logger.log('main.js: Initializing');
   fateBus.publish(module, 'fate.init');
   fateBus.publish(module, 'fate.weaponDataStale');
-  
+
   setInterval(function() {
     fateBus.publish(module, 'fate.refresh');
   }, 10000);
