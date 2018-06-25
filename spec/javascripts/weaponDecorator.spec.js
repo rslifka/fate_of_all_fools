@@ -15,8 +15,7 @@ describe('weaponDecorator.js', function() {
       loadFixtures(
         'kineticWeaponRaw.html',
         'energyWeaponRaw.html',
-        'powerWeaponRaw.html',
-        'shaders/arcticDreamscapeShaderRaw.html'
+        'powerWeaponRaw.html'
       );
 
       spyOn(weaponDatabase, 'contains').and.callFake(function(weaponName) {
@@ -40,10 +39,6 @@ describe('weaponDecorator.js', function() {
       expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-weapon-name', 'Origin Story');
       expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-weapon-name', 'Annual Skate');
       expect($('[drag-channel=Power]')).toHaveAttr('data-fate-weapon-name', 'Alone as a god');
-    });
-
-    it('should store the original shader shader', function() {
-      expect($('[drag-channel=Shaders]')).toHaveAttr('data-fate-shader-name', 'Arctic Dreamscape');
     });
 
     it('should store the type of the weapon', function() {
@@ -117,12 +112,6 @@ describe('weaponDecorator.js', function() {
         expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-weapon-name', 'Origin Story');
         expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-weapon-name', 'Annual Skate');
         expect($('[drag-channel=Power]')).toHaveAttr('data-fate-weapon-name', 'Alone as a god');
-      });
-
-      it('should not overwrite the original shader name' , function() {
-        $('[drag-channel=Shaders]').attr('title', '_');
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[drag-channel=Shaders]')).toHaveAttr('data-fate-shader-name', 'Arctic Dreamscape');
       });
 
       it('should not overwrite the base light', function() {
