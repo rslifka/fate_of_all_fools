@@ -28,10 +28,10 @@ function placeIgnoreStatusWeapons() {
 function placeIgnoreStatusShaders() {
   $('[data-fate-shader-name]').each(function(index,element) {
     $(this).children('.fate-ignore-slot').removeClass('fate-question-mark fglyph-question-mark fate-thumbs-down fglyph-thumbs-down');
-    if (!$(this).is('[data-fate-weapon-registered]')) {
+    if (!$(this).is('[data-fate-shader-registered]')) {
       $(this).children('.fate-ignore-slot').addClass('fate-question-mark fglyph-question-mark fate-middling');
       $(this).children('.fate-ignore-slot').show();
-    } else if ($(this).attr('data-fate-weapon-junk') === 'true') {
+    } else if ($(this).attr('data-fate-shader-keep') === 'false') {
       $(this).children('.fate-ignore-slot').addClass('fate-thumbs-down fglyph-thumbs-down fate-middling');
       $(this).children('.fate-ignore-slot').show();
     } else {

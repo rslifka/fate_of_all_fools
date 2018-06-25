@@ -33,7 +33,7 @@ describe('ignoreStatusIndicator.js', function() {
 
       beforeEach(function() {
         $('[data-fate-weapon-name]').attr('data-fate-weapon-registered', true);
-        $('[data-fate-shader-name]').attr('data-fate-weapon-registered', true);
+        $('[data-fate-shader-name]').attr('data-fate-shader-registered', true);
       });
 
       describe('and it is junk', function() {
@@ -44,7 +44,7 @@ describe('ignoreStatusIndicator.js', function() {
             $('[data-fate-weapon-name="'+name+'"]').attr('data-fate-weapon-junk', true);
           }
           for(let name of SHADERS) {
-            $('[data-fate-shader-name="'+name+'"]').attr('data-fate-weapon-junk', true);
+            $('[data-fate-shader-name="'+name+'"]').attr('data-fate-shader-keep', false);
           }
           fateBus.publish(brunchModule, 'fate.refresh');
           expect($('[data-fate-weapon-name]')).toContainElement('.fate-ignore-slot.fate-thumbs-down.fate-glyph.fglyph-thumbs-down.fate-middling');
@@ -62,7 +62,7 @@ describe('ignoreStatusIndicator.js', function() {
             $('[data-fate-weapon-name="'+name+'"]').attr('data-fate-weapon-junk', false);
           }
           for(let name of SHADERS) {
-            $('[data-fate-shader-name="'+name+'"]').attr('data-fate-weapon-junk', false);
+            $('[data-fate-shader-name="'+name+'"]').attr('data-fate-shader-keep', true);
           }
           fateBus.publish(brunchModule, 'fate.refresh');
           expect($('[data-fate-weapon-name] > .fate-ignore-slot')).toBeHidden();
