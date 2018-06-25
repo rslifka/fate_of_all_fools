@@ -17,7 +17,7 @@ class ItemDatabase {
       this.createItemFromData(line.split('\t'));
     }
 
-    logger.log('itemDatabase.js ('+this.itemType+'): Found ('+(dataLines.length-1)+') items');
+    logger.log('itemDatabase.js ('+this.itemType+'): Found ('+(dataLines.length)+') items');
   }
 
   createItemFromData(data) {
