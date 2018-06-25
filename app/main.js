@@ -54,6 +54,8 @@ require('shaderDataRefresher.js');
 
 // Qualification of individual rolls
 require('rollAssessment.js');
+require('rollDatabase.js');
+require('rollDataRefresher.js');
 
 /*
   The nicest change-refresh flow means loading the development version of
