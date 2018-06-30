@@ -3,6 +3,10 @@
   display: none;
 }
 
+.item-tag {
+  display: none;
+}
+
 /* Reset background color and font size for increased readability */
 div[drag-channel='Kinetic'] > .item-stat.item-equipment,
 div[drag-channel='Energy'] > .item-stat.item-equipment,
