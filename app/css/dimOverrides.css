@@ -11,7 +11,8 @@ div[drag-channel='Helmet'] > .item-stat.item-equipment,
 div[drag-channel='Gauntlets'] > .item-stat.item-equipment,
 div[drag-channel='Chest'] > .item-stat.item-equipment,
 div[drag-channel='Leg'] > .item-stat.item-equipment,
-div[drag-channel='ClassItem'] > .item-stat.item-equipment {
+div[drag-channel='ClassItem'] > .item-stat.item-equipment
+{
   background-color: rgba(0,0,0,1);
   bottom: 3px;
   color: rgba(255,255,255,0.65);
@@ -27,7 +28,8 @@ div[drag-channel='Consumables'] > .item-stat,
 div[drag-channel='2305843009325795828Consumables'] > .item-stat,
 div[drag-channel='Modifications'] > .item-stat,
 div[drag-channel='Shaders'] > .item-stat,
-.infuseDialog .item-stat.item-equipment
+.infuseDialog .item-stat.item-equipment,
+#loadout-drawer .item-stat.item-equipment
 {
   background-color: rgba(0,0,0,1);
   bottom: 3px;
@@ -170,4 +172,8 @@ body,
 */
 .item-img.masterwork::after {
   display: none !important;
+}
+
+#loadout-drawer {
+  background: #111111;
 }
