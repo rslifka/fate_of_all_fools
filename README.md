@@ -1,9 +1,3 @@
-***UPDATE 2: 6/19/2018***
-Breaking change to how `FOAF` is deployed. Please re-install from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization). This was to both make auto-update possible from OUJS as well and fix an intermittent hosting issue with GitHub's releases.
-
-***UPDATE 1: 6/15/2018***
-With the recent news that Forsaken will have random rolls, the current strategy for listing and rating weapons and armor will no longer work as you cannot rate a weapon by the name any more (well, going forward since D2Y1 items will stay statically rolled). I'm going to have to split the sheets apart either in to separate tabs within one sheet or multiple sheets.
-
 # Fate of All Fools
 [![Build Status](https://travis-ci.org/rslifka/fate_of_all_fools.svg?branch=master)](https://travis-ci.org/rslifka/fate_of_all_fools)
 

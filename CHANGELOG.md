@@ -1,3 +1,6 @@
+# 2018/06/25
+* Issue #51: Split weapon database and assessments in to multiple sheets (pretty big change that updates configuration and adds support for shaders too - yeesh; marathon day).
+
 # 2018/06/23
 * Decreased border width to reclaim a bunch of pixels and reduce visual noise.
 * Styled "stat" field in all channels (+Shaders, +Consumables).
@@ -11,3 +14,9 @@
 * Issue #43: Any time .isJunk() is used outside of the initial weapon decorator should be moved to an attribute check. (strive to use the weapon database only for initial decoration)
 * Issue #40: Dupe indicator uses old style 'M' (mod installed) checking. This might be a bug? (didn't ultimately cause an issues though I did change it to use `data-fate-base-light` instead)
 * Modify opacity to increase readability of markers and stats.
+
+# 2018/06/19
+* Breaking change to how FOAF is deployed. Please re-install from OpenUserJS. This was to both make auto-update possible from OUJS as well and fix an intermittent hosting issue with GitHub's releases.
+
+# 2018/06/15
+* With the recent news that Forsaken will have random rolls, the current strategy for listing and rating weapons and armor will no longer work as you cannot rate a weapon by the name any more (well, going forward since D2Y1 items will stay statically rolled). I'm going to have to split the sheets apart either in to separate tabs within one sheet or multiple sheets.
