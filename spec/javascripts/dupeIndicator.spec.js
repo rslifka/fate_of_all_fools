@@ -49,6 +49,21 @@ describe('dupeIndicator.js', function() {
       });
     });
 
+    describe('when a dupe has a specific roll rated', function() {
+      beforeEach(function() {
+        loadFixtures(
+          'kineticWeapon.html',
+          'kineticWeapon.html'
+        );
+        $("[data-fate-weapon-name='Origin Story']:first").attr('data-fate-roll-stored', true);
+      });
+      it('should not be considered a dupe', function() {
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($("[data-fate-weapon-name='Origin Story']")).not.toHaveAttr('data-fate-weapon-dupe');
+        expect($("[data-fate-weapon-name='Origin Story']").children('.fate-dupe')).toBeHidden();
+      });
+    });
+
     describe('when not all the weapons are dupes', function() {
       beforeEach(function() {
         loadFixtures(
@@ -64,6 +79,7 @@ describe('dupeIndicator.js', function() {
       });
       it('should mark the ones that are', function() {
         expect($("[data-fate-weapon-name='Annual Skate']")).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($("[data-fate-weapon-name='Perseverance']")).not.toHaveAttr('data-fate-weapon-dupe');
         expect($("[data-fate-weapon-name='Perseverance']")).not.toHaveAttr('data-fate-weapon-dupe');
       });
     });
