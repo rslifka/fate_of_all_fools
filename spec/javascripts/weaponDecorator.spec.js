@@ -16,12 +16,13 @@ describe('weaponDecorator.js', function() {
       loadFixtures(
         'kineticWeaponRaw.html',
         'kineticAutumnWindRaw.html',
+        'betterDevilsWithReview.html',
         'energyWeaponRaw.html',
-        'powerWeaponRaw.html'
+        'powerWeaponRaw.html',
       );
 
       spyOn(weaponDatabase, 'contains').and.callFake(function(weaponName) {
-        return ['Alone as a god', 'Annual Skate', 'Autumn Wind', 'Origin Story'].includes(weaponName);
+        return ['Alone as a god', 'Annual Skate', 'Autumn Wind', 'Origin Story', 'Better Devils'].includes(weaponName);
       });
       spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
         switch(weaponName) {
@@ -33,6 +34,8 @@ describe('weaponDecorator.js', function() {
             return {name: 'Autumn Wind', rarity: 'legendary', type: 'Pulse Rifle', pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, isJunk: function(){return false}, comments: 'It\'s a pulse'};
           case 'Origin Story':
             return {name: 'Origin Story', rarity: 'legendary', type: 'Auto Rifle', pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, isJunk: function(){return false}, comments: 'It\'s an auto rifle'};
+          case 'Better Devils':
+            return {name: 'Better Devils', rarity: 'legendary', type: 'Hand Cannon', pveUtility: weapon.Utility.NO, pvpUtility: weapon.Utility.NO, isJunk: function(){return true}, comments: 'Against the grain on this one'};
         }
       });
 
@@ -74,13 +77,16 @@ describe('weaponDecorator.js', function() {
     });
 
     it('should store the base light level', function() {
-      expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-base-light', '301');
-      expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-base-light', '305');
-      expect($('[drag-channel=Power]')).toHaveAttr('data-fate-base-light', '310');
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-base-light', '301');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-base-light', '375');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-base-light', '305');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-base-light', '310');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-base-light', '316');
     });
 
     it('should store if the weapon is registered', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-registered', 'true');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-weapon-registered', 'true');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-registered', 'true');
       expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-weapon-registered', 'true');
       expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-weapon-registered', 'true');
@@ -88,6 +94,7 @@ describe('weaponDecorator.js', function() {
 
     it('should store if the weapon is good for pve', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-pve', 'true');
+      expect($('[data-fate-weapon-name="Better Devils"]')).not.toHaveAttr('data-fate-weapon-pve');
       expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-pve');
       expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pve');
       expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-pve');
@@ -95,6 +102,7 @@ describe('weaponDecorator.js', function() {
 
     it('should store if the weapon is good for pvp', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-pvp', 'true');
+      expect($('[data-fate-weapon-name="Better Devils"]')).not.toHaveAttr('data-fate-weapon-pvp');
       expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-pvp');
       expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pvp');
       expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-pvp');
@@ -103,6 +111,7 @@ describe('weaponDecorator.js', function() {
     it('should store if the weapon is junk or not', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveAttr('data-fate-weapon-junk');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-junk');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-weapon-junk');
       expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-junk');
       expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-weapon-junk');
     });
@@ -110,6 +119,7 @@ describe('weaponDecorator.js', function() {
     it('should store the weapon serial number', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-serial', '6917529046110379521');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-serial', '6917529045725684849');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-serial', '6917529059730312150');
       expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-serial', '6917529036439050577');
       expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-serial', '6917529046405702307');
     });
@@ -117,6 +127,7 @@ describe('weaponDecorator.js', function() {
     it('should store the comments', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-comment', 'It\'s an auto rifle');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-comment', 'This is a hankey hc');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-comment', 'Against the grain on this one');
       expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-comment', 'Pretty solid sniperino');
       expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-comment', 'Not a fan of this roll');
     });

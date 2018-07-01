@@ -35,7 +35,7 @@ function storeModStatus() {
 
 function storeBaseLightLevel() {
   $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[data-fate-base-light]').each(function(index,element) {
-     const itemStatValue = parseInt($(this).children('.item-stat').text().match(/(\d+)/));
+     const itemStatValue = parseInt($(this).children('.item-stat.item-equipment').text().match(/(\d+)/));
      const baseLightLevel = ($(this).attr('data-fate-is-modded')==='true') ? itemStatValue-5 : itemStatValue;
      $(this).attr('data-fate-base-light', baseLightLevel);
   });
