@@ -12,7 +12,7 @@ function prepareDupeSpace() {
 
 function calculateWorkingSet() {
   const weapons = new Map();
-  $('[data-fate-weapon-name]').not('[data-fate-roll-stored]').each(function(index,element) {
+  $('[data-fate-weapon-name]').not('[data-fate-roll-stored=true]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
     const weaponData = {
       name: weaponName,

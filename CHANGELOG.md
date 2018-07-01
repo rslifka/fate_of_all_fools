@@ -1,3 +1,6 @@
+# 2018/07/01
+* Issue #65: Dupe indication not working for statically-rolled weapons (forgot to check the value of the attr instead of just its presence - a pattern that could be address throughout)
+
 # 2018/06/30
 * Issue #63: Infusion indicators stop functioning when reviews are turned on (the underlying .item-stat class was used for both power level and review score)
 * Issue #64: Stat styling in compare mode is hosed (and in the infusion dialog)
