@@ -5,25 +5,15 @@ const rollDatabase = require('rollDatabase.js').rollDB;
 
 function storeWeaponNames() {
   $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[data-fate-weapon-name]').each(function(index,element) {
-    $(this).attr('data-fate-weapon-name', $(this).attr('title').split("\n")[0]);
-  });
-}
-
-function storeWeaponRarity() {
-  $('[data-fate-weapon-name]').not('data-fate-weapon-rarity').each(function(index,element) {
-    const weaponName = $(this).attr('data-fate-weapon-name');
-    if (weaponDatabase.contains(weaponName)) {
-      $(this).attr('data-fate-weapon-rarity', weaponDatabase.get(weaponName).rarity);
+    const weaponName = $(this).attr('title').split("\n")[0];
+    $(this).attr('data-fate-weapon-name', weaponName);
+    if (!weaponDatabase.contains(weaponName)) {
+      return;
     }
-  });
-}
-
-function storeWeaponType() {
-  $('[data-fate-weapon-name]').not('data-fate-weapon-type').each(function(index,element) {
-    const weaponName = $(this).attr('data-fate-weapon-name');
-    if (weaponDatabase.contains(weaponName)) {
-      $(this).attr('data-fate-weapon-type', weaponDatabase.get(weaponName).type);
-    }
+    $(this).attr('data-fate-weapon-registered', true);
+    $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0]);
+    $(this).attr('data-fate-weapon-rarity', weaponDatabase.get(weaponName).rarity);
+    $(this).attr('data-fate-weapon-type', weaponDatabase.get(weaponName).type);
   });
 }
 
@@ -38,15 +28,6 @@ function storeBaseLightLevel() {
      const itemStatValue = parseInt($(this).children('.item-stat.item-equipment').text().match(/(\d+)/));
      const baseLightLevel = ($(this).attr('data-fate-is-modded')==='true') ? itemStatValue-5 : itemStatValue;
      $(this).attr('data-fate-base-light', baseLightLevel);
-  });
-}
-
-function storeRegistrationStatus() {
-  $('[data-fate-weapon-name]').each(function(index,element) {
-    const weaponName = $(this).attr('data-fate-weapon-name');
-    if (weaponDatabase.contains(weaponName)) {
-      $(this).attr('data-fate-weapon-registered', true);
-    }
   });
 }
 
@@ -84,12 +65,6 @@ function storeJudgementStatus() {
   });
 }
 
-function storeSerialNumber() {
-  $('[data-fate-weapon-registered]').not('[data-fate-serial]').each(function(index,element) {
-    $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0])
-  });
-}
-
 function storeComments() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     $(this).attr('data-fate-comment', getRoleOrWeapon($(this)).comments);
@@ -108,10 +83,6 @@ function getRoleOrWeapon($element) {
 
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponNames();
-  storeRegistrationStatus();
-  storeSerialNumber();
-  storeWeaponRarity();
-  storeWeaponType();
   storeModStatus();
   storeBaseLightLevel();
   storeJudgementStatus();
