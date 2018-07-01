@@ -3,10 +3,18 @@ const weapon = require('weapon.js');
 const weaponDatabase = require('weaponDatabase.js').weaponDB;
 const rollDatabase = require('rollDatabase.js').rollDB;
 
-function storeWeaponNames() {
+function storeWeaponData() {
   $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[data-fate-weapon-name]').each(function(index,element) {
     const weaponName = $(this).attr('title').split("\n")[0];
     $(this).attr('data-fate-weapon-name', weaponName);
+
+    const isModInstalled = $(this).children('.item-img.complete').length > 0;
+    $(this).attr('data-fate-is-modded', isModInstalled);
+
+    const itemStatValue = parseInt($(this).children('.item-stat.item-equipment').text().match(/(\d+)/));
+    const baseLightLevel = isModInstalled ? itemStatValue-5 : itemStatValue;
+    $(this).attr('data-fate-base-light', baseLightLevel);
+
     if (!weaponDatabase.contains(weaponName)) {
       return;
     }
@@ -14,20 +22,6 @@ function storeWeaponNames() {
     $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0]);
     $(this).attr('data-fate-weapon-rarity', weaponDatabase.get(weaponName).rarity);
     $(this).attr('data-fate-weapon-type', weaponDatabase.get(weaponName).type);
-  });
-}
-
-function storeModStatus() {
-  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').each(function(index,element) {
-    $(this).attr('data-fate-is-modded', $(this).children('.item-img.complete').length > 0);
-  });
-}
-
-function storeBaseLightLevel() {
-  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[data-fate-base-light]').each(function(index,element) {
-     const itemStatValue = parseInt($(this).children('.item-stat.item-equipment').text().match(/(\d+)/));
-     const baseLightLevel = ($(this).attr('data-fate-is-modded')==='true') ? itemStatValue-5 : itemStatValue;
-     $(this).attr('data-fate-base-light', baseLightLevel);
   });
 }
 
@@ -82,9 +76,7 @@ function getRoleOrWeapon($element) {
 };
 
 fateBus.subscribe(module, 'fate.refresh', function() {
-  storeWeaponNames();
-  storeModStatus();
-  storeBaseLightLevel();
+  storeWeaponData();
   storeJudgementStatus();
   storeJunkStatus();
   storeComments();
