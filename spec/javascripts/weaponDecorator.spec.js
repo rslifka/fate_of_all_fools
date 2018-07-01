@@ -124,6 +124,14 @@ describe('weaponDecorator.js', function() {
       expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-serial', '6917529046405702307');
     });
 
+    it('should store if the weapon has a specific roll rated', function() {
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-roll-stored', 'false');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-roll-stored', 'false');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-roll-stored', 'false');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-roll-stored', 'false');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-roll-stored', 'true');
+    });
+
     it('should store the comments', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-comment', 'It\'s an auto rifle');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-comment', 'This is a hankey hc');

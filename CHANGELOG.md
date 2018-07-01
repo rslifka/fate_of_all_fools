@@ -1,6 +1,7 @@
 # 2018/06/30
 * Issue #63: Infusion indicators stop functioning when reviews are turned on (the underlying .item-stat class was used for both power level and review score)
 * Issue #64: Stat styling in compare mode is hosed (and in the infusion dialog)
+* Reduce quantity of iteration when updating attributes on refresh.
 
 # 2018/06/25
 * Issue #51: Split weapon database and assessments in to multiple sheets (pretty big change that updates configuration and adds support for shaders too - yeesh; marathon day).
