@@ -76,6 +76,14 @@ describe('weaponDecorator.js', function() {
       expect($('[drag-channel=Power]')).toHaveAttr('data-fate-is-modded', 'false');
     });
 
+    it('should store whether or not it is a masterwork', function() {
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-masterwork', 'true');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-masterwork', 'true');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-masterwork', 'false');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-masterwork', 'true');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-masterwork', 'true');
+    });
+
     it('should store the base light level', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-base-light', '301');
       expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-base-light', '375');

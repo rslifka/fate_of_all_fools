@@ -2,7 +2,7 @@
     <div ui-draggable="true" id="6917529045725684849-ps305" drag-channel="Energy" title="Annual Skate
 Hand Cannon" drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0">
         <!-- ngIf: ::vm.item.percentComplete && !vm.item.complete -->
-        <div class="item-img" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)" tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/f288cca4a874307fff1e57bc2a295f38.jpg&quot;);"></div>
+        <div class="item-img masterwork" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)" tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/f288cca4a874307fff1e57bc2a295f38.jpg&quot;);"></div>
         <!-- ngIf: ::vm.item.quality -->
         <!-- ngIf: vm.item.dtrRating && (vm.item.dtrRatingCount > (vm.item.destinyVersion == 2 ? 0 : 1) || vm.item.dtrHighlightedRatingCount > 0) -->
         <div class="item-element void" ng-class="::vm.item.dmg"></div>

@@ -11,6 +11,9 @@ function storeWeaponData() {
     const isModInstalled = $(this).children('.item-img.complete').length > 0;
     $(this).attr('data-fate-is-modded', isModInstalled);
 
+    const isMasterwork = $(this).children('.item-img.masterwork').length > 0;
+    $(this).attr('data-fate-masterwork', isMasterwork);
+
     const itemStatValue = parseInt($(this).children('.item-stat.item-equipment').text().match(/(\d+)/));
     const baseLightLevel = isModInstalled ? itemStatValue-5 : itemStatValue;
     $(this).attr('data-fate-base-light', baseLightLevel);
