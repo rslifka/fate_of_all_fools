@@ -28,6 +28,14 @@ describe('armorDecorator.js', function() {
       expect('[title*="Truage"]').toHaveAttr('data-fate-armor-name', 'Iron Truage Gauntlets');
     });
 
+    it('should store the masterwork status', function() {
+      expect('[title*="Wildwood"]').toHaveAttr('data-fate-masterwork', 'true');
+      expect('[title*="Noble"]').toHaveAttr('data-fate-masterwork', 'false');
+      expect('[title*="Winterhart"]').toHaveAttr('data-fate-masterwork', 'true');
+      expect('[title*="Shadow"]').toHaveAttr('data-fate-masterwork', 'false');
+      expect('[title*="Truage"]').toHaveAttr('data-fate-masterwork', 'true');
+    });
+
     it('should record its base light', function() {
       expect('[title*="Wildwood"]').toHaveAttr('data-fate-base-light', '328');
       expect('[title*="Noble"]').toHaveAttr('data-fate-base-light', '330');

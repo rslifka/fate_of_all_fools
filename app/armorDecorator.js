@@ -26,9 +26,17 @@ function storeSerialNumber() {
   });
 }
 
+function storeMasterwork() {
+  $('[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]').each(function(index,element) {
+    const isMasterwork = $(this).children('.item-img.masterwork').length > 0;
+    $(this).attr('data-fate-masterwork', isMasterwork);
+  });
+}
+
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeArmorName();
   storeModStatus();
   storeBaseLightLevel();
   storeSerialNumber();
+  storeMasterwork();
 });
