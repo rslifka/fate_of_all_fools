@@ -124,11 +124,6 @@ div[drag-channel='Power'] > .item-review
   border-top: 2px solid rgba(177,132,197,1);
 }
 
-/* Masterworks have gold power levels */
-.item-img.masterwork ~ .item-stat {
-  color: rgba(232,165,52,1) !important;
-}
-
 /* Go for a more muted background */
 body,
 #header,
