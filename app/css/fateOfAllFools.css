@@ -104,3 +104,20 @@
   top: 1px;
   right: 3px;
 }
+.fate-masterwork {
+  background-color: rgba(0,0,0,1.0);
+  color: rgba(232,165,52,1);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+  position: absolute;
+  right: 3px;
+  text-shadow: none;
+  top: 1px;
+}
+
+[data-fate-weapon-pve="true"] > .fate-masterwork,
+[data-fate-weapon-pvp="true"] > .fate-masterwork
+{
+  top: 17px;
+}

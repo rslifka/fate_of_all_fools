@@ -40,6 +40,9 @@ require('pvpIndicator.js');
 // Which weapons are good for PvE?
 require('pveIndicator.js');
 
+// Weapon and armor masterworks
+require('masterworkIndicator.js');
+
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
 
