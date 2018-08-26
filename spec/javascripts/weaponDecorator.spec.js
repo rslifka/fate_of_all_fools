@@ -117,11 +117,11 @@ describe('weaponDecorator.js', function() {
     });
 
     it('should store if the weapon is junk or not', function() {
-      expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveAttr('data-fate-weapon-junk');
-      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-junk');
-      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-weapon-junk');
-      expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-junk');
-      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-weapon-junk');
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-junk', 'false');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-junk', 'true');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-weapon-junk', 'true');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-weapon-junk', 'false');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-weapon-junk', 'true');
     });
 
     it('should store the weapon serial number', function() {

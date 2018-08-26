@@ -32,17 +32,9 @@ function storeWeaponData() {
 function storeJunkStatus() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     if (rollDatabase.contains($(this).attr('data-fate-serial'))) {
-      if (rollDatabase.get($(this).attr('data-fate-serial')).isJunk()) {
-        $(this).attr('data-fate-weapon-junk', true);
-      } else {
-        $(this).removeAttr('data-fate-weapon-junk');
-      }
+      $(this).attr('data-fate-weapon-junk', rollDatabase.get($(this).attr('data-fate-serial')).isJunk());
     } else {
-      if (weaponDatabase.get($(this).attr('data-fate-weapon-name')).isJunk()) {
-        $(this).attr('data-fate-weapon-junk', true);
-      } else {
-        $(this).removeAttr('data-fate-weapon-junk');
-      }
+      $(this).attr('data-fate-weapon-junk', weaponDatabase.get($(this).attr('data-fate-weapon-name')).isJunk());
     }
   });
 }
