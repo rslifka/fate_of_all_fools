@@ -2,22 +2,19 @@ const $ = require('jquery');
 const logger = require('logger.js');
 
 function prepareDupeSpace() {
-  $('[data-fate-weapon-name]').each(function(index,element) {
-    if ($(this).children('.fate-dupe.fate-glyph.fglyph-knives').length > 0) {
-      return;
-    }
-    $(this).append($('<div>', {'class': 'fate-glyph fate-dupe fglyph-knives', 'style':'display:none'}));
+  $('[data-fate-weapon-name]').not('[data-fate-weapon-dupe]').each(function(index,element) {
+    $(this).attr('data-fate-weapon-dupe', false);
+    $(this).append($('<div>', {'class': 'fate-glyph fate-dupe fate-middling fglyph-knives'}));
   });
 }
 
 function calculateWorkingSet() {
   const weapons = new Map();
-  $('[data-fate-weapon-name]').not('[data-fate-roll-stored=true]').each(function(index,element) {
+  $('[data-fate-weapon-name]').each(function(index,element) {
     const weaponName = $(this).attr('data-fate-weapon-name');
     const weaponData = {
       name: weaponName,
-      domElement: this,
-      light: parseInt($(this).attr('data-fate-base-light'))
+      domElement: this
     };
     if (weapons.has(weaponName)) {
         weapons.set(weaponName, weapons.get(weaponName).concat(weaponData));
@@ -31,27 +28,18 @@ function calculateWorkingSet() {
 function styleDupeIndicators(weapons) {
   for (let [weaponName, weaponInstances] of weapons) {
     if (weaponInstances.length === 1) {
-      $(weaponInstances[0].domElement).children('.fate-dupe').hide();
+      if ($(weaponInstances[0].domElement).attr('data-fate-weapon-dupe') === 'true') {
+        $(weaponInstances[0].domElement).attr('data-fate-weapon-dupe', false);
+      }
       continue;
     }
-    const maxLight = Math.max(...weaponInstances.map(function(w) {return w.light;}));
     weaponInstances.forEach(function(weapon) {
-      if ($(weapon.domElement).attr('data-fate-weapon-junk') === 'true') {
+      if ($(weapon.domElement).attr('data-fate-weapon-dupe') === 'true') {
         return;
       }
-      $(weapon.domElement).find('.fate-dupe').removeClass('fate-negative fate-positive');
-      $(weapon.domElement).find('.fate-dupe').addClass(weapon.light < maxLight ? 'fate-negative' : 'fate-positive');
-      if ($(weapon.domElement).is('[data-fate-weapon-pvp]') || $(weapon.domElement).is('[data-fate-weapon-pve]')) {
-        $(weapon.domElement).find('.fate-dupe').addClass('fate-top-bump');
-      }
-      $(weapon.domElement).find('.fate-dupe').show();
+      $(weapon.domElement).attr('data-fate-weapon-dupe', true);
     });
   }
-}
-
-function markDupes() {
-  $('.fate-dupe:visible').parent().attr('data-fate-weapon-dupe', true);
-  $('.fate-dupe:hidden').parent().removeAttr('data-fate-weapon-dupe');
 }
 
 function onMouseEnter() {
@@ -64,8 +52,8 @@ function onMouseLeave() {
 }
 
 function registerListeners() {
-  $('.fate-dupe:visible').on('mouseenter.dupe', onMouseEnter);
-  $('.fate-dupe:visible').on('mouseleave.dupe', onMouseLeave);
+  $('[data-fate-weapon-dupe="true"] > .fate-dupe').on('mouseenter.dupe', onMouseEnter);
+  $('[data-fate-weapon-dupe="true"] > .fate-dupe').on('mouseleave.dupe', onMouseLeave);
 }
 
 fateBus.subscribe(module, 'fate.refresh', function() {
@@ -73,7 +61,6 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   prepareDupeSpace();
   styleDupeIndicators(calculateWorkingSet());
   registerListeners();
-  markDupes();
   fateBus.publish(module, 'fate.dupesCalculated');
 });
 
@@ -83,9 +70,9 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   events.
 */
 fateBus.subscribe(module, 'fate.test.mouseenter.dupe', function() {
-  $('.fate-dupe:visible').each(onMouseEnter);
+  $('[data-fate-weapon-dupe="true"] > .fate-dupe').each(onMouseEnter);
 });
 
 fateBus.subscribe(module, 'fate.test.mouseleave.dupe', function() {
-  $('.fate-dupe:visible').each(onMouseLeave);
+  $('[data-fate-weapon-dupe="true"] > .fate-dupe').each(onMouseLeave);
 });

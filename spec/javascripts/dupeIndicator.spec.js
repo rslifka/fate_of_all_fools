@@ -25,7 +25,7 @@ describe('dupeIndicator.js', function() {
       });
     });
 
-    describe('announcement', function() {
+    describe('completion', function() {
       it('should let the world know it is done', function() {
         spyOn(fateBus, 'publish').and.callThrough();
         fateBus.publish(brunchModule, 'fate.refresh');
@@ -33,70 +33,31 @@ describe('dupeIndicator.js', function() {
       });
     });
 
-    describe('when the dupes all have the same light level', function() {
+    describe('duplicate identification', function() {
+
       beforeEach(function() {
         loadFixtures(
           'kineticWeapon.html',
           'kineticWeapon.html',
           'energyWeapon.html',
           'energyWeapon.html',
+          'energyPerseverance.html',
           'powerWeapon.html',
           'powerWeapon.html'
         );
-      });
-      it('should attach the same glyph styled identically', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[data-fate-weapon-name="Origin Story"]:eq(0)')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($('[data-fate-weapon-name="Origin Story"]:eq(1)')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($('[data-fate-weapon-name="Annual Skate"]:eq(0)')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($('[data-fate-weapon-name="Annual Skate"]:eq(1)')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($('[data-fate-weapon-name="Alone as a god"]:eq(0)')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($('[data-fate-weapon-name="Alone as a god"]:eq(1)')).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
 
-        expect($('[data-fate-weapon-name="Origin Story"]:eq(0) > .fate-dupe.fate-glyph.fglyph-knives.fate-positive')).toBeVisible();
-        expect($('[data-fate-weapon-name="Origin Story"]:eq(1) > .fate-dupe.fate-glyph.fglyph-knives.fate-positive')).toBeVisible();
-        expect($('[data-fate-weapon-name="Annual Skate"]:eq(0) > .fate-dupe.fate-glyph.fglyph-knives.fate-positive')).toBeVisible();
-        expect($('[data-fate-weapon-name="Annual Skate"]:eq(1) > .fate-dupe.fate-glyph.fglyph-knives.fate-positive')).toBeVisible();
-        expect($('[data-fate-weapon-name="Alone as a god"]:eq(0) > .fate-dupe.fate-glyph.fglyph-knives.fate-positive')).toBeVisible();
-        expect($('[data-fate-weapon-name="Alone as a god"]:eq(1) > .fate-dupe.fate-glyph.fglyph-knives.fate-positive')).toBeVisible();
-      });
-    });
-
-    describe('when a dupe has a specific roll rated', function() {
-      beforeEach(function() {
-        loadFixtures(
-          'kineticWeapon.html',
-          'kineticWeapon.html'
-        );
-        $("[data-fate-weapon-name='Origin Story']:first").attr('data-fate-roll-stored', true);
-      });
-      it('should not be considered a dupe', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($("[data-fate-weapon-name='Origin Story']:eq(0)")).not.toHaveAttr('data-fate-weapon-dupe');
-        expect($("[data-fate-weapon-name='Origin Story']:eq(1)")).not.toHaveAttr('data-fate-weapon-dupe');
-        expect($("[data-fate-weapon-name='Origin Story']:eq(0)").children('.fate-dupe')).toBeHidden();
-        expect($("[data-fate-weapon-name='Origin Story']:eq(1)").children('.fate-dupe')).toBeHidden();
-      });
-    });
-
-    describe('when not all the weapons are dupes', function() {
-      beforeEach(function() {
-        loadFixtures(
-          'energyWeapon.html',
-          'energyWeapon.html',
-          'energyPerseverance.html'
-        );
         fateBus.publish(brunchModule, 'fate.refresh');
       });
-      it('should style the ones that are', function() {
-        expect($("[data-fate-weapon-name='Annual Skate']:eq(0)")).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($("[data-fate-weapon-name='Annual Skate']:eq(1)")).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-        expect($('[data-fate-weapon-name=Perseverance]').children('.fate-dupe')).toBeHidden();
-      });
-      it('should mark the ones that are', function() {
-        expect($("[data-fate-weapon-name='Annual Skate']:eq(0)")).toHaveAttr('data-fate-weapon-dupe','true');
-        expect($("[data-fate-weapon-name='Perseverance']:eq(1)")).not.toHaveAttr('data-fate-weapon-dupe');
-        expect($("[data-fate-weapon-name='Perseverance']")).not.toHaveAttr('data-fate-weapon-dupe');
+
+      it('should mark dupe status', function() {
+        expect($('[data-fate-weapon-name="Origin Story"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($('[data-fate-weapon-name="Origin Story"]:eq(1)')).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($('[data-fate-weapon-name="Annual Skate"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($('[data-fate-weapon-name="Annual Skate"]:eq(1)')).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($('[data-fate-weapon-name="Alone as a god"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($('[data-fate-weapon-name="Alone as a god"]:eq(1)')).toHaveAttr('data-fate-weapon-dupe','true');
+
+        expect($('[data-fate-weapon-name="Perseverance"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','false');
       });
     });
 
@@ -107,76 +68,13 @@ describe('dupeIndicator.js', function() {
           'energyWeapon.html'
         );
       });
-      it('should no longer have a dupe indicator', function() {
+      it('should no longer be a dupe', function() {
         fateBus.publish(brunchModule, 'fate.refresh');
-        $("[data-fate-weapon-name='Annual Skate']:eq(0)").remove();
+        $("[data-fate-weapon-name='Annual Skate']").eq(0).remove();
         fateBus.publish(brunchModule, 'fate.refresh');
-        expect($("[data-fate-weapon-name='Annual Skate']").children('.fate-dupe')).toBeHidden();
-      });
-      it('should no longer be marked as being a dupe', function() {
-        expect($("[data-fate-weapon-name='Annual Skate']")).not.toHaveAttr('data-fate-weapon-dupe');
+        expect($("[data-fate-weapon-name='Annual Skate']").eq(0)).toHaveAttr('data-fate-weapon-dupe', 'false');
       });
     });
-
-    describe('when the dupes have different light levels', function() {
-      beforeEach(function() {
-        loadFixtures(
-          'energyWeapon.html',
-          'energyWeapon.html'
-        );
-        $("[data-fate-weapon-name='Annual Skate']:first").attr('data-fate-base-light', 200);
-        $(".item-stat:first").text(200);
-      });
-      it('should attach the same glyph, styled differently', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('.fate-dupe')).toBeVisible();
-        expect($('.item-stat:contains(200)').parent().parent()).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-negative');
-        expect($('.item-stat:contains(305)').parent().parent()).toContainElement('.fate-dupe.fate-glyph.fglyph-knives.fate-positive');
-      });
-    });
-
-    describe('when a dupe is junk', function() {
-      beforeEach(function() {
-        loadFixtures(
-          'energyWeapon.html',
-          'energyWeapon.html'
-        );
-        $('[data-fate-weapon-name="Annual Skate"]').attr('data-fate-weapon-junk', 'true')
-      });
-      it('should not get a dupe indicator', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('.fate-dupe')).toBeHidden();
-      });
-    });
-
-    describe('when a dupe is useful in PvP', function() {
-      beforeEach(function() {
-        loadFixtures(
-          'energyWeapon.html',
-          'energyWeapon.html'
-        );
-        $('[data-fate-weapon-name="Annual Skate"]').attr('data-fate-weapon-pvp', 'true');
-      });
-      it('should have its dupe indicator bumped down so it does not overlap', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('.fate-dupe')).toHaveClass('fate-top-bump');
-      });
-    });
-
-    describe('when a dupe is useful in PvE', function() {
-      beforeEach(function() {
-        loadFixtures(
-          'energyWeapon.html',
-          'energyWeapon.html'
-        );
-        $('[data-fate-weapon-name="Annual Skate"]').attr('data-fate-weapon-pve', 'true');
-      });
-      it('should have its dupe indicator bumped down so it does not overlap', function() {
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('.fate-dupe')).toHaveClass('fate-top-bump');
-      });
-    });
-
   });
 
   describe('when mousing over the dupe indicator', function() {
@@ -196,7 +94,8 @@ describe('dupeIndicator.js', function() {
       expect($('[drag-channel=Kinetic]')).toHaveClass('fate-search-hidden');
       expect($('[data-fate-weapon-name=Perseverance]')).toHaveClass('fate-search-hidden');
       expect($('[drag-channel=Power]')).toHaveClass('fate-search-hidden');
-      expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveClass('fate-search-hidden');
+      expect($('[data-fate-weapon-name="Annual Skate"]:eq(0)')).not.toHaveClass('fate-search-hidden');
+      expect($('[data-fate-weapon-name="Annual Skate"]:eq(1)')).not.toHaveClass('fate-search-hidden');
 
       fateBus.publish(brunchModule, 'fate.test.mouseleave.dupe');
       expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
