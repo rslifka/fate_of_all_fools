@@ -128,6 +128,7 @@ div[drag-channel='Power'] > .item-review
 body,
 #header,
 .sticky-header-background,
+.store-header,
 .store-cell.vault {
   background-color: #111 !important;
 }
@@ -151,7 +152,7 @@ body,
 .item-img.complete,
 .item-img.masterwork {
   background-repeat: no-repeat;
-  border: 1px solid #808080;
+  border: 1px solid rgba(125, 125, 125, 0.82);
 }
 
 .section.ng-scope.weapons > .title {
