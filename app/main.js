@@ -19,9 +19,6 @@ require('armorDecorator.js');
 // Update weapon comments from our database
 require('commentDecorator.js');
 
-// Rejigger how weapons with legendary mods are displayed
-require('modIndicator.js');
-
 // Show higher/lower dupes
 require('dupeIndicator.js');
 
