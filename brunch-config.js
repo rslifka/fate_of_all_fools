@@ -40,6 +40,12 @@ exports.modules = {
   }
 }
 
+exports.npm = {
+  styles: {
+    'jquery-toast-plugin': ['src/jquery.toast.css']
+  }
+}
+
 exports.plugins = {
   uglify: {
     output: {

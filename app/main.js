@@ -43,6 +43,9 @@ require('masterworkIndicator.js');
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
 
+// Copy-to-clipboard support for the serial number
+require('itemIdCopy.js');
+
 // Support for shader
 require('shader.js');
 require('shaderDatabase.js');
