@@ -63,5 +63,7 @@ Check out the [walkthrough video!](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 1. `karma start` Starts the karma server, which refreshes based on changes to the watched scripts, and continuously runs the tests.
 
 ## Deployment
-* Build and deploy is done via Travis. After each successful build, the version number is ticked and the source files published as the `current` GitHub release.
-* Ticking the version number is signal to Tampermonkey to invalidate the `@require` and `@resource` assets (i.e. JavaScript and CSS).
+1. After each check-in to `master`, [Travis](https://travis-ci.org/rslifka/fate_of_all_fools) is kicked off.
+1. Upon success, new assets are created and checked in to [docs](https://github.com/rslifka/fate_of_all_fools/tree/master/docs) so as to be available publicly at `rslifka.github.io`.
+1. This includes a build-modified [fateOfAllFools.user.js](https://github.com/rslifka/fate_of_all_fools/blob/master/docs/fateOfAllFools.user.js) whose `@version` value in the UserScript [metadata block](https://wiki.greasespot.net/Metadata_Block) is ticked. Ticking the version number is signal to Tampermonkey to invalidate the `@require` and `@resource` assets (i.e. JavaScript and CSS).
+1. [OUJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization) monitors `fateOfAllFools.user.js` via GitHub integration and handles ensuring that TamperMonkey clients get updated versions of the script via magic.
