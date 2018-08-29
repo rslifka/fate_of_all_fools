@@ -129,7 +129,8 @@
   right: 20px;
 }
 
-[data-fate-weapon-dupe="false"] > .fate-dupe
+[data-fate-weapon-dupe="false"] > .fate-dupe,
+[data-fate-weapon-junk="true"] > .fate-dupe
 {
   display: none;
 }
@@ -140,8 +141,7 @@
 }
 
 [data-fate-weapon-pve="true"] > .fate-dupe,
-[data-fate-weapon-pvp="true"] > .fate-dupe,
-[data-fate-weapon-junk="true"] > .fate-dupe
+[data-fate-weapon-pvp="true"] > .fate-dupe
 {
   top: 17px;
 }
