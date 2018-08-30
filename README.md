@@ -1,7 +1,7 @@
 # Fate of All Fools Is...
 
-* A [Tampermonkey](https://Tampermonkey.net/)-based suite of enhancements to [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for Destiny 2. I've used DIM for years and find it indispensable. There are a few nits I've wanted to fix from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I play Destiny and work with my vault. These changes range from slight preferences to how I organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core.
-* Only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another.
+* A [Tampermonkey](https://Tampermonkey.net/)-based suite of enhancements to [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for Destiny 2. I've used DIM for years and find it indispensable. There are a few nits I've wanted to fix from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I play Destiny and work with my vault. These changes range from slight preferences to how I organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core. If you think about item management the way I do, you're in luck! If not... well feel free to fork this project ;)
+* Only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another for security reasons; nothing to be done about that.
 * A [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) from Destiny 1 and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
 * The Destiny 2 Jade Rabbit Exotic perk! =D
 * Currently [![Build Status](https://travis-ci.org/rslifka/fate_of_all_fools.svg?branch=master)](https://travis-ci.org/rslifka/fate_of_all_fools)
@@ -29,8 +29,8 @@
 
 # Installation and Configuration
 
-1. Install [Tampermonkey](https://Tampermonkey.net/). It may work with other UserScript extensions though I haven't tried, and won't, but you're welcome to! ¯\\_(ツ)_/¯
-1. FOAF is hosted over on OpenUserJS; [one-click install](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization) from there. **At this point you're good to go!** The only trouble that you'll be look at my weapon assessments and not your own, which is sort of the whole point of this UserScript ;)
+1. Install [Tampermonkey](https://Tampermonkey.net/). It may work with other UserScript extensions though I haven't tried, and won't, but you're welcome to!
+1. FOAF is hosted over on OpenUserJS; [one-click install](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization). You're good to go! The only trouble that you'll be look at my weapon assessments and not your own, which is sort of the whole point of this UserScript ;)
 1. Duplicate my [weapon assessments sheet](https://docs.google.com/spreadsheets/d/16BO3r1B5vuLtCnR06l_rtCl_WlWVDkg_9C9Gu-v-xi4/edit?usp=sharing) as a starting point (`File` => `Make a copy...`).
 1. Ensure that your sheet is published to the web (`File` => `Publish to the Web...`) and that in publish settings you've selected `Entire Document` and `Tab-seperated values (.tsv)`.
 1. Open DIM.
