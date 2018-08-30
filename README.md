@@ -1,33 +1,31 @@
-# Fate of All Fools
-[![Build Status](https://travis-ci.org/rslifka/fate_of_all_fools.svg?branch=master)](https://travis-ci.org/rslifka/fate_of_all_fools)
-
-`Fate of All Fools` is:
+# Fate of All Fools Is...
 
 * A [Tampermonkey](https://Tampermonkey.net/)-based suite of enhancements to [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for Destiny 2. I've used DIM for years and find it indispensable. There are a few nits I've wanted to fix from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I play Destiny and work with my vault. These changes range from slight preferences to how I organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core.
 * Only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another.
-* The name of a [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) from Destiny 1 and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
-* The name of the Destiny 2 Jade Rabbit Exotic perk! =D
+* A [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) from Destiny 1 and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
+* The Destiny 2 Jade Rabbit Exotic perk! =D
+* Currently [![Build Status](https://travis-ci.org/rslifka/fate_of_all_fools.svg?branch=master)](https://travis-ci.org/rslifka/fate_of_all_fools)
 
 # Quickstart
 
-1. Install [Tampermonkey in Chrome](https://chrome.google.com/webstore/detail/Tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)). Tampermonkey or other GreaseMonkey-compatible environments in Chrome and other browsers probably work though I haven't tried.
-1. One-click install from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization).
-1. Watch this short video about what `FOAF` does and can do for you!
+1. Install the [Tampermonkey](https://tampermonkey.net/) browser extension.
+1. Install `Fate of All Fools` from [OpenUserJS](https://openuserjs.org/scripts/rslifka/FateOfAllFools_-_DIM_Customization).
+1. Watch this short video! **(TODO: WAY OUT OF DATE :)**
 
 [![Fate of All Fools Walkthrough Video!](https://rslifka.github.io/fate_of_all_fools/img/fate-youtube-screenshot.jpg)](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 
 # What does Fate of All Fools Do?
-* Displays information at-a-glance derived from your custom external source of weapon quality assessments. **You can create your own sheet from my template to specify your own rankings!** (see below). There is limited support for armor and shaders as well that I may expand in the future depending on how random armor is in Forsaken and beyond. Since armor is armor, there's only mod-presence support. Since shaders are shaders, there's only binary quality support.
-* **Duplicate items are shown at-a-glance**: TODO: DEFINE WHAT A DUPLICATE MEANS.
-* **Infusable items are indicated with an up-arrow icon.** Hovering over this icon will highlight items that it can use for infusion, as well as what the light will be after infusion (helps remove mod misinterpretation!).
-* **Infusion fodder are indicated with an up-arrow icon.** This is the reverse of the previous feature. Hovering over this icon will show you what weapons will benefit from infusing the focused weapon.
-* **Consistent, subdued background throughout**: Single-color background; no need for the contrast between guardian inventory and vault; the grouping of items is enough.
-* **Improved display of power level**: Maybe it's because I'm forty-one now :) that the font for power level was too small and difficult to read. Slight increase to the font size and decrease in opacity to increase readability.
-* **The tooltip has been repurposed** with information from the aforementioned Google Sheet.
-* **Light level border indicates element**: By default, the elemental damage type was the background color of the power level. That's a visual cue that seems excessive in a screen full of gear, so I've used a thin top border of the power level itself.
-* **'M' Masterwork indicator**: The masterwork glare is too much in a screen full of gear, so it's been replaced with a little `M` overlay.
-* **Remove subclass icons**: I've never switched subclasses this way. OK, maybe once to see if it worked (it does!) but never enough to warrant having this displayed at all times at the top of the screen.
-* **Remove collapse controls**: I never use these, especially now that DIM split Progress out to another tab. Certainly a part of my workflow I can live without. Note that you can still click the section headings for this functionality.
+* **Displays information at-a-glance derived from your custom external source of weapon quality assessments**. You can create your own sheet from my template to specify your own rankings! (see below). There is limited support for armor and shaders as well that I may expand in the future depending on how random armor is in Forsaken and beyond. Since armor is armor, there's only mod-presence support. Since shaders are shaders, there's only binary quality support.
+* **Displays duplicates at-a-glance**: **TODO: DEFINE WHAT A FORSAKEN DUPLICATE MEANS**.
+* **Indicates which weapons you can infuse**: Hovering over this icon will highlight items that it can use for infusion, as well as what the light will be after infusion (helps remove mod misinterpretation!).
+* **Indicates which weapons you can discard**: This is the reverse of the previous feature. Hovering over this icon will show you what weapons will benefit from infusing the focused weapon.
+* **Reduces overall contrast**: Single-color background; no need for the contrast between guardian inventory and vault; the grouping of items is enough.
+* **Improves item power level display**: Maybe it's because I'm forty-one now :) that the font for power level was too small and difficult to read. Slight increase to the font size and decrease in opacity to increase readability.
+* **Repurposes the tooltip to contain your custom info**: With information from the aforementioned Google Sheet.
+* **Modifies how elemental damage type is shown**: By default, the elemental damage type was the background color of the power level. That's a visual cue that seems excessive in a screen full of gear, so I've used a thin top border of the power level itself.
+* **Calmly indicates masterworks**: The default DIM masterwork glare is too much in a screen full of gear, so it's been replaced with a little `M` overlay.
+* **Removes subclass icons**: I've never switched subclasses this way. OK, maybe once to see if it worked (it does!) but never enough to warrant having this displayed at all times at the top of the screen for all three characters.
+* **Removes collapse controls**: I never use these, especially now that DIM split things in to multiple tabs. Certainly a part of my workflow I can live without. Note that you can still click the section headings for this functionality.
 
 # Installation and Configuration
 
