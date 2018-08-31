@@ -25,7 +25,11 @@ exports.ItemDataRefresher = class ItemDataRefresher {
     this.rawDataMD5 = responseTextMD5;
 
     logger.log('itemDataRefresher.js ('+this.itemType+'): Modified data, triggering refresh');
-    fateBus.publish(module, 'fate.'+this.itemType+'DataFetched', responseText.substring(responseText.indexOf("\n") + 1));
+
+    let itemData = responseText.substring(responseText.indexOf("\n") + 1);
+    itemData = itemData.substring(itemData.indexOf("\n") + 1);
+
+    fateBus.publish(module, 'fate.'+this.itemType+'DataFetched', itemData);
   }
 
   refresh() {

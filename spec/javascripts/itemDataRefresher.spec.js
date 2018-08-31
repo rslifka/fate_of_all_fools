@@ -35,12 +35,13 @@ describe('itemDataRefresher.js', function() {
       it('should update weapon data and remove the header row', function() {
         spyOn(window, 'GM_xmlhttpRequest').and.callFake(function(details) {
           details.onload.call(this, {responseText: `TEST_LINE_1
-TEST_LINE_2`});
+TEST_LINE_2
+TEST_LINE_3`});
         });
         spyOn(pubsub, 'publishSync').and.callThrough();
         const refresher = new idr.ItemDataRefresher('CHANGED', '_');
         fateBus.publish(brunchModule, 'fate.itemDataStale');
-        expect(pubsub.publishSync).toHaveBeenCalledWith('fate.CHANGEDDataFetched', 'TEST_LINE_2');
+        expect(pubsub.publishSync).toHaveBeenCalledWith('fate.CHANGEDDataFetched', 'TEST_LINE_3');
       });
     });
 
