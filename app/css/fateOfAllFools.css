@@ -117,7 +117,8 @@
 }
 
 [data-fate-weapon-pve="true"] > .fate-masterwork,
-[data-fate-weapon-pvp="true"] > .fate-masterwork
+[data-fate-weapon-pvp="true"] > .fate-masterwork,
+[data-fate-weapon-junk="true"] > .fate-masterwork
 {
   padding-left: 5px;
   top: 17px;
