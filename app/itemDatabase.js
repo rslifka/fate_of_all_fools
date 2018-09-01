@@ -17,6 +17,8 @@ class ItemDatabase {
       this.createItemFromData(line.split('\t'));
     }
 
+    fateBus.publish(module, 'fate.'+this.itemType+'DataUpdated');
+
     logger.log('itemDatabase.js ('+this.itemType+'): Found ('+(dataLines.length)+') items');
   }
 

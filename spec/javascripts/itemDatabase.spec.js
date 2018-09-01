@@ -1,5 +1,6 @@
 describe('itemDatabase.js', function() {
 
+  const pubsub = require('pubsub-js');
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
   const i = require('itemDatabase.js');
@@ -16,12 +17,20 @@ describe('itemDatabase.js', function() {
 
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
-    fateBus.publish(brunchModule, 'fate.TESTDataFetched',
-'Hard Light\tExotic\tAuto Rifle\n' +
-'Allegro-34\tRare\tHand Cannon');
   });
 
   describe('in response to fate.TESTDataFetched', function() {
+
+    beforeEach(function() {
+      spyOn(pubsub, 'publishSync').and.callThrough();
+      fateBus.publish(brunchModule, 'fate.TESTDataFetched',
+        'Hard Light\tExotic\tAuto Rifle\n' +
+        'Allegro-34\tRare\tHand Cannon');
+    });
+
+    it('should notify when it is finished', function() {
+      expect(pubsub.publishSync).toHaveBeenCalledWith('fate.TESTDataUpdated', undefined);
+    });
 
     describe('#contains', function() {
 
