@@ -33,7 +33,7 @@ describe('dupeIndicator.js', function() {
       });
     });
 
-    describe('duplicate identification', function() {
+    describe('when no weapons have specific rolls', function() {
 
       beforeEach(function() {
         loadFixtures(
@@ -49,7 +49,7 @@ describe('dupeIndicator.js', function() {
         fateBus.publish(brunchModule, 'fate.refresh');
       });
 
-      it('should mark dupe status', function() {
+      it('should mark all of them as dupes', function() {
         expect($('[data-fate-weapon-name="Origin Story"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','true');
         expect($('[data-fate-weapon-name="Origin Story"]:eq(1)')).toHaveAttr('data-fate-weapon-dupe','true');
         expect($('[data-fate-weapon-name="Annual Skate"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','true');
@@ -58,6 +58,34 @@ describe('dupeIndicator.js', function() {
         expect($('[data-fate-weapon-name="Alone as a god"]:eq(1)')).toHaveAttr('data-fate-weapon-dupe','true');
 
         expect($('[data-fate-weapon-name="Perseverance"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','false');
+      });
+    });
+
+    describe('when some weapons have specific rolls', function() {
+
+      beforeEach(function() {
+        loadFixtures(
+          'kineticWeapon.html',
+          'kineticWeapon.html',
+          'energyWeapon.html',
+          'energyWeapon.html',
+          'powerWeapon.html',
+          'powerWeapon.html'
+        );
+
+        $('[data-fate-weapon-name="Origin Story"]:eq(0)').attr('data-fate-roll-stored', 'true');
+        $('[data-fate-weapon-name="Annual Skate"]:eq(0)').attr('data-fate-roll-stored', 'true');
+        $('[data-fate-weapon-name="Alone as a god"]:eq(0)').attr('data-fate-roll-stored', 'true');
+        fateBus.publish(brunchModule, 'fate.refresh');
+      });
+
+      it('should only mark the extras as dupes', function() {
+        expect($('[data-fate-weapon-name="Origin Story"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','false');
+        expect($('[data-fate-weapon-name="Origin Story"]:eq(1)')).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($('[data-fate-weapon-name="Annual Skate"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','false');
+        expect($('[data-fate-weapon-name="Annual Skate"]:eq(1)')).toHaveAttr('data-fate-weapon-dupe','true');
+        expect($('[data-fate-weapon-name="Alone as a god"]:eq(0)')).toHaveAttr('data-fate-weapon-dupe','false');
+        expect($('[data-fate-weapon-name="Alone as a god"]:eq(1)')).toHaveAttr('data-fate-weapon-dupe','true');
       });
     });
 

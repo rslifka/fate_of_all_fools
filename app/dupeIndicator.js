@@ -34,10 +34,17 @@ function styleDupeIndicators(weapons) {
       continue;
     }
     weaponInstances.forEach(function(weapon) {
-      if ($(weapon.domElement).attr('data-fate-weapon-dupe') === 'true') {
-        return;
+      if ($(weapon.domElement).attr('data-fate-roll-stored') === 'true') {
+        if ($(weapon.domElement).attr('data-fate-weapon-dupe') === 'false') {
+          return;
+        }
+        $(weapon.domElement).attr('data-fate-weapon-dupe', false);
+      } else {
+        if ($(weapon.domElement).attr('data-fate-weapon-dupe') === 'true') {
+          return;
+        }
+        $(weapon.domElement).attr('data-fate-weapon-dupe', true);
       }
-      $(weapon.domElement).attr('data-fate-weapon-dupe', true);
     });
   }
 }
