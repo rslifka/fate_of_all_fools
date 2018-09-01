@@ -7,7 +7,8 @@ class WeaponDB extends i.ItemDatabase {
 		super('weapon');
 	}
 	createItemFromData(data) {
-		this.itemMap.set(data[0], new weapon.Weapon(data[0], data[1], data[2], data[3], data[4], data[5]));
+		// Name Rarity Type Assessment Comments
+		this.itemMap.set(data[0], new weapon.Weapon(data[0], data[1], data[2], data[3], data[4]));
 	}
 }
 

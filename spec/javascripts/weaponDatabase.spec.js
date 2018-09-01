@@ -9,7 +9,7 @@ describe('weaponDatabase.js', function() {
     fateBus.unmute('itemDatabase.js');
 
     fateBus.registerModule(brunchModule);
-    fateBus.publish(brunchModule, 'fate.weaponDataFetched', 'Sweet Business\tExotic\tAuto Rifle\t?\tY\tPvE virtuoso');
+    fateBus.publish(brunchModule, 'fate.weaponDataFetched', 'Sweet Business\tExotic\tAuto Rifle\tCheck Roll\tPvE virtuoso');
   });
 
   describe('in response to fate.weaponDataFetched', function() {
@@ -33,7 +33,7 @@ describe('weaponDatabase.js', function() {
           expect(sweetBusiness.rarity).toEqual('exotic');
           expect(sweetBusiness.type).toEqual('Auto Rifle');
           expect(sweetBusiness.pveUtility).toEqual(weapon.Utility.UNKNOWN);
-          expect(sweetBusiness.pvpUtility).toEqual(weapon.Utility.YES);
+          expect(sweetBusiness.pvpUtility).toEqual(weapon.Utility.UNKNOWN);
           expect(sweetBusiness.comments).toEqual('PvE virtuoso');
         });
       });

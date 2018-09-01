@@ -6,12 +6,20 @@ const Utility = {
 
 exports.Weapon = class Weapon {
 
-  constructor(name, rarity, type, pveUseful, pvpUseful, comments) {
+  constructor(name, rarity, type, assessment, comments) {
     this.name = name;
     this.rarity = rarity.toLowerCase();
     this.type = type;
-    this.pve = pveUseful.toLowerCase();
-    this.pvp = pvpUseful.toLowerCase();
+    switch(assessment) {
+      case 'Always Junk':
+        this.pve = Utility.NO;
+        this.pvp = Utility.NO;
+        break;
+      case 'Check Roll':
+        this.pve = Utility.UNKNOWN;
+        this.pvp = Utility.UNKNON;
+        break;
+    }
     this.comments = comments;
   }
 
