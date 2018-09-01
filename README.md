@@ -15,8 +15,9 @@
 [![Fate of All Fools Walkthrough Video!](https://rslifka.github.io/fate_of_all_fools/img/fate-youtube-screenshot.jpg)](https://www.youtube.com/watch?v=AW5kWLvGKqI)
 
 # What does Fate of All Fools Do?
-* **Displays information at-a-glance derived from your custom external source of weapon quality assessments**. You can create your own sheet from my template to specify your own rankings! (see below). There is limited support for armor and shaders as well that I may expand in the future depending on how random armor is in Forsaken and beyond. Since armor is armor, there's only mod-presence support. Since shaders are shaders, there's only binary quality support.
-* **Displays duplicates at-a-glance**: **TODO: DEFINE WHAT A FORSAKEN DUPLICATE MEANS**.
+* **Displays your personal rating information at-a-glance**. You can create your own custom weapon rating Google Sheet from my template to specify your own rankings! There is support for shaders as well.
+* **Displays duplicates at-a-glance**: The goal of the duplication indicator is to help you keep your vault clean. Simply showing a persistent indicator on all weapons of the same name all the time would be visual noise for a standard PvE use case (e.g. multiple Curtain Calls with different elements). A duplicate is an unrated weapon when you have at least one other copy of it, either rated or unrated.
+* **Indicates which weapons you can dismantle**: If you've rated a weapon as `Always Junk`, whenever a copy of it appears in your inventory it will be displayed with a thumbs-down indicator.
 * **Indicates which weapons you can infuse**: Hovering over this icon will highlight items that it can use for infusion, as well as what the light will be after infusion (helps remove mod misinterpretation!).
 * **Indicates which weapons you can discard**: This is the reverse of the previous feature. Hovering over this icon will show you what weapons will benefit from infusing the focused weapon.
 * **Reduces overall contrast**: Single-color background; no need for the contrast between guardian inventory and vault; the grouping of items is enough.
