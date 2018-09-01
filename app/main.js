@@ -51,6 +51,7 @@ require('shader.js');
 require('shaderDatabase.js');
 require('shaderDecorator.js');
 require('shaderDataRefresher.js');
+require('shaderStatusIndicator.js');
 
 // Qualification of individual rolls
 require('rollAssessment.js');
