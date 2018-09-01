@@ -53,7 +53,7 @@ function storeJunkStatus() {
 
 function storeJudgementStatus() {
   $('[data-fate-weapon-registered="true"]').each(function(index,element) {
-    const w = getRoleOrWeapon($(this));
+    const w = getRollOrWeapon($(this));
     if (w.pvpUtility === weapon.Utility.YES) {
       $(this).attr('data-fate-weapon-pvp', true);
     } else {
@@ -69,11 +69,11 @@ function storeJudgementStatus() {
 
 function storeComments() {
   $('[data-fate-weapon-registered="true"]').each(function(index,element) {
-    $(this).attr('data-fate-comment', getRoleOrWeapon($(this)).comments);
+    $(this).attr('data-fate-comment', getRollOrWeapon($(this)).comments);
   });
 }
 
-function getRoleOrWeapon($element) {
+function getRollOrWeapon($element) {
   if (rollDatabase.contains($element.attr('data-fate-serial'))) {
     return rollDatabase.get($element.attr('data-fate-serial'));
   }
