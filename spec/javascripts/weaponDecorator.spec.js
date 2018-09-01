@@ -190,4 +190,29 @@ describe('weaponDecorator.js', function() {
 
   });
 
+  describe('when a weapon is no longer in the database', function() {
+
+    let weaponRegistered = true;
+
+    beforeEach(function() {
+      loadFixtures(
+        'kineticWeaponRaw.html',
+      );
+      spyOn(weaponDatabase, 'contains').and.callFake(function(weaponName) {
+        return weaponRegistered;
+      });
+      spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
+        return {name: 'Origin Story', rarity: 'legendary', type: 'Auto Rifle', pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, isJunk: function(){return false}, comments: 'It\'s an auto rifle'};
+      });
+    });
+
+    it('should clear the registration status', function() {
+      fateBus.publish(brunchModule, 'fate.refresh');
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-registered', 'true');
+      weaponRegistered = false;
+      fateBus.publish(brunchModule, 'fate.refresh');
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-registered', 'false');
+    });
+  });
+
 });
