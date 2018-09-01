@@ -46,20 +46,19 @@ TEST_LINE_3`});
     });
 
     describe('when the data has not changed', function() {
-      it('should not broadcast an update', function() {
+      it('should broadcast an update', function() {
         spyOn(window, 'GM_xmlhttpRequest').and.callFake(function(details) {
-          details.onload.call(this, {responseText: '_'});
+          details.onload.call(this, {responseText: 'TEST_LINE_1'});
         });
-        spyOn(fateBus, 'publish').and.callThrough();
+        spyOn(pubsub, 'publishSync').and.callThrough();
 
         const refresher = new idr.ItemDataRefresher('NOT_CHANGED_TEST', '_');
 
         fateBus.publish(brunchModule, 'fate.itemDataStale');
         fateBus.publish(brunchModule, 'fate.itemDataStale');
-        const itemBroadcasts = fateBus.publish.calls.allArgs().filter(function(callArguments) {
-          return callArguments[1] === 'fate.NOT_CHANGED_TESTDataFetched';
-        });
-        expect(itemBroadcasts.length).toBe(1);
+
+        expect(pubsub.publishSync).toHaveBeenCalledWith('fate.NOT_CHANGED_TESTDataFetched', 'TEST_LINE_1');
+        expect(pubsub.publishSync).toHaveBeenCalledWith('fate.NOT_CHANGED_TESTDataUpdated', undefined);
       });
     });
   });

@@ -20,6 +20,7 @@ exports.ItemDataRefresher = class ItemDataRefresher {
 
     if (this.rawDataMD5 === responseTextMD5) {
       logger.log('itemDataRefresher.js ('+this.itemType+'): Checksums match, skipping refresh');
+      fateBus.publish(module, 'fate.'+this.itemType+'DataUpdated');
       return;
     }
 

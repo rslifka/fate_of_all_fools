@@ -58,6 +58,27 @@ require('rollAssessment.js');
 require('rollDatabase.js');
 require('rollDataRefresher.js');
 
+function initFate() {
+  fateBus.publish(module, 'fate.itemDataStale');
+
+  // Update the UI from the backing store every Xms. This is primarily
+  // to catch new and modified items and the side effects of deleting
+  const uiRefreshInterval = 10000;
+
+  // Every Nth update, pull fresh data from the sheets
+  const fullUpdateEveryNthRefresh = 6;
+
+  let refreshCounter = uiRefreshInterval;
+  setInterval(function() {
+    if (refreshCounter % fullUpdateEveryNthRefresh === 0) {
+      fateBus.publish(module, 'fate.itemDataStale');
+    } else {
+      fateBus.publish(module, 'fate.refresh');
+    }
+    refreshCounter += uiRefreshInterval;
+  }, uiRefreshInterval);
+}
+
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
@@ -65,16 +86,22 @@ require('rollDataRefresher.js');
 */
 if (!window.navigator.userAgent.includes('HeadlessChrome')) {
   const logger = require('logger');
+  const $ = require('jquery');
+
   logger.log('main.js: Initializing');
-  fateBus.publish(module, 'fate.init');
-  fateBus.publish(module, 'fate.itemDataStale');
-  fateBus.publish(module, 'fate.refresh');
 
-  setInterval(function() {
+  // Shaders are the last update during a full refresh; so we kick off
+  // UI refresh immediately afterwards.
+  fateBus.subscribe(module, 'fate.shaderDataFetched', function() {
     fateBus.publish(module, 'fate.refresh');
-  }, 10000);
+  });
 
-  setInterval(function() {
-    fateBus.publish(module, 'fate.itemDataStale');
-  }, 60000);
+  fateBus.publish(module, 'fate.init');
+
+  let intervalId = setInterval(function() {
+    if ($('.item-img').length > 1) {
+      clearInterval(intervalId);
+      initFate();
+    }
+  }, 500);
 }
