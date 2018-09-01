@@ -2,7 +2,7 @@ const $ = require('jquery');
 const logger = require('logger.js');
 
 function preparePvpSpace() {
-  $('[data-fate-weapon-registered]').each(function(index,element) {
+  $('[data-fate-weapon-registered="true"]').each(function(index,element) {
     if ($(this).children('.fate-pve.fate-glyph.fglyph-pve').length > 0) {
       return;
     }
@@ -11,7 +11,7 @@ function preparePvpSpace() {
 }
 
 function stylePvpIndicators() {
-  $('[data-fate-weapon-registered]').each(function(index,element) {
+  $('[data-fate-weapon-registered="true"]').each(function(index,element) {
     if (!$(this).is('[data-fate-weapon-pve]')) {
       $(this).children('.fate-pve').hide();
       return;

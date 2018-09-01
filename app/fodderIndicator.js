@@ -2,7 +2,7 @@ const $ = require('jquery');
 const logger = require('logger.js');
 
 function prepareFodderIndicator() {
-  $('[data-fate-weapon-registered]').each(function(index,element) {
+  $('[data-fate-weapon-registered="true"]').each(function(index,element) {
     if ($(this).children('.fate-fodder.fate-glyph.fglyph-up').length > 0) {
       return;
     }
@@ -12,7 +12,7 @@ function prepareFodderIndicator() {
 
 function calculateFodder() {
   const goodWeaponsToInfuse = new Map();
-  $('[data-fate-weapon-registered]').each(function(index,element) {
+  $('[data-fate-weapon-registered="true"]').each(function(index,element) {
     if ($(this).attr('data-fate-weapon-junk') === 'true') {
       return;
     }

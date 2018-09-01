@@ -13,7 +13,7 @@ function prepareIgnoreSpace() {
 function placeIgnoreStatusWeapons() {
   $('[data-fate-weapon-name]').each(function(index,element) {
     $(this).children('.fate-ignore-slot').removeClass('fate-question-mark fglyph-question-mark fate-thumbs-down fglyph-thumbs-down');
-    if (!$(this).is('[data-fate-weapon-registered]')) {
+    if (!$(this).is('[data-fate-weapon-registered="true"]')) {
       $(this).children('.fate-ignore-slot').addClass('fate-question-mark fglyph-question-mark fate-middling');
       $(this).children('.fate-ignore-slot').show();
     } else if ($(this).attr('data-fate-weapon-junk') === 'true') {

@@ -2,7 +2,7 @@ const $ = require('jquery');
 const logger = require('logger.js');
 
 function prepareInfusionIndicator() {
-  $('[data-fate-weapon-registered]').not('[data-fate-weapon-junk]').each(function(index,element) {
+  $('[data-fate-weapon-registered="true"]').not('[data-fate-weapon-junk]').each(function(index,element) {
     if (!$(this).is('[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]')) {
       return;
     }
@@ -15,7 +15,7 @@ function prepareInfusionIndicator() {
 
 function calculateInfusionFodder() {
   const infusionFodder = new Map();
-  $('[data-fate-weapon-registered]').each(function(index,element) {
+  $('[data-fate-weapon-registered="true"]').each(function(index,element) {
     if (!$(this).is('[data-fate-weapon-dupe],[data-fate-weapon-junk]')) {
       return;
     }
