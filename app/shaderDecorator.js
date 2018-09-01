@@ -11,27 +11,29 @@ function storeShaderNames() {
 function storeRegistrationStatus() {
   $('[data-fate-shader-name]').each(function(index,element) {
     const name = $(this).attr('data-fate-shader-name');
-    if (shaderDatabase.contains(name)) {
-      $(this).attr('data-fate-shader-registered', true);
-    }
+    $(this).attr('data-fate-shader-registered', shaderDatabase.contains(name));
   });
 }
 
 function storeKeepStatus() {
-  $('[data-fate-shader-registered]').each(function(index,element) {
+  $('[data-fate-shader-registered="true"]').each(function(index,element) {
     const s = shaderDatabase.get($(this).attr('data-fate-shader-name'));
-    if (s.keepStatus === shader.Keep.YES) {
-      $(this).attr('data-fate-shader-keep', true);
-    } else if (s.keepStatus === shader.Keep.NO) {
-      $(this).attr('data-fate-shader-keep', false);
-    } else {
-      $(this).removeAttr('data-fate-shader-keep');
+    switch(s.keepStatus) {
+      case shader.Keep.YES:
+        $(this).attr('data-fate-shader-keep', true);
+        break;
+      case shader.Keep.NO:
+        $(this).attr('data-fate-shader-keep', false);
+        break;
+      case shader.Keep.UNKNOWN:
+        $(this).attr('data-fate-shader-keep', 'unknown');
+        break;
     }
   });
 }
 
 function storeComments() {
-  $('[data-fate-shader-registered]').each(function(index,element) {
+  $('[data-fate-shader-registered="true"]').each(function(index,element) {
     const s = shaderDatabase.get($(this).attr('data-fate-shader-name'));
     $(this).attr('data-fate-comment', s.comments);
   });

@@ -13,10 +13,11 @@ describe('shaderDecorator.js', function() {
     loadFixtures(
       'shaders/arcticDreamscapeShaderRaw.html',
       'shaders/atlantisWashShaderRaw.html',
-      'shaders/metallicSunriseShaderRaw.html'
+      'shaders/metallicSunriseShaderRaw.html',
+      'shaders/watermelonShaderRaw.html'
     );
     spyOn(shaderDatabase, 'contains').and.callFake(function(name) {
-      return ['Arctic Dreamscape','Atlantis Wash'].includes(name);
+      return ['Arctic Dreamscape','Atlantis Wash','Watermelon'].includes(name);
     });
     spyOn(shaderDatabase, 'get').and.callFake(function(name) {
       switch(name) {
@@ -24,6 +25,8 @@ describe('shaderDecorator.js', function() {
           return {name: 'Arctic Dreamscape', keepStatus:shader.Keep.YES, comments: 'Cool winter camo!'};
         case 'Atlantis Wash':
           return {name: 'Atlantis Wash', keepStatus:shader.Keep.NO, comments: 'Titan vomitorium :('};
+        case 'Watermelon':
+          return {name: 'Watermelon', keepStatus:shader.Keep.UNKNOWN, comments: 'Not sure yet'};
       }
     });
     fateBus.publish(brunchModule, 'fate.refresh');
@@ -34,21 +37,25 @@ describe('shaderDecorator.js', function() {
       expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toExist();
       expect($('[data-fate-shader-name="Atlantis Wash"]')).toExist();
       expect($('[data-fate-shader-name="Metallic Sunrise"]')).toExist();
+      expect($('[data-fate-shader-name="Watermelon"]')).toExist();
     });
     it('should store if the shader is registered', function() {
       expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toHaveAttr('data-fate-shader-registered', 'true');
       expect($('[data-fate-shader-name="Atlantis Wash"]')).toHaveAttr('data-fate-shader-registered', 'true');
-      expect($('[data-fate-shader-name="Metallic Sunrise"]')).not.toHaveAttr('data-fate-shader-registered');
+      expect($('[data-fate-shader-name="Metallic Sunrise"]')).toHaveAttr('data-fate-shader-registered', 'false');
+      expect($('[data-fate-shader-name="Watermelon"]')).toHaveAttr('data-fate-shader-registered', 'true');
     });
     it('should store if we should keep the shader', function() {
       expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toHaveAttr('data-fate-shader-keep', 'true');
       expect($('[data-fate-shader-name="Atlantis Wash"]')).toHaveAttr('data-fate-shader-keep', 'false');
       expect($('[data-fate-shader-name="Metallic Sunrise"]')).not.toHaveAttr('data-fate-shader-keep');
+      expect($('[data-fate-shader-name="Watermelon"]')).toHaveAttr('data-fate-shader-keep', 'unknown');
     });
     it('should store the comments', function() {
       expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toHaveAttr('data-fate-comment', 'Cool winter camo!');
       expect($('[data-fate-shader-name="Atlantis Wash"]')).toHaveAttr('data-fate-comment', 'Titan vomitorium :(');
       expect($('[data-fate-shader-name="Metallic Sunrise"]')).not.toHaveAttr('data-fate-comment');
+      expect($('[data-fate-shader-name="Watermelon"]')).toHaveAttr('data-fate-comment', 'Not sure yet');
     });
   });
 
