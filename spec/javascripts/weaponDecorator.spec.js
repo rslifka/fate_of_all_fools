@@ -180,6 +180,12 @@ describe('weaponDecorator.js', function() {
         expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-serial', '6917529036439050577');
       });
 
+      it('should overwrite the roll stored status', function() {
+        $('[data-fate-weapon-name="Origin Story"]').attr('data-fate-serial', '6917529046405702307');
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-roll-stored', 'true');
+      });
+
     });
 
   });

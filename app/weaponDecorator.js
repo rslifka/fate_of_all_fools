@@ -25,6 +25,11 @@ function storeWeaponData() {
     $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0]);
     $(this).attr('data-fate-weapon-rarity', weaponDatabase.get(weaponName).rarity);
     $(this).attr('data-fate-weapon-type', weaponDatabase.get(weaponName).type);
+  });
+}
+
+function storeRollStatus() {
+  $('[data-fate-weapon-registered]').each(function(index,element) {
     $(this).attr('data-fate-roll-stored', rollDatabase.contains($(this).attr('data-fate-serial')));
   });
 }
@@ -73,6 +78,7 @@ function getRoleOrWeapon($element) {
 
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponData();
+  storeRollStatus();
   storeJudgementStatus();
   storeJunkStatus();
   storeComments();
