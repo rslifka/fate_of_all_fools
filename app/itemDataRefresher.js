@@ -3,11 +3,12 @@ const md5 = require('blueimp-md5');
 
 exports.ItemDataRefresher = class ItemDataRefresher {
 
-  constructor(itemType, dataTSVURL) {
+  constructor(itemType, dataTSVURL, triggerEvent) {
     this.itemType = itemType;
     this.dataTSVURL = dataTSVURL;
     this.subscriptionFunction = this.refresh.bind(this);
-    fateBus.subscribe(module, 'fate.itemDataStale', this.subscriptionFunction);
+    const e = (triggerEvent === undefined) ? 'fate.itemDataStale' : triggerEvent;
+    fateBus.subscribe(module, e, this.subscriptionFunction);
     fateBus.subscribe(module, 'fate.configurationLoaded', this.deregister.bind(this));
   }
 
