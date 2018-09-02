@@ -12,14 +12,22 @@
   top: 1px;
 }
 
-/* .foaf-unregistered {
+.foaf-unregistered {
+  color: rgba(221,221,221,1);
   padding: 0px 1px 1px 1px;
+  right: 3px;
+  top: 1px;
 }
 
 .foaf-junk {
-
+  color: rgba(206,82,70,1);
+  font-size: 12px;
+  padding: 0 1px;
+  right: 3px;
+  top: 1px;
 }
 
+/*
 .foaf-pve {
 
 }

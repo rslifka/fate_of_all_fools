@@ -1,10 +1,12 @@
+/*
+  DUPLICATE INDICATOR
+*/
 [data-fate-weapon-dupe="false"] > .foaf-dupe
 {
   display: none;
 }
 
-[data-fate-weapon-dupe="true"] > .foaf-dupe,
-[data-fate-weapon-junk="true"] > .foaf-dupe
+[data-fate-weapon-dupe="true"] > .foaf-dupe
 {
   display: block;
 }
@@ -12,4 +14,30 @@
 [data-fate-weapon-junk="true"] > .foaf-dupe
 {
   top: 17px;
+}
+
+/*
+  UNREGISTERED INDICATOR
+*/
+[data-fate-weapon-registered="true"] > .foaf-unregistered
+{
+  display: none;
+}
+
+[data-fate-weapon-registered="false"] > .foaf-unregistered
+{
+  display: block;
+}
+
+/*
+  JUNK INDICATOR
+*/
+[data-fate-weapon-junk="true"] > .foaf-junk
+{
+  display: block;
+}
+
+[data-fate-weapon-junk="false"] > .foaf-junk
+{
+  display: none;
 }

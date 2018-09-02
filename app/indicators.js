@@ -2,9 +2,14 @@ const $ = require('jquery');
 const logger = require('logger.js');
 
 const DUPLICATE_INDICATOR_CLASS = 'foaf-dupe';
+const UNREGISTERED_INDICATOR_CLASS = 'foaf-unregistered';
+const JUNK_INDICATOR_CLASS = 'foaf-junk';
+
 
 const INDICATORS_TO_GLYPHS = new Map([
-  [DUPLICATE_INDICATOR_CLASS, 'fglyph-knives']
+  [DUPLICATE_INDICATOR_CLASS,    'fglyph-knives'],
+  [UNREGISTERED_INDICATOR_CLASS, 'fglyph-question-mark'],
+  [JUNK_INDICATOR_CLASS,         'fglyph-thumbs-down']
 ]);
 
 function prepareIndicatorSpace() {

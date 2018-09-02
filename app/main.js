@@ -22,9 +22,6 @@ require('commentDecorator.js');
 // Show higher/lower dupes
 require('dupeIndicator.js');
 
-// In what way is this weapon not useful?
-require('ignoreStatusIndicator.js');
-
 // Can this weapon be infused in to another for level?
 require('infusionIndicator.js');
 
