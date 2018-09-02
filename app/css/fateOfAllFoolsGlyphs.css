@@ -41,6 +41,15 @@
   top: 1px;
 }
 
+.foaf-masterwork {
+  color: rgba(232,165,52,1);
+  font-size: 9px;
+  font-weight: bold;
+  padding: 2px 4px;
+  right: 3px;
+  top: 1px;
+}
+
 /*
 .foaf-infusable {
   font-size: 10px;

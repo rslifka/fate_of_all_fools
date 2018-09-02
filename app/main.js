@@ -28,9 +28,6 @@ require('infusionIndicator.js');
 // Is this weapon infusion fodder for other weapons?
 require('fodderIndicator.js');
 
-// Weapon and armor masterworks
-require('masterworkIndicator.js');
-
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
 

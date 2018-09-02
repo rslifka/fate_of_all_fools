@@ -72,3 +72,30 @@
 {
   display: none;
 }
+
+/*
+  MASTERWORK INDICATOR
+*/
+[data-fate-masterwork="true"] > .foaf-masterwork
+{
+  display: block;
+}
+
+[data-fate-masterwork="false"] > .foaf-masterwork
+{
+  display: none;
+}
+
+[data-fate-weapon-pve="true"] > .foaf-masterwork,
+[data-fate-weapon-pvp="true"] > .foaf-masterwork,
+[data-fate-weapon-junk="true"] > .foaf-masterwork
+{
+  padding-left: 5px;
+  top: 17px;
+}
+
+[data-fate-weapon-dupe="true"] > .foaf-masterwork
+{
+  padding-left: 5px;
+  right: 20px;
+}

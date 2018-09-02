@@ -20,6 +20,7 @@ function prepareIndicatorSpace() {
     INDICATORS_TO_GLYPHS.forEach(function(glyph, className) {
       $(element).append($('<div>', {'class': className + ' ' + glyph + ' foaf-glyph'}));
     });
+    $(this).append($('<div class="foaf-masterwork foaf-glyph">M</div>'));
     $(this).attr('data-fate-indicator-init', true);
   });
 }
