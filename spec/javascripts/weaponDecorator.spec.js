@@ -85,7 +85,7 @@ describe('weaponDecorator.js', function() {
     });
 
     it('should store the base light level', function() {
-      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-base-light', '301');
+      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-base-light', '306');
       expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-base-light', '375');
       expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-base-light', '305');
       expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-base-light', '310');
@@ -165,7 +165,7 @@ describe('weaponDecorator.js', function() {
         $('[drag-channel=Energy]').children('.item-stat').text('334');
         $('[drag-channel=Power]').children('.item-stat').text('333');
         fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-base-light', '301');
+        expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-base-light', '306');
         expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-base-light', '305');
         expect($('[drag-channel=Power]')).toHaveAttr('data-fate-base-light', '310');
       });

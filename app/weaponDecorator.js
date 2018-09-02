@@ -14,9 +14,8 @@ function storeWeaponData() {
     const isMasterwork = $(this).children('.item-img.masterwork').length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
 
-    const itemStatValue = parseInt($(this).children('.item-stat.item-equipment').text().match(/(\d+)/));
-    const baseLightLevel = isModInstalled ? itemStatValue-5 : itemStatValue;
-    $(this).attr('data-fate-base-light', baseLightLevel);
+    const itemStatValue = $(this).children('.item-stat.item-equipment').text().match(/(\d+)/)[0];
+    $(this).attr('data-fate-base-light', itemStatValue);
 
     if (!weaponDatabase.contains(weaponName)) {
       return;
@@ -43,11 +42,8 @@ function storeRollStatus() {
 
 function storeJunkStatus() {
   $('[data-fate-weapon-registered="true"]').each(function(index,element) {
-    if (rollDatabase.contains($(this).attr('data-fate-serial'))) {
-      $(this).attr('data-fate-weapon-junk', rollDatabase.get($(this).attr('data-fate-serial')).isJunk());
-    } else {
-      $(this).attr('data-fate-weapon-junk', weaponDatabase.get($(this).attr('data-fate-weapon-name')).isJunk());
-    }
+    const weapon = getRollOrWeapon($(this));
+    $(this).attr('data-fate-weapon-junk', weapon.isJunk());
   });
 }
 
