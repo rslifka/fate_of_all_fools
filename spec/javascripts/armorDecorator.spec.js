@@ -37,19 +37,11 @@ describe('armorDecorator.js', function() {
     });
 
     it('should record its base light', function() {
-      expect('[title*="Wildwood"]').toHaveAttr('data-fate-base-light', '328');
+      expect('[title*="Wildwood"]').toHaveAttr('data-fate-base-light', '333');
       expect('[title*="Noble"]').toHaveAttr('data-fate-base-light', '330');
       expect('[title*="Winterhart"]').toHaveAttr('data-fate-base-light', '329');
-      expect('[title*="Shadow"]').toHaveAttr('data-fate-base-light', '330');
-      expect('[title*="Truage"]').toHaveAttr('data-fate-base-light', '330');
-    });
-
-    it('should record whether or not its modded', function() {
-      expect('[title*="Wildwood"]').toHaveAttr('data-fate-is-modded', 'true');
-      expect('[title*="Noble"]').toHaveAttr('data-fate-is-modded', 'false');
-      expect('[title*="Winterhart"]').toHaveAttr('data-fate-is-modded', 'false');
-      expect('[title*="Shadow"]').toHaveAttr('data-fate-is-modded', 'true');
-      expect('[title*="Truage"]').toHaveAttr('data-fate-is-modded', 'true');
+      expect('[title*="Shadow"]').toHaveAttr('data-fate-base-light', '335');
+      expect('[title*="Truage"]').toHaveAttr('data-fate-base-light', '335');
     });
 
     it('shoud record the serial number', function() {
@@ -81,11 +73,11 @@ describe('armorDecorator.js', function() {
           $('[drag-channel='+channelName+']').children('.item-stat').text('400');
         });
         fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[drag-channel=Helmet]')).toHaveAttr('data-fate-base-light', '328');
+        expect($('[drag-channel=Helmet]')).toHaveAttr('data-fate-base-light', '333');
         expect($('[drag-channel=Chest]')).toHaveAttr('data-fate-base-light', '330');
         expect($('[drag-channel=Leg]')).toHaveAttr('data-fate-base-light', '329');
-        expect($('[drag-channel=ClassItem]')).toHaveAttr('data-fate-base-light', '330');
-        expect($('[drag-channel=Gauntlets]')).toHaveAttr('data-fate-base-light', '330');
+        expect($('[drag-channel=ClassItem]')).toHaveAttr('data-fate-base-light', '335');
+        expect($('[drag-channel=Gauntlets]')).toHaveAttr('data-fate-base-light', '335');
       });
 
       it('should not overwrite the serial number', function() {

@@ -8,9 +8,6 @@ function storeWeaponData() {
     const weaponName = $(this).attr('title').split("\n")[0];
     $(this).attr('data-fate-weapon-name', weaponName);
 
-    const isModInstalled = $(this).children('.item-img.complete').length > 0;
-    $(this).attr('data-fate-is-modded', isModInstalled);
-
     const isMasterwork = $(this).children('.item-img.masterwork').length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
 

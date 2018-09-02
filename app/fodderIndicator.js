@@ -22,10 +22,8 @@ function calculateFodder() {
     const weaponName = $(this).attr('data-fate-weapon-name');
     const weaponType = $(this).attr('data-fate-weapon-type');
     const weaponLight = $(this).attr('data-fate-base-light');
-    const weaponModded = $(this).is('[data-fate-is-modded]');
     const weaponData = {
       type: weaponType,
-      isModded: weaponModded,
       light: parseInt(weaponLight),
       domElement: this,
       toString: function() {return weaponType + ' - ' + weaponName + ' ('+weaponLight+')';}

@@ -70,12 +70,6 @@ describe('weaponDecorator.js', function() {
       expect($('[drag-channel=Power]')).toHaveAttr('data-fate-weapon-rarity', 'legendary');
     });
 
-    it('should store whether or not it has a legendary mod', function() {
-      expect($('[drag-channel=Kinetic]')).toHaveAttr('data-fate-is-modded', 'true');
-      expect($('[drag-channel=Energy]')).toHaveAttr('data-fate-is-modded', 'false');
-      expect($('[drag-channel=Power]')).toHaveAttr('data-fate-is-modded', 'false');
-    });
-
     it('should store whether or not it is a masterwork', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-masterwork', 'true');
       expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-masterwork', 'true');
