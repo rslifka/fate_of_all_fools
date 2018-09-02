@@ -58,6 +58,8 @@ require('rollAssessment.js');
 require('rollDatabase.js');
 require('rollDataRefresher.js');
 
+require('indicators.js');
+
 function initFate() {
   fateBus.publish(module, 'fate.itemDataStale');
 

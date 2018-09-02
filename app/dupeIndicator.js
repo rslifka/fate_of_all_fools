@@ -1,12 +1,13 @@
 const $ = require('jquery');
 const logger = require('logger.js');
+const indicators = require('indicators.js');
 
-function prepareDupeSpace() {
-  $('[data-fate-weapon-name]').not('[data-fate-weapon-dupe]').each(function(index,element) {
-    $(this).attr('data-fate-weapon-dupe', false);
-    $(this).append($('<div>', {'class': 'fate-glyph fate-dupe fate-middling fglyph-knives'}));
-  });
-}
+fateBus.subscribe(module, 'fate.refresh', function() {
+  logger.log('dupeIndicator.js: Calculating duplicates');
+  styleDupeIndicators(calculateWorkingSet());
+  registerListeners();
+  fateBus.publish(module, 'fate.dupesCalculated');
+});
 
 function calculateWorkingSet() {
   const weapons = new Map();
@@ -27,23 +28,12 @@ function calculateWorkingSet() {
 
 function styleDupeIndicators(weapons) {
   for (let [weaponName, weaponInstances] of weapons) {
-    if (weaponInstances.length === 1) {
-      if ($(weaponInstances[0].domElement).attr('data-fate-weapon-dupe') === 'true') {
-        $(weaponInstances[0].domElement).attr('data-fate-weapon-dupe', false);
-      }
-      continue;
-    }
     weaponInstances.forEach(function(weapon) {
-      if ($(weapon.domElement).attr('data-fate-roll-stored') === 'true') {
-        if ($(weapon.domElement).attr('data-fate-weapon-dupe') === 'false') {
-          return;
-        }
+      if (weaponInstances.length === 1) {
         $(weapon.domElement).attr('data-fate-weapon-dupe', false);
       } else {
-        if ($(weapon.domElement).attr('data-fate-weapon-dupe') === 'true') {
-          return;
-        }
-        $(weapon.domElement).attr('data-fate-weapon-dupe', true);
+        const isDupe = $(weapon.domElement).attr('data-fate-roll-stored') === 'false';
+        $(weapon.domElement).attr('data-fate-weapon-dupe', isDupe);
       }
     });
   }
@@ -59,27 +49,19 @@ function onMouseLeave() {
 }
 
 function registerListeners() {
-  $('[data-fate-weapon-dupe="true"] > .fate-dupe').on('mouseenter.dupe', onMouseEnter);
-  $('[data-fate-weapon-dupe="true"] > .fate-dupe').on('mouseleave.dupe', onMouseLeave);
+  $('[data-fate-weapon-dupe="true"] > .' + indicators.DUPLICATE_INDICATOR_CLASS).on('mouseenter.dupe', onMouseEnter);
+  $('[data-fate-weapon-dupe="true"] > .' + indicators.DUPLICATE_INDICATOR_CLASS).on('mouseleave.dupe', onMouseLeave);
 }
-
-fateBus.subscribe(module, 'fate.refresh', function() {
-  logger.log('dupeIndicator.js: Calculating duplicates');
-  prepareDupeSpace();
-  styleDupeIndicators(calculateWorkingSet());
-  registerListeners();
-  fateBus.publish(module, 'fate.dupesCalculated');
-});
 
 /*
   jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
   seem to trigger events via $.trigger, so we're going to use our bus to test the
   events.
 */
-fateBus.subscribe(module, 'fate.test.mouseenter.dupe', function() {
-  $('[data-fate-weapon-dupe="true"] > .fate-dupe').each(onMouseEnter);
+fateBus.subscribe(module, 'fate.test.mouseenter.dupe', function(msg, selector) {
+  $(selector).each(onMouseEnter);
 });
 
-fateBus.subscribe(module, 'fate.test.mouseleave.dupe', function() {
-  $('[data-fate-weapon-dupe="true"] > .fate-dupe').each(onMouseLeave);
+fateBus.subscribe(module, 'fate.test.mouseleave.dupe', function(msg, selector) {
+  $(selector).each(onMouseLeave);
 });

@@ -1,0 +1,42 @@
+.foaf-glyph {
+  background-color: rgba(0,0,0,1.0);
+  font-size: 11px;
+  position: absolute;
+  text-shadow: none;
+}
+
+.foaf-dupe {
+  color: rgba(221,221,221,1);
+  padding: 0px 0px 2px 2px;
+  right: 3px;
+  top: 1px;
+}
+
+/* .foaf-unregistered {
+  padding: 0px 1px 1px 1px;
+}
+
+.foaf-junk {
+
+}
+
+.foaf-pve {
+
+}
+
+.foaf-pvp {
+
+}
+
+.foaf-infusable {
+  font-size: 10px;
+  bottom: 3px;
+  left: 1px;
+  padding: 1px 1px 2px 0px;
+}
+
+.foaf-infusion-fodder {
+  color: rgb(31, 222, 245);
+  font-size: 10px;
+  padding: 1px 1px 2px 0px;
+} */

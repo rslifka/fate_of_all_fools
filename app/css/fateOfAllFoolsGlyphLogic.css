@@ -1,0 +1,15 @@
+[data-fate-weapon-dupe="false"] > .foaf-dupe
+{
+  display: none;
+}
+
+[data-fate-weapon-dupe="true"] > .foaf-dupe,
+[data-fate-weapon-junk="true"] > .foaf-dupe
+{
+  display: block;
+}
+
+[data-fate-weapon-junk="true"] > .foaf-dupe
+{
+  top: 17px;
+}
