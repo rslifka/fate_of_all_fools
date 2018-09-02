@@ -209,7 +209,7 @@ function b(e,t){for(var n=0,r=e.length;n<r;n++)Le.set(e[n],"globalEval",!t||Le.g
 if("object"===ge.type(o))
 // Support: Android <=4.0 only, PhantomJS 1 only
 // push.apply(_, arraylike) throws on ancient WebKit
-ge.merge(d,o.nodeType?[o]:o);else if(Je.test(o)){for(a=a||f.appendChild(t.createElement("div")),
+ge.merge(d,o.nodeType?[o]:o);else if(Ye.test(o)){for(a=a||f.appendChild(t.createElement("div")),
 // Deserialize a standard representation
 s=(ze.exec(o)||["",""])[1].toLowerCase(),u=Ke[s]||Ke._default,a.innerHTML=u[1]+ge.htmlPrefilter(o)+u[2],
 // Descend through wrappers to the right content
@@ -424,7 +424,7 @@ r(e,t);else
 // Serialize object item.
 for(i in t)K(e+"["+i+"]",t[i],n,r)}
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
-function J(e){
+function Y(e){
 // dataTypeExpression is optional and defaults to "*"
 return function(t,n){"string"!=typeof t&&(n=t,t="*");var r,i=0,o=t.toLowerCase().match(qe)||[];if(ge.isFunction(n))
 // For each dataType in the dataTypeExpression
@@ -432,7 +432,7 @@ for(;r=o[i++];)
 // Prepend if requested
 "+"===r[0]?(r=r.slice(1)||"*",(e[r]=e[r]||[]).unshift(n)):(e[r]=e[r]||[]).push(n)}}
 // Base inspection function for prefilters and transports
-function Y(e,t,n,r){function i(s){var u;return o[s]=!0,ge.each(e[s]||[],function(e,s){var c=s(t,n,r);return"string"!=typeof c||a||o[c]?a?!(u=c):void 0:(t.dataTypes.unshift(c),i(c),!1)}),u}var o={},a=e===Rt;return i(t.dataTypes[0])||!o["*"]&&i("*")}
+function J(e,t,n,r){function i(s){var u;return o[s]=!0,ge.each(e[s]||[],function(e,s){var c=s(t,n,r);return"string"!=typeof c||a||o[c]?a?!(u=c):void 0:(t.dataTypes.unshift(c),i(c),!1)}),u}var o={},a=e===Rt;return i(t.dataTypes[0])||!o["*"]&&i("*")}
 // A special extend for ajax options
 // that takes "flat" options (not to be deep extended)
 // Fixes #9887
@@ -789,7 +789,7 @@ if(
 // makes the latter nonnegative.
 p+=h,i&&h!==p){for(f=0;d=n[f++];)d(g,m,a,s);if(r){
 // Reintegrate element matches to eliminate the need for sorting
-if(p>0)for(;h--;)g[h]||m[h]||(m[h]=J.call(u));
+if(p>0)for(;h--;)g[h]||m[h]||(m[h]=Y.call(u));
 // Discard index placeholder values to get only actual matches
 m=v(m)}
 // Add matches to results
@@ -803,7 +803,7 @@ A,M,O,I,L,H,F,P,
 // Instance-specific data
 R="sizzle"+1*new Date,B=e.document,W=0,G=0,U=n(),$=n(),V=n(),z=function(e,t){return e===t&&(q=!0),0},
 // Instance methods
-X={}.hasOwnProperty,K=[],J=K.pop,Y=K.push,Q=K.push,Z=K.slice,
+X={}.hasOwnProperty,K=[],Y=K.pop,J=K.push,Q=K.push,Z=K.slice,
 // Use a stripped-down indexOf as it's faster than native
 // https://jsperf.com/thor-indexof-vs-for/5
 ee=function(e,t){for(var n=0,r=e.length;n<r;n++)if(e[n]===t)return n;return-1},te="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
@@ -850,7 +850,7 @@ try{Q.apply(K=Z.call(B.childNodes),B.childNodes),
 // Detect silently failing push.apply
 K[B.childNodes.length].nodeType}catch(ke){Q={apply:K.length?
 // Leverage slice if possible
-function(e,t){Y.apply(e,Z.call(t))}:
+function(e,t){J.apply(e,Z.call(t))}:
 // Support: IE<9
 // Otherwise append directly
 function(e,t){
@@ -1635,7 +1635,7 @@ option:[1,"<select multiple='multiple'>","</select>"],
 // this by omitting <tbody> or other required elements.
 thead:[1,"<table>","</table>"],col:[2,"<table><colgroup>","</colgroup></table>"],tr:[2,"<table><tbody>","</tbody></table>"],td:[3,"<table><tbody><tr>","</tr></tbody></table>"],_default:[0,"",""]};
 // Support: IE <=9 only
-Ke.optgroup=Ke.option,Ke.tbody=Ke.tfoot=Ke.colgroup=Ke.caption=Ke.thead,Ke.th=Ke.td;var Je=/<|&#?\w+;/;!function(){var e=ne.createDocumentFragment(),t=e.appendChild(ne.createElement("div")),n=ne.createElement("input");
+Ke.optgroup=Ke.option,Ke.tbody=Ke.tfoot=Ke.colgroup=Ke.caption=Ke.thead,Ke.th=Ke.td;var Ye=/<|&#?\w+;/;!function(){var e=ne.createDocumentFragment(),t=e.appendChild(ne.createElement("div")),n=ne.createElement("input");
 // Support: Android 4.0 - 4.3 only
 // Check state lost if the name is set (#11217)
 // Support: Windows Web Apps (WWA)
@@ -1646,7 +1646,7 @@ n.setAttribute("type","radio"),n.setAttribute("checked","checked"),n.setAttribut
 pe.checkClone=t.cloneNode(!0).cloneNode(!0).lastChild.checked,
 // Support: IE <=11 only
 // Make sure textarea (and checkbox) defaultValue is properly cloned
-t.innerHTML="<textarea>x</textarea>",pe.noCloneChecked=!!t.cloneNode(!0).lastChild.defaultValue}();var Ye=ne.documentElement,Qe=/^key/,Ze=/^(?:mouse|pointer|contextmenu|drag|drop)|click/,et=/^([^.]*)(?:\.(.+)|)/;/*
+t.innerHTML="<textarea>x</textarea>",pe.noCloneChecked=!!t.cloneNode(!0).lastChild.defaultValue}();var Je=ne.documentElement,Qe=/^key/,Ze=/^(?:mouse|pointer|contextmenu|drag|drop)|click/,et=/^([^.]*)(?:\.(.+)|)/;/*
  * Helper functions for managing events -- not part of the public interface.
  * Props to Dean Edwards' addEvent library for many of the ideas.
  */
@@ -1657,7 +1657,7 @@ if(m)for(
 n.handler&&(o=n,n=o.handler,i=o.selector),
 // Ensure that invalid selectors throw exceptions at attach time
 // Evaluate against documentElement in case elem is a non-element node (e.g., document)
-i&&ge.find.matchesSelector(Ye,i),
+i&&ge.find.matchesSelector(Je,i),
 // Make sure that the handler has a unique ID, used to find/remove it later
 n.guid||(n.guid=ge.guid++),
 // Init the element's event structure and main handler, if this is the first
@@ -1828,12 +1828,12 @@ var n=t.ownerDocument.defaultView;return n&&n.opener||(n=e),n.getComputedStyle(t
 // so they're executed at the same time to save the second computation.
 function t(){
 // This is a singleton, we need to execute it only once
-if(s){s.style.cssText="box-sizing:border-box;position:relative;display:block;margin:auto;border:1px;padding:1px;top:1%;width:50%",s.innerHTML="",Ye.appendChild(a);var t=e.getComputedStyle(s);n="1%"!==t.top,
+if(s){s.style.cssText="box-sizing:border-box;position:relative;display:block;margin:auto;border:1px;padding:1px;top:1%;width:50%",s.innerHTML="",Je.appendChild(a);var t=e.getComputedStyle(s);n="1%"!==t.top,
 // Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
 o="2px"===t.marginLeft,r="4px"===t.width,
 // Support: Android 4.0 - 4.3 only
 // Some styles come back with percentage values, even though they shouldn't
-s.style.marginRight="50%",i="4px"===t.marginRight,Ye.removeChild(a),
+s.style.marginRight="50%",i="4px"===t.marginRight,Je.removeChild(a),
 // Nullify the div so it wouldn't be stored in the memory and
 // it will also be a sign that checks already performed
 s=null}}var n,r,i,o,a=ne.createElement("div"),s=ne.createElement("div");
@@ -2175,7 +2175,7 @@ flatOptions:{url:!0,context:!0}},
 ajaxSetup:function(e,t){
 // Building a settings object
 // Extending ajaxSettings
-return t?Q(Q(e,ge.ajaxSettings),t):Q(ge.ajaxSettings,e)},ajaxPrefilter:J(Pt),ajaxTransport:J(Rt),
+return t?Q(Q(e,ge.ajaxSettings),t):Q(ge.ajaxSettings,e)},ajaxPrefilter:Y(Pt),ajaxTransport:Y(Rt),
 // Main method
 ajax:function(t,n){
 // Callback for when everything is done
@@ -2294,7 +2294,7 @@ if(
 // Convert data if not already a string
 h.data&&h.processData&&"string"!=typeof h.data&&(h.data=ge.param(h.data,h.traditional)),
 // Apply prefilters
-Y(Pt,h,n,C),l)return C;
+J(Pt,h,n,C),l)return C;
 // We can fire global events as of now if asked to
 // Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
 f=ge.event&&h.global,
@@ -2339,7 +2339,7 @@ j="abort",
 // Install callbacks on deferreds
 y.add(h.complete),C.done(h.success),C.fail(h.error),
 // Get transport
-i=Y(Rt,h,n,C)){
+i=J(Rt,h,n,C)){
 // If request was aborted inside ajaxSend, stop there
 if(C.readyState=1,
 // Send global event
@@ -2518,7 +2518,7 @@ return"fixed"===ge.css(n,"position")?t=n.getBoundingClientRect():(e=this.offsetP
 // and might be considered as more preferable results.
 //
 // This logic, however, is not guaranteed and can change at any point in the future
-offsetParent:function(){return this.map(function(){for(var e=this.offsetParent;e&&"static"===ge.css(e,"position");)e=e.offsetParent;return e||Ye})}}),
+offsetParent:function(){return this.map(function(){for(var e=this.offsetParent;e&&"static"===ge.css(e,"position");)e=e.offsetParent;return e||Je})}}),
 // Create scrollLeft and scrollTop methods
 ge.each({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(e,t){var n="pageYOffset"===t;ge.fn[e]=function(r){return Oe(this,function(e,r,i){
 // Coalesce documents and windows
@@ -2743,7 +2743,7 @@ t("rollAssessment.js"),t("rollDatabase.js"),t("rollDataRefresher.js"),!window.na
 // UI refresh immediately afterwards.
 i.subscribe(n,"fate.shaderDataFetched",function(){i.publish(n,"fate.refresh")}),i.publish(n,"fate.init");var s=setInterval(function(){a(".item-img").length>1&&(clearInterval(s),r())},500)}}),require.register("masterworkIndicator.js",function(e,t,n){function r(){a("[data-fate-masterwork]").each(function(e,t){a(this).children(".fate-masterwork").length>0||a(this).append(a('<div class="fate-masterwork" style="display:none">M</div>'))})}function i(){a("[data-fate-masterwork]").each(function(e,t){"true"===a(this).attr("data-fate-masterwork")?a(this).children(".fate-masterwork").show():a(this).children(".fate-masterwork").hide()})}const o=t("fateBus.js");o.registerModule(n);var a=t("jquery"),s=t("logger.js");o.subscribe(n,"fate.refresh",function(){s.log("masterworkIndicator.js: Calculating masterworks"),r(),i()})}),require.register("pveIndicator.js",function(e,t,n){function r(){a('[data-fate-weapon-registered="true"]').each(function(e,t){a(this).children(".fate-pve.fate-glyph.fglyph-pve").length>0||a(this).append(a("<div>",{"class":"fate-pve fate-glyph fglyph-pve",style:"display:none"}))})}function i(){a('[data-fate-weapon-registered="true"]').each(function(e,t){return a(this).is("[data-fate-weapon-pve]")?(a(this).is("[data-fate-weapon-pvp]")&&a(this).children(".fate-pve").addClass("fate-right-bump"),void a(this).children(".fate-pve").show()):void a(this).children(".fate-pve").hide()})}const o=t("fateBus.js");o.registerModule(n);var a=t("jquery"),s=t("logger.js");o.subscribe(n,"fate.pvpsCalculated",function(){s.log("pveIndicator.js: Calculating pve useful weapons"),r(),i(),o.publish(n,"fate.pvesCalculated")})}),require.register("pvpIndicator.js",function(e,t,n){function r(){a('[data-fate-weapon-registered="true"]').each(function(e,t){a(this).children(".fate-pvp.fate-glyph.fglyph-pvp").length>0||a(this).append(a("<div>",{"class":"fate-pvp fate-glyph fglyph-pvp",style:"display:none"}))})}function i(){a('[data-fate-weapon-registered="true"]').each(function(e,t){a(this).is("[data-fate-weapon-pvp]")?a(this).children(".fate-pvp").show():a(this).children(".fate-pvp").hide()})}const o=t("fateBus.js");o.registerModule(n);var a=t("jquery"),s=t("logger.js");o.subscribe(n,"fate.refresh",function(){s.log("pvpIndicator.js: Calculating pvp useful weapons"),r(),i(),o.publish(n,"fate.pvpsCalculated")})}),require.register("rollAssessment.js",function(e,t,n){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}const i=t("fateBus.js");i.registerModule(n);var o=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a=t("weapon.js"),s=function(){function e(t,n,i,o,a){r(this,e),this.rollID=t,this.name=n,this.pve=i.toLowerCase(),this.pvp=o.toLowerCase(),this.comments=a}return o(e,[{key:"isJunk",value:function(){return this.pveUtility===a.Utility.NO&&this.pvpUtility===a.Utility.NO}},{key:"pveUtility",get:function(){return a.Weapon.mapToStatus(this.pve)}},{key:"pvpUtility",get:function(){return a.Weapon.mapToStatus(this.pvp)}}]),e}();e.RollAssessment=s}),require.register("rollDataRefresher.js",function(e,t,n){const r=t("fateBus.js");r.registerModule(n);var i=t("itemDataRefresher.js");r.subscribe(n,"fate.configurationLoaded",function(e,t){new i.ItemDataRefresher("roll",t.rollDataTSV,"fate.weaponDataUpdated")})}),require.register("rollDatabase.js",function(e,t,n){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}const a=t("fateBus.js");a.registerModule(n);var s=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),u=(t("logger"),t("itemDatabase.js")),c=t("rollAssessment.js"),l=function(e){function t(){return r(this,t),i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,"roll"))}return o(t,e),s(t,[{key:"createItemFromData",value:function(e){this.itemMap.set(e[0],new c.RollAssessment(e[0],e[1],e[2],e[3],e[4]))}}]),t}(u.ItemDatabase);e.rollDB=new l}),require.register("shader.js",function(e,t,n){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}const i=t("fateBus.js");i.registerModule(n);var o=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a={NO:"n",YES:"y",UNKNOWN:"?"},s=function(){function e(t,n,i){r(this,e),this.name=t,this.keep=n.toLowerCase(),this.comments=i}return o(e,[{key:"keepStatus",get:function(){switch(this.keep){case"y":return a.YES;case"n":return a.NO;default:return a.UNKNOWN}}}]),e}();e.Shader=s,e.Keep=a}),require.register("shaderDataRefresher.js",function(e,t,n){const r=t("fateBus.js");r.registerModule(n);var i=t("itemDataRefresher.js");r.subscribe(n,"fate.configurationLoaded",function(e,t){new i.ItemDataRefresher("shader",t.shaderDataTSV,"fate.rollDataUpdated")})}),require.register("shaderDatabase.js",function(e,t,n){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}const a=t("fateBus.js");a.registerModule(n);var s=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),u=(t("logger"),t("itemDatabase.js")),c=t("shader.js"),l=function(e){function t(){return r(this,t),i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,"shader"))}return o(t,e),s(t,[{key:"createItemFromData",value:function(e){this.itemMap.set(e[0],new c.Shader(e[0],e[1],e[2]))}}]),t}(u.ItemDatabase);e.shaderDB=new l}),require.register("shaderDecorator.js",function(e,t,n){function r(){u("[drag-channel=Shaders]").not("[data-fate-shader-name]").each(function(e,t){u(this).attr("data-fate-shader-name",u(this).attr("title").split("\n")[0])})}function i(){u("[data-fate-shader-name]").each(function(e,t){var n=u(this).attr("data-fate-shader-name");u(this).attr("data-fate-shader-registered",l.contains(n))})}function o(){u('[data-fate-shader-registered="true"]').each(function(e,t){var n=l.get(u(this).attr("data-fate-shader-name"));switch(n.keepStatus){case c.Keep.YES:u(this).attr("data-fate-shader-keep",!0);break;case c.Keep.NO:u(this).attr("data-fate-shader-keep",!1);break;case c.Keep.UNKNOWN:u(this).attr("data-fate-shader-keep","unknown")}})}function a(){u('[data-fate-shader-registered="true"]').each(function(e,t){var n=l.get(u(this).attr("data-fate-shader-name"));u(this).attr("data-fate-comment",n.comments)})}const s=t("fateBus.js");s.registerModule(n);var u=t("jquery"),c=t("shader.js"),l=t("shaderDatabase.js").shaderDB;s.subscribe(n,"fate.refresh",function(){r(),i(),o(),a()})}),require.register("shaderStatusIndicator.js",function(e,t,n){function r(){o("[data-fate-shader-name]").not('[data-fate-shader-init="true"]').each(function(e,t){o(this).append(o("<div>",{"class":"fate-question-mark fate-middling fglyph-question-mark fate-ignore-slot fate-glyph"})),o(this).append(o("<div>",{"class":"fate-fave          fate-positive fglyph-fave          fate-ignore-slot fate-glyph"})),o(this).append(o("<div>",{"class":"fate-thumbs-down   fate-positive fglyph-thumbs-down   fate-ignore-slot fate-glyph"})),o(this).attr("data-fate-shader-init",!0)})}const i=t("fateBus.js");i.registerModule(n);var o=t("jquery"),a=t("logger.js");i.subscribe(n,"fate.refresh",function(){a.log("ignoreStatusIndicator.js: Calculating ignore status"),r()})}),require.register("weapon.js",function(e,t,n){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}const i=t("fateBus.js");i.registerModule(n);var o=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),a={NO:"n",YES:"y",UNKNOWN:"?"};e.Weapon=function(){function e(t,n,i,o,s){switch(r(this,e),this.name=t,this.rarity=n.toLowerCase(),this.type=i,o){case"Always Junk":this.pve=a.NO,this.pvp=a.NO;break;case"Check Roll":this.pve=a.UNKNOWN,this.pvp=a.UNKNON}this.comments=s}return o(e,[{key:"isJunk",value:function(){return this.pveUtility===a.NO&&this.pvpUtility===a.NO}},{key:"pveUtility",get:function(){return e.mapToStatus(this.pve)}},{key:"pvpUtility",get:function(){return e.mapToStatus(this.pvp)}}],[{key:"mapToStatus",value:function(e){switch(e){case"y":return a.YES;case"n":return a.NO;default:return a.UNKNOWN}}}]),e}(),e.Utility=a}),require.register("weaponDataRefresher.js",function(e,t,n){const r=t("fateBus.js");r.registerModule(n);var i=t("itemDataRefresher.js");r.subscribe(n,"fate.configurationLoaded",function(e,t){new i.ItemDataRefresher("weapon",t.weaponListTSV)})}),require.register("weaponDatabase.js",function(e,t,n){function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}const a=t("fateBus.js");a.registerModule(n);var s=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),u=(t("logger"),t("itemDatabase.js")),c=t("weapon.js"),l=function(e){function t(){return r(this,t),i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,"weapon"))}return o(t,e),s(t,[{key:"createItemFromData",value:function(e){
 // Name Rarity Type Assessment Comments
-this.itemMap.set(e[0],new c.Weapon(e[0],e[1],e[2],e[3],e[4]))}}]),t}(u.ItemDatabase);e.weaponDB=new l}),require.register("weaponDecorator.js",function(e,t,n){function r(){f("[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]").not("[data-fate-weapon-name]").each(function(e,t){var n=f(this).attr("title").split("\n")[0];f(this).attr("data-fate-weapon-name",n);var r=f(this).children(".item-img.complete").length>0;f(this).attr("data-fate-is-modded",r);var i=f(this).children(".item-img.masterwork").length>0;f(this).attr("data-fate-masterwork",i);var o=parseInt(f(this).children(".item-stat.item-equipment").text().match(/(\d+)/)),a=r?o-5:o;f(this).attr("data-fate-base-light",a),p.contains(n)&&(f(this).attr("data-fate-weapon-registered",!0),f(this).attr("data-fate-serial",f(this).attr("id").split("-")[0]),f(this).attr("data-fate-weapon-rarity",p.get(n).rarity),f(this).attr("data-fate-weapon-type",p.get(n).type))})}function i(){f("[data-fate-weapon-name]").each(function(e,t){var n=f(this).attr("data-fate-weapon-name");f(this).attr("data-fate-weapon-registered",p.contains(n))})}function o(){f('[data-fate-weapon-registered="true"]').each(function(e,t){f(this).attr("data-fate-roll-stored",h.contains(f(this).attr("data-fate-serial")))})}function a(){f('[data-fate-weapon-registered="true"]').each(function(e,t){h.contains(f(this).attr("data-fate-serial"))?f(this).attr("data-fate-weapon-junk",h.get(f(this).attr("data-fate-serial")).isJunk()):f(this).attr("data-fate-weapon-junk",p.get(f(this).attr("data-fate-weapon-name")).isJunk())})}function s(){f('[data-fate-weapon-registered="true"]').each(function(e,t){var n=c(f(this));n.pvpUtility===d.Utility.YES?f(this).attr("data-fate-weapon-pvp",!0):f(this).removeAttr("data-fate-weapon-pvp"),n.pveUtility===d.Utility.YES?f(this).attr("data-fate-weapon-pve",!0):f(this).removeAttr("data-fate-weapon-pve")})}function u(){f('[data-fate-weapon-registered="true"]').each(function(e,t){f(this).attr("data-fate-comment",c(f(this)).comments)})}function c(e){return h.contains(e.attr("data-fate-serial"))?h.get(e.attr("data-fate-serial")):p.contains(e.attr("data-fate-weapon-name"))?p.get(e.attr("data-fate-weapon-name")):void 0}const l=t("fateBus.js");l.registerModule(n);var f=t("jquery"),d=t("weapon.js"),p=t("weaponDatabase.js").weaponDB,h=t("rollDatabase.js").rollDB;l.subscribe(n,"fate.refresh",function(){r(),i(),o(),s(),a(),u()})}),require.alias("blueimp-md5/js/md5.js","blueimp-md5"),require.alias("jquery/dist/jquery.js","jquery"),require.alias("jquery-toast-plugin/dist/jquery.toast.min.js","jquery-toast-plugin"),require.alias("process/browser.js","process"),require.alias("pubsub-js/src/pubsub.js","pubsub-js"),e=require("process"),require.register("___globals___",function(e,t,n){})}(),require("___globals___"),GM_configStruct.prototype={
+this.itemMap.set(e[0],new c.Weapon(e[0],e[1],e[2],e[3],e[4]))}}]),t}(u.ItemDatabase);e.weaponDB=new l}),require.register("weaponDecorator.js",function(e,t,n){function r(){f("[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]").not("[data-fate-weapon-name]").each(function(e,t){var n=f(this).attr("title").split("\n")[0];f(this).attr("data-fate-weapon-name",n);var r=f(this).children(".item-img.complete").length>0;f(this).attr("data-fate-is-modded",r);var i=f(this).children(".item-img.masterwork").length>0;f(this).attr("data-fate-masterwork",i);var o=f(this).children(".item-stat.item-equipment").text().match(/(\d+)/)[0];f(this).attr("data-fate-base-light",o),p.contains(n)&&(f(this).attr("data-fate-weapon-registered",!0),f(this).attr("data-fate-serial",f(this).attr("id").split("-")[0]),f(this).attr("data-fate-weapon-rarity",p.get(n).rarity),f(this).attr("data-fate-weapon-type",p.get(n).type))})}function i(){f("[data-fate-weapon-name]").each(function(e,t){var n=f(this).attr("data-fate-weapon-name");f(this).attr("data-fate-weapon-registered",p.contains(n))})}function o(){f('[data-fate-weapon-registered="true"]').each(function(e,t){f(this).attr("data-fate-roll-stored",h.contains(f(this).attr("data-fate-serial")))})}function a(){f('[data-fate-weapon-registered="true"]').each(function(e,t){var n=c(f(this));f(this).attr("data-fate-weapon-junk",n.isJunk())})}function s(){f('[data-fate-weapon-registered="true"]').each(function(e,t){var n=c(f(this));n.pvpUtility===d.Utility.YES?f(this).attr("data-fate-weapon-pvp",!0):f(this).removeAttr("data-fate-weapon-pvp"),n.pveUtility===d.Utility.YES?f(this).attr("data-fate-weapon-pve",!0):f(this).removeAttr("data-fate-weapon-pve")})}function u(){f('[data-fate-weapon-registered="true"]').each(function(e,t){f(this).attr("data-fate-comment",c(f(this)).comments)})}function c(e){return h.contains(e.attr("data-fate-serial"))?h.get(e.attr("data-fate-serial")):p.contains(e.attr("data-fate-weapon-name"))?p.get(e.attr("data-fate-weapon-name")):void 0}const l=t("fateBus.js");l.registerModule(n);var f=t("jquery"),d=t("weapon.js"),p=t("weaponDatabase.js").weaponDB,h=t("rollDatabase.js").rollDB;l.subscribe(n,"fate.refresh",function(){r(),i(),o(),s(),a(),u()})}),require.alias("blueimp-md5/js/md5.js","blueimp-md5"),require.alias("jquery/dist/jquery.js","jquery"),require.alias("jquery-toast-plugin/dist/jquery.toast.min.js","jquery-toast-plugin"),require.alias("process/browser.js","process"),require.alias("pubsub-js/src/pubsub.js","pubsub-js"),e=require("process"),require.register("___globals___",function(e,t,n){})}(),require("___globals___"),GM_configStruct.prototype={
 // Support old method of initalizing
 init:function(){GM_configInit(this,arguments),this.onInit()},
 // call GM_config.open() from your script to open the menu
