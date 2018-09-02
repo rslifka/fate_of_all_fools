@@ -28,12 +28,6 @@ require('infusionIndicator.js');
 // Is this weapon infusion fodder for other weapons?
 require('fodderIndicator.js');
 
-// Which weapons are good for PvP?
-require('pvpIndicator.js');
-
-// Which weapons are good for PvE?
-require('pveIndicator.js');
-
 // Weapon and armor masterworks
 require('masterworkIndicator.js');
 

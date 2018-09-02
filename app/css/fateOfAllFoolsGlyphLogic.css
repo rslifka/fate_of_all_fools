@@ -41,3 +41,34 @@
 {
   display: none;
 }
+
+/*
+  PVE INDICATOR
+*/
+[data-fate-weapon-pve="true"] > .foaf-pve
+{
+  display: block;
+}
+
+[data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pve
+{
+  right: 20px;
+}
+
+[data-fate-weapon-pve="false"] > .foaf-pve
+{
+  display: none;
+}
+
+/*
+  PVP INDICATOR
+*/
+[data-fate-weapon-pvp="true"] > .foaf-pvp
+{
+  display: block;
+}
+
+[data-fate-weapon-pvp="false"] > .foaf-pvp
+{
+  display: none;
+}

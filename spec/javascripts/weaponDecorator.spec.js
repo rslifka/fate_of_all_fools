@@ -102,18 +102,18 @@ describe('weaponDecorator.js', function() {
 
     it('should store if the weapon is good for pve', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-pve', 'true');
-      expect($('[data-fate-weapon-name="Better Devils"]')).not.toHaveAttr('data-fate-weapon-pve');
-      expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-pve');
-      expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pve');
-      expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-pve');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-weapon-pve', 'false');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-pve', 'false');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-weapon-pve', 'false');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-weapon-pve', 'false');
     });
 
     it('should store if the weapon is good for pvp', function() {
       expect($('[data-fate-weapon-name="Origin Story"]')).toHaveAttr('data-fate-weapon-pvp', 'true');
-      expect($('[data-fate-weapon-name="Better Devils"]')).not.toHaveAttr('data-fate-weapon-pvp');
-      expect($('[data-fate-weapon-name="Annual Skate"]')).not.toHaveAttr('data-fate-weapon-pvp');
-      expect($('[data-fate-weapon-name="Alone as a god"]')).not.toHaveAttr('data-fate-weapon-pvp');
-      expect($('[data-fate-weapon-name="Autumn Wind"]')).not.toHaveAttr('data-fate-weapon-pvp');
+      expect($('[data-fate-weapon-name="Better Devils"]')).toHaveAttr('data-fate-weapon-pvp', 'false');
+      expect($('[data-fate-weapon-name="Annual Skate"]')).toHaveAttr('data-fate-weapon-pvp', 'false');
+      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveAttr('data-fate-weapon-pvp', 'false');
+      expect($('[data-fate-weapon-name="Autumn Wind"]')).toHaveAttr('data-fate-weapon-pvp', 'false');
     });
 
     it('should store if the weapon is junk or not', function() {

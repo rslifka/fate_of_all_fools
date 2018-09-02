@@ -36,23 +36,16 @@ function updateAttributes() {
 
     if (!$(this).is('[data-fate-weapon-registered="true"]')) {
       $(this).attr('data-fate-weapon-junk', false);
+      $(this).attr('data-fate-weapon-pve', false);
+      $(this).attr('data-fate-weapon-pvp', false);
       return;
     }
 
     const w = getRollOrWeapon($(this));
     $(this).attr('data-fate-comment', w.comments);
     $(this).attr('data-fate-weapon-junk', w.isJunk());
-
-    if (w.pvpUtility === weapon.Utility.YES) {
-      $(this).attr('data-fate-weapon-pvp', true);
-    } else {
-      $(this).removeAttr('data-fate-weapon-pvp');
-    }
-    if (w.pveUtility === weapon.Utility.YES) {
-      $(this).attr('data-fate-weapon-pve', true);
-    } else {
-      $(this).removeAttr('data-fate-weapon-pve');
-    }
+    $(this).attr('data-fate-weapon-pve', w.pveUtility === weapon.Utility.YES);
+    $(this).attr('data-fate-weapon-pvp', w.pvpUtility === weapon.Utility.YES);
   });
 }
 
