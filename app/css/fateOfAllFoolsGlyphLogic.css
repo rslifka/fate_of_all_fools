@@ -86,6 +86,7 @@
   display: none;
 }
 
+[data-fate-weapon-registered="false"] > .foaf-masterwork,
 [data-fate-weapon-pve="true"] > .foaf-masterwork,
 [data-fate-weapon-pvp="true"] > .foaf-masterwork,
 [data-fate-weapon-junk="true"] > .foaf-masterwork
