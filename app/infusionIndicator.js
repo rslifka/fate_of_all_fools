@@ -1,16 +1,17 @@
 const $ = require('jquery');
 const logger = require('logger.js');
 
+const INFUSION_FODDER = new Map();
+
 function calculateInfusionFodder() {
-  const infusionFodder = new Map();
+  INFUSION_FODDER.clear();
   $('[data-fate-weapon-registered="true"]').each(function(index,element) {
-    if (!$(this).is('[data-fate-weapon-dupe="true"],[data-fate-weapon-junk="true"]')) {
+    if ($(this).is('[data-fate-weapon-dupe="false"]') && $(this).is('[data-fate-weapon-junk="false"]')) {
       return;
     }
-    if (!$(this).is('[data-fate-weapon-rarity="rare"],[data-fate-weapon-rarity="legendary"],[data-fate-weapon-rarity="exotic"]')) {
+    if ($(this).is('[data-fate-weapon-rarity="common"]') || $(this).is('[data-fate-weapon-rarity="uncommon"]')) {
       return;
     }
-    $(this).attr('data-fate-infuse-ok', true);
     const weaponName = $(this).attr('data-fate-weapon-name');
     const weaponSlot = $(this).attr('drag-channel');
     const weaponLight = parseInt($(this).attr('data-fate-base-light'));
@@ -20,16 +21,15 @@ function calculateInfusionFodder() {
       domElement: this,
       toString: function() {return weaponSlot + ' - ' + weaponName + ' ('+weaponLight+')';}
     };
-    if (infusionFodder.has(weaponSlot)) {
-      infusionFodder.set(weaponSlot, infusionFodder.get(weaponSlot).concat(weaponData));
+    if (INFUSION_FODDER.has(weaponSlot)) {
+      INFUSION_FODDER.set(weaponSlot, INFUSION_FODDER.get(weaponSlot).concat(weaponData));
     } else {
-      infusionFodder.set(weaponSlot, [weaponData]);
+      INFUSION_FODDER.set(weaponSlot, [weaponData]);
     }
   });
-  return infusionFodder;
 }
 
-function styleInfusionIndicators(infusionFodder) {
+function styleInfusionIndicators() {
   $('[data-fate-weapon-name]').each(function(index,element) {
 
     if ($(this).is('[data-fate-weapon-registered="false"]')) {
@@ -47,7 +47,7 @@ function styleInfusionIndicators(infusionFodder) {
       return;
     }
 
-    const fodder = infusionFodder.get($(this).attr('drag-channel'));
+    const fodder = INFUSION_FODDER.get($(this).attr('drag-channel'));
     if (fodder === undefined) {
       $(this).attr('data-fate-infusable', false);
       return;
@@ -63,36 +63,38 @@ function styleInfusionIndicators(infusionFodder) {
 }
 
 function onMouseEnter() {
-  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').addClass('fate-search-hidden');
-  $(this).parent().removeClass('fate-search-hidden');
-
-  const weaponType = $(this).parent().attr('data-fate-weapon-type');
+  const weaponSlot = $(this).parent().attr('drag-channel');
   const weaponLight = $(this).parent().attr('data-fate-base-light');
 
-  $('[data-fate-weapon-type="'+weaponType+'"]').each(function(index,element) {
-    const higherLight = parseInt($(this).attr('data-fate-base-light')) > weaponLight;
-    if ($(this).attr('data-fate-infuse-ok') != undefined && higherLight) {
-      const newLight = parseInt($(this).attr('data-fate-base-light'));
-      $(this).append($("<div>", {"class": "fate-infuse-new-light"}).text(newLight));
-      $(this).removeClass('fate-search-hidden');
-    }
+  const fodder = INFUSION_FODDER.get(weaponSlot);
+
+  // Hide all weapons in the same slot
+  $('[drag-channel='+weaponSlot+']').addClass('fate-search-hidden');
+
+  // Show the current weapon
+  $(this).parent().removeClass('fate-search-hidden');
+
+  // console.log(fodder);
+
+  // Show valid fodder in this slot
+  fodder.filter(w => w.light > weaponLight).forEach(function(weaponData) {
+    $(weaponData.domElement).removeClass('fate-search-hidden');
   });
 }
 
 function onMouseLeave() {
   $('.fate-search-hidden').removeClass('fate-search-hidden');
-  $('.fate-infuse-new-light').remove();
 }
 
 function registerListeners() {
-  $('.fate-infusion:visible').on('mouseenter.infuse', onMouseEnter);
-  $('.fate-infusion:visible').on('mouseleave.infuse', onMouseLeave);
+  $('.foaf-infusable').on('mouseenter.infuse', onMouseEnter);
+  $('.foaf-infusable').on('mouseleave.infuse', onMouseLeave);
 }
 
 fateBus.subscribe(module, 'fate.dupesCalculated', function() {
   logger.log('infusionIndicator.js: Calculating infuseables');
-  const infusionFodder = calculateInfusionFodder();
-  styleInfusionIndicators(infusionFodder);
+  calculateInfusionFodder();
+  styleInfusionIndicators();
   registerListeners();
   fateBus.publish(module, 'fate.infusionCalculated');
 });

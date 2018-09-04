@@ -33,3 +33,4 @@ fateBus.subscribe(module, 'fate.refresh', function() {
 });
 
 exports.DUPLICATE_INDICATOR_CLASS = DUPLICATE_INDICATOR_CLASS;
+exports.INFUSION_INDICATOR_CLASS = INFUSION_INDICATOR_CLASS;

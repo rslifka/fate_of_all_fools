@@ -2,6 +2,7 @@ describe('infusionIndicator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
+  const indicators = require('indicators.js');
 
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
@@ -30,6 +31,8 @@ describe('infusionIndicator.js', function() {
         'infusion/powerDoubleEdgedAnswer330.html', // Sword   - Unregistered
         'infusion/powerSinsOfThePast380.html'      // Rocket  - Legendary
       );
+
+      $('[data-fate-weapon-name]').append($('<div>', {'class': indicators.INFUSION_INDICATOR_CLASS}));
     });
 
     describe('messaging', function() {
@@ -85,103 +88,34 @@ describe('infusionIndicator.js', function() {
       });
     });
 
-    xdescribe('mouse interaction', function() {
+    describe('mouse interaction', function() {
 
-      it('should show other items of the same type with higher light', function() {
+      it('should show other infusable items in the same slot with higher light', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
 
-        fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse', '[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-        expect($('[data-fate-weapon-name="Suros Throwback"]')).toHaveClass('fate-search-hidden');
+        fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse', '[data-fate-weapon-name="Origin Story"] > .' + indicators.INFUSION_INDICATOR_CLASS);
+        expect($('[data-fate-weapon-name="Suros Throwback"]:eq(0)')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Suros Throwback"]:eq(1)')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Cuboid ARu"]')).toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(300))')).toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305))')).not.toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Origin Story"]')).toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Solemn Hymn"]')).not.toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Prosecutor"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Midnight Coup"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="SUROS Regime"]')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="The Conqueror 2"]')).toHaveClass('fate-search-hidden');
         expect($('[data-fate-weapon-name="Trax Lysis II"]')).toHaveClass('fate-search-hidden');
-        expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveClass('fate-search-hidden');
-        expect($('[title*="Double-Edged Answer"]')).toHaveClass('fate-search-hidden');
+        fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse', '[data-fate-weapon-name="Origin Story"] > .' + indicators.INFUSION_INDICATOR_CLASS);
 
-        fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse', '[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(305)) .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-        expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
-      });
-
-      it('should display the new light level over infuse targets, taking mods in to account', function() {
-        $('[data-fate-weapon-name="Prosecutor"]').attr('data-fate-is-modded', true);
-        $('[data-fate-weapon-name="Prosecutor"]').attr('data-fate-base-light', 310);
-        fateBus.publish(brunchModule, 'fate.dupesCalculated');
-
-        fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse', '[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(300)) .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-        expect($('[data-fate-weapon-name="Perseverance"]')).toContainElement('div.fate-infuse-new-light:contains(305)');
-
-        fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse', '[data-fate-weapon-name="Perseverance"]:has(.item-stat:contains(300)) .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-        expect($('[data-fate-weapon-name]')).not.toContainElement('div.fate-infuse-new-light');
-      });
-
-    });
-  });
-
-  xdescribe('when some or all infusion sources are precious', function() {
-
-    describe('when all higher light items are precious', function() {
-      beforeEach(function() {
-        loadFixtures(
-          'infusion/trickySituation/powerCrownSplitter324.html', // Sword - Precious
-          'infusion/trickySituation/powerZephyr329.html',        // Sword - Unknown (i.e. not junk)
-          'infusion/trickySituation/powerItStaredBack330.html',  // Sword - Precious
-        );
-      });
-      it('should not show infusion icons on any of the weapons', function() {
-        fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Crown-Splitter"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
-        expect($('[data-fate-weapon-name="Zephyr"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
-        expect($('[data-fate-weapon-name="It Stared Back"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
+        fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse', '[data-fate-weapon-name="SUROS Regime"] .' + indicators.INFUSION_INDICATOR_CLASS);
+        expect($('[data-fate-weapon-name="Suros Throwback"]:eq(0)')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Suros Throwback"]:eq(1)')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Cuboid ARu"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Midnight Coup"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Origin Story"]')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="SUROS Regime"]')).not.toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="The Conqueror 2"]')).toHaveClass('fate-search-hidden');
+        expect($('[data-fate-weapon-name="Trax Lysis II"]')).not.toHaveClass('fate-search-hidden');
+        fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse', '[data-fate-weapon-name="SUROS Regime"] .' + indicators.INFUSION_INDICATOR_CLASS);
       });
     });
-
-    describe('when some higher light items are precious', function() {
-
-      beforeEach(function() {
-        loadFixtures(
-          'infusion/trickySituation/powerCrownSplitter324.html', // Sword - Precious
-          'infusion/trickySituation/powerZephyr329.html',        // Sword - Unknown (precious)
-          'infusion/trickySituation/powerItStaredBack330.html',  // Sword - Precious, Dupe
-          'infusion/trickySituation/powerItStaredBack330.html',  // Sword - Precious, Dupe
-        );
-        $('[data-fate-weapon-name="It Stared Back"]').attr('data-fate-weapon-dupe', true);
-        fateBus.publish(brunchModule, 'fate.dupesCalculated');
-      });
-
-      it('should show infusion icons on some of the weapons', function() {
-        expect($('[data-fate-weapon-name="Crown-Splitter"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeVisible();
-        expect($('[data-fate-weapon-name="Zephyr"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeVisible();
-        expect($('[data-fate-weapon-name="It Stared Back"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
-      });
-
-      describe('mouse interaction', function() {
-
-        it('should show other items of the same type with higher light', function() {
-          fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse', '[data-fate-weapon-name="Crown-Splitter"] .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-          expect($('[data-fate-weapon-name="Crown-Splitter"]')).not.toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="Zephyr"]')).toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="It Stared Back"]')).not.toHaveClass('fate-search-hidden');
-
-          fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse', '[data-fate-weapon-name="Crown-Splitter"] .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-          expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
-        });
-
-        it('should display the new light level over infuse targets, taking mods in to account', function() {
-          fateBus.publish(brunchModule, 'fate.test.mouseenter.infuse', '[data-fate-weapon-name="Crown-Splitter"] .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-          expect($('[data-fate-weapon-name="Crown-Splitter"]')).not.toContainElement('div.fate-infuse-new-light');
-          expect($('[data-fate-weapon-name="Zephyr"]')).not.toContainElement('div.fate-infuse-new-light');
-          expect($('[data-fate-weapon-name="It Stared Back"]')).toContainElement('div.fate-infuse-new-light:contains(330)');
-
-          fateBus.publish(brunchModule, 'fate.test.mouseleave.infuse', '[data-fate-weapon-name="Crown-Splitter"] .fate-infusion.fate-positive.fate-glyph.fglyph-up');
-          expect($('[data-fate-weapon-name]')).not.toContainElement('div.fate-infuse-new-light');
-        });
-      });
-    });
-
   });
 
 });
