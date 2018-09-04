@@ -11,19 +11,25 @@ describe('infusionIndicator.js', function() {
 
     beforeEach(function() {
       loadFixtures(
-        'infusion/kineticSurosThrowback200.html',  // Auto - Uncommon
-        'infusion/kineticCuboidARu303.html',       // Auto - Rare
-        'infusion/energyPerseverance300.html',     // Auto - Dupe
-        'infusion/energyPerseverance305.html',     // Auto - Dupe
-        'infusion/kineticOriginStory306.html',     // Auto
-        'infusion/energySolemnHymn310.html',       // Auto - Junk
-        'infusion/energyProsecutor315.html',       // Auto - Dupe
-        'infusion/energyProsecutor315.html',       // Auto - Dupe
-        'infusion/kineticTraxLysisII312.html',     // Pulse
-        'infusion/powerAloneAsAGod305.html',       // Sniper
-        'infusion/powerDoubleEdgedAnswer330.html', // Sword - Unregistered
+        'infusion/kineticSurosThrowback200.html',  // Auto    - Uncommon
+        'infusion/kineticSurosThrowback380.html',  // Auto    - Uncommon
+        'infusion/kineticCuboidARu303.html',       // Auto    - Rare
+        'infusion/kineticMidnightCoup370.html',    // Hand    - Junk
+        'infusion/kineticOriginStory306.html',     // Auto    - Legendary
+        'infusion/kineticSurosRegime280.html',     // Auto    - Exotic
+        'infusion/kineticTheConqueror2280.html',   // SMG     - Legendary
+        'infusion/kineticTraxLysisII303.html',     // Pulse   - Rare
+        'infusion/energyLastPerdition290.html',    // Pulse   - Legendary
+        'infusion/energyPerseverance300.html',     // Auto    - Dupe
+        'infusion/energyPerseverance305.html',     // Auto    - Dupe
+        'infusion/energyProsecutor315.html',       // Auto    - Legendary
+        'infusion/energySolemnHymn310.html',       // Auto    - Junk
+        'infusion/powerAloneAsAGod305.html',       // Sniper  - Dupe
+        'infusion/powerAloneAsAGod310.html',       // Sniper  - Dupe
+        'infusion/powerCurtainCall290.html',       // Rocket  - Legendary
+        'infusion/powerDoubleEdgedAnswer330.html', // Sword   - Unregistered
+        'infusion/powerSinsOfThePast380.html'      // Rocket  - Legendary
       );
-      $('[data-fate-weapon-name="Prosecutor"]').attr('data-fate-weapon-dupe', true);
     });
 
     describe('messaging', function() {
@@ -34,44 +40,52 @@ describe('infusionIndicator.js', function() {
       });
     });
 
-    describe('when a weapon has lower light than another of the same type', function() {
-      it('should get an infusion icon', function() {
+    describe('when a weapon is junk', function() {
+      it('should not be infusable', function() {
+        $('[data-fate-weapon-name="Solemn Hymn"]').attr('data-fate-weapon-junk', true);
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Origin Story"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeVisible();
-        expect($('[data-fate-weapon-name="Perseverance"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeVisible();
-      });
-    });
-
-    describe('when a weapon has equal or higher light than others of the same type', function() {
-      it('should not get an infusion icon', function() {
-        fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Prosecutor"] .fate-infusion.fate-positive.fate-glyph.fglyph-up')).toBeHidden();
+        expect($('[data-fate-weapon-name="Solemn Hymn"]')).toHaveAttr('data-fate-infusable', 'false');
       });
     });
 
     describe('when a weapon is not a legendary or exotic', function() {
-      it('should not be considered for upwards infusion', function() {
+      it('should not be infusable', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Cuboid ARu"]')).not.toContainElement('.fate-infusion.fate-positive.fate-glyph.fglyph-up');
-        expect($('[data-fate-weapon-name="Suros Throwback"]')).not.toContainElement('.fate-infusion.fate-positive.fate-glyph.fglyph-up');
-      });
-    });
-
-    describe('when a weapon is junk', function() {
-      it('should not get an infusion icon', function() {
-        fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[data-fate-weapon-name="Solemn Hymn"]')).not.toContainElement('.fate-infusion.fate-positive.fate-glyph.fglyph-up');
+        expect($('[data-fate-weapon-name="Cuboid ARu"]')).toHaveAttr('data-fate-infusable', 'false');
+        expect($('[data-fate-weapon-name="Suros Throwback"][data-fate-base-light=200]')).toHaveAttr('data-fate-infusable', 'false');
+        expect($('[data-fate-weapon-name="Suros Throwback"][data-fate-base-light=380]')).toHaveAttr('data-fate-infusable', 'false');
+        expect($('[data-fate-weapon-name="Trax Lysis II"]')).toHaveAttr('data-fate-infusable', 'false');
       });
     });
 
     describe('when a weapon is not registered', function() {
-      it('should not get an infusion icon', function() {
+      it('should not be infusable', function() {
+        $('[title*="Double-Edged Answer"]').attr('data-fate-weapon-registered', 'false');
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
-        expect($('[title*="Double-Edged Answer"]')).not.toContainElement('.fate-infusion.fate-positive.fate-glyph.fglyph-up');
+        expect($('[title*="Double-Edged Answer"]')).toHaveAttr('data-fate-infusable', 'false');
       });
     });
 
-    describe('mouse interaction', function() {
+    describe('when a weapon has lower light than another in the same slot', function() {
+      it('should get an infusion icon', function() {
+        fateBus.publish(brunchModule, 'fate.dupesCalculated');
+        expect($('[data-fate-weapon-name="SUROS Regime"]')).toHaveAttr('data-fate-infusable', 'true');
+        expect($('[data-fate-weapon-name="The Conqueror 2"]')).toHaveAttr('data-fate-infusable', 'true');
+        expect($('[data-fate-weapon-name="Last Perdition"]')).toHaveAttr('data-fate-infusable', 'true');
+        expect($('[data-fate-weapon-name="Curtain Call"]')).toHaveAttr('data-fate-infusable', 'true');
+      });
+    });
+
+    describe('when a weapon has equal or higher light than others in the same slot', function() {
+      it('should not get an infusion icon', function() {
+        fateBus.publish(brunchModule, 'fate.dupesCalculated');
+        expect($('[data-fate-weapon-name="Midnight Coup"]')).toHaveAttr('data-fate-infusable', 'false');
+        expect($('[data-fate-weapon-name="Prosecutor"]')).toHaveAttr('data-fate-infusable', 'false');
+        expect($('[data-fate-weapon-name="Sins of the Past"]')).toHaveAttr('data-fate-infusable', 'false');
+      });
+    });
+
+    xdescribe('mouse interaction', function() {
 
       it('should show other items of the same type with higher light', function() {
         fateBus.publish(brunchModule, 'fate.dupesCalculated');
@@ -107,7 +121,7 @@ describe('infusionIndicator.js', function() {
     });
   });
 
-  describe('when some or all infusion sources are precious', function() {
+  xdescribe('when some or all infusion sources are precious', function() {
 
     describe('when all higher light items are precious', function() {
       beforeEach(function() {

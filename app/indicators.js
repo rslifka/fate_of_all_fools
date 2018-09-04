@@ -6,13 +6,15 @@ const UNREGISTERED_INDICATOR_CLASS = 'foaf-unregistered';
 const JUNK_INDICATOR_CLASS = 'foaf-junk';
 const PVE_INDICATOR_CLASS = 'foaf-pve';
 const PVP_INDICATOR_CLASS = 'foaf-pvp';
+const INFUSION_INDICATOR_CLASS = 'foaf-infusable';
 
 const INDICATORS_TO_GLYPHS = new Map([
   [DUPLICATE_INDICATOR_CLASS,    'fglyph-knives'],
   [UNREGISTERED_INDICATOR_CLASS, 'fglyph-question-mark'],
   [JUNK_INDICATOR_CLASS,         'fglyph-thumbs-down'],
   [PVE_INDICATOR_CLASS,          'fglyph-pve'],
-  [PVP_INDICATOR_CLASS,          'fglyph-pvp']
+  [PVP_INDICATOR_CLASS,          'fglyph-pvp'],
+  [INFUSION_INDICATOR_CLASS,     'fglyph-up']
 ]);
 
 function prepareIndicatorSpace() {

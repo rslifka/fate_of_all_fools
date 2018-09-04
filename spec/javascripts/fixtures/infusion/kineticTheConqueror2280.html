@@ -1,0 +1,20 @@
+<dim-store-item ng-repeat="item in vm.items | equipped:false | sortItems:vm.settings.itemSort track by item.index" item-data="item" class="ng-scope ng-isolate-scope">
+  <div ui-draggable="true" id="6917529061838207019-ps376" drag-channel="Kinetic" title="The Conqueror 2 // Submachine Gun
+    " drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0" data-fate-weapon-name="The Conqueror 2" data-fate-masterwork="false" data-fate-base-light="280" data-fate-serial="6917529061838207019" data-fate-weapon-rarity="legendary" data-fate-weapon-type="Submachine Gun" data-fate-weapon-registered="true" data-fate-roll-stored="false" data-fate-comment="" data-fate-weapon-junk="false" data-fate-weapon-pve="false" data-fate-weapon-pvp="false" data-fate-indicator-init="true" data-fate-weapon-dupe="false" data-fate-infuse-ok="true" data-fate-copy-init="true">
+    <!-- ngIf: ::vm.item.percentComplete && !vm.item.complete -->
+    <div class="item-img" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)" tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/42f5519a9fcac7a21b768150f893be15.jpg&quot;);"></div>
+    <!-- ngIf: ::vm.item.quality --> <!-- ngIf: vm.item.dtrRating.overallScore && (vm.item.dtrRating.ratingCount > (vm.item.destinyVersion == 2 ? 0 : 1) || vm.item.dtrRating.highlightedRatingCount > 0) -->
+    <div class="item-element kinetic" ng-class="::vm.item.dmg"></div>
+    <div ng-class="vm.item.dimInfo.tag | tagIcon" class="item-tag no-tag"></div>
+    <!-- ngIf: vm.item.isNew --> <!-- ngIf: ::vm.showBadge -->
+    <div ng-class="::vm.badgeClassNames" ng-if="::vm.showBadge" ng-bind="::vm.badgeCount" class="ng-binding ng-scope item-equipment item-stat">376</div>
+    <!-- end ngIf: ::vm.showBadge -->
+    <div class="foaf-dupe fglyph-knives foaf-glyph"></div>
+    <div class="foaf-unregistered fglyph-question-mark foaf-glyph"></div>
+    <div class="foaf-junk fglyph-thumbs-down foaf-glyph"></div>
+    <div class="foaf-pve fglyph-pve foaf-glyph"></div>
+    <div class="foaf-pvp fglyph-pvp foaf-glyph"></div>
+    <div class="foaf-masterwork foaf-glyph">M</div>
+    <div class="fate-fodder fate-middling fate-glyph fglyph-up" style="display:none"></div>
+  </div>
+</dim-store-item>

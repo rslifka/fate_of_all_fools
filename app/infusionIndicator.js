@@ -1,54 +1,63 @@
 const $ = require('jquery');
 const logger = require('logger.js');
 
-function prepareInfusionIndicator() {
-  $('[data-fate-weapon-registered="true"]').not('[data-fate-weapon-junk]').each(function(index,element) {
-    if (!$(this).is('[data-fate-weapon-rarity=legendary],[data-fate-weapon-rarity=exotic]')) {
-      return;
-    }
-    if ($(this).children('.fate-infusion.fate-glyph.fglyph-up').length > 0) {
-      return;
-    }
-    $(this).append($('<div>', {'class': 'fate-infusion fate-positive fate-glyph fglyph-up', 'style':'display:none'}));
-  });
-}
-
 function calculateInfusionFodder() {
   const infusionFodder = new Map();
   $('[data-fate-weapon-registered="true"]').each(function(index,element) {
-    if (!$(this).is('[data-fate-weapon-dupe],[data-fate-weapon-junk]')) {
+    if (!$(this).is('[data-fate-weapon-dupe="true"],[data-fate-weapon-junk="true"]')) {
+      return;
+    }
+    if (!$(this).is('[data-fate-weapon-rarity="rare"],[data-fate-weapon-rarity="legendary"],[data-fate-weapon-rarity="exotic"]')) {
       return;
     }
     $(this).attr('data-fate-infuse-ok', true);
     const weaponName = $(this).attr('data-fate-weapon-name');
-    const weaponType = $(this).attr('data-fate-weapon-type');
-    const weaponLight = $(this).attr('data-fate-base-light');
+    const weaponSlot = $(this).attr('drag-channel');
+    const weaponLight = parseInt($(this).attr('data-fate-base-light'));
     const weaponData = {
-      type: weaponType,
-      light: parseInt(weaponLight),
+      slot: weaponSlot,
+      light: weaponLight,
       domElement: this,
-      toString: function() {return weaponType + ' - ' + weaponName + ' ('+weaponLight+')';}
+      toString: function() {return weaponSlot + ' - ' + weaponName + ' ('+weaponLight+')';}
     };
-    if (infusionFodder.has(weaponType)) {
-      infusionFodder.set(weaponType, infusionFodder.get(weaponType).concat(weaponData));
+    if (infusionFodder.has(weaponSlot)) {
+      infusionFodder.set(weaponSlot, infusionFodder.get(weaponSlot).concat(weaponData));
     } else {
-      infusionFodder.set(weaponType, [weaponData]);
+      infusionFodder.set(weaponSlot, [weaponData]);
     }
   });
   return infusionFodder;
 }
 
 function styleInfusionIndicators(infusionFodder) {
-  $('.fate-infusion').hide();
-  $('.fate-infusion').parent().each(function(index,element) {
-    const weaponType = $(this).attr('data-fate-weapon-type');
-    const fodder = infusionFodder.get(weaponType);
-    if (fodder === undefined) {
+  $('[data-fate-weapon-name]').each(function(index,element) {
+
+    if ($(this).is('[data-fate-weapon-registered="false"]')) {
+      $(this).attr('data-fate-infusable', false);
       return;
     }
+
+    if ($(this).is('[data-fate-weapon-junk="true"]')) {
+      $(this).attr('data-fate-infusable', false);
+      return;
+    }
+
+    if (!$(this).is('[data-fate-weapon-rarity="legendary"],[data-fate-weapon-rarity="exotic"]')) {
+      $(this).attr('data-fate-infusable', false);
+      return;
+    }
+
+    const fodder = infusionFodder.get($(this).attr('drag-channel'));
+    if (fodder === undefined) {
+      $(this).attr('data-fate-infusable', false);
+      return;
+    }
+
     const light = parseInt($(this).attr('data-fate-base-light'));
     if ((fodder.filter(w => w.light > light)).length > 0) {
-      $(this).children('.fate-infusion').show();
+      $(this).attr('data-fate-infusable', true);
+    } else {
+      $(this).attr('data-fate-infusable', false);
     }
   });
 }
@@ -82,7 +91,6 @@ function registerListeners() {
 
 fateBus.subscribe(module, 'fate.dupesCalculated', function() {
   logger.log('infusionIndicator.js: Calculating infuseables');
-  prepareInfusionIndicator();
   const infusionFodder = calculateInfusionFodder();
   styleInfusionIndicators(infusionFodder);
   registerListeners();

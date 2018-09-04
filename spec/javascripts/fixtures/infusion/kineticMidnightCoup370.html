@@ -1,0 +1,21 @@
+<dim-store-item ng-repeat="item in vm.items | equipped:false | sortItems:vm.settings.itemSort track by item.index" item-data="item" class="ng-scope ng-isolate-scope">
+  <div ui-draggable="true" id="6917529051371324414-ps385" drag-channel="Kinetic" title="Midnight Coup // Hand Cannon
+    With Outlaw it's a beast in PvE. Great PvP gun too, but I prefer DFA =D" drag="::vm.item.index" class="item" ng-click="vm.clicked(vm.item, $event)" ng-class="{ 'search-hidden': !vm.item.visible }" draggable="true" role="button" tabindex="0" data-fate-weapon-name="Midnight Coup" data-fate-masterwork="true" data-fate-base-light="370" data-fate-serial="6917529051371324414" data-fate-weapon-rarity="legendary" data-fate-weapon-type="Hand Cannon" data-fate-weapon-registered="true" data-fate-roll-stored="true" data-fate-comment="With Outlaw it's a beast in PvE. Great PvP gun too, but I prefer DFA =D" data-fate-weapon-junk="true" data-fate-weapon-pve="true" data-fate-weapon-pvp="false" data-fate-indicator-init="true" data-fate-weapon-dupe="false" data-fate-copy-init="true">
+    <!-- ngIf: ::vm.item.percentComplete && !vm.item.complete -->
+    <div class="item-img complete masterwork" ng-class="::{ complete: vm.item.complete, diamond: (vm.item.destinyVersion == 2 &amp;&amp; vm.item.bucket.hash == 3284755031), masterwork: vm.item.masterwork }" ng-style="::vm.item.icon | bungieBackground" ng-dblclick="vm.doubleClicked(vm.item, $event)" tabindex="0" style="background-image: url(&quot;https://www.bungie.net/common/destiny2_content/icons/4944836594336fb4e13a722a8d1f6020.jpg&quot;);"></div>
+    <!-- ngIf: ::vm.item.quality --> <!-- ngIf: vm.item.dtrRating.overallScore && (vm.item.dtrRating.ratingCount > (vm.item.destinyVersion == 2 ? 0 : 1) || vm.item.dtrRating.highlightedRatingCount > 0) -->
+    <div class="item-element kinetic" ng-class="::vm.item.dmg"></div>
+    <div ng-class="vm.item.dimInfo.tag | tagIcon" class="item-tag no-tag"></div>
+    <!-- ngIf: vm.item.isNew --> <!-- ngIf: ::vm.showBadge -->
+    <div ng-class="::vm.badgeClassNames" ng-if="::vm.showBadge" ng-bind="::vm.badgeCount" class="ng-binding ng-scope item-equipment item-stat">370</div>
+    <!-- end ngIf: ::vm.showBadge -->
+    <div class="foaf-dupe fglyph-knives foaf-glyph"></div>
+    <div class="foaf-unregistered fglyph-question-mark foaf-glyph"></div>
+    <div class="foaf-junk fglyph-thumbs-down foaf-glyph"></div>
+    <div class="foaf-pve fglyph-pve foaf-glyph"></div>
+    <div class="foaf-pvp fglyph-pvp foaf-glyph"></div>
+    <div class="foaf-infusable fglyph-up foaf-glyph"></div>
+    <div class="foaf-masterwork foaf-glyph">M</div>
+    <div class="fate-fodder fate-middling fate-glyph fglyph-up" style="display:none"></div>
+  </div>
+</dim-store-item>
