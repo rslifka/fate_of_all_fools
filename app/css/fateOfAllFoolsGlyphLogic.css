@@ -113,3 +113,21 @@
 {
   display: none;
 }
+
+/*
+  FODDER INDICATOR
+*/
+[data-fate-fodder="true"] > .foaf-fodder
+{
+  display: block;
+}
+
+[data-fate-fodder="false"] > .foaf-fodder
+{
+  display: none;
+}
+
+[data-fate-infusable="true"] > .foaf-fodder
+{
+  left: 16px;
+}
