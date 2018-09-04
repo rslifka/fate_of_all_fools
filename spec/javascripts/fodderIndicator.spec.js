@@ -89,34 +89,63 @@ describe('fodderIndicator.js', function() {
         });
       });
 
-      xdescribe('mouse interaction', function() {
+      describe('mouse interaction', function() {
 
         beforeEach(function() {
           loadFixtures(
-            'infusion/kineticSurosThrowback200.html', // Auto - Uncommon
-            'infusion/kineticSweetBusiness200.html',  // Auto - Exotic
-            'infusion/energyPerseverance300.html',    // Auto - Legendary
-            'infusion/energySolemnHymn300.html',      // Auto - Junk
-            'infusion/kineticCuboidARu303.html',      // Auto - Rare
-            'infusion/kineticOriginStory306.html',    // Auto - Legendary
+            'infusion/kineticSurosThrowback200.html',  // Auto    - Uncommon
+            'infusion/kineticSurosThrowback380.html',  // Auto    - Uncommon
+            'infusion/kineticCuboidARu303.html',       // Auto    - Rare
+            'infusion/kineticMidnightCoup370.html',    // Hand    - Junk
+            'infusion/kineticOriginStory306.html',     // Auto    - Legendary
+            'infusion/kineticSurosRegime280.html',     // Auto    - Exotic
+            'infusion/kineticTheConqueror2280.html',   // SMG     - Legendary
+            'infusion/kineticTraxLysisII303.html',     // Pulse   - Rare
+
+            'infusion/energyLastPerdition290.html',    // Pulse   - Legendary
+            'infusion/energyPerseverance300.html',     // Auto    - Dupe
+            'infusion/energyPerseverance305.html',     // Auto    - Dupe
+            'infusion/energyProsecutor315.html',       // Auto    - Legendary
+            'infusion/energySolemnHymn310.html',       // Auto    - Junk
+
+            'infusion/powerAloneAsAGod305.html',       // Sniper  - Dupe
+            'infusion/powerAloneAsAGod310.html',       // Sniper  - Dupe
+            'infusion/powerCurtainCall290.html',       // Rocket  - Legendary
+            'infusion/powerDoubleEdgedAnswer330.html', // Sword   - Unregistered
+            'infusion/powerSinsOfThePast380.html'      // Rocket  - Legendary
           );
+          $('[data-fate-weapon-name]').append($('<div>', {'class': indicators.FODDER_INDICATOR_CLASS}));
         });
 
         it('should show other items of the same type with lower light', function() {
           fateBus.publish(brunchModule, 'fate.infusionCalculated');
 
-          fateBus.publish(brunchModule, 'fate.test.mouseenter.fodder', '[data-fate-weapon-name="Origin Story"] .fate-fodder');
-
-          expect($('[data-fate-weapon-name="Suros Throwback"]')).toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="Sweet Business"]')).not.toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="Perseverance"]')).not.toHaveClass('fate-search-hidden');
-          expect($('[data-fate-weapon-name="Solemn Hymn"]')).toHaveClass('fate-search-hidden');
+          fateBus.publish(brunchModule, 'fate.test.mouseenter.fodder', '[data-fate-weapon-name="Midnight Coup"] > .'+indicators.FODDER_INDICATOR_CLASS);
+          expect($('[data-fate-weapon-name="Suros Throwback"]:eq(0)')).toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Suros Throwback"]:eq(1)')).toHaveClass('fate-search-hidden');
           expect($('[data-fate-weapon-name="Cuboid ARu"]')).toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Midnight Coup"]')).not.toHaveClass('fate-search-hidden');
           expect($('[data-fate-weapon-name="Origin Story"]')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="SUROS Regime"]')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="The Conqueror 2"]')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Trax Lysis II"]')).toHaveClass('fate-search-hidden');
+          fateBus.publish(brunchModule, 'fate.test.mouseleave.fodder', '[data-fate-weapon-name="Midnight Coup"] > .'+indicators.FODDER_INDICATOR_CLASS);
 
-          fateBus.publish(brunchModule, 'fate.test.mouseleave.fodder', '[data-fate-weapon-name="Origin Story"] .fate-fodder');
+          fateBus.publish(brunchModule, 'fate.test.mouseenter.fodder', '[data-fate-weapon-name="Solemn Hymn"] > .'+indicators.FODDER_INDICATOR_CLASS);
+          expect($('[data-fate-weapon-name="Last Perdition"]')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Perseverance"]:eq(0)')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Perseverance"]:eq(1)')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Prosecutor"]')).toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Solemn Hymn"]')).not.toHaveClass('fate-search-hidden');
+          fateBus.publish(brunchModule, 'fate.test.mouseleave.fodder', '[data-fate-weapon-name="Solemn Hymn"] > .'+indicators.FODDER_INDICATOR_CLASS);
 
-          expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
+          fateBus.publish(brunchModule, 'fate.test.mouseenter.fodder', '[data-fate-weapon-name="Alone as a god"]:eq(1) > .'+indicators.FODDER_INDICATOR_CLASS);
+          expect($('[data-fate-weapon-name="Alone as a god"]:eq(0)')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Alone as a god"]:eq(0)')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Curtain Call"]')).not.toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Double-Edged Answer"]')).toHaveClass('fate-search-hidden');
+          expect($('[data-fate-weapon-name="Sins of the Past"]')).toHaveClass('fate-search-hidden');
+          fateBus.publish(brunchModule, 'fate.test.mouseleave.fodder', '[data-fate-weapon-name="Alone as a god"]:eq(1) > .'+indicators.FODDER_INDICATOR_CLASS);
         });
 
       });
