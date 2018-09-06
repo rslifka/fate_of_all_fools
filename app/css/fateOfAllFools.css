@@ -172,9 +172,15 @@
   display: block;
 }
 
-[data-fate-shader-registered="true"] > .fate-question-mark {
+[data-fate-shader-registered="false"] > .fate-fave {
+  display: none;
+}
+[data-fate-shader-registered="false"] > .fate-thumbs-down {
   display: none;
 }
 [data-fate-shader-registered="false"] > .fate-question-mark {
   display: block;
+}
+[data-fate-shader-registered="true"] > .fate-question-mark {
+  display: none;
 }
