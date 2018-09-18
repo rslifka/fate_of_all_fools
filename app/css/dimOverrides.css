@@ -103,8 +103,8 @@ div[drag-channel='Power'] > .item-review
   display: none;
 }
 
-/* We never switch subclasses */
-.sub-section.sort-3284755031 {
+/* Remove the subclass controls */
+.inventory-content .store-row:nth-child(2) {
   display: none;
 }
 
