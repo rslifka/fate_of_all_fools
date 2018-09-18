@@ -108,6 +108,19 @@ div[drag-channel='Power'] > .item-review
   display: none;
 }
 
+/* Remove the weapon title bar controls */
+.inventory-content .title:nth-child(1) {
+  display: none;
+}
+
+/*
+  With the weapons banner gone, we need a little bit of spacing at the top
+  so the weapons aren't jammed up right against the top.
+*/
+.inventory-content .store-row:nth-child(3) {
+  padding-top: 10px;
+}
+
 /*
   We removed the elemental damage color swatches from the weapons, as it was
   additional decoration we could capture elsewhere. We still want to indicate
@@ -153,18 +166,6 @@ body,
 .item-img.masterwork {
   background-repeat: no-repeat;
   border: 1px solid rgba(125, 125, 125, 0.82);
-}
-
-.section.ng-scope.weapons > .title {
-  display: none;
-}
-
-/*
-  With the weapons banner gone, we need a little bit of spacing at the top
-  so the weapons aren't jammed up right against the top.
-*/
-.section.ng-scope.weapons {
-  padding-top: 10px;
 }
 
 /*
