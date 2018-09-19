@@ -8,15 +8,7 @@
 }
 
 /* Reset background color and font size for increased readability */
-div[drag-channel='Kinetic'] > .item-stat.item-equipment,
-div[drag-channel='Energy'] > .item-stat.item-equipment,
-div[drag-channel='Power'] > .item-stat.item-equipment,
-div[drag-channel='Helmet'] > .item-stat.item-equipment,
-div[drag-channel='Gauntlets'] > .item-stat.item-equipment,
-div[drag-channel='Chest'] > .item-stat.item-equipment,
-div[drag-channel='Leg'] > .item-stat.item-equipment,
-div[drag-channel='ClassItem'] > .item-stat.item-equipment
-{
+.item-stat.item-equipment {
   background-color: rgba(0,0,0,1);
   bottom: 3px;
   color: rgba(255,255,255,0.65);
@@ -100,16 +92,6 @@ div[drag-channel='Power'] > .item-review
 /* We never use the collapse controls */
 .fa.collapse.fa-minus-square-o,
 .fa.collapse.fa-plus-square-o {
-  display: none;
-}
-
-/* Remove the subclass controls */
-.inventory-content .store-row:nth-child(2) {
-  display: none;
-}
-
-/* Remove the weapon title bar controls */
-.inventory-content .title:nth-child(1) {
   display: none;
 }
 
