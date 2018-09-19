@@ -3,7 +3,7 @@ const $ = jQuery = require('jquery');
 require('jquery-toast-plugin');
 
 function registerListeners() {
-  $('[drag-channel="Kinetic"],[drag-channel="Energy"],[drag-channel="Power"]').not('[data-fate-copy-init]').each(function() {
+  $('[data-fate-serial]').not('[data-fate-copy-init]').each(function() {
     $(this).attr('data-fate-copy-init', true);
     const serialNumber = $(this).attr('data-fate-serial');
     const weaponName = $(this).attr('data-fate-weapon-name');
