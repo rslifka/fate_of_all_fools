@@ -3,8 +3,19 @@ const weapon = require('weapon.js');
 const weaponDatabase = require('weaponDatabase.js').weaponDB;
 const rollDatabase = require('rollDatabase.js').rollDB;
 
+const WEAPON_TYPES = [
+  "Rifle",     // Scout, Pulse, Auto, Sniper
+  "Cannon",    // Hand Cannon
+  "Sidearm",
+  "Bow",
+  "Shotgun",
+  "Launcher",  // Grenade, Rocket
+  "Submachine"
+]
+const SEARCH_STRING = WEAPON_TYPES.map(type => "[title*="+type+"]").join(',');
+
 function storeWeaponData() {
-  $('[drag-channel=Kinetic],[drag-channel=Energy],[drag-channel=Power]').not('[data-fate-weapon-name]').each(function(index,element) {
+  $(SEARCH_STRING).not('[data-fate-weapon-name]').each(function(index,element) {
     const weaponName = $(this).attr('title').split("\n")[0];
     $(this).attr('data-fate-weapon-name', weaponName);
 
