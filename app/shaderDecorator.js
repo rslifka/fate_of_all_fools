@@ -3,7 +3,7 @@ const shader = require('shader.js');
 const shaderDatabase = require('shaderDatabase.js').shaderDB;
 
 function storeShaderNames() {
-  $('[drag-channel=Shaders]').not('[data-fate-shader-name]').each(function(index,element) {
+  $('[title~=Shader]').not('[data-fate-shader-name]').each(function(index,element) {
     $(this).attr('data-fate-shader-name', $(this).attr('title').split("\n")[0]);
   });
 }
