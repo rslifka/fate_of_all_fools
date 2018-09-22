@@ -201,4 +201,15 @@ describe('weaponDecorator.js', function() {
     });
   });
 
+  describe('when the per-item popup is present', function() {
+    it('should not mistake the popup for a weapon', function() {
+      loadFixtures(
+        'weaponDecoratorInventoryRaw.html',
+        'weaponPopup.html'
+      );
+      fateBus.publish(brunchModule, 'fate.refresh');
+      expect($('[title="Unlock Hand Cannon"]')).toExist();
+    });
+  });
+
 });

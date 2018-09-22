@@ -3,11 +3,14 @@ const $ = jQuery = require('jquery');
 require('jquery-toast-plugin');
 
 function registerListeners() {
+  console.log('#registerListeners');
   $('[data-fate-serial]').not('[data-fate-copy-init]').each(function() {
+    console.log('attaching');
     $(this).attr('data-fate-copy-init', true);
     const serialNumber = $(this).attr('data-fate-serial');
     const weaponName = $(this).attr('data-fate-weapon-name');
-    $(this).keypress(function(event) {
+    $(this).children('.item-img').keypress(function(event) {
+      console.log('processing');
       if (event.which === 115) {
         copyToClipboard(serialNumber);
         $.toast({

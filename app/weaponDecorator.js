@@ -16,6 +16,10 @@ const SEARCH_STRING = WEAPON_TYPES.map(type => "[title*="+type+"]").join(',');
 
 function storeWeaponData() {
   $(SEARCH_STRING).not('[data-fate-weapon-name]').each(function(index,element) {
+    if (!$(this).attr('title').includes("\n")) {
+      return;
+    }
+
     const weaponName = $(this).attr('title').split("\n")[0];
     $(this).attr('data-fate-weapon-name', weaponName);
 
