@@ -7,7 +7,6 @@ const JUNK_INDICATOR_CLASS = 'foaf-junk';
 const PVE_INDICATOR_CLASS = 'foaf-pve';
 const PVP_INDICATOR_CLASS = 'foaf-pvp';
 const INFUSION_INDICATOR_CLASS = 'foaf-infusable';
-const FODDER_INDICATOR_CLASS = 'foaf-fodder';
 
 const INDICATORS_TO_GLYPHS = new Map([
   [DUPLICATE_INDICATOR_CLASS,    'fglyph-knives'],
@@ -16,7 +15,6 @@ const INDICATORS_TO_GLYPHS = new Map([
   [PVE_INDICATOR_CLASS,          'fglyph-pve'],
   [PVP_INDICATOR_CLASS,          'fglyph-pvp'],
   [INFUSION_INDICATOR_CLASS,     'fglyph-up'],
-  [FODDER_INDICATOR_CLASS,       'fglyph-up']
 ]);
 
 function prepareIndicatorSpace() {
@@ -36,4 +34,3 @@ fateBus.subscribe(module, 'fate.refresh', function() {
 
 exports.DUPLICATE_INDICATOR_CLASS = DUPLICATE_INDICATOR_CLASS;
 exports.INFUSION_INDICATOR_CLASS  = INFUSION_INDICATOR_CLASS;
-exports.FODDER_INDICATOR_CLASS    = FODDER_INDICATOR_CLASS;

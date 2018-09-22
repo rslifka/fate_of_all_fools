@@ -25,9 +25,6 @@ require('dupeIndicator.js');
 // Can this weapon be infused in to another for level?
 require('infusionIndicator.js');
 
-// Is this weapon infusion fodder for other weapons?
-require('fodderIndicator.js');
-
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
 
