@@ -2,22 +2,30 @@ const logger = require('logger.js');
 const $ = jQuery = require('jquery');
 require('jquery-toast-plugin');
 
+let mousePositionX;
+let mousePositionY;
+
+$("body").mousemove(function(event) {
+  var msg = "Handler for .mousemove() called at ";
+  mousePositionX = event.pageX;
+  mousePositionY = event.pageY;
+});
+
 function registerListeners() {
-  console.log('#registerListeners');
   $('[data-fate-serial]').not('[data-fate-copy-init]').each(function() {
-    console.log('attaching');
     $(this).attr('data-fate-copy-init', true);
-    const serialNumber = $(this).attr('data-fate-serial');
-    const weaponName = $(this).attr('data-fate-weapon-name');
-    $(this).children('.item-img').keypress(function(event) {
-      console.log('processing');
-      if (event.which === 115) {
+
+    Mousetrap.bind('s', function() {
+      const $jqElement = $(document.elementFromPoint(mousePositionX, mousePositionY));
+      if ($jqElement.parent('[data-fate-serial]').length > 0) {
+        const serialNumber = $jqElement.parent('[data-fate-serial]').attr('data-fate-serial');
+        const weaponName = $jqElement.parent('[data-fate-serial]').attr('data-fate-weapon-name');
         copyToClipboard(serialNumber);
         $.toast({
           text: '<span style="font-size:16px;"><strong>'+weaponName+'</strong> serial number copied to clipboard</span>',
         });
       }
-    });
+    }, 'keypress');
   });
 }
 
