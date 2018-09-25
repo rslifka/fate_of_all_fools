@@ -26,11 +26,6 @@ function storeWeaponData() {
     const isMasterwork = $(this).find('.item-img.masterwork').length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
 
-    if ($(this).find('.item-stat.item-equipment').text().match(/(\d+)/) == null) {
-      console.log()
-      console.log($(this));
-    }
-
     const itemStatValue = $(this).find('.item-stat.item-equipment').text().match(/(\d+)/)[0];
     $(this).attr('data-fate-base-light', itemStatValue);
 
