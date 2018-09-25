@@ -23,10 +23,15 @@ function storeWeaponData() {
     const weaponName = $(this).attr('title').split("\n")[0];
     $(this).attr('data-fate-weapon-name', weaponName);
 
-    const isMasterwork = $(this).children('.item-img.masterwork').length > 0;
+    const isMasterwork = $(this).find('.item-img.masterwork').length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
 
-    const itemStatValue = $(this).children('.item-stat.item-equipment').text().match(/(\d+)/)[0];
+    if ($(this).find('.item-stat.item-equipment').text().match(/(\d+)/) == null) {
+      console.log()
+      console.log($(this));
+    }
+
+    const itemStatValue = $(this).find('.item-stat.item-equipment').text().match(/(\d+)/)[0];
     $(this).attr('data-fate-base-light', itemStatValue);
 
     $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0]);
