@@ -22,9 +22,6 @@ require('commentDecorator.js');
 // Show higher/lower dupes
 require('dupeIndicator.js');
 
-// Can this weapon be infused in to another for level?
-require('infusionIndicator.js');
-
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
 
