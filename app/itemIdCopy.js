@@ -17,14 +17,14 @@ function registerListeners() {
 
     Mousetrap.bind('s', function() {
       const $jqElement = $(document.elementFromPoint(mousePositionX, mousePositionY));
-      if ($jqElement.parent('[data-fate-serial]').length > 0) {
-        const serialNumber = $jqElement.parent('[data-fate-serial]').attr('data-fate-serial');
-        const weaponName = $jqElement.parent('[data-fate-serial]').attr('data-fate-weapon-name');
+      $jqElement.parents('[data-fate-serial]').each(function(index,element) {
+        const serialNumber = $(this).attr('data-fate-serial');
+        const weaponName = $(this).attr('data-fate-weapon-name');
         copyToClipboard(serialNumber);
         $.toast({
           text: '<span style="font-size:16px;"><strong>'+weaponName+'</strong> serial number copied to clipboard</span>',
         });
-      }
+      });
     }, 'keypress');
   });
 }
