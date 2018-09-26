@@ -100,34 +100,3 @@
   padding-left: 5px;
   right: 20px;
 }
-
-/*
-  INFUSION INDICATOR
-*/
-[data-fate-infusable="false"] > .foaf-infusable
-{
-  display: block;
-}
-
-[data-fate-infusable="false"] > .foaf-infusable
-{
-  display: none;
-}
-
-/*
-  FODDER INDICATOR
-*/
-[data-fate-fodder="true"] > .foaf-fodder
-{
-  display: block;
-}
-
-[data-fate-fodder="false"] > .foaf-fodder
-{
-  display: none;
-}
-
-[data-fate-infusable="true"] > .foaf-fodder
-{
-  left: 16px;
-}

@@ -3,31 +3,10 @@
   opacity: 0.2;
 }
 
-/* Dot indicator next to light level that indicates mod-ness */
-.fate-mod {
-  padding-left: 1px;
-}
-
 /* Allows you to change feed URL */
 .fate-config {
   font-weight: bold !important;
   color: #f5dc56 !important;
-}
-
-/* Displays on top of weapons that you can infuse in to the focused one */
-.fate-infuse-new-light {
-  background-color: rgba(0,0,0,0.725);
-  color: rgba(245, 202, 31, 1);
-  border-top: 2px solid rgba(245, 202, 31, 1);
-  border-bottom: 2px solid rgba(245, 202, 31, 1);
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 23px;
-  position: absolute;
-  top: 20px;
-  left: 2px;
-  width: 66px;
 }
 
 /* STATUS INDICATORS: Common styling */
@@ -47,17 +26,6 @@
   color: rgba(221,221,221,1);
 }
 
-/* STATUS INDICATORS: Positioning */
-.fate-left-bump {
-  left: 16px !important;
-}
-.fate-right-bump {
-  right: 19px !important;
-}
-.fate-top-bump {
-  top: 17px !important;
-}
-
 .fate-dupe {
   font-size: 11px;
   top: 1px;
@@ -67,19 +35,6 @@
 .fate-ignore-slot {
   top: 1px;
   right: 3px;
-}
-.fate-infusion {
-  font-size: 10px;
-  bottom: 3px;
-  left: 1px;
-  padding: 1px 1px 2px 0px;
-}
-.fate-fodder {
-  color: rgb(31, 222, 245);
-  font-size: 10px;
-  bottom: 3px;
-  left: 1px;
-  padding: 1px 1px 2px 0px;
 }
 
 /* STATUS INDICATORS: Styling */
