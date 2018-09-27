@@ -65,31 +65,6 @@
   top: 1px;
   right: 3px;
 }
-.fate-masterwork {
-  background-color: rgba(0,0,0,1.0);
-  color: rgba(232,165,52,1);
-  font-size: 9px;
-  font-weight: bold;
-  padding: 2px 4px;
-  position: absolute;
-  right: 3px;
-  text-shadow: none;
-  top: 1px;
-}
-
-[data-fate-weapon-pve="true"] > .fate-masterwork,
-[data-fate-weapon-pvp="true"] > .fate-masterwork,
-[data-fate-weapon-junk="true"] > .fate-masterwork
-{
-  padding-left: 5px;
-  top: 17px;
-}
-
-[data-fate-weapon-dupe="true"] > .fate-masterwork
-{
-  padding-left: 5px;
-  right: 20px;
-}
 
 [data-fate-weapon-pve="true"] > .fate-dupe,
 [data-fate-weapon-pvp="true"] > .fate-dupe

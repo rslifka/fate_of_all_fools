@@ -43,11 +43,18 @@
 
 .foaf-masterwork {
   color: rgba(232,165,52,1);
-  font-size: 9px;
-  font-weight: bold;
-  padding: 2px 4px;
-  right: 3px;
-  top: 1px;
+  font-size: 12px;
+  padding: 0px 2px;
+  bottom: 3px;
+  left: 1px;
+}
+
+[data-fate-weapon-rarity=exotic] .foaf-masterwork {
+  background-color: rgba(0,0,0,0.75);
+}
+
+[data-fate-weapon-rarity=legendary] .foaf-masterwork {
+  background-color: rgba(82,47,101,0.75);
 }
 
 .foaf-infusable {
