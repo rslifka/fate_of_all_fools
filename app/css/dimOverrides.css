@@ -20,6 +20,18 @@
   text-align: right;
 }
 
+[data-fate-weapon-rarity=legendary] div .item-stat {
+  background-color: rgba(82,47,101,0.75);
+  color: rgb(239,239,239);
+  font-weight: normal;
+}
+
+[data-fate-weapon-rarity=exotic] div .item-stat {
+  background-color: rgba(205, 174, 52, 0.75);
+  color: rgb(239,239,239);
+  font-weight: normal;
+}
+
 /* Align with the top of the power level */
 div[drag-channel='Kinetic'] > .item-review,
 div[drag-channel='Helmet'] > .item-review,
