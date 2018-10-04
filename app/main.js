@@ -41,6 +41,7 @@ require('weaponRollDatabase.js');
 require('weaponRollDataRefresher.js');
 
 require('armor.js');
+require('armorDatabase.js');
 
 require('indicators.js');
 
