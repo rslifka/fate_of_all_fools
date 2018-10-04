@@ -13,6 +13,11 @@ const SEARCH_STRING = ARMOR_TYPES.map(type => "[title*="+type+"]").join(',');
 
 function storeArmorData() {
   $(SEARCH_STRING).not('[data-fate-armor-init]').each(function(index,element) {
+    // Don't mistake popups for gear (popups don't have carraige returns in them)
+    if (!$(this).attr('title').includes("\n")) {
+      return;
+    }
+
     $(this).attr('data-fate-armor-name', $(this).attr('title').split("\n")[0]);
 
     const isMasterwork = $(this).find('.item-img.masterwork').length > 0;

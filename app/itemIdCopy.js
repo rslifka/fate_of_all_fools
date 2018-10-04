@@ -6,9 +6,9 @@ let mousePositionX;
 let mousePositionY;
 
 $("body").mousemove(function(event) {
-  var msg = "Handler for .mousemove() called at ";
-  mousePositionX = event.pageX;
-  mousePositionY = event.pageY;
+  // When scrolling, need to take viewport in to account
+  mousePositionX = event.pageX - window.pageXOffset;
+  mousePositionY = event.pageY - window.pageYOffset;
 });
 
 function registerListeners() {
@@ -18,11 +18,14 @@ function registerListeners() {
     Mousetrap.bind('s', function() {
       const $jqElement = $(document.elementFromPoint(mousePositionX, mousePositionY));
       $jqElement.parents('[data-fate-serial]').each(function(index,element) {
+        console.log('pressed it after finding attr');
         const serialNumber = $(this).attr('data-fate-serial');
         const weaponName = $(this).attr('data-fate-weapon-name');
+        const armorName = $(this).attr('data-fate-armor-name');
+        const itemName = (weaponName === undefined) ? (armorName) : (weaponName);
         copyToClipboard(serialNumber);
         $.toast({
-          text: '<span style="font-size:16px;"><strong>'+weaponName+'</strong> serial number copied to clipboard</span>',
+          text: '<span style="font-size:16px;"><strong>'+itemName+'</strong> serial number copied to clipboard</span>',
         });
       });
     }, 'keypress');
