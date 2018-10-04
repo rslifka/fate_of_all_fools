@@ -18,7 +18,6 @@ function registerListeners() {
     Mousetrap.bind('s', function() {
       const $jqElement = $(document.elementFromPoint(mousePositionX, mousePositionY));
       $jqElement.parents('[data-fate-serial]').each(function(index,element) {
-        console.log('pressed it after finding attr');
         const serialNumber = $(this).attr('data-fate-serial');
         const weaponName = $(this).attr('data-fate-weapon-name');
         const armorName = $(this).attr('data-fate-armor-name');
