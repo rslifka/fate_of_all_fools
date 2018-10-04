@@ -1,34 +1,32 @@
 const $ = require('jquery');
 
-function storeArmorName() {
-  $('[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]').not('[data-fate-armor-name]').each(function(index,element) {
+const ARMOR_TYPES = [
+  "Helmet",
+  "Gauntlets",
+  "'Chest Armor'",
+  "'Leg Armor'",
+  "'Warlock Bond'",
+  "'Titan Mark'",
+  "'Hunter Cloak'",
+]
+const SEARCH_STRING = ARMOR_TYPES.map(type => "[title*="+type+"]").join(',');
+
+function storeArmorData() {
+  $(SEARCH_STRING).not('[data-fate-armor-init]').each(function(index,element) {
     $(this).attr('data-fate-armor-name', $(this).attr('title').split("\n")[0]);
-  });
-}
 
-function storeBaseLightLevel() {
-  $('[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]').not('[data-fate-base-light]').each(function(index,element) {
-     const itemStatValue = parseInt($(this).children('.item-stat').text().match(/(\d+)/));
-     $(this).attr('data-fate-base-light', itemStatValue);
-  });
-}
-
-function storeSerialNumber() {
-  $('[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]').not('[data-fate-serial]').each(function(index,element) {
-    $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0])
-  });
-}
-
-function storeMasterwork() {
-  $('[drag-channel=Helmet],[drag-channel=Gauntlets],[drag-channel=Chest],[drag-channel=Leg],[drag-channel=ClassItem]').each(function(index,element) {
-    const isMasterwork = $(this).children('.item-img.masterwork').length > 0;
+    const isMasterwork = $(this).find('.item-img.masterwork').length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
+
+    const itemStatValue = $(this).find('.item-stat.item-equipment').text().match(/(\d+)/)[0];
+    $(this).attr('data-fate-base-light', itemStatValue);
+
+    $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0]);
+
+    $(this).attr('data-fate-armor-init', true);
   });
 }
 
 fateBus.subscribe(module, 'fate.refresh', function() {
-  storeArmorName();
-  storeBaseLightLevel();
-  storeSerialNumber();
-  storeMasterwork();
+  storeArmorData();
 });
