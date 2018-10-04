@@ -40,6 +40,8 @@ require('weaponRollAssessment.js');
 require('weaponRollDatabase.js');
 require('weaponRollDataRefresher.js');
 
+require('armor.js');
+
 require('indicators.js');
 
 function initFate() {
