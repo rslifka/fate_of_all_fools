@@ -10,7 +10,8 @@ const WEAPON_TYPES = [
   "Bow",
   "Shotgun",
   "Launcher",  // Grenade, Rocket
-  "Submachine"
+  "Submachine",
+  "Sword"
 ]
 const SEARCH_STRING = WEAPON_TYPES.map(type => "[title*="+type+"]").join(',');
 
