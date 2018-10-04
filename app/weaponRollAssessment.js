@@ -1,6 +1,6 @@
 const weapon = require('weapon.js');
 
-class RollAssessment {
+class WeaponRollAssessment {
 
   constructor(rollID, name, pveUseful, pvpUseful, comments) {
     this.rollID = rollID;
@@ -24,4 +24,4 @@ class RollAssessment {
 
 }
 
-exports.RollAssessment = RollAssessment;
+exports.WeaponRollAssessment = WeaponRollAssessment;

@@ -1,24 +1,30 @@
 const $ = require('jquery');
 const weapon = require('weapon.js');
 const weaponDatabase = require('weaponDatabase.js').weaponDB;
-const rollDatabase = require('rollDatabase.js').rollDB;
+const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 
 const WEAPON_TYPES = [
-  "Rifle",     // Scout, Pulse, Auto, Sniper
-  "Cannon",    // Hand Cannon
+  "Rifle",          // Scout, Pulse, Auto, Sniper
+  "Cannon",         // Hand Cannon
   "Sidearm",
   "Bow",
   "Shotgun",
-  "Launcher",  // Grenade, Rocket
-  "Submachine",
+  "Launcher",       // Rocket, Grenade
+  "Submachine Gun",
   "Sword"
 ]
-const SEARCH_STRING = WEAPON_TYPES.map(type => "[title*="+type+"]").join(',');
+const SEARCH_STRING = WEAPON_TYPES.map(type => "[title$=\'"+type+"\']").join(',');
 
 function storeWeaponData() {
   $(SEARCH_STRING).not('[data-fate-weapon-name]').each(function(index,element) {
+
+    // We need to exclude trying to treat the weapon detail popup as something to be decorated
     if (!$(this).attr('title').includes("\n")) {
       return;
+    }
+
+    if ($(this).find('.item-stat.item-equipment').text().match(/(\d+)/) == null) {
+      console.log($(this));
     }
 
     const weaponName = $(this).attr('title').split("\n")[0];

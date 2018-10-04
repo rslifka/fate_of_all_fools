@@ -35,10 +35,10 @@ require('shaderDecorator.js');
 require('shaderDataRefresher.js');
 require('shaderStatusIndicator.js');
 
-// Qualification of individual rolls
-require('rollAssessment.js');
-require('rollDatabase.js');
-require('rollDataRefresher.js');
+// Qualification of individual weapon rolls
+require('weaponRollAssessment.js');
+require('weaponRollDatabase.js');
+require('weaponRollDataRefresher.js');
 
 require('indicators.js');
 
