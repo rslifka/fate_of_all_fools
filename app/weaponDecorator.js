@@ -23,10 +23,6 @@ function storeWeaponData() {
       return;
     }
 
-    if ($(this).find('.item-stat.item-equipment').text().match(/(\d+)/) == null) {
-      console.log($(this));
-    }
-
     const weaponName = $(this).attr('title').split("\n")[0];
     $(this).attr('data-fate-weapon-name', weaponName);
 
