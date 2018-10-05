@@ -14,14 +14,6 @@ class Armor {
     this.comments = comments;
   }
 
-  get keepStatus() {
-    switch(this.keep) {
-      case('y'): return Keep.YES;
-      case('n'): return Keep.NO;
-      default: return Keep.UNKNOWN;
-    }
-  }
-
 }
 
 exports.Armor = Armor;
