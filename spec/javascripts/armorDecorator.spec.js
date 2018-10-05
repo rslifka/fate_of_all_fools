@@ -3,8 +3,40 @@ describe('armorDecorator.js', function() {
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
 
+  const armor = require('armor.js');
+  const armorDatabase = require('armorDatabase.js').armorDB;
+
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
+
+    spyOn(armorDatabase, 'contains').and.callFake(function(armorName) {
+      return [
+        'Eimin-Tin Ritual Mask',
+        'Wraps of the Emperor\'s Minister',
+        'Vesper of Radius',
+        'Boots of the Great Hunt',
+        'Dragonfly Regalia Bond'
+      ].includes(armorName);
+    });
+    spyOn(armorDatabase, 'get').and.callFake(function(armorName) {
+      switch(armorName) {
+        // Helm
+        case 'Eimin-Tin Ritual Mask':
+          return {name: 'Eimin-Tin Ritual Mask', rarity: 'legendary', keepStatus: armor.Keep.YES, comments: 'Spooky'};
+        // Gauntlets
+        case 'Wraps of the Emperor\'s Minister':
+          return {name: 'Wraps of the Emperor\'s Minister', rarity: 'legendary', keepStatus: armor.Keep.YES, comments: 'Calus'};
+        // Chest
+        case 'Vesper of Radius':
+          return {name: 'Vesper of Radius', rarity: 'exotic', keepStatus: armor.Keep.YES, comments: 'Leave the dahgs alone'};
+        // Legs
+        case 'Boots of the Great Hunt':
+          return {name: 'Boots of the Great Hunt', rarity: 'legendary', keepStatus: armor.Keep.UNKNOWN, comments: 'Last wish'};
+        // Class
+        case 'Dragonfly Regalia Bond':
+          return {name: 'Dragonfly Regalia Bond', rarity: 'legendary', keepStatus: armor.Keep.NO, comments: 'Fly like a dragon'};
+      }
+    });
   });
 
   describe('in response to fate.refresh', function() {
@@ -48,9 +80,31 @@ describe('armorDecorator.js', function() {
       expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-serial', '6917529074109499245');
     });
 
-    describe('on subsequent refreshes', function() {
+    it('shoud record the rarity', function() {
+      expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-armor-rarity', 'legendary');
+      expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-armor-rarity', 'legendary');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-armor-rarity', 'exotic');
+      expect('[data-fate-armor-name="Boots of the Great Hunt"]').toHaveAttr('data-fate-armor-rarity', 'legendary');
+      expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-armor-rarity', 'legendary');
+    });
 
-      const CHANNELS = ['Helmet','Gauntlets','Chest','Leg','ClassItem'];
+    it('shoud record the keep', function() {
+      expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-armor-keep', 'true');
+      expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-armor-keep', 'true');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-armor-keep', 'true');
+      expect('[data-fate-armor-name="Boots of the Great Hunt"]').not.toHaveAttr('data-fate-armor-keep');
+      expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-armor-keep', 'false');
+    });
+
+    it('shoud record the comments', function() {
+      expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-comment', 'Spooky');
+      expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-comment', 'Calus');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-comment', 'Leave the dahgs alone');
+      expect('[data-fate-armor-name="Boots of the Great Hunt"]').toHaveAttr('data-fate-comment', 'Last wish');
+      expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-comment', 'Fly like a dragon');
+    });
+
+    describe('on subsequent refreshes', function() {
 
       it('should not overwrite the original name', function() {
         $('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').attr('title', '_');
@@ -72,6 +126,7 @@ describe('armorDecorator.js', function() {
         $('[data-fate-armor-name="Vesper of Radius"]').children('.item-stat').text('400');
         $('[data-fate-armor-name="Boots of the Great Hunt"]').children('.item-stat').text('400');
         $('[data-fate-armor-name="Dragonfly Regalia Bond"]').children('.item-stat').text('400');
+        fateBus.publish(brunchModule, 'fate.refresh');
         expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-base-light', '532');
         expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-base-light', '380');
         expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-base-light', '380');

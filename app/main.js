@@ -4,18 +4,6 @@ require('configuration.js');
 // Use DIM styling overrides and our own custom styling
 require('beautification.js');
 
-// Stores weapons pulled from our custom database
-require('weaponDatabase.js');
-
-// Pulls down weapon data and broadcasts updates
-require('weaponDataRefresher.js');
-
-// Store original details about the weapon in 'data-fate' attributes
-require('weaponDecorator.js');
-
-// Store original details about the armor in 'data-fate' attributes
-require('armorDecorator.js');
-
 // Update weapon comments from our database
 require('commentDecorator.js');
 
@@ -28,20 +16,25 @@ require('itemDataRefresher.js');
 // Copy-to-clipboard support for the serial number
 require('itemIdCopy.js');
 
-// Support for shader
 require('shader.js');
 require('shaderDatabase.js');
 require('shaderDecorator.js');
 require('shaderDataRefresher.js');
 require('shaderStatusIndicator.js');
 
-// Qualification of individual weapon rolls
+require('weapon.js');
+require('weaponDatabase.js');
+require('weaponDecorator.js');
+require('weaponDataRefresher.js');
+
 require('weaponRollAssessment.js');
 require('weaponRollDatabase.js');
 require('weaponRollDataRefresher.js');
 
 require('armor.js');
 require('armorDatabase.js');
+require('armorDecorator.js');
+require('armorDataRefresher.js');
 
 require('indicators.js');
 
