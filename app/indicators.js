@@ -6,6 +6,7 @@ const UNREGISTERED_INDICATOR_CLASS = 'foaf-unregistered';
 const JUNK_INDICATOR_CLASS = 'foaf-junk';
 const PVE_INDICATOR_CLASS = 'foaf-pve';
 const PVP_INDICATOR_CLASS = 'foaf-pvp';
+const FAVE_INDICATOR_CLASS = 'foaf-fave';
 
 const INDICATORS_TO_GLYPHS = new Map([
   [DUPLICATE_INDICATOR_CLASS,    'fglyph-knives'],
@@ -13,10 +14,11 @@ const INDICATORS_TO_GLYPHS = new Map([
   [JUNK_INDICATOR_CLASS,         'fglyph-thumbs-down'],
   [PVE_INDICATOR_CLASS,          'fglyph-pve'],
   [PVP_INDICATOR_CLASS,          'fglyph-pvp'],
+  [FAVE_INDICATOR_CLASS,         'fglyph-fave']
 ]);
 
 function prepareIndicatorSpace() {
-  $('[data-fate-weapon-name]').not('[data-fate-indicator-init="true"]').each(function(index,element) {
+  $('[data-fate-weapon-name],[data-fate-armor-name]').not('[data-fate-indicator-init="true"]').each(function(index,element) {
     INDICATORS_TO_GLYPHS.forEach(function(glyph, className) {
       $(element).append($('<div>', {'class': className + ' ' + glyph + ' foaf-glyph'}));
     });

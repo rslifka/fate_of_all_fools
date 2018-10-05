@@ -23,19 +23,19 @@ describe('armorDecorator.js', function() {
       switch(armorName) {
         // Helm
         case 'Eimin-Tin Ritual Mask':
-          return {name: 'Eimin-Tin Ritual Mask', rarity: 'legendary', keepStatus: armor.Keep.YES, comments: 'Spooky'};
+          return {name: 'Eimin-Tin Ritual Mask', rarity: 'legendary', keep: armor.Keep.YES, comments: 'Spooky'};
         // Gauntlets
         case 'Wraps of the Emperor\'s Minister':
-          return {name: 'Wraps of the Emperor\'s Minister', rarity: 'legendary', keepStatus: armor.Keep.YES, comments: 'Calus'};
+          return {name: 'Wraps of the Emperor\'s Minister', rarity: 'legendary', keep: armor.Keep.YES, comments: 'Calus'};
         // Chest
         case 'Vesper of Radius':
-          return {name: 'Vesper of Radius', rarity: 'exotic', keepStatus: armor.Keep.YES, comments: 'Leave the dahgs alone'};
+          return {name: 'Vesper of Radius', rarity: 'exotic', keep: armor.Keep.YES, comments: 'Leave the dahgs alone'};
         // Legs
         case 'Boots of the Great Hunt':
-          return {name: 'Boots of the Great Hunt', rarity: 'legendary', keepStatus: armor.Keep.UNKNOWN, comments: 'Last wish'};
+          return {name: 'Boots of the Great Hunt', rarity: 'legendary', keep: armor.Keep.UNKNOWN, comments: 'Last wish'};
         // Class
         case 'Dragonfly Regalia Bond':
-          return {name: 'Dragonfly Regalia Bond', rarity: 'legendary', keepStatus: armor.Keep.NO, comments: 'Fly like a dragon'};
+          return {name: 'Dragonfly Regalia Bond', rarity: 'legendary', keep: armor.Keep.NO, comments: 'Fly like a dragon'};
       }
     });
     spyOn(armorRollDatabase, 'contains').and.callFake(function(rollID) {
@@ -44,7 +44,7 @@ describe('armorDecorator.js', function() {
     spyOn(armorRollDatabase, 'get').and.callFake(function(armorName) {
       switch(armorName) {
         case '6917529055948440512':
-          return {rollID: '6917529055948440512', name: 'Vesper of Radius', keepStatus: armor.Keep.NO, comments: 'Roll-specific comments'};
+          return {rollID: '6917529055948440512', name: 'Vesper of Radius', keep: armor.Keep.NO, comments: 'Roll-specific comments'};
       }
     });
   });

@@ -1,4 +1,18 @@
 /*
+  FAVE INDICATOR
+*/
+[data-fate-weapon-name] > .foaf-fave,
+[data-fate-armor-keep="false"] > .foaf-fave,
+[data-fate-armor-init="true"]:not([data-fate-armor-keep]) > .foaf-fave
+{
+  display: none;
+}
+
+[data-fate-armor-keep="true"] > .foaf-fave {
+  display: block;
+}
+
+/*
   DUPLICATE INDICATOR
 */
 [data-fate-weapon-dupe="false"] > .foaf-dupe
@@ -19,12 +33,14 @@
 /*
   UNREGISTERED INDICATOR
 */
-[data-fate-weapon-registered="true"] > .foaf-unregistered
+[data-fate-weapon-registered="true"] > .foaf-unregistered,
+[data-fate-armor-registered="true"] > .foaf-unregistered
 {
   display: none;
 }
 
-[data-fate-weapon-registered="false"] > .foaf-unregistered
+[data-fate-weapon-registered="false"] > .foaf-unregistered,
+[data-fate-armor-registered="false"] > .foaf-unregistered
 {
   display: block;
 }
@@ -32,12 +48,15 @@
 /*
   JUNK INDICATOR
 */
-[data-fate-weapon-junk="true"] > .foaf-junk
+[data-fate-weapon-junk="true"] > .foaf-junk,
+[data-fate-armor-keep="false"] > .foaf-junk
 {
   display: block;
 }
 
-[data-fate-weapon-junk="false"] > .foaf-junk
+[data-fate-weapon-junk="false"] > .foaf-junk,
+[data-fate-armor-keep="true"] > .foaf-junk,
+[data-fate-armor-init="true"]:not([data-fate-armor-keep]) > .foaf-junk
 {
   display: none;
 }
@@ -82,6 +101,27 @@
 }
 
 [data-fate-masterwork="false"] > .foaf-masterwork
+{
+  display: none;
+}
+
+[data-fate-weapon-rarity=exotic] .foaf-masterwork,
+[data-fate-armor-rarity=exotic] .foaf-masterwork
+{
+  background-color: rgba(0,0,0,0.75);
+}
+
+[data-fate-weapon-rarity=legendary] .foaf-masterwork,
+[data-fate-armor-rarity=legendary] .foaf-masterwork {
+  background-color: rgba(82,47,101,0.75);
+}
+
+/*
+  Hide unused glyphs for armor
+*/
+[data-fate-armor-name] > .foaf-pvp,
+[data-fate-armor-name] > .foaf-pve,
+[data-fate-armor-name] > .foaf-dupe
 {
   display: none;
 }

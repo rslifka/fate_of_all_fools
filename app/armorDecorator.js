@@ -51,7 +51,7 @@ function updateAttributes() {
     $(this).attr('data-fate-armor-rarity', armorDatabase.get(name).rarity);
 
     const a = getRollOrArmor($(this));
-    switch(a.keepStatus) {
+    switch(a.keep) {
       case armor.Keep.YES:
         $(this).attr('data-fate-armor-keep', true);
         break;
