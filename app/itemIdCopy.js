@@ -28,6 +28,20 @@ function registerListeners() {
         });
       });
     }, 'keypress');
+
+    Mousetrap.bind('n', function() {
+      const $jqElement = $(document.elementFromPoint(mousePositionX, mousePositionY));
+      $jqElement.parents('[data-fate-serial]').each(function(index,element) {
+        const weaponName = $(this).attr('data-fate-weapon-name');
+        const armorName = $(this).attr('data-fate-armor-name');
+        const itemName = (weaponName === undefined) ? (armorName) : (weaponName);
+        copyToClipboard(itemName);
+        $.toast({
+          text: '<span style="font-size:16px;"><strong>'+itemName+'</strong> copied to clipboard</span>',
+        });
+      });
+    }, 'keypress');
+
   });
 }
 
