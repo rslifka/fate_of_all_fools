@@ -35,7 +35,10 @@ require('armor.js');
 require('armorDatabase.js');
 require('armorDecorator.js');
 require('armorDataRefresher.js');
+
 require('armorRollAssessment.js');
+require('armorRollDatabase.js');
+require('armorRollDataRefresher.js');
 
 require('indicators.js');
 
