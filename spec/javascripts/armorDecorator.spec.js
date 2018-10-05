@@ -5,6 +5,7 @@ describe('armorDecorator.js', function() {
 
   const armor = require('armor.js');
   const armorDatabase = require('armorDatabase.js').armorDB;
+  const armorRollDatabase = require('armorRollDatabase.js').armorRollDB;
 
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
@@ -35,6 +36,15 @@ describe('armorDecorator.js', function() {
         // Class
         case 'Dragonfly Regalia Bond':
           return {name: 'Dragonfly Regalia Bond', rarity: 'legendary', keepStatus: armor.Keep.NO, comments: 'Fly like a dragon'};
+      }
+    });
+    spyOn(armorRollDatabase, 'contains').and.callFake(function(rollID) {
+      return ['6917529055948440512'].includes(rollID);
+    });
+    spyOn(armorRollDatabase, 'get').and.callFake(function(armorName) {
+      switch(armorName) {
+        case '6917529055948440512':
+          return {rollID: '6917529055948440512', name: 'Vesper of Radius', keepStatus: armor.Keep.NO, comments: 'Roll-specific comments'};
       }
     });
   });
@@ -88,20 +98,48 @@ describe('armorDecorator.js', function() {
       expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-armor-rarity', 'legendary');
     });
 
-    it('shoud record the keep', function() {
-      expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-armor-keep', 'true');
-      expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-armor-keep', 'true');
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-armor-keep', 'true');
-      expect('[data-fate-armor-name="Boots of the Great Hunt"]').not.toHaveAttr('data-fate-armor-keep');
-      expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-armor-keep', 'false');
-    });
-
     it('shoud record the comments', function() {
       expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-comment', 'Spooky');
       expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-comment', 'Calus');
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-comment', 'Leave the dahgs alone');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-comment', 'Roll-specific comments');
       expect('[data-fate-armor-name="Boots of the Great Hunt"]').toHaveAttr('data-fate-comment', 'Last wish');
       expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-comment', 'Fly like a dragon');
+    });
+
+    it('should record the registration status', function() {
+      expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-armor-registered', 'true');
+      expect('[title*="Crown of Tempests"]').toHaveAttr('data-fate-armor-registered', 'false');
+      expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-armor-registered', 'true');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-armor-registered', 'true');
+      expect('[data-fate-armor-name="Boots of the Great Hunt"]').toHaveAttr('data-fate-armor-registered', 'true');
+      expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-armor-registered', 'true');
+    });
+
+    describe('keep status', function() {
+
+      describe('when the armor is not registered', function() {
+        it('should not have a keep status', function() {
+          expect('[title*="Crown of Tempests"]').not.toHaveAttr('data-fate-armor-keep');
+        });
+      });
+
+      describe('when the armor is registered', function() {
+
+        describe('when there is not a per-roll override', function() {
+          it('shoud record the keep from the general inventory sheet', function() {
+            expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-armor-keep', 'true');
+            expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-armor-keep', 'true');
+            expect('[data-fate-armor-name="Boots of the Great Hunt"]').not.toHaveAttr('data-fate-armor-keep');
+            expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-armor-keep', 'false');
+          });
+        });
+
+        describe('when the keep is specific per-roll', function() {
+          it('shoud record the keep', function() {
+            expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-armor-keep', 'false');
+          });
+        });
+      });
     });
 
     describe('on subsequent refreshes', function() {
