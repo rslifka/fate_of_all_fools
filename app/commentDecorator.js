@@ -17,6 +17,12 @@ function updateTitles() {
     $(this).attr('title',name + '\n' + comments);
   });
 
+  $('[data-fate-armor-registered=true]').each(function(index,element) {
+    const name = $(this).attr('data-fate-armor-name');
+    const comments = $(this).attr('data-fate-comment');
+    $(this).attr('title',name + '\n' + comments);
+  });
+
 }
 
 fateBus.subscribe(module, 'fate.refresh', updateTitles);
