@@ -150,7 +150,3 @@ body,
 .item-img.masterwork::after {
   display: none !important;
 }
-
-#loadout-drawer {
-  background: #111111;
-}
