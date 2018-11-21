@@ -1,10 +1,11 @@
-/* Remove all damage type elements from items (little colored notch on top left) */
-.item-element {
+.item-tag {
   display: none;
 }
 
-.item-tag {
-  display: none;
+[data-icon='caret-down'],
+[data-icon='caret-right']
+{
+  display: none !important;
 }
 
 /* Reset background color and font size for increased readability */
@@ -20,99 +21,6 @@
   text-align: right;
 }
 
-[data-fate-weapon-rarity=legendary] div .item-stat {
-  background-color: rgba(82,47,101,0.75);
-  color: rgb(239,239,239);
-  font-weight: normal;
-}
-
-[data-fate-weapon-rarity=exotic] div .item-stat {
-  background-color: rgba(205, 174, 52, 0.75);
-  color: rgb(239,239,239);
-  font-weight: normal;
-}
-
-/* Align with the top of the power level */
-div[drag-channel='Kinetic'] > .item-review,
-div[drag-channel='Helmet'] > .item-review,
-div[drag-channel='Gauntlets'] > .item-review,
-div[drag-channel='Chest'] > .item-review,
-div[drag-channel='Leg'] > .item-review,
-div[drag-channel='ClassItem'] > .item-review
-{
-  background-color: rgba(0,0,0,0.75);
-  bottom: 20px !important;
-  color: rgba(255,255,255,0.8) !important;
-  font-size: 9px;
-  font-weight: normal;
-  left: unset;
-  padding: 0 3px 0 4px;
-  position: absolute;
-  right: 3px;
-  text-align: right;
-}
-
-div[drag-channel='Energy'] > .item-review,
-div[drag-channel='Power'] > .item-review
-{
-  background-color: rgba(0,0,0,0.75);
-  bottom: 22px !important;
-  color: rgba(255,255,255,0.8) !important;
-  font-size: 9px;
-  font-weight: normal;
-  left: unset;
-  padding: 0 3px 0 4px;
-  position: absolute;
-  right: 3px;
-  text-align: right;
-}
-
-.infuseDialog .item-review
-{
-  background-color: rgba(0,0,0,0.75);
-  bottom: unset;
-  border: unset !important;
-  top: 1px !important;
-  color: rgba(255,255,255,0.8) !important;
-  font-size: 9px;
-  font-weight: normal;
-  left: unset;
-  padding: 0 3px 0 4px;
-  position: absolute;
-  right: 3px;
-  text-align: right;
-}
-
-/* We never use the collapse controls */
-.fa.collapse.fa-minus-square-o,
-.fa.collapse.fa-plus-square-o {
-  display: none;
-}
-
-/*
-  With the weapons banner gone, we need a little bit of spacing at the top
-  so the weapons aren't jammed up right against the top.
-*/
-.inventory-content .store-row:nth-child(3) {
-  padding-top: 10px;
-}
-
-/*
-  We removed the elemental damage color swatches from the weapons, as it was
-  additional decoration we could capture elsewhere. We still want to indicate
-  elemental damage type, so let's use the background of the damage number to
-  indicate that.
-*/
-.item-element.arc ~ .item-stat {
-  border-top: 2px solid rgba(133,197,236,1);
-}
-.item-element.solar ~ .item-stat {
-  border-top: 2px solid rgba(242,114,27,1);
-}
-.item-element.void ~ .item-stat {
-  border-top: 2px solid rgba(177,132,197,1);
-}
-
 /* Go for a more muted background */
 body,
 #header,
@@ -125,7 +33,7 @@ body,
 /* Improve design of section breaks */
 .title {
   background-color: rgba(221,221,221,0.1) !important;
-  font-family: Arial !important;
+  font-family: 'Helvetica Neue', 'Helvetica', Arial !important;
   font-size: 2.5em !important;
   font-weight: bold !important;
   height: 50px !important;
@@ -162,4 +70,45 @@ svg.fa-lock {
 }
 .tall-tiles .item .exotic.masterwork .overlay {
   background-image: none !important;
+}
+
+[data-fate-weapon-rarity=legendary] div .item-stat {
+  /* background-color: rgba(82,47,101,0.5) !important; */
+}
+
+[data-fate-weapon-rarity=exotic] div .item-stat {
+  color: white !important;
+  /* background-color: rgba(205, 174, 52, 0.5) !important; */
+}
+
+/*
+  Item tray relocation and image size adjustment
+*/
+.tall-tiles .item .item-stat,
+.tall-tiles .item .masterwork .item-stat {
+  background-color: transparent;
+  color: rgba(239,239,239, 0.85);
+  font-size: 13px;
+  font-weight: bold;
+  position: relative;
+  top: -18px;
+  right: 1px;
+}
+.tall-tiles .item-drag-container,
+dim-store-item, .item-drag-container
+{
+  height: 68px !important;
+}
+.tall-tiles .item-drag-container {
+  margin: 0 6px 6px 0;
+}
+
+/*
+  Bit of space between the elemental armor or demage and the power level
+*/
+img.element.arc,
+img.element.solar,
+img.element.void
+{
+  margin-right: 2px;
 }
