@@ -150,3 +150,10 @@ body,
 .item-img.masterwork::after {
   display: none !important;
 }
+
+/*
+  Remove lock item - it's not important enough to be at the top level.
+*/
+svg.fa-lock {
+  display: none !important;
+}
