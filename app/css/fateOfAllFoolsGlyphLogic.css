@@ -71,7 +71,7 @@
 
 [data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pve
 {
-  right: 20px;
+  right: 18px;
 }
 
 [data-fate-weapon-pve="false"] > .foaf-pve

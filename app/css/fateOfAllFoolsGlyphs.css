@@ -8,14 +8,14 @@
 .foaf-dupe {
   color: rgba(221,221,221,1);
   padding: 0px 0px 2px 2px;
-  right: 3px;
+  right: 1px;
   top: 1px;
 }
 
 .foaf-unregistered {
   color: rgba(221,221,221,1);
   padding: 0px 1px 1px 1px;
-  right: 3px;
+  right: 1px;
   top: 1px;
 }
 
@@ -23,21 +23,21 @@
   color: rgba(206,82,70,1);
   font-size: 12px;
   padding: 0 1px;
-  right: 3px;
+  right: 1px;
   top: 1px;
 }
 
 .foaf-pve {
   color: rgba(93,181,110,1);
   padding: 0 1px 1px 1px;
-  right: 3px;
+  right: 1px;
   top: 1px;
 }
 
 .foaf-pvp {
   color: rgba(93,181,110,1);
   padding: 0 1px 1px 1px;
-  right: 3px;
+  right: 1px;
   top: 1px;
 }
 
