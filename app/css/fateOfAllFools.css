@@ -34,7 +34,7 @@
 }
 .fate-ignore-slot {
   top: 1px;
-  right: 3px;
+  right: 1px;
 }
 
 /* STATUS INDICATORS: Styling */
@@ -45,25 +45,13 @@
 .fate-fave {
   font-size: 12px;
   padding: 0;
-  right: 3px;
+  right: 1px;
   top: 1px;
 }
 .fate-thumbs-down {
   color: rgba(206,82,70,1);
   font-size: 12px;
   padding: 0 1px;
-}
-.fate-pve {
-  color: rgba(93,181,110,1);
-  padding: 0 1px 1px 1px;
-  top: 1px;
-  right: 3px;
-}
-.fate-pvp {
-  color: rgba(93,181,110,1);
-  padding: 0 1px 1px 1px;
-  top: 1px;
-  right: 3px;
 }
 
 [data-fate-weapon-pve="true"] > .fate-dupe,
