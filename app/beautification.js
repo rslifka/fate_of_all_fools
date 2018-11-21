@@ -5,5 +5,5 @@ fateBus.subscribe(module, 'fate.init', function() {
 });
 
 fateBus.subscribe(module, 'fate.refresh', function() {
-  $('.item-img.diamond').parents('.store-row').siblings('.title:contains(Weapons)').siblings('.store-row:eq(0)').attr('style', 'display:none');
+  $('[title~="Subclass"]').parents('.store-row').siblings('.title:contains(Weapons)').siblings('.store-row:eq(0)').attr('style', 'display:none');
 });
