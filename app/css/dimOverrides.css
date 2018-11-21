@@ -140,15 +140,7 @@ body,
 .item-img,
 .item-img.complete,
 .item-img.masterwork {
-  background-repeat: no-repeat;
   border: 1px solid rgba(125, 125, 125, 0.82);
-}
-
-/*
-  Remove orange masterwork glow
-*/
-.item-img.masterwork::after {
-  display: none !important;
 }
 
 /*
@@ -156,4 +148,18 @@ body,
 */
 svg.fa-lock {
   display: none !important;
+}
+
+/*
+  Tear down masterwork indication
+*/
+.tall-tiles .item .masterwork .item-img {
+  border: 1px solid rgba(125, 125, 125, 0.82) !important;
+}
+.tall-tiles .item .masterwork .overlay {
+  background-size: inherit !important;
+  background-image: none !important;
+}
+.tall-tiles .item .exotic.masterwork .overlay {
+  background-image: none !important;
 }
