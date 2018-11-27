@@ -27,7 +27,7 @@
 
 [data-fate-weapon-junk="true"] > .foaf-dupe
 {
-  top: 17px;
+  left: 17px;
 }
 
 /*
@@ -71,7 +71,7 @@
 
 [data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pve
 {
-  right: 18px;
+  left: 15px;
 }
 
 [data-fate-weapon-pve="false"] > .foaf-pve

@@ -1,5 +1,5 @@
 .foaf-glyph {
-  background-color: rgba(0,0,0,1.0);
+  background-color: transparent;
   font-size: 11px;
   position: absolute;
   text-shadow: none;
@@ -8,37 +8,37 @@
 .foaf-dupe {
   color: rgba(221,221,221,1);
   padding: 0px 0px 2px 2px;
-  right: 1px;
-  top: 1px;
+  left: 1px;
+  bottom: 17px;
 }
 
 .foaf-unregistered {
   color: rgba(221,221,221,1);
   padding: 0px 1px 1px 1px;
-  right: 1px;
-  top: 1px;
+  left: 1px;
+  bottom: 17px;
 }
 
 .foaf-junk {
   color: rgba(206,82,70,1);
   font-size: 12px;
   padding: 0 1px;
-  right: 1px;
-  top: 1px;
+  left: 1px;
+  bottom: 17px;
 }
 
 .foaf-pve {
   color: rgba(93,181,110,1);
   padding: 0 1px 1px 1px;
-  right: 1px;
-  top: 1px;
+  left: 1px;
+  bottom: 17px;
 }
 
 .foaf-pvp {
   color: rgba(93,181,110,1);
   padding: 0 1px 1px 1px;
-  right: 1px;
-  top: 1px;
+  left: 1px;
+  bottom: 17px;
 }
 
 .foaf-masterwork {
@@ -49,7 +49,7 @@
   bottom: 18px;
   left: 1px;
   position: relative;
-  top: -33px;
+  bottom: -33px;
 }
 
 .foaf-infusable {
@@ -72,6 +72,6 @@
   color: rgba(93,181,110,1);
   font-size: 12px;
   padding: 0;
-  right: 1px;
   top: 1px;
+  right: 1px;
 }
