@@ -19,14 +19,6 @@
   padding: 0;
 }
 
-/* Bit of space between the elemental armor or demage and the power level */
-img.element.arc,
-img.element.solar,
-img.element.void
-{
-  margin-right: 2px;
-}
-
 /* Remove lock icon - it's not important enough to be at the top level. */
 svg.fa-lock {
   display: none !important;
@@ -88,4 +80,31 @@ body,
 {
   height: 66px !important;
   margin: 0 6px 6px 0;
+}
+
+.item .element.void {
+  border-top: 2px solid rgb(64, 38, 103);
+  width: 26px;
+  height: 0;
+  position: relative;
+  top: -12px;
+  right: -23px;
+}
+
+.item .element.solar {
+  border-top: 2px solid rgb(240, 99, 30);
+  width: 26px;
+  height: 0;
+  position: relative;
+  top: -12px;
+  right: -23px;
+}
+
+.item .element.arc {
+  border-top: 2px solid rgb(121, 187, 232);
+  width: 26px;
+  height: 0;
+  position: relative;
+  top: -12px;
+  right: -23px;
 }
