@@ -1,24 +1,35 @@
-.item-tag {
-  display: none;
-}
+/* 5.3.1 */
 
-[data-icon='caret-down'],
-[data-icon='caret-right']
+.item.masterwork .overlay,
+.item.exotic.masterwork .overlay,
+.sub-section .equipped-item
 {
-  display: none !important;
+  background-image: none;
 }
 
-/* Reset background color and font size for increased readability */
-.item-stat {
-  background-color: rgba(0,0,0,1);
-  bottom: 3px;
-  color: rgba(255,255,255,0.65);
-  font-size: 12px;
-  font-weight: bold;
-  min-width: unset;
-  padding: 0 4px 0 4px;
-  right: 3px;
-  text-align: right;
+.item .item-img,
+.item.masterwork .item-img
+{
+  border: 1px solid rgba(125, 125, 125, 0.82);
+}
+
+.sub-section .equipped-item
+{
+  border: inherit;
+  padding: 0;
+}
+
+/* Bit of space between the elemental armor or demage and the power level */
+img.element.arc,
+img.element.solar,
+img.element.void
+{
+  margin-right: 2px;
+}
+
+/* Remove lock icon - it's not important enough to be at the top level. */
+svg.fa-lock {
+  display: none !important;
 }
 
 /* Go for a more muted background */
@@ -28,6 +39,17 @@ body,
 .store-header,
 .store-cell.vault {
   background-color: #111 !important;
+}
+
+.item-tag {
+  display: none;
+}
+
+/* Remove fold/unfold icon next to section headings */
+[data-icon='caret-down'],
+[data-icon='caret-right']
+{
+  display: none !important;
 }
 
 /* Improve design of section breaks */
@@ -41,74 +63,27 @@ body,
   margin: 10px 0 !important;
 }
 
-/*
-  Uniform, translucent borders. Both modded items and masterworks were using
-  the borders, which was too much visual weight.
-*/
-.item-img,
-.item-img.complete,
-.item-img.masterwork {
-  border: 1px solid rgba(125, 125, 125, 0.82);
+/* Stat bar background for exotics */
+.item.capped .item-stat,
+.item.complete .item-stat
+{
+  background-color: rgba(17,17,17,0.5);
 }
 
-/*
-  Remove lock item - it's not important enough to be at the top level.
-*/
-svg.fa-lock {
-  display: none !important;
-}
-
-/*
-  Tear down masterwork indication
-*/
-.tall-tiles .item .masterwork .item-img {
-  border: 1px solid rgba(125, 125, 125, 0.82) !important;
-}
-.tall-tiles .item .masterwork .overlay {
-  background-size: inherit !important;
-  background-image: none !important;
-}
-.tall-tiles .item .exotic.masterwork .overlay {
-  background-image: none !important;
-}
-
-[data-fate-weapon-rarity=legendary] div .item-stat {
-  /* background-color: rgba(82,47,101,0.5) !important; */
-}
-
-[data-fate-weapon-rarity=exotic] div .item-stat {
-  color: white !important;
-  /* background-color: rgba(205, 174, 52, 0.5) !important; */
-}
-
-/*
-  Item tray relocation and image size adjustment
-*/
-.tall-tiles .item .item-stat,
-.tall-tiles .item .masterwork .item-stat {
-  background-color: transparent;
-  color: rgba(239,239,239, 0.85);
-  font-size: 13px;
+/* Stat bar background for everything not exotic */
+.item .item-stat {
+  margin-top: -1px;
+  background-color: rgba(17,17,17,0.5);
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
   font-weight: bold;
   position: relative;
-  top: -18px;
-  right: 1px;
-}
-.tall-tiles .item-drag-container,
-dim-store-item, .item-drag-container
-{
-  height: 68px !important;
-}
-.tall-tiles .item-drag-container {
-  margin: 0 6px 6px 0;
+  top: -16px;
 }
 
-/*
-  Bit of space between the elemental armor or demage and the power level
-*/
-img.element.arc,
-img.element.solar,
-img.element.void
+/* Hardcore item height */
+.item-drag-container
 {
-  margin-right: 2px;
+  height: 66px !important;
+  margin: 0 6px 6px 0;
 }
