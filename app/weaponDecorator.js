@@ -26,7 +26,7 @@ function storeWeaponData() {
     const weaponName = $(this).attr('title').split("\n")[0];
     $(this).attr('data-fate-weapon-name', weaponName);
 
-    const isMasterwork = $(this).find('.masterwork').length > 0;
+    const isMasterwork = $(this).is('.masterwork');
     $(this).attr('data-fate-masterwork', isMasterwork);
 
     const itemStatValue = $(this).find('.item-stat.item-equipment').text().match(/(\d+)/)[0];
