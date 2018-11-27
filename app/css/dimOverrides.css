@@ -72,13 +72,15 @@ body,
 
 /* Stat bar background for everything not exotic */
 .item .item-stat {
-  margin-top: -1px;
+  margin-top: -2px;
   background-color: rgba(17,17,17,0.5);
   color: rgba(255,255,255,0.8);
   font-size: 12px;
   font-weight: bold;
   position: relative;
   top: -16px;
+  left: 1px;
+  width: calc((var(--item-size) - 2px));
 }
 
 /* Hardcore item height */
