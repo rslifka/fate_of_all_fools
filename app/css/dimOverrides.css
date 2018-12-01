@@ -1,5 +1,13 @@
 /* 5.3.1 */
 
+/*
+  This allows you to control the number of items in your vault by
+  shrinking the window.
+*/
+.inventory-content {
+  min-width: unset;
+}
+
 .item.masterwork .overlay,
 .item.exotic.masterwork .overlay,
 .sub-section .equipped-item
