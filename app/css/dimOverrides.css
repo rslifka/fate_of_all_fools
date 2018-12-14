@@ -41,10 +41,6 @@ body,
   background-color: #111 !important;
 }
 
-.item-tag {
-  display: none;
-}
-
 /* Remove fold/unfold icon next to section headings */
 [data-icon='caret-down'],
 [data-icon='caret-right']
@@ -115,4 +111,15 @@ body,
   position: relative;
   top: -12px;
   right: -23px;
+}
+
+/* DIM's built-in tagging; move to the top right */
+.item .icons {
+  left: unset;
+  right: 1px;
+  top: 3px;
+}
+
+.item .item-tag {
+  color: rgb(236, 41, 41);
 }
