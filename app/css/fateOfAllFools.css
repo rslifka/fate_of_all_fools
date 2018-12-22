@@ -43,10 +43,13 @@
   font-size: 11px;
 }
 .fate-fave {
+  background-color: transparent !important;
   font-size: 12px;
   padding: 0;
-  right: 1px;
-  top: 1px;
+  top: unset;
+  right: unset;
+  left: 1px;
+  bottom: 17px;
 }
 .fate-thumbs-down {
   color: rgba(206,82,70,1);
