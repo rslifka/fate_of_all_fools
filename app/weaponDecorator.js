@@ -10,6 +10,7 @@ const WEAPON_TYPES = [
   "Bow",
   "Shotgun",
   "Launcher",       // Rocket, Grenade
+  "Machine Gun",
   "Submachine Gun",
   "Sword"
 ]
