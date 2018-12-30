@@ -25,9 +25,11 @@
   display: block;
 }
 
-[data-fate-weapon-junk="true"] > .foaf-dupe
+[data-fate-weapon-junk="true"] > .foaf-dupe,
+[data-fate-weapon-registered="false"] > .foaf-dupe
 {
-  left: 17px;
+  left: 14px;
+  bottom: 16px;
 }
 
 /*
