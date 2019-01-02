@@ -123,3 +123,7 @@ body,
 .item .item-tag {
   color: rgb(236, 41, 41);
 }
+
+.armor-class-icon {
+  display: none;
+}
