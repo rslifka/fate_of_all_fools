@@ -8,6 +8,13 @@
   min-width: unset;
 }
 
+/*
+  Hide the searching + symbol added to each vault slot.
+*/
+.fa-plus-circle {
+  display: none;
+}
+
 .item.masterwork .overlay,
 .item.exotic.masterwork .overlay,
 .sub-section .equipped-item
