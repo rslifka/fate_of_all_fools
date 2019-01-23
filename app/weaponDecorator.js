@@ -35,9 +35,6 @@ function storeWeaponData() {
     if (!weaponDatabase.contains(weaponName)) {
       return;
     }
-
-    $(this).attr('data-fate-weapon-rarity', weaponDatabase.get(weaponName).rarity);
-    $(this).attr('data-fate-weapon-type', weaponDatabase.get(weaponName).type);
   });
 }
 

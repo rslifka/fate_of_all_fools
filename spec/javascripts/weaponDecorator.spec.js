@@ -56,20 +56,6 @@ describe('weaponDecorator.js', function() {
       expect($('[title*=Transit]')).toHaveAttr('data-fate-weapon-name', 'Edge Transit');
     });
 
-    it('should store the type of the weapon', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-type', 'Hand Cannon');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-weapon-type', 'Pulse Rifle');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-weapon-type', 'Combat Bow');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-weapon-type', 'Grenade Launcher');
-    });
-
-    it('should store the rarity of the weapon', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-rarity', 'exotic');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-weapon-rarity', 'legendary');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-weapon-rarity', 'legendary');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-weapon-rarity', 'legendary');
-    });
-
     it('should store whether or not it is a masterwork', function() {
       expect($('[title*=Ace]')).toHaveAttr('data-fate-masterwork', 'false');
       expect($('[title*=Figure]')).toHaveAttr('data-fate-masterwork', 'false');
