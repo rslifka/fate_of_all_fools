@@ -14,7 +14,6 @@ describe('dupeIndicator.js', function() {
       it('should let the world know it is done', function() {
         spyOn(fateBus, 'publish').and.callThrough();
         fateBus.publish(brunchModule, 'fate.refresh');
-        expect(fateBus.publish).toHaveBeenCalledWith(jasmine.any(Object),'fate.dupesCalculated');
       });
     });
 
@@ -97,53 +96,6 @@ describe('dupeIndicator.js', function() {
         fateBus.publish(brunchModule, 'fate.refresh');
         expect($("[data-fate-weapon-name='Annual Skate']").eq(0)).toHaveAttr('data-fate-weapon-dupe', 'false');
       });
-    });
-  });
-
-  describe('when mousing over the dupe indicator', function() {
-
-    beforeEach(function() {
-      loadFixtures(
-        'kineticWeapon.html',
-        'energyWeapon.html',
-        'energyWeapon.html',
-        'energyPerseverance.html',
-        'powerWeapon.html'
-      );
-
-      $('[data-fate-weapon-name="Origin Story"]').attr('data-fate-roll-stored', 'false');
-      $('[data-fate-weapon-name="Annual Skate"]:eq(0)').attr('data-fate-roll-stored', 'true');
-      $('[data-fate-weapon-name="Annual Skate"]:eq(1)').attr('data-fate-roll-stored', 'false');
-      $('[data-fate-weapon-name="Alone as a god"]').attr('data-fate-roll-stored', 'false');
-      $('[data-fate-weapon-name="Perseverance"]').attr('data-fate-roll-stored', 'false');
-
-      // This element is what we mouse over
-      ['Origin Story', 'Annual Skate', 'Alone as a god', 'Perseverance'].forEach(function(weaponName) {
-        $('[data-fate-weapon-name="'+weaponName+'"]').append($('<div>', {'class': indicators.DUPLICATE_INDICATOR_CLASS}));
-      });
-
-      fateBus.publish(brunchModule, 'fate.refresh');
-    });
-
-    it('should highlight duplicates of this weapon', function() {
-
-      fateBus.publish(
-        brunchModule,
-        'fate.test.mouseenter.dupe',
-        '[data-fate-weapon-name="Annual Skate"]:eq(1) > .' + indicators.DUPLICATE_INDICATOR_CLASS
-      );
-      expect($('[data-fate-weapon-name="Origin Story"]')).toHaveClass('fate-search-hidden');
-      expect($('[data-fate-weapon-name="Annual Skate"]:eq(0)')).not.toHaveClass('fate-search-hidden');
-      expect($('[data-fate-weapon-name="Annual Skate"]:eq(1)')).not.toHaveClass('fate-search-hidden');
-      expect($('[data-fate-weapon-name="Perseverance"]')).toHaveClass('fate-search-hidden');
-      expect($('[data-fate-weapon-name="Alone as a god"]')).toHaveClass('fate-search-hidden');
-
-      fateBus.publish(
-        brunchModule,
-        'fate.test.mouseleave.dupe',
-        '[data-fate-weapon-name="Annual Skate"]:eq(0) > .' + indicators.DUPLICATE_INDICATOR_CLASS
-      );
-      expect($('[data-fate-weapon-name]')).not.toHaveClass('fate-search-hidden');
     });
   });
 

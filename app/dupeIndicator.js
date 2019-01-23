@@ -5,8 +5,6 @@ const indicators = require('indicators.js');
 fateBus.subscribe(module, 'fate.refresh', function() {
   logger.log('dupeIndicator.js: Calculating duplicates');
   styleDupeIndicators(calculateWorkingSet());
-  registerListeners();
-  fateBus.publish(module, 'fate.dupesCalculated');
 });
 
 function calculateWorkingSet() {
@@ -38,30 +36,3 @@ function styleDupeIndicators(weapons) {
     });
   }
 }
-
-function onMouseEnter() {
-  const weaponName = $(this).parent().attr('data-fate-weapon-name');
-  $('[data-fate-weapon-name]').not('[data-fate-weapon-name="'+weaponName+'"]').addClass('fate-search-hidden');
-}
-
-function onMouseLeave() {
-  $('.fate-search-hidden').removeClass('fate-search-hidden');
-}
-
-function registerListeners() {
-  $('[data-fate-weapon-dupe="true"] > .' + indicators.DUPLICATE_INDICATOR_CLASS).on('mouseenter.dupe', onMouseEnter);
-  $('[data-fate-weapon-dupe="true"] > .' + indicators.DUPLICATE_INDICATOR_CLASS).on('mouseleave.dupe', onMouseLeave);
-}
-
-/*
-  jasmine-jquery doesn't seem to play well these days. Not sure why but it can't
-  seem to trigger events via $.trigger, so we're going to use our bus to test the
-  events.
-*/
-fateBus.subscribe(module, 'fate.test.mouseenter.dupe', function(msg, selector) {
-  $(selector).each(onMouseEnter);
-});
-
-fateBus.subscribe(module, 'fate.test.mouseleave.dupe', function(msg, selector) {
-  $(selector).each(onMouseLeave);
-});
