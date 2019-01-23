@@ -35,16 +35,19 @@
 /*
   UNREGISTERED INDICATOR
 */
-[data-fate-weapon-registered="true"] > .foaf-unregistered,
-[data-fate-armor-registered="true"] > .foaf-unregistered
+[data-fate-weapon-registered="true"] > .foaf-unregistered
 {
   display: none;
 }
 
-[data-fate-weapon-registered="false"] > .foaf-unregistered,
-[data-fate-armor-registered="false"] > .foaf-unregistered
+[data-fate-weapon-registered="false"] > .foaf-unregistered
 {
   display: block;
+}
+
+[data-fate-armor-init] > .foaf-unregistered
+{
+  display: none;
 }
 
 /*

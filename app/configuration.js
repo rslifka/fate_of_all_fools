@@ -17,11 +17,6 @@ function init() {
 				'type': 'text',
 				'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1131147082&single=true&output=tsv'
 			},
-			'armorListTSV': {
-				'label': 'Armor Catalog Tab-Separated Values',
-				'type': 'text',
-				'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=321558889&single=true&output=tsv'
-			},
 			'armorRollTSV': {
 				'label': 'Armor Rolls Tab-Separated Values',
 				'type': 'text',
@@ -44,7 +39,6 @@ function init() {
 		weaponListTSV: GM_config.get('weaponListTSV'),
 		rollDataTSV: GM_config.get('rollDataTSV'),
 		shaderDataTSV: GM_config.get('shaderDataTSV'),
-		armorListTSV: GM_config.get('armorListTSV'),
 		armorRollTSV: GM_config.get('armorRollTSV')
 	});
 }

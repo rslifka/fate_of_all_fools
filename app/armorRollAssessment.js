@@ -1,5 +1,3 @@
-const armor = require('armor.js');
-
 class ArmorRollAssessment {
 
   constructor(rollID, name, keep, comments) {
@@ -11,4 +9,11 @@ class ArmorRollAssessment {
 
 }
 
+const Keep = {
+  NO: 'n',
+  YES: 'y',
+  UNKNOWN: '?'
+}
+
 exports.ArmorRollAssessment = ArmorRollAssessment;
+exports.Keep = Keep;

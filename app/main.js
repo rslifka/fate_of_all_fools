@@ -31,11 +31,7 @@ require('weaponRollAssessment.js');
 require('weaponRollDatabase.js');
 require('weaponRollDataRefresher.js');
 
-require('armor.js');
-require('armorDatabase.js');
 require('armorDecorator.js');
-require('armorDataRefresher.js');
-
 require('armorRollAssessment.js');
 require('armorRollDatabase.js');
 require('armorRollDataRefresher.js');
@@ -72,6 +68,7 @@ if (!window.navigator.userAgent.includes('HeadlessChrome')) {
   const logger = require('logger');
   const $ = require('jquery');
 
+  logger.setEnabled(true);
   logger.log('main.js: Initializing');
 
   // Shaders are the last update during a full refresh; so we kick off

@@ -1,7 +1,6 @@
 const $ = require('jquery');
-const armor = require('armor.js');
-const armorDatabase = require('armorDatabase.js').armorDB;
 const rollDatabase = require('armorRollDatabase.js').armorRollDB;
+const keepStatus = require('armorRollAssessment.js').Keep;
 
 const ARMOR_TYPES = [
   "Helmet",
@@ -29,49 +28,39 @@ function storeArmorData() {
     const isMasterwork = $(this).is('.masterwork');
     $(this).attr('data-fate-masterwork', isMasterwork);
 
-    $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0]);
+    const serialNumber = $(this).attr('id').split("-")[0];
+    $(this).attr('data-fate-serial', serialNumber);
   });
 }
 
 function updateAttributes() {
   $('[data-fate-armor-init=true]').each(function(index,element) {
-    const name = $(this).attr('data-fate-armor-name');
-    $(this).attr('data-fate-armor-registered', armorDatabase.contains(name));
+    const serialNumber = $(this).attr('data-fate-serial');
+    
+    const isRegistered = rollDatabase.contains(serialNumber);
+    $(this).attr('data-fate-armor-registered', isRegistered);
 
-    if (!armorDatabase.contains(name)) {
+    if (!isRegistered) {
       $(this).removeAttr('data-fate-armor-keep');
-      $(this).removeAttr('data-fate-armor-rarity');
-      $(this).removeAttr('data-fate-comment');
       return;
     }
 
-    $(this).attr('data-fate-armor-rarity', armorDatabase.get(name).rarity);
+    const armorRoll = rollDatabase.get(serialNumber);
 
-    const a = getRollOrArmor($(this));
-    switch(a.keep) {
-      case armor.Keep.YES:
+    $(this).attr('data-fate-comment', armorRoll.comments);
+
+    switch(armorRoll.keep) {
+      case keepStatus.YES:
         $(this).attr('data-fate-armor-keep', true);
         break;
-      case armor.Keep.NO:
+      case keepStatus.NO:
         $(this).attr('data-fate-armor-keep', false);
         break;
       default:
         $(this).removeAttr('data-fate-armor-keep');
     }
-
-    $(this).attr('data-fate-comment', a.comments);
   });
 }
-
-function getRollOrArmor($element) {
-  if (rollDatabase.contains($element.attr('data-fate-serial'))) {
-    return rollDatabase.get($element.attr('data-fate-serial'));
-  }
-  if (armorDatabase.contains($element.attr('data-fate-armor-name'))) {
-    return armorDatabase.get($element.attr('data-fate-armor-name'));
-  }
-  return undefined;
-};
 
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeArmorData();
