@@ -77,13 +77,6 @@ describe('weaponDecorator.js', function() {
       expect($('[title*=Transit]')).toHaveAttr('data-fate-masterwork', 'false');
     });
 
-    it('should store the base light level', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-base-light', '545');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-base-light', '523');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-base-light', '527');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-base-light', '545');
-    });
-
     it('should store if the weapon is registered', function() {
       expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-registered', 'true');
       expect($('[title*=Figure]')).toHaveAttr('data-fate-weapon-registered', 'true');
@@ -144,16 +137,6 @@ describe('weaponDecorator.js', function() {
         expect($('[id=6917529071788725024-ps545]')).toHaveAttr('data-fate-weapon-name', 'Ace of Spades');
         expect($('[id=6917529071785738876-ps527]')).toHaveAttr('data-fate-weapon-name', 'Subtle Calamity');
         expect($('[id=6917529070743721064-ps545]')).toHaveAttr('data-fate-weapon-name', 'Edge Transit');
-      });
-
-      it('should not overwrite the base light', function() {
-        $('[title*=Ace]').children('.item-stat').text('335');
-        $('[title*=Calamity]').children('.item-stat').text('334');
-        $('[title*=Transit]').children('.item-stat').text('333');
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[id=6917529071788725024-ps545]')).toHaveAttr('data-fate-base-light', '545');
-        expect($('[id=6917529071785738876-ps527]')).toHaveAttr('data-fate-base-light', '527');
-        expect($('[id=6917529070743721064-ps545]')).toHaveAttr('data-fate-base-light', '545');
       });
 
       it('should not overwrite the serial number', function() {

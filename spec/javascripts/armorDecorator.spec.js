@@ -74,14 +74,6 @@ describe('armorDecorator.js', function() {
       expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-masterwork', 'false');
     });
 
-    it('should record its base light', function() {
-      expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-base-light', '532');
-      expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-base-light', '380');
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-base-light', '380');
-      expect('[data-fate-armor-name="Boots of the Great Hunt"]').toHaveAttr('data-fate-base-light', '576');
-      expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-base-light', '10');
-    });
-
     it('shoud record the serial number', function() {
       expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-serial', '6917529073016457020');
       expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-serial', '6917529056139488819');
@@ -156,20 +148,6 @@ describe('armorDecorator.js', function() {
         expect('[data-fate-armor-name="Vesper of Radius"]').toExist();
         expect('[data-fate-armor-name="Boots of the Great Hunt"]').toExist();
         expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toExist();
-      });
-
-      it('should not overwrite the base light', function() {
-        $('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').children('.item-stat').text('400');
-        $('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').children('.item-stat').text('400');
-        $('[data-fate-armor-name="Vesper of Radius"]').children('.item-stat').text('400');
-        $('[data-fate-armor-name="Boots of the Great Hunt"]').children('.item-stat').text('400');
-        $('[data-fate-armor-name="Dragonfly Regalia Bond"]').children('.item-stat').text('400');
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-base-light', '532');
-        expect('[data-fate-armor-name="Wraps of the Emperor\'s Minister"]').toHaveAttr('data-fate-base-light', '380');
-        expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-base-light', '380');
-        expect('[data-fate-armor-name="Boots of the Great Hunt"]').toHaveAttr('data-fate-base-light', '576');
-        expect('[data-fate-armor-name="Dragonfly Regalia Bond"]').toHaveAttr('data-fate-base-light', '10');
       });
 
       it('should not overwrite the serial number', function() {

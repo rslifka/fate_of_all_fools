@@ -30,9 +30,6 @@ function storeWeaponData() {
     const isMasterwork = $(this).is('.masterwork');
     $(this).attr('data-fate-masterwork', isMasterwork);
 
-    const itemStatValue = $(this).find('.item-stat.item-equipment').text().match(/(\d+)/)[0];
-    $(this).attr('data-fate-base-light', itemStatValue);
-
     $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0]);
 
     if (!weaponDatabase.contains(weaponName)) {
