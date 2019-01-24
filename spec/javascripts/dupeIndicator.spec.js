@@ -30,10 +30,10 @@ describe('dupeIndicator.js', function() {
           'powerWeapon.html'
         );
 
-        $('[data-fate-weapon-name="Origin Story"]').attr('data-fate-roll-stored', 'false');
-        $('[data-fate-weapon-name="Annual Skate"]').attr('data-fate-roll-stored', 'false');
-        $('[data-fate-weapon-name="Alone as a god"]').attr('data-fate-roll-stored', 'false');
-        $('[data-fate-weapon-name="Perseverance"]').attr('data-fate-roll-stored', 'false');
+        $('[data-fate-weapon-name="Origin Story"]').attr('data-fate-weapon-registered', 'false');
+        $('[data-fate-weapon-name="Annual Skate"]').attr('data-fate-weapon-registered', 'false');
+        $('[data-fate-weapon-name="Alone as a god"]').attr('data-fate-weapon-registered', 'false');
+        $('[data-fate-weapon-name="Perseverance"]').attr('data-fate-weapon-registered', 'false');
 
         fateBus.publish(brunchModule, 'fate.refresh');
       });
@@ -64,12 +64,12 @@ describe('dupeIndicator.js', function() {
           'powerWeapon.html'
         );
 
-        $('[data-fate-weapon-name="Origin Story"]:eq(0)').attr('data-fate-roll-stored', 'true');
-        $('[data-fate-weapon-name="Annual Skate"]:eq(0)').attr('data-fate-roll-stored', 'true');
-        $('[data-fate-weapon-name="Alone as a god"]:eq(0)').attr('data-fate-roll-stored', 'true');
-        $('[data-fate-weapon-name="Origin Story"]:eq(1)').attr('data-fate-roll-stored', 'false');
-        $('[data-fate-weapon-name="Annual Skate"]:eq(1)').attr('data-fate-roll-stored', 'false');
-        $('[data-fate-weapon-name="Alone as a god"]:eq(1)').attr('data-fate-roll-stored', 'false');
+        $('[data-fate-weapon-name="Origin Story"]:eq(0)').attr('data-fate-weapon-registered', 'true');
+        $('[data-fate-weapon-name="Annual Skate"]:eq(0)').attr('data-fate-weapon-registered', 'true');
+        $('[data-fate-weapon-name="Alone as a god"]:eq(0)').attr('data-fate-weapon-registered', 'true');
+        $('[data-fate-weapon-name="Origin Story"]:eq(1)').attr('data-fate-weapon-registered', 'false');
+        $('[data-fate-weapon-name="Annual Skate"]:eq(1)').attr('data-fate-weapon-registered', 'false');
+        $('[data-fate-weapon-name="Alone as a god"]:eq(1)').attr('data-fate-weapon-registered', 'false');
         fateBus.publish(brunchModule, 'fate.refresh');
       });
 

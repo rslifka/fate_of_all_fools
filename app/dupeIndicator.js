@@ -30,7 +30,7 @@ function styleDupeIndicators(weapons) {
       if (weaponInstances.length === 1) {
         $(weapon.domElement).attr('data-fate-weapon-dupe', false);
       } else {
-        const isDupe = $(weapon.domElement).attr('data-fate-roll-stored') === 'false';
+        const isDupe = $(weapon.domElement).attr('data-fate-weapon-registered') === 'false';
         $(weapon.domElement).attr('data-fate-weapon-dupe', isDupe);
       }
     });
