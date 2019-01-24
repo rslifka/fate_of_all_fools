@@ -1,4 +1,8 @@
-const weapon = require('weapon.js');
+const Utility = {
+  NO: 'n',
+  YES: 'y',
+  UNKNOWN: '?'
+}
 
 class WeaponRollAssessment {
 
@@ -11,17 +15,22 @@ class WeaponRollAssessment {
   }
 
   get pveUtility() {
-    return weapon.Weapon.mapToStatus(this.pve);
+    return WeaponRollAssessment.mapToStatus(this.pve);
   }
 
   get pvpUtility() {
-    return weapon.Weapon.mapToStatus(this.pvp);
+    return WeaponRollAssessment.mapToStatus(this.pvp);
   }
 
-  isJunk() {
-    return this.pveUtility === weapon.Utility.NO && this.pvpUtility === weapon.Utility.NO;
+  static mapToStatus(property) {
+    switch(property) {
+      case('y'): return Utility.YES;
+      case('n'): return Utility.NO;
+      default: return Utility.UNKNOWN;
+    }
   }
 
 }
 
 exports.WeaponRollAssessment = WeaponRollAssessment;
+exports.Utility = Utility;

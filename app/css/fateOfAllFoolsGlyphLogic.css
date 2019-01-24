@@ -1,4 +1,14 @@
 /*
+  UNREGISTERED SIDE EFFECTS
+*/
+[data-fate-weapon-registered="false"] > .foaf-pve,
+[data-fate-weapon-registered="false"] > .foaf-pvp,
+[data-fate-weapon-registered="false"] > .foaf-junk
+{
+  display: none;
+}
+
+/*
   FAVE INDICATOR
 */
 [data-fate-weapon-name] > .foaf-fave,
@@ -25,29 +35,10 @@
   display: block;
 }
 
-[data-fate-weapon-junk="true"] > .foaf-dupe,
-[data-fate-weapon-registered="false"] > .foaf-dupe
+[data-fate-weapon-junk="true"] > .foaf-dupe
 {
   left: 14px;
   bottom: 16px;
-}
-
-/*
-  UNREGISTERED INDICATOR
-*/
-[data-fate-weapon-registered="true"] > .foaf-unregistered
-{
-  display: none;
-}
-
-[data-fate-weapon-registered="false"] > .foaf-unregistered
-{
-  display: block;
-}
-
-[data-fate-armor-init] > .foaf-unregistered
-{
-  display: none;
 }
 
 /*

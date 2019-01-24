@@ -12,13 +12,6 @@
   bottom: 17px;
 }
 
-.foaf-unregistered {
-  color: rgba(221,221,221,1);
-  padding: 0px 1px 1px 1px;
-  left: 1px;
-  bottom: 17px;
-}
-
 .foaf-junk {
   color: rgba(206,82,70,1);
   font-size: 12px;

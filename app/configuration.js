@@ -7,11 +7,6 @@ function init() {
 	GM_config.init({
 		'id': 'FateConfig',
 		'fields': {
-			'weaponListTSV': {
-				'label': 'Weapon Catalog Tab-Separated Values',
-				'type': 'text',
-				'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=96907753&single=true&output=tsv'
-			},
 			'rollDataTSV': {
 				'label': 'Weapon Rolls Tab-Separated Values',
 				'type': 'text',
@@ -36,10 +31,9 @@ function init() {
 	});
 
 	fateBus.publish(module, 'fate.configurationLoaded', {
-		weaponListTSV: GM_config.get('weaponListTSV'),
 		rollDataTSV: GM_config.get('rollDataTSV'),
-		shaderDataTSV: GM_config.get('shaderDataTSV'),
-		armorRollTSV: GM_config.get('armorRollTSV')
+		armorRollTSV: GM_config.get('armorRollTSV'),
+		shaderDataTSV: GM_config.get('shaderDataTSV')
 	});
 }
 

@@ -2,8 +2,7 @@ describe('weaponDecorator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
-  const weapon = require('weapon.js');
-  const weaponDatabase = require('weaponDatabase.js').weaponDB;
+  const WeaponRollAssessment = require('weaponRollAssessment.js').WeaponRollAssessment;
   const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 
   beforeEach(function() {
@@ -16,33 +15,25 @@ describe('weaponDecorator.js', function() {
       loadFixtures(
         'weaponDecoratorInventoryRaw.html'
       );
-      spyOn(weaponDatabase, 'contains').and.callFake(function(weaponName) {
-        return ['Ace of Spades', 'Go Figure', 'Subtle Calamity', 'Edge Transit'].includes(weaponName);
-      });
-      spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
-        switch(weaponName) {
-          // One Primary (which is overriden by a custom roll rating)
-          case 'Ace of Spades':
-            return {name: 'Ace of Spades', rarity: 'exotic', type: 'Hand Cannon', pveUtility: weapon.Utility.UNKNOWN, pvpUtility: weapon.Utility.UNKNOWN, isJunk: function(){return false}, comments: 'RIP CAYDE'};
-          // One Primary
-          case 'Go Figure':
-            return {name: 'Go Figure', rarity: 'legendary', type: 'Pulse Rifle', pveUtility: weapon.Utility.UNKNOWN, pvpUtility: weapon.Utility.UNKNOWN, isJunk: function(){return false}, comments: 'Can be good'};
-          // One Secondary
-          case 'Subtle Calamity':
-            return {name: 'Subtle Calamity', rarity: 'legendary', type: 'Combat Bow', pveUtility: weapon.Utility.NO, pvpUtility: weapon.Utility.NO, isJunk: function(){return true}, comments: 'Arrows r great'};
-          // One Heavy
-          case 'Edge Transit':
-            return {name: 'Edge Transit', rarity: 'legendary', type: 'Grenade Launcher', pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, isJunk: function(){return false}, comments: 'I wish more of these would drop'};
-        }
-      });
-
       spyOn(rollDatabase, 'contains').and.callFake(function(rollID) {
-        return ['6917529071788725024'].includes(rollID);
+        return ['6917529071788725024','6917529071785738876','6917529071761031585','6917529070743721064'].includes(rollID);
       });
-      spyOn(rollDatabase, 'get').and.callFake(function(weaponName) {
-        switch(weaponName) {
+      spyOn(rollDatabase, 'get').and.callFake(function(rollID) {
+        switch(rollID) {
           case '6917529071788725024':
-            return {rollID: '6917529071788725024', name: 'Ace of Spades', pveUtility: weapon.Utility.NO, pvpUtility: weapon.Utility.NO, isJunk: function(){return true}, comments: 'Not a fan of this roll'};
+            return new WeaponRollAssessment('6917529071788725024', 'Ace of Spades', 'N', 'N', 'Not a fan of this roll')
+            break;
+          case '6917529071761031585':
+            return new WeaponRollAssessment('6917529071761031585', 'Go Figure', '?', '?', 'Can be good');
+            break;
+          case '6917529071785738876':
+            return new WeaponRollAssessment('6917529071785738876', 'Subtle Calamity', 'N', 'N', 'Arrows r great');
+            break;
+          case '6917529070743721064':
+            return new WeaponRollAssessment('6917529070743721064', 'Edge Transit', 'Y', 'Y', 'I wish more of these would drop');
+            break;
+          default:
+            return null;
         }
       });
 
@@ -94,16 +85,9 @@ describe('weaponDecorator.js', function() {
 
     it('should store the weapon serial number', function() {
       expect($('[title*=Ace]')).toHaveAttr('data-fate-serial', '6917529071788725024');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-serial', '6917529071785738876');
       expect($('[title*=Figure]')).toHaveAttr('data-fate-serial', '6917529071761031585');
+      expect($('[title*=Calamity]')).toHaveAttr('data-fate-serial', '6917529071785738876');
       expect($('[title*=Transit]')).toHaveAttr('data-fate-serial', '6917529070743721064');
-    });
-
-    it('should store if the weapon has a specific roll rated', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-roll-stored', 'true');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-roll-stored', 'false');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-roll-stored', 'false');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-roll-stored', 'false');
     });
 
     it('should store the comments', function() {
@@ -135,39 +119,14 @@ describe('weaponDecorator.js', function() {
         expect($('[title*=Transit]')).toHaveAttr('data-fate-serial', '6917529070743721064');
       });
 
-      it('should overwrite the roll stored status', function() {
+      it('should overwrite the registration status', function() {
         $('[title*=Ace]').attr('data-fate-serial', '6917529071788725024');
         fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[title*=Ace]')).toHaveAttr('data-fate-roll-stored', 'true');
+        expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-registered', 'true');
       });
 
     });
 
-  });
-
-  describe('when a weapon is no longer in the database', function() {
-
-    let weaponRegistered = true;
-
-    beforeEach(function() {
-      loadFixtures(
-        'weaponDecoratorInventoryRaw.html',
-      );
-      spyOn(weaponDatabase, 'contains').and.callFake(function(weaponName) {
-        return weaponRegistered;
-      });
-      spyOn(weaponDatabase, 'get').and.callFake(function(weaponName) {
-        return {name: 'Ace of Spades', rarity: 'legendary', type: 'Auto Rifle', pveUtility: weapon.Utility.YES, pvpUtility: weapon.Utility.YES, isJunk: function(){return false}, comments: 'It\'s an auto rifle'};
-      });
-    });
-
-    it('should clear the registration status', function() {
-      fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-registered', 'true');
-      weaponRegistered = false;
-      fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-registered', 'false');
-    });
   });
 
   describe('when the per-item popup is present', function() {

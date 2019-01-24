@@ -1,5 +1,4 @@
 const logger = require('logger');
-const weapon = require('weapon.js');
 
 class ItemDatabase {
 

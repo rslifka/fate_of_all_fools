@@ -1,7 +1,6 @@
 const $ = require('jquery');
-const weapon = require('weapon.js');
-const weaponDatabase = require('weaponDatabase.js').weaponDB;
 const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
+const Utility = require('weaponRollAssessment.js').Utility;
 
 const WEAPON_TYPES = [
   "Rifle",          // Scout, Pulse, Auto, Sniper
@@ -30,44 +29,32 @@ function storeWeaponData() {
     const isMasterwork = $(this).is('.masterwork');
     $(this).attr('data-fate-masterwork', isMasterwork);
 
-    $(this).attr('data-fate-serial', $(this).attr('id').split("-")[0]);
-
-    if (!weaponDatabase.contains(weaponName)) {
-      return;
-    }
+    const serialNumber = $(this).attr('id').split("-")[0];
+    $(this).attr('data-fate-serial', serialNumber);
   });
 }
 
 function updateAttributes() {
   $('[data-fate-weapon-name]').each(function(index,element) {
-    const weaponName = $(this).attr('data-fate-weapon-name');
-    $(this).attr('data-fate-weapon-registered', weaponDatabase.contains(weaponName));
-    $(this).attr('data-fate-roll-stored', rollDatabase.contains($(this).attr('data-fate-serial')));
+    const serialNumber = $(this).attr('data-fate-serial');
 
-    if (!$(this).is('[data-fate-weapon-registered="true"]')) {
-      $(this).attr('data-fate-weapon-junk', false);
-      $(this).attr('data-fate-weapon-pve', false);
-      $(this).attr('data-fate-weapon-pvp', false);
+    const isWeaponRegistered = rollDatabase.contains(serialNumber);
+    $(this).attr('data-fate-weapon-registered', isWeaponRegistered);
+
+    if (!isWeaponRegistered) {
+      $(this).removeAttr('data-fate-weapon-junk');
+      $(this).removeAttr('data-fate-weapon-pve');
+      $(this).removeAttr('data-fate-weapon-pvp');
       return;
     }
 
-    const w = getRollOrWeapon($(this));
+    const w = rollDatabase.get(serialNumber);
     $(this).attr('data-fate-comment', w.comments);
-    $(this).attr('data-fate-weapon-junk', w.isJunk());
-    $(this).attr('data-fate-weapon-pve', w.pveUtility === weapon.Utility.YES);
-    $(this).attr('data-fate-weapon-pvp', w.pvpUtility === weapon.Utility.YES);
+    $(this).attr('data-fate-weapon-junk', w.pveUtility === Utility.NO && w.pvpUtility === Utility.NO);
+    $(this).attr('data-fate-weapon-pve', w.pveUtility === Utility.YES);
+    $(this).attr('data-fate-weapon-pvp', w.pvpUtility === Utility.YES);
   });
 }
-
-function getRollOrWeapon($element) {
-  if (rollDatabase.contains($element.attr('data-fate-serial'))) {
-    return rollDatabase.get($element.attr('data-fate-serial'));
-  }
-  if (weaponDatabase.contains($element.attr('data-fate-weapon-name'))) {
-    return weaponDatabase.get($element.attr('data-fate-weapon-name'));
-  }
-  return undefined;
-};
 
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeWeaponData();

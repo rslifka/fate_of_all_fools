@@ -22,11 +22,7 @@ require('shaderDecorator.js');
 require('shaderDataRefresher.js');
 require('shaderStatusIndicator.js');
 
-require('weapon.js');
-require('weaponDatabase.js');
 require('weaponDecorator.js');
-require('weaponDataRefresher.js');
-
 require('weaponRollAssessment.js');
 require('weaponRollDatabase.js');
 require('weaponRollDataRefresher.js');
