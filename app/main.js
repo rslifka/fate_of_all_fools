@@ -34,27 +34,6 @@ require('armorRollDataRefresher.js');
 
 require('indicators.js');
 
-function initFate() {
-  fateBus.publish(module, 'fate.itemDataStale');
-
-  // Update the UI from the backing store every Xms. This is primarily
-  // to catch new and modified items and the side effects of deleting
-  const uiRefreshInterval = 10000;
-
-  // Every Nth update, pull fresh data from the sheets
-  const fullUpdateEveryNthRefresh = 6;
-
-  let refreshCounter = uiRefreshInterval;
-  setInterval(function() {
-    if (refreshCounter % fullUpdateEveryNthRefresh === 0) {
-      fateBus.publish(module, 'fate.itemDataStale');
-    } else {
-      fateBus.publish(module, 'fate.refresh');
-    }
-    refreshCounter += uiRefreshInterval;
-  }, uiRefreshInterval);
-}
-
 /*
   The nicest change-refresh flow means loading the development version of
   the script from Tampermonkey while editing. This lets us skip kicking off
@@ -67,18 +46,28 @@ if (!window.navigator.userAgent.includes('HeadlessChrome')) {
   logger.setEnabled(true);
   logger.log('main.js: Initializing');
 
-  // Shaders are the last update during a full refresh; so we kick off
-  // UI refresh immediately afterwards.
-  fateBus.subscribe(module, 'fate.shaderDataFetched', function() {
-    fateBus.publish(module, 'fate.refresh');
-  });
-
+  // One-time configuration (CSS, data URLs, etc.)
   fateBus.publish(module, 'fate.init');
+  
+  // Refresh from Google Sheets
+  fateBus.publish(module, 'fate.itemDataStale');
 
+  // First update, ASAP
   let intervalId = setInterval(function() {
     if ($('.item-img').length > 1) {
       clearInterval(intervalId);
-      initFate();
+      fateBus.publish(module, 'fate.refresh');
     }
-  }, 500);
+  }, 100);
+
+  // Update from Google Sheets every so often, but it doesn't refresh cache all
+  // that often so we can chill out for a bit
+  setInterval(function() {
+    fateBus.publish(module, 'fate.itemDataStale');
+  }, 60000);
+
+  // When we move items around, delete items, etc. they need to be refreshed
+  setInterval(function() {
+    fateBus.publish(module, 'fate.refresh');
+  }, 3000);
 }

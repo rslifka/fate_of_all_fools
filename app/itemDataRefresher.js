@@ -32,6 +32,8 @@ exports.ItemDataRefresher = class ItemDataRefresher {
     itemData = itemData.substring(itemData.indexOf("\n") + 1);
 
     fateBus.publish(module, 'fate.'+this.itemType+'DataFetched', itemData);
+
+    fateBus.publish(module, 'fate.refresh');
   }
 
   refresh() {
