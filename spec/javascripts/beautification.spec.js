@@ -17,12 +17,4 @@ describe('beautification.js', function() {
     expect(window.GM_addStyle).toHaveBeenCalledWith('TEST_CUSTOM_CSS');
   });
 
-  it('should remove the subclass icons', function() {
-    loadFixtures(
-      'inventoryContentReact.html',
-    );
-    fateBus.publish(brunchModule, 'fate.refresh');
-    expect($('.item-img.diamond').parents('.store-row')).toBeHidden();
-  });
-
 });
