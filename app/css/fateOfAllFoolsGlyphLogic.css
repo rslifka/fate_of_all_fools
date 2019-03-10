@@ -12,13 +12,12 @@
   FAVE INDICATOR
 */
 [data-fate-weapon-name] > .foaf-fave,
-[data-fate-armor-keep="false"] > .foaf-fave,
-[data-fate-armor-init="true"]:not([data-fate-armor-keep]) > .foaf-fave
+[data-fate-armor-registered="false"] > .foaf-fave
 {
   display: none;
 }
 
-[data-fate-armor-keep="true"] > .foaf-fave {
+[data-fate-armor-registered="true"] > .foaf-fave {
   display: block;
 }
 

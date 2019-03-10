@@ -28,7 +28,7 @@ require('weaponRollDatabase.js');
 require('weaponRollDataRefresher.js');
 
 require('armorDecorator.js');
-require('armorRollAssessment.js');
+require('armorRoll.js');
 require('armorRollDatabase.js');
 require('armorRollDataRefresher.js');
 

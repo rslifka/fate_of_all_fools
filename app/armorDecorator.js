@@ -1,6 +1,5 @@
 const $ = require('jquery');
 const rollDatabase = require('armorRollDatabase.js').armorRollDB;
-const keepStatus = require('armorRollAssessment.js').Keep;
 
 const ARMOR_TYPES = [
   "Helmet",
@@ -36,28 +35,15 @@ function storeArmorData() {
 function updateAttributes() {
   $('[data-fate-armor-init=true]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
-    
-    const isRegistered = rollDatabase.contains(serialNumber);
+    const armorRoll = rollDatabase.get(serialNumber);
+    const isRegistered = (armorRoll != undefined);
+
     $(this).attr('data-fate-armor-registered', isRegistered);
 
-    if (!isRegistered) {
-      $(this).removeAttr('data-fate-armor-keep');
-      return;
-    }
-
-    const armorRoll = rollDatabase.get(serialNumber);
-
-    $(this).attr('data-fate-comment', armorRoll.comments);
-
-    switch(armorRoll.keep) {
-      case keepStatus.YES:
-        $(this).attr('data-fate-armor-keep', true);
-        break;
-      case keepStatus.NO:
-        $(this).attr('data-fate-armor-keep', false);
-        break;
-      default:
-        $(this).removeAttr('data-fate-armor-keep');
+    if (isRegistered) {
+      $(this).attr('data-fate-comment', armorRoll.comments);
+    } else {
+      $(this).removeAttr('data-fate-comment');
     }
   });
 }

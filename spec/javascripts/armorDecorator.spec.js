@@ -3,8 +3,7 @@ describe('armorDecorator.js', function() {
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
   const armorRollDatabase = require('armorRollDatabase.js').armorRollDB;
-  const ArmorRollAssessment = require('armorRollAssessment.js').ArmorRollAssessment;
-  const armorKeepStatus = require('armorRollAssessment.js').Keep;
+  const ArmorRoll = require('armorRoll.js').ArmorRoll;
 
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
@@ -13,10 +12,9 @@ describe('armorDecorator.js', function() {
     });
     spyOn(armorRollDatabase, 'get').and.callFake(function(rollID) {
       if ('6917529055948440512' === rollID) {
-        return new ArmorRollAssessment(
+        return new ArmorRoll(
           '6917529055948440512',
           'Vesper of Radius',
-          armorKeepStatus.NO,
           'Roll-specific comments'
         );
       }
@@ -54,21 +52,6 @@ describe('armorDecorator.js', function() {
     it('should record the registration status', function() {
       expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-armor-registered', 'false');
       expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-armor-registered', 'true');
-    });
-
-    describe('keep status', function() {
-
-      describe('when the armor is not registered', function() {
-        it('should not have a keep status', function() {
-          expect('[title*="Crown of Tempests"]').not.toHaveAttr('data-fate-armor-keep');
-        });
-      });
-
-      describe('when the keep is specific per-roll', function() {
-        it('shoud record the keep', function() {
-          expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-armor-keep', 'false');
-        });
-      });
     });
 
     describe('on subsequent refreshes', function() {
