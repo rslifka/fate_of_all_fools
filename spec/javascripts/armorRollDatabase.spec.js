@@ -13,6 +13,9 @@ describe('armorRollDatabase.js', function() {
       [
         '6917529047963087340',
         'Geomag Stabilizers',
+        'Rec',
+        'Mob',
+        'Res',
         'This is for a specific roll!'
       ].join('\t')
     );
@@ -42,7 +45,7 @@ describe('armorRollDatabase.js', function() {
           expect(piece).toEqual(jasmine.any(roll.ArmorRoll));
           expect(piece.rollID).toEqual('6917529047963087340');
           expect(piece.name).toEqual('Geomag Stabilizers');
-          expect(piece.comments).toEqual('This is for a specific roll!');
+          expect(piece.comments).toEqual('[Rec - Mob/Res] This is for a specific roll!');
         });
       });
       describe('when the roll is not found', function() {
