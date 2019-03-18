@@ -134,3 +134,8 @@ body,
 .armor-class-icon {
   display: none;
 }
+
+/* Remove element indicator from armor; effectively means nothing */
+[data-fate-armor-registered] .item-equipment .primary-stat img {
+  border-top: 0;
+}
