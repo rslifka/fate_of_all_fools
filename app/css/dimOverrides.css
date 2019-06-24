@@ -35,7 +35,7 @@
 }
 
 /* Remove lock icon - it's not important enough to be at the top level. */
-svg.fa-lock {
+svg.fa-lock.item-tag {
   display: none !important;
 }
 
