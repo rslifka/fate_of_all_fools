@@ -120,15 +120,18 @@ body,
   right: -23px;
 }
 
-/* DIM's built-in tagging; move to the top right */
+/* DIM's built-in tagging */
 .item .icons {
-  left: unset;
-  right: 1px;
-  top: 3px;
+  top: unset;
+  right: unset;
+  bottom: 21px;
+  left: 5px;
 }
 
 .item .item-tag {
   color: rgb(236, 41, 41);
+  width: calc(var(--item-size) / 7);
+  height: calc(var(--item-size) / 7);
 }
 
 .armor-class-icon {
@@ -138,4 +141,9 @@ body,
 /* Remove element indicator from armor; effectively means nothing */
 [data-fate-armor-registered] .item-equipment .primary-stat img {
   border-top: 0;
+}
+
+/* I donated and fully support! Why is there no "minimize" option? */
+.st-jude-toaster {
+  display: none;
 }
