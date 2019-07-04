@@ -1,4 +1,13 @@
 /*
+  If a weapon has "n/a" in the comments, we mean to keep it and not consider it
+  as part of our normal flow (e.g. unused Gambit Prime Sentry gear now that I
+  have the Triumph).
+*/
+[data-fate-comment*="n/a"] > .item-img {
+  opacity: 0.3;
+}
+
+/*
   UNREGISTERED SIDE EFFECTS
 */
 [data-fate-weapon-registered="false"] > .foaf-pve,
@@ -11,14 +20,15 @@
 /*
   FAVE INDICATOR
 */
-[data-fate-weapon-name] > .foaf-fave,
-[data-fate-armor-registered="false"] > .foaf-fave
-{
-  display: none;
-}
-
 [data-fate-armor-registered="true"] > .foaf-fave {
   display: block;
+}
+
+[data-fate-weapon-name] > .foaf-fave,
+[data-fate-armor-registered="false"] > .foaf-fave,
+[data-fate-comment*="n/a"] > .foaf-fave
+{
+  display: none;
 }
 
 /*
