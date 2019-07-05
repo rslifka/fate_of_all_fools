@@ -57,6 +57,10 @@ describe('armorDecorator.js', function() {
       expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-armor-registered', 'true');
     });
 
+    it('should record the DIM tags as their own attributions', function() {
+      expect('[id="6917529056139488819-ps600"]').toHaveAttr('data-fate-dim-tags', 'lock');
+    });
+
     describe('on subsequent refreshes', function() {
 
       it('should not overwrite the original name', function() {

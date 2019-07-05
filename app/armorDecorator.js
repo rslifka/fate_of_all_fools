@@ -39,12 +39,18 @@ function updateAttributes() {
     const isRegistered = (armorRoll != undefined);
 
     $(this).attr('data-fate-armor-registered', isRegistered);
-
+    
     if (isRegistered) {
       $(this).attr('data-fate-comment', armorRoll.comments);
     } else {
       $(this).removeAttr('data-fate-comment');
     }
+
+    const dimTags = $.map($(this).find('svg'), function(value, i) {
+      return $(value).attr('data-icon');
+    });
+    $(this).attr('data-fate-dim-tags', dimTags.join(','));
+
   });
 }
 

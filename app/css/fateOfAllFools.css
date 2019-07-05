@@ -9,6 +9,27 @@
   color: #f5dc56 !important;
 }
 
+/*
+  If we mark an item junk using DIM's tagging, subdue its presentation.
+  
+  If a weapon has "n/a" in the comments, we mean to keep it and not consider it
+  as part of our normal flow (e.g. unused Gambit Prime Sentry gear now that I
+  have the Triumph).
+*/
+[data-fate-dim-tags*='ban'],
+[data-fate-comment*="n/a"]
+{
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+[data-fate-dim-tags*='ban'] .item-stat,
+[data-fate-comment*="n/a"] .item-stat
+{
+  color: rgba(128,128,128,1.0);
+  background-color: rgba(17,17,17,0.3);
+}
+
 /* STATUS INDICATORS: Common styling */
 .fate-glyph {
   background-color: rgba(0,0,0,1.0);
