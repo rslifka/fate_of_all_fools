@@ -97,6 +97,10 @@ describe('weaponDecorator.js', function() {
       expect($('[title*=Transit]')).toHaveAttr('data-fate-comment', 'I wish more of these would drop');
     });
 
+    it('should record the DIM tags as their own attributions', function() {
+      expect('[id="6917529071788725024-ps545"]').toHaveAttr('data-fate-dim-tags', 'lock');
+    });
+
     describe('on subsequent refreshes', function() {
 
       it('should not overwrite the original weapon name', function() {

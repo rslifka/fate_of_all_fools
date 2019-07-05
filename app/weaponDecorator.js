@@ -38,6 +38,11 @@ function updateAttributes() {
   $('[data-fate-weapon-name]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
+    const dimTags = $.map($(this).find('svg'), function(value, i) {
+      return $(value).attr('data-icon');
+    });
+    $(this).attr('data-fate-dim-tags', dimTags.join(','));
+
     const isWeaponRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-weapon-registered', isWeaponRegistered);
 
