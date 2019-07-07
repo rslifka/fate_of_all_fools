@@ -16,7 +16,8 @@
 }
 
 [data-fate-weapon-name] > .foaf-fave,
-[data-fate-armor-registered="false"] > .foaf-fave
+[data-fate-armor-registered="false"] > .foaf-fave,
+[data-fate-comment*="n/a"] > .foaf-fave
 {
   display: none;
 }
