@@ -3,13 +3,18 @@ const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 const Utility = require('weaponRollAssessment.js').Utility;
 
 const WEAPON_TYPES = [
-  "Rifle",          // Scout, Pulse, Auto, Sniper
-  "Cannon",         // Hand Cannon
-  "Sidearm",
-  "Bow",
-  "Shotgun",
-  "Launcher",       // Rocket, Grenade
+  "Auto Rifle",
+  "Combat Bow",
+  "Fusion Rifle",
+  "Grenade Launcher",
+  "Hand Cannon",       
   "Machine Gun",
+  "Pulse Rifle",
+  "Rocker Launcher",
+  "Scout Rifle",
+  "Shotgun",
+  "Sidearm",
+  "Sniper Rifle",
   "Submachine Gun",
   "Sword"
 ]
