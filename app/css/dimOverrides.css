@@ -22,10 +22,14 @@
   background-image: none;
 }
 
+/*
+  The contrast between the item img background and the body background is
+  enough of a border that we don't need to add pixels.
+*/ 
 .item .item-img,
 .item.masterwork .item-img
 {
-  border: 1px solid rgba(125, 125, 125, 0.82);
+  border: none;
 }
 
 .sub-section .equipped-item
@@ -75,15 +79,13 @@ body,
 
 /* Stat bar background for everything not exotic */
 .item .item-stat {
-  margin-top: -2px;
   background-color: rgba(17,17,17,0.7);
   color: rgba(255,255,255,0.8);
   font-size: 12px;
   font-weight: bold;
   position: relative;
   top: -16px;
-  left: 1px;
-  width: calc((var(--item-size) - 2px));
+  width: var(--item-size);
 }
 
 /* Hardcore item height */
