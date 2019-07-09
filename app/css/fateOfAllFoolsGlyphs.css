@@ -25,14 +25,14 @@
   color: rgba(93,181,110,1);
   padding: 0 1px 1px 1px;
   left: 1px;
-  bottom: 17px;
+  bottom: 1px;
 }
 
 .foaf-pvp {
   color: rgba(93,181,110,1);
   padding: 0 1px 1px 1px;
   left: 1px;
-  bottom: 17px;
+  bottom: 1px;
 }
 
 .foaf-masterwork {
@@ -49,7 +49,7 @@
 .foaf-infusable {
   color: rgba(93,181,110,1);
   font-size: 10px;
-  bottom: 3px;
+  bottom: 1px;
   left: 1px;
   padding: 1px 1px 2px 0px;
 }
@@ -57,7 +57,7 @@
 .foaf-fodder {
   color: rgb(31, 222, 245);
   font-size: 10px;
-  bottom: 3px;
+  bottom: 1px;
   left: 1px;
   padding: 1px 1px 2px 0px;
 }
@@ -66,6 +66,6 @@
   color: rgba(93,181,110,1);
   font-size: 12px;
   padding: 0;
-  bottom: 17px;
+  bottom: 1px;
   left: 1px;
 }

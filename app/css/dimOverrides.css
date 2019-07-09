@@ -88,11 +88,19 @@ body,
   width: var(--item-size);
 }
 
-/* Hardcore item height */
+/* 
+  We contain all information in an overlay so no need for dimensions larger
+  than the item itself.
+*/
+.item {
+  height: var(--item-size);
+  margin: unset;
+}
+
 .item-drag-container
 {
-  height: 66px !important;
-  margin: 0 6px 6px 0;
+  height: var(--item-size);
+  margin: 0 1px 1px 0;
 }
 
 .item .element.void {
@@ -126,7 +134,7 @@ body,
 .item .icons {
   top: unset;
   right: unset;
-  bottom: 21px;
+  bottom: 3px;
   left: 5px;
 }
 
@@ -143,9 +151,4 @@ body,
 /* Remove element indicator from armor; effectively means nothing */
 [data-fate-armor-registered] .item-equipment .primary-stat img {
   border-top: 0;
-}
-
-/* I donated and fully support! Why is there no "minimize" option? */
-.st-jude-toaster {
-  display: none;
 }
