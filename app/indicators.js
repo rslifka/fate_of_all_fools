@@ -7,20 +7,43 @@ const PVE_INDICATOR_CLASS = 'foaf-pve';
 const PVP_INDICATOR_CLASS = 'foaf-pvp';
 const FAVE_INDICATOR_CLASS = 'foaf-fave';
 
-const INDICATORS_TO_GLYPHS = new Map([
-  [DUPLICATE_INDICATOR_CLASS,    'fglyph-knives'],
-  [JUNK_INDICATOR_CLASS,         'fglyph-thumbs-down'],
-  [PVE_INDICATOR_CLASS,          'fglyph-pve'],
-  [PVP_INDICATOR_CLASS,          'fglyph-pvp'],
-  [FAVE_INDICATOR_CLASS,         'fglyph-fave']
+const WEAPON_GLYPHS = new Map([
+  [DUPLICATE_INDICATOR_CLASS, 'fglyph-knives'],
+  [JUNK_INDICATOR_CLASS,      'fglyph-thumbs-down'],
+  [PVE_INDICATOR_CLASS,       'fglyph-pve'],
+  [PVP_INDICATOR_CLASS,       'fglyph-pvp'],
+  [FAVE_INDICATOR_CLASS,      'fglyph-fave']
+]);
+
+const ARMOR_GLYPHS = new Map([
+  [FAVE_INDICATOR_CLASS, 'fglyph-fave']
+]);
+
+const SHADER_GLYPHS = new Map([
+  [FAVE_INDICATOR_CLASS, 'fglyph-fave'],
+  [JUNK_INDICATOR_CLASS, 'fglyph-thumbs-down']
 ]);
 
 function prepareIndicatorSpace() {
-  $('[data-fate-weapon-name],[data-fate-armor-name]').not('[data-fate-indicator-init="true"]').each(function(index,element) {
-    INDICATORS_TO_GLYPHS.forEach(function(glyph, className) {
+  $('[data-fate-weapon-name]').not('[data-fate-indicator-init="true"]').each(function(index,element) {
+    WEAPON_GLYPHS.forEach(function(glyph, className) {
       $(element).append($('<div>', {'class': className + ' ' + glyph + ' foaf-glyph'}));
     });
     $(this).append($('<div class="foaf-masterwork foaf-glyph">M</div>'));
+    $(this).attr('data-fate-indicator-init', true);
+  });
+
+  $('[data-fate-armor-name]').not('[data-fate-indicator-init="true"]').each(function(index,element) {
+    ARMOR_GLYPHS.forEach(function(glyph, className) {
+      $(element).append($('<div>', {'class': className + ' ' + glyph + ' foaf-glyph'}));
+    });
+    $(this).attr('data-fate-indicator-init', true);
+  });
+
+  $('[data-fate-shader-name]').not('[data-fate-indicator-init="true"]').each(function(index,element) {
+    SHADER_GLYPHS.forEach(function(glyph, className) {
+      $(element).append($('<div>', {'class': className + ' ' + glyph + ' foaf-glyph'}));
+    });
     $(this).attr('data-fate-indicator-init', true);
   });
 }

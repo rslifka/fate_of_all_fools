@@ -42,99 +42,14 @@
   background-color: unset;
 }
 
-/* STATUS INDICATORS: Common styling */
-.fate-glyph {
-  background-color: rgba(0,0,0,1.0);
-  font-size: 11px;
-  position: absolute;
-  text-shadow: none;
-}
 .fate-positive {
   color: rgba(93,181,110,1);
 }
+
 .fate-negative {
   color: rgba(206,82,70,1);
 }
+
 .fate-middling {
   color: rgba(221,221,221,1);
-}
-
-.fate-dupe {
-  font-size: 11px;
-  top: 1px;
-  right: 3px;
-  padding: 0px 0px 2px 2px;
-}
-.fate-ignore-slot {
-  top: 1px;
-  right: 1px;
-}
-
-/* STATUS INDICATORS: Styling */
-.fate-question-mark {
-  padding: 0px 1px 1px 1px;
-  font-size: 11px;
-}
-.fate-fave {
-  background-color: transparent !important;
-  font-size: 12px;
-  padding: 0;
-  top: unset;
-  right: unset;
-  left: 1px;
-  bottom: 17px;
-}
-.fate-thumbs-down {
-  color: rgba(206,82,70,1);
-  font-size: 12px;
-  padding: 0 1px;
-}
-
-[data-fate-weapon-pve="true"] > .fate-dupe,
-[data-fate-weapon-pvp="true"] > .fate-dupe
-{
-  top: 17px;
-}
-
-[data-fate-shader-keep="true"] > .fate-fave {
-  display: block;
-}
-[data-fate-shader-keep="true"] > .fate-thumbs-down {
-  display: none;
-}
-[data-fate-shader-keep="true"] > .fate-question-mark {
-  display: none;
-}
-
-[data-fate-shader-keep="false"] > .fate-fave {
-  display: none;
-}
-[data-fate-shader-keep="false"] > .fate-thumbs-down {
-  display: block;
-}
-[data-fate-shader-keep="false"] > .fate-question-mark {
-  display: none;
-}
-
-[data-fate-shader-keep="unknown"] > .fate-fave {
-  display: none;
-}
-[data-fate-shader-keep="unknown"] > .fate-thumbs-down {
-  display: none;
-}
-[data-fate-shader-keep="unknown"] > .fate-question-mark {
-  display: block;
-}
-
-[data-fate-shader-registered="false"] > .fate-fave {
-  display: none;
-}
-[data-fate-shader-registered="false"] > .fate-thumbs-down {
-  display: none;
-}
-[data-fate-shader-registered="false"] > .fate-question-mark {
-  display: block;
-}
-[data-fate-shader-registered="true"] > .fate-question-mark {
-  display: none;
 }

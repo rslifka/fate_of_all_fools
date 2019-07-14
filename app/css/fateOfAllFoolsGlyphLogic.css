@@ -11,13 +11,17 @@
 /*
   FAVE INDICATOR
 */
-[data-fate-armor-registered="true"] > .foaf-fave {
+[data-fate-armor-registered="true"] > .foaf-fave,
+[data-fate-shader-keep="true"] > .foaf-fave
+{
   display: block;
 }
 
 [data-fate-weapon-name] > .foaf-fave,
 [data-fate-armor-registered="false"] > .foaf-fave,
-[data-fate-comment*="n/a"] > .foaf-fave
+[data-fate-comment*="n/a"] > .foaf-fave,
+[data-fate-shader-keep="false"] > .foaf-fave,
+[data-fate-shader-keep="unknown"] > .foaf-fave
 {
   display: none;
 }
@@ -55,6 +59,16 @@
 [data-fate-armor-init="true"]:not([data-fate-armor-keep]) > .foaf-junk
 {
   display: none;
+}
+
+[data-fate-shader-keep="true"] > .foaf-junk,
+[data-fate-shader-keep="unknown"] > .foaf-junk
+{
+  display: none;
+}
+
+[data-fate-shader-keep="false"] > .foaf-junk {
+  display: block;
 }
 
 /*
@@ -112,12 +126,3 @@
   background-color: rgba(82,47,101,0.75);
 }
 
-/*
-  Hide unused glyphs for armor
-*/
-[data-fate-armor-name] > .foaf-pvp,
-[data-fate-armor-name] > .foaf-pve,
-[data-fate-armor-name] > .foaf-dupe
-{
-  display: none;
-}

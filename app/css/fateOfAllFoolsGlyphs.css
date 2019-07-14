@@ -8,9 +8,9 @@
 .foaf-dupe {
   color: rgba(221,221,221,1);
   padding: 0px 0px 2px 2px;
-  right: 0;
-  top: 0;
-  font-size: 12px;
+  right: -1px;
+  bottom: 15px;
+  font-size: 11px;
 }
 
 .foaf-junk {
@@ -18,7 +18,7 @@
   font-size: 12px;
   padding: 0 1px;
   left: 1px;
-  bottom: 17px;
+  bottom: 1px;
 }
 
 .foaf-pve {
@@ -40,7 +40,6 @@
   background-color: transparent !important;
   font-size: 8px;
   font-weight: bold;
-  /* padding: 0px 2px; */
   left: 34px;
   position: relative;
   bottom: 29px;
