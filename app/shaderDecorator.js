@@ -39,9 +39,20 @@ function storeComments() {
   });
 }
 
+/*
+  DIM doesn't insert a '1' if there's only one shader in a stack which adds
+  unnecessary contrast when looking at blocks of shaders.
+*/
+function oneIsTheLoneliestNumber() {
+  $('[data-fate-shader-name]').not(function(i,e){$(this).has('.item-stat')}).each(function(index,element) {
+    $(this).append($('<div class="item-stat"><div class="primary-stat">1</div></div>'));
+  });
+}
+
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeShaderNames();
   storeRegistrationStatus();
   storeKeepStatus();
   storeComments();
+  oneIsTheLoneliestNumber();
 });
