@@ -10,7 +10,7 @@ const WEAPON_TYPES = [
   "Hand Cannon",       
   "Machine Gun",
   "Pulse Rifle",
-  "Rocker Launcher",
+  "Rocket Launcher",
   "Scout Rifle",
   "Shotgun",
   "Sidearm",
