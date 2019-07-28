@@ -44,7 +44,10 @@ function storeComments() {
   unnecessary contrast when looking at blocks of shaders.
 */
 function oneIsTheLoneliestNumber() {
-  $('[data-fate-shader-name]').not(function(i,e){$(this).has('.item-stat')}).each(function(index,element) {
+  $('[data-fate-shader-name]').each(function(index,element) {
+    if ($(this).has('.item-stat').length > 0) {
+      return;
+    }
     $(this).append($('<div class="item-stat"><div class="primary-stat">1</div></div>'));
   });
 }
