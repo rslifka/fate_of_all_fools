@@ -21,6 +21,7 @@
 [data-fate-armor-registered="false"] > .foaf-fave,
 [data-fate-comment*="n/a"] > .foaf-fave,
 [data-fate-shader-keep="false"] > .foaf-fave,
+[data-fate-shader-registered="false"] > .foaf-fave,
 [data-fate-shader-keep="unknown"] > .foaf-fave
 {
   display: none;
@@ -62,6 +63,7 @@
 }
 
 [data-fate-shader-keep="true"] > .foaf-junk,
+[data-fate-shader-registered="false"] > .foaf-junk,
 [data-fate-shader-keep="unknown"] > .foaf-junk
 {
   display: none;
