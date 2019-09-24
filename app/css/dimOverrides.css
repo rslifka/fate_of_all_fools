@@ -1,4 +1,4 @@
-/* 5.37.0 */
+/* 5.47.0 */
 
 /*
   This allows you to control the number of items in your vault by
@@ -15,31 +15,44 @@
   display: none;
 }
 
-.item.masterwork .overlay,
-.item.exotic.masterwork .overlay,
-.sub-section .equipped-item
+/*
+  EFFECT: Hides the masterwork image overlay on exotics and legendaries.
+  REASON: We use our own more subtle way to indicate what's masterworked.
+*/
+._2kz8P,
+._3iMN1
 {
   background-image: none;
 }
 
 /*
-  The contrast between the item img background and the body background is
-  enough of a border that we don't need to add pixels.
+  EFFECT: Remove the single-line border around all items.
+  REASON: The contrast between the item image and the background is enough
+          to indicate a difference in meaning. Less visual noise.
 */ 
-.item .item-img,
-.item.masterwork .item-img
+.item .item-img
 {
   border: none;
 }
 
-.sub-section .equipped-item
+/*
+  EFFECT: Remove the white border around equipped items.
+  REASON: We can tell from how this mirrors the Destiny UI itself what
+          we have equipped. Don't need another indicator.
+*/
+.equipped-item
 {
   border: inherit;
   padding: 0;
 }
 
-/* Remove lock icon - it's not important enough to be at the top level. */
-svg.fa-lock.item-tag {
+/*
+  EFFECT: Hides the DIM built-in "lock" icon when an item is locked.
+  REASON: Most items in the inventory are locked, which means that
+          this end up being super graphically noisy. I.e. most every
+          piece of gear you have will have it displayed.
+*/
+svg.fa-lock {
   display: none !important;
 }
 
@@ -70,16 +83,8 @@ body,
   margin: 10px 0 !important;
 }
 
-/* Stat bar background for exotics */
-.item.capped .item-stat,
-.item.complete .item-stat,
-.item.masterwork .item-stat
-{
-  background-color: rgba(17,17,17,0.7);
-}
-
-/* Stat bar background for everything not exotic */
-.item .item-stat {
+/* Stat bar background */
+.item ._3TPBp {
   background-color: rgba(17,17,17,0.7);
   color: rgba(255,255,255,0.8);
   font-size: 12px;
@@ -101,10 +106,10 @@ body,
 .item-drag-container
 {
   height: var(--item-size);
-  margin: 0 1px 1px 0;
+  margin: 0;
 }
 
-.item .element.void {
+.item ._2zwYw.wk_ci {
   border-top: 2px solid rgb(64, 38, 103);
   width: 26px;
   height: 0;
@@ -113,7 +118,7 @@ body,
   right: -23px;
 }
 
-.item .element.solar {
+.item ._2zwYw {
   border-top: 2px solid rgb(240, 99, 30);
   width: 26px;
   height: 0;
@@ -122,7 +127,7 @@ body,
   right: -23px;
 }
 
-.item .element.arc {
+.item ._1sVsX {
   border-top: 2px solid rgb(121, 187, 232);
   width: 26px;
   height: 0;
@@ -131,15 +136,18 @@ body,
   right: -23px;
 }
 
-/* DIM's built-in tagging */
-.item .icons {
+/*
+  EFFECT: Change the location, color and size of DIM's built-in tag icons.
+  REASON: So they blend in with our own tags.
+*/
+.item ._3SO_- {
   top: unset;
   right: unset;
   bottom: 3px;
   left: 5px;
 }
 
-.item .item-tag {
+.item ._2qGNh {
   color: rgb(236, 41, 41);
   width: calc(var(--item-size) / 7);
   height: calc(var(--item-size) / 7);
