@@ -54,6 +54,7 @@ function updateAttributes() {
     $(this).attr('data-fate-weapon-registered', isWeaponRegistered);
 
     if (!isWeaponRegistered) {
+      $(this).removeAttr('data-fate-comment');
       $(this).removeAttr('data-fate-weapon-junk');
       $(this).removeAttr('data-fate-weapon-pve');
       $(this).removeAttr('data-fate-weapon-pvp');

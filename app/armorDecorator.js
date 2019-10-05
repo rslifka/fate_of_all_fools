@@ -35,22 +35,22 @@ function storeArmorData() {
 function updateAttributes() {
   $('[data-fate-armor-init=true]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
-    const armorRoll = rollDatabase.get(serialNumber);
-    const isRegistered = (armorRoll != undefined);
-
-    $(this).attr('data-fate-armor-registered', isRegistered);
-    
-    if (isRegistered) {
-      $(this).attr('data-fate-comment', armorRoll.comments);
-    } else {
-      $(this).removeAttr('data-fate-comment');
-    }
 
     const dimTags = $.map($(this).find('svg'), function(value, i) {
       return $(value).attr('data-icon');
     });
     $(this).attr('data-fate-dim-tags', dimTags.join(','));
 
+    const isArmorRegistered = rollDatabase.contains(serialNumber);
+    $(this).attr('data-fate-armor-registered', isArmorRegistered);
+    
+    if (!isArmorRegistered) {
+      $(this).removeAttr('data-fate-comment');
+      return;
+    }
+
+    const a = rollDatabase.get(serialNumber);
+    $(this).attr('data-fate-comment', a.comments);
   });
 }
 
