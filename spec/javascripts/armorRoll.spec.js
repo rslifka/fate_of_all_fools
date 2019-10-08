@@ -4,9 +4,6 @@ describe('armorRoll.js', function() {
   const rollParams = [
     '6917529074542621459',
     'Geomag Stabilizers',
-    'Mob',
-    'Res',
-    'Rec',
     'Charge up that Chaos Reach!'
   ];
 
@@ -22,7 +19,7 @@ describe('armorRoll.js', function() {
       const a = new armorRoll.ArmorRoll(...rollParams);
       expect(a.rollID).toBe('6917529074542621459');
       expect(a.name).toBe('Geomag Stabilizers');
-      expect(a.comments).toBe('[Mob - Res/Rec] Charge up that Chaos Reach!');
+      expect(a.comments).toBe('Charge up that Chaos Reach!');
     });
   });
 

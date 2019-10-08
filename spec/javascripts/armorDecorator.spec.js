@@ -15,9 +15,6 @@ describe('armorDecorator.js', function() {
         return new ArmorRoll(
           '6917529055948440512',
           'Vesper of Radius',
-          'Rec',
-          'Mob',
-          'Res',
           'Roll-specific comments'
         );
       }
@@ -49,7 +46,7 @@ describe('armorDecorator.js', function() {
     });
 
     it('shoud record the comments', function() {
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-comment', '[Rec - Mob/Res] Roll-specific comments');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-comment', 'Roll-specific comments');
     });
 
     it('should record the registration status', function() {
