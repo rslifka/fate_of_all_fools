@@ -85,55 +85,37 @@ body,
 
 /* Stat bar background */
 .item ._3TPBp {
-  background-color: rgba(17,17,17,0.7);
+  background-color: rgba(31,31,31,1);
   color: rgba(255,255,255,0.8);
   font-size: 12px;
   font-weight: bold;
-  position: relative;
-  top: -16px;
-  width: var(--item-size);
-}
-
-/* 
-  We contain all information in an overlay so no need for dimensions larger
-  than the item itself.
-*/
-.item {
-  height: var(--item-size);
-  margin: unset;
-}
-
-.item-drag-container
-{
-  height: var(--item-size);
-  margin: 0;
 }
 
 .item ._2zwYw.wk_ci {
-  border-top: 2px solid rgb(64, 38, 103);
-  width: 26px;
+  border-top: 5px solid rgb(99, 66, 148);
+  width: 5px;
   height: 0;
-  position: relative;
-  top: -12px;
-  right: -23px;
+  position: absolute;
+  bottom: 17px;
+  right: 0;
 }
 
 .item ._2zwYw {
-  border-top: 2px solid rgb(240, 99, 30);
-  width: 26px;
+  border-top: 5px solid rgb(240, 99, 30);
+  width: 5px;
   height: 0;
-  position: relative;
-  top: -12px;
-  right: -23px;
+  position: absolute;
+  bottom: 17px;
+  right: 0;
 }
 
 .item ._1sVsX {
-  border-top: 2px solid rgb(121, 187, 232);
-  width: 26px;
+  border-top: 5px solid rgb(121, 187, 232);
+  width: 5px;
   height: 0;
-  position: relative;
-  top: -12px;
-  right: -23px;
+  position: absolute;
+  bottom: 17px;
+  right: 0;
 }
 
 /*
