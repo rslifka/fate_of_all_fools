@@ -35,14 +35,18 @@
   bottom: 1px;
 }
 
+/* Energy and Power Weapons */
 .foaf-masterwork {
-  color: rgba(232,165,52,1);
-  background-color: transparent !important;
-  font-size: 8px;
-  font-weight: bold;
-  left: 34px;
-  position: relative;
-  bottom: 29px;
+  border-top: 5px solid rgba(255,217,0,1);
+  width: 5px;
+  height: 0;
+  bottom: 21px;
+  right: 0;
+}
+
+/* Kinetic Weapons */
+.bucket-1498876634 .foaf-masterwork {
+  bottom: 17px;
 }
 
 .foaf-infusable {
