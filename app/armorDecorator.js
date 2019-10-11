@@ -46,11 +46,25 @@ function updateAttributes() {
     
     if (!isArmorRegistered) {
       $(this).removeAttr('data-fate-comment');
+      $(this).removeAttr('data-fate-mob');
+      $(this).removeAttr('data-fate-res');
+      $(this).removeAttr('data-fate-rec');
+      $(this).removeAttr('data-fate-int');
+      $(this).removeAttr('data-fate-dis');
+      $(this).removeAttr('data-fate-str');
+      $(this).removeAttr('data-fate-stats-total');
       return;
     }
 
     const a = rollDatabase.get(serialNumber);
     $(this).attr('data-fate-comment', a.comments);
+    $(this).attr('data-fate-mob', a.mob);
+    $(this).attr('data-fate-res', a.res);
+    $(this).attr('data-fate-rec', a.rec);
+    $(this).attr('data-fate-int', a.int);
+    $(this).attr('data-fate-dis', a.dis);
+    $(this).attr('data-fate-str', a.str);
+    $(this).attr('data-fate-stats-total', a.total);
   });
 }
 

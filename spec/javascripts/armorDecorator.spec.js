@@ -15,6 +15,12 @@ describe('armorDecorator.js', function() {
         return new ArmorRoll(
           '6917529055948440512',
           'Vesper of Radius',
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
           'Roll-specific comments'
         );
       }
@@ -43,6 +49,19 @@ describe('armorDecorator.js', function() {
     it('shoud record the serial number', function() {
       expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-serial', '6917529073016457020');
       expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-serial', '6917529055948440512');
+    });
+
+    it('should store the stats', function() {
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-mob', '1');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-res', '2');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-rec', '3');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-int', '4');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-dis', '5');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-str', '6');
+    });
+
+    it('should store the stats total', function() {
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-stats-total', '21');
     });
 
     it('shoud record the comments', function() {

@@ -7,7 +7,7 @@ class ArmorRollDB extends i.ItemDatabase {
 		super('armorRoll');
 	}
 	createItemFromData(data) {
-		this.itemMap.set(data[0], new armorRoll.ArmorRoll(data[0], data[1], data[2]));
+		this.itemMap.set(data[0], new armorRoll.ArmorRoll(...data));
 	}
 }
 
