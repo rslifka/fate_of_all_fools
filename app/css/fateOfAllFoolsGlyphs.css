@@ -23,30 +23,26 @@
 
 .foaf-pve {
   color: rgba(93,181,110,1);
-  padding: 0 1px 1px 1px;
-  left: 1px;
+  padding: 0 1px 1px 0px;
+  left: 0;
   bottom: 1px;
 }
 
 .foaf-pvp {
   color: rgba(93,181,110,1);
-  padding: 0 1px 1px 1px;
-  left: 1px;
+  padding: 0 1px 1px 0px;
+  left: 0px;
   bottom: 1px;
 }
 
 /* Energy and Power Weapons */
 .foaf-masterwork {
-  border-top: 5px solid rgba(255,217,0,1);
-  width: 5px;
+  border-top: 1px solid rgba(255,217,0,1);
+  width: 10px;
   height: 0;
-  bottom: 21px;
-  right: 0;
-}
-
-/* Kinetic Weapons */
-.bucket-1498876634 .foaf-masterwork {
-  bottom: 17px;
+  position: absolute;
+  bottom: 1px;
+  left: 3px;
 }
 
 .foaf-infusable {

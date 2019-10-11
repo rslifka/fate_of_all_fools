@@ -92,29 +92,29 @@ body,
 }
 
 .item ._2zwYw.wk_ci {
-  border-top: 5px solid rgb(99, 66, 148);
-  width: 5px;
+  border-top: 1px solid rgba(99, 66, 148, 0.67);
+  width: 25px;
   height: 0;
   position: absolute;
-  bottom: 17px;
+  bottom: 1px;
   right: 0;
 }
 
 .item ._2zwYw {
-  border-top: 5px solid rgb(240, 99, 30);
-  width: 5px;
+  border-top: 1px solid rgb(240, 99, 30);
+  width: 25px;
   height: 0;
   position: absolute;
-  bottom: 17px;
+  bottom: 1px;
   right: 0;
 }
 
 .item ._1sVsX {
-  border-top: 5px solid rgb(121, 187, 232);
-  width: 5px;
+  border-top: 1px solid rgb(121, 187, 232);
+  width: 25px;
   height: 0;
   position: absolute;
-  bottom: 17px;
+  bottom: 1px;
   right: 0;
 }
 
