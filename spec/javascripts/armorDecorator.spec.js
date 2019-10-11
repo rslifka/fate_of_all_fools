@@ -15,11 +15,11 @@ describe('armorDecorator.js', function() {
         return new ArmorRoll(
           '6917529055948440512',
           'Vesper of Radius',
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
+          '10',
+          '11',
+          '7',
+          '12',
+          '23',
           '6',
           'Roll-specific comments'
         );
@@ -52,16 +52,16 @@ describe('armorDecorator.js', function() {
     });
 
     it('should store the stats', function() {
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-mob', '1');
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-res', '2');
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-rec', '3');
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-int', '4');
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-dis', '5');
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-str', '6');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-mob.foaf-glyph.foaf-stat-med:contains('10')"));
+      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-res.foaf-glyph.foaf-stat-med:contains('11')"));
+      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-rec.foaf-glyph.foaf-stat-low:contains('7')"));
+      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-int.foaf-glyph.foaf-stat-med:contains('12')"));
+      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-dis.foaf-glyph.foaf-stat-high:contains('23')"));
+      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-str.foaf-glyph.foaf-stat-low:contains('6')"));
     });
 
     it('should store the stats total', function() {
-      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-stats-total', '21');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-total.foaf-glyph.foaf-stat-high:contains('69')"));
     });
 
     it('shoud record the comments', function() {

@@ -68,3 +68,60 @@
   bottom: 1px;
   left: 1px;
 }
+
+.foaf-armor-stat {
+  background-color: rgba(31,31,31,0.8);
+  font-size: 9px;
+  height: 11px;
+  left: 0;
+  width: 20px;
+}
+
+.foaf-stat-low {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.foaf-stat-med {
+  color: rgba(255,255,255,0.8);
+}
+
+.foaf-stat-high {
+  color: rgba(255,255,255,1);
+  font-weight: bold;
+}
+
+.foaf-mob {
+  top: 0;
+}
+
+.foaf-res {
+  top: 11px;
+}
+
+.foaf-rec {
+  top: 22px;
+}
+
+.foaf-int {
+  top: 33px;
+}
+
+.foaf-dis {
+  top: 44px;
+}
+
+.foaf-str {
+  top: 55px;
+  /* Yes it's hacky, but bring the shaded background down to the baseline */
+  height: 12px;
+}
+
+.foaf-total {
+  background-color: rgba(31,31,31,0.75);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 0 2px 1px 3px;
+  right: 0;
+  text-align: right;
+  top: 0;
+}

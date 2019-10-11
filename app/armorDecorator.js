@@ -33,7 +33,7 @@ function storeArmorData() {
 }
 
 function updateAttributes() {
-  $('[data-fate-armor-init=true]').each(function(index,element) {
+  $('[data-fate-armor-init=true][data-fate-indicator-init=true]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
     const dimTags = $.map($(this).find('svg'), function(value, i) {
@@ -46,26 +46,53 @@ function updateAttributes() {
     
     if (!isArmorRegistered) {
       $(this).removeAttr('data-fate-comment');
-      $(this).removeAttr('data-fate-mob');
-      $(this).removeAttr('data-fate-res');
-      $(this).removeAttr('data-fate-rec');
-      $(this).removeAttr('data-fate-int');
-      $(this).removeAttr('data-fate-dis');
-      $(this).removeAttr('data-fate-str');
-      $(this).removeAttr('data-fate-stats-total');
       return;
     }
 
     const a = rollDatabase.get(serialNumber);
     $(this).attr('data-fate-comment', a.comments);
-    $(this).attr('data-fate-mob', a.mob);
-    $(this).attr('data-fate-res', a.res);
-    $(this).attr('data-fate-rec', a.rec);
-    $(this).attr('data-fate-int', a.int);
-    $(this).attr('data-fate-dis', a.dis);
-    $(this).attr('data-fate-str', a.str);
-    $(this).attr('data-fate-stats-total', a.total);
+
+    const statCheck = '' + a.mob + a.res + a.rec + a.int + a.dis + a.str;
+    if ($(this).attr('data-fate-stat-check') === statCheck) {
+      return;
+    }
+    $(this).attr('data-fate-stat-check', statCheck);
+
+    $(this).find('.foaf-total').text(a.total).addClass(getRatingClassForTotal(a.total));;
+
+    var $armorItem = $(this);
+    var stats = [
+      ['mob', 'M' + a.mob, a.mob],
+      ['res', 'R' + a.res, a.res],
+      ['rec', 'R' + a.rec, a.rec],
+      ['int', 'I' + a.int, a.int],
+      ['dis', 'D' + a.dis, a.dis],
+      ['str', 'S' + a.str, a.str],
+    ];
+    stats.forEach(function(value) {
+      $armorItem.find('.foaf-'+value[0]).text(value[1]).addClass(getRatingClassForStats(value[2]));
+    });
   });
+}
+
+function getRatingClassForTotal(total) {
+  if (total <= 45) {
+    return 'foaf-stat-low';
+  }
+  if (total <= 50) {
+    return 'foaf-stat-med';
+  }
+  return 'foaf-stat-high';
+}
+
+function getRatingClassForStats(rating) {
+  if (rating <= 7) {
+    return 'foaf-stat-low';
+  }
+  if (rating <= 14) {
+    return 'foaf-stat-med';
+  }
+  return 'foaf-stat-high';
 }
 
 fateBus.subscribe(module, 'fate.refresh', function() {
