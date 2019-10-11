@@ -11,7 +11,6 @@
 /*
   FAVE INDICATOR
 */
-[data-fate-armor-registered="true"] > .foaf-fave,
 [data-fate-shader-keep="true"] > .foaf-fave
 {
   display: block;
