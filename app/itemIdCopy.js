@@ -17,28 +17,34 @@ function registerListeners() {
 
     Mousetrap.bind('s', function() {
       const $jqElement = $(document.elementFromPoint(mousePositionX, mousePositionY));
-      $jqElement.parents('[data-fate-serial]').each(function(index,element) {
-        const serialNumber = $(this).attr('data-fate-serial');
-        const weaponName = $(this).attr('data-fate-weapon-name');
-        const armorName = $(this).attr('data-fate-armor-name');
-        const itemName = (weaponName === undefined) ? (armorName) : (weaponName);
-        copyToClipboard(serialNumber);
-        $.toast({
-          text: '<span style="font-size:16px;"><strong>'+itemName+'</strong> serial number copied to clipboard</span>',
-        });
+      let $itemElement = $jqElement;
+      if (!$itemElement.is('[data-fate-serial]')) {
+        $itemElement = $($jqElement.parents('[data-fate-serial]')[0]);
+      }
+
+      const serialNumber = $itemElement.attr('data-fate-serial');
+      const weaponName = $itemElement.attr('data-fate-weapon-name');
+      const armorName = $itemElement.attr('data-fate-armor-name');
+      const itemName = (weaponName === undefined) ? (armorName) : (weaponName);
+      copyToClipboard(serialNumber);
+      $.toast({
+        text: '<span style="font-size:16px;"><strong>'+itemName+'</strong> serial number copied to clipboard</span>',
       });
     }, 'keypress');
 
-    Mousetrap.bind('n', function() {
+    Mousetrap.bind('m', function() {
       const $jqElement = $(document.elementFromPoint(mousePositionX, mousePositionY));
-      $jqElement.parents('[data-fate-serial]').each(function(index,element) {
-        const weaponName = $(this).attr('data-fate-weapon-name');
-        const armorName = $(this).attr('data-fate-armor-name');
-        const itemName = (weaponName === undefined) ? (armorName) : (weaponName);
-        copyToClipboard(itemName);
-        $.toast({
-          text: '<span style="font-size:16px;"><strong>'+itemName+'</strong> copied to clipboard</span>',
-        });
+      let $itemElement = $jqElement;
+      if (!$itemElement.is('[data-fate-serial]')) {
+        $itemElement = $($jqElement.parents('[data-fate-serial]')[0]);
+      }
+
+      const weaponName = $itemElement.attr('data-fate-weapon-name');
+      const armorName = $itemElement.attr('data-fate-armor-name');
+      const itemName = (weaponName === undefined) ? (armorName) : (weaponName);
+      copyToClipboard(itemName);
+      $.toast({
+        text: '<span style="font-size:16px;"><strong>'+itemName+'</strong> copied to clipboard</span>',
       });
     }, 'keypress');
 
