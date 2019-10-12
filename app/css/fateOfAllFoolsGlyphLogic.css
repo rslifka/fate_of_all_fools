@@ -3,7 +3,10 @@
 */
 [data-fate-weapon-registered="false"] > .foaf-pve,
 [data-fate-weapon-registered="false"] > .foaf-pvp,
-[data-fate-weapon-registered="false"] > .foaf-junk
+[data-fate-weapon-registered="false"] > .foaf-junk,
+[data-fate-armor-registered="false"] > .foaf-pve,
+[data-fate-armor-registered="false"] > .foaf-pvp,
+[data-fate-armor-registered="false"] > .foaf-junk
 {
   display: none;
 }
@@ -16,8 +19,6 @@
   display: block;
 }
 
-[data-fate-weapon-name] > .foaf-fave,
-[data-fate-armor-registered="false"] > .foaf-fave,
 [data-fate-armor-registered="false"] > .foaf-mob,
 [data-fate-armor-registered="false"] > .foaf-res,
 [data-fate-armor-registered="false"] > .foaf-rec,
@@ -25,7 +26,6 @@
 [data-fate-armor-registered="false"] > .foaf-dis,
 [data-fate-armor-registered="false"] > .foaf-str,
 [data-fate-armor-registered="false"] > .foaf-total,
-[data-fate-comment*="n/a"] > .foaf-fave,
 [data-fate-shader-keep="false"] > .foaf-fave,
 [data-fate-shader-registered="false"] > .foaf-fave,
 [data-fate-shader-keep="unknown"] > .foaf-fave
@@ -56,14 +56,13 @@
   JUNK INDICATOR
 */
 [data-fate-weapon-junk="true"] > .foaf-junk,
-[data-fate-armor-keep="false"] > .foaf-junk
+[data-fate-armor-junk="true"] > .foaf-junk
 {
   display: block;
 }
 
 [data-fate-weapon-junk="false"] > .foaf-junk,
-[data-fate-armor-keep="true"] > .foaf-junk,
-[data-fate-armor-init="true"]:not([data-fate-armor-keep]) > .foaf-junk
+[data-fate-armor-junk="false"] > .foaf-junk
 {
   display: none;
 }
@@ -82,17 +81,20 @@
 /*
   PVE INDICATOR
 */
-[data-fate-weapon-pve="true"] > .foaf-pve
+[data-fate-weapon-pve="true"] > .foaf-pve,
+[data-fate-armor-pve="true"] > .foaf-pve
 {
   display: block;
 }
 
-[data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pve
+[data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pve,
+[data-fate-armor-pve="true"][data-fate-armor-pvp="true"] > .foaf-pve
 {
   left: 15px;
 }
 
-[data-fate-weapon-pve="false"] > .foaf-pve
+[data-fate-weapon-pve="false"] > .foaf-pve,
+[data-fate-armor-pve="false"] > .foaf-pve
 {
   display: none;
 }
@@ -100,12 +102,14 @@
 /*
   PVP INDICATOR
 */
-[data-fate-weapon-pvp="true"] > .foaf-pvp
+[data-fate-weapon-pvp="true"] > .foaf-pvp,
+[data-fate-armor-pvp="true"] > .foaf-pvp
 {
   display: block;
 }
 
-[data-fate-weapon-pvp="false"] > .foaf-pvp
+[data-fate-weapon-pvp="false"] > .foaf-pvp,
+[data-fate-armor-pvp="false"] > .foaf-pvp
 {
   display: none;
 }
@@ -122,15 +126,3 @@
 {
   display: none;
 }
-
-[data-fate-weapon-rarity=exotic] .foaf-masterwork,
-[data-fate-armor-rarity=exotic] .foaf-masterwork
-{
-  background-color: rgba(0,0,0,0.75);
-}
-
-[data-fate-weapon-rarity=legendary] .foaf-masterwork,
-[data-fate-armor-rarity=legendary] .foaf-masterwork {
-  background-color: rgba(82,47,101,0.75);
-}
-

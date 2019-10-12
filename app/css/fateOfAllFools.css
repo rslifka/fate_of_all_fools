@@ -53,3 +53,13 @@
 .fate-middling {
   color: rgba(221,221,221,1);
 }
+
+/*
+  Class armor doesn't get any of the stats
+*/
+.bucket-1585787867 .foaf-armor-stat {
+  display: none;
+}
+.bucket-1585787867 .foaf-total {
+  display: none;
+}

@@ -13,6 +13,8 @@ describe('armorRollDatabase.js', function() {
       [
         '6917529047963087340',
         'Geomag Stabilizers',
+        'Y',
+        'N',
         '1',
         '2',
         '3',
@@ -47,6 +49,9 @@ describe('armorRollDatabase.js', function() {
 
           expect(piece).toEqual(jasmine.any(roll.ArmorRoll));
           expect(piece.rollID).toEqual('6917529047963087340');
+
+// TODO
+
           expect(piece.mob).toEqual(1);
           expect(piece.res).toEqual(2);
           expect(piece.rec).toEqual(3);

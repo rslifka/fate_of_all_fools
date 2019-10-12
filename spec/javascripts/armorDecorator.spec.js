@@ -15,6 +15,8 @@ describe('armorDecorator.js', function() {
         return new ArmorRoll(
           '6917529055948440512',
           'Vesper of Radius',
+          'Y',
+          'N',
           '10',
           '11',
           '7',
@@ -49,6 +51,18 @@ describe('armorDecorator.js', function() {
     it('shoud record the serial number', function() {
       expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-serial', '6917529073016457020');
       expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-serial', '6917529055948440512');
+    });
+
+    it('should store if the weapon is good for pve', function() {
+      expect($('[data-fate-armor-name="Vesper of Radius"]')).toHaveAttr('data-fate-armor-pve', 'true');
+    });
+
+    it('should store if the weapon is good for pvp', function() {
+      expect($('[data-fate-armor-name="Vesper of Radius"]')).toHaveAttr('data-fate-armor-pvp', 'false');
+    });
+
+    it('should store if the weapon is junk or not', function() {
+      expect($('[data-fate-armor-name="Vesper of Radius"]')).toHaveAttr('data-fate-armor-junk', 'false');
     });
 
     it('should store the stats', function() {

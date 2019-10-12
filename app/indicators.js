@@ -26,6 +26,8 @@ const WEAPON_GLYPHS = new Map([
 
 const ARMOR_GLYPHS = new Map([
   [JUNK_INDICATOR_CLASS, 'fglyph-thumbs-down'],
+  [PVE_INDICATOR_CLASS,  'fglyph-pve'],
+  [PVP_INDICATOR_CLASS,  'fglyph-pvp'],
   [MOB_INDICATOR_CLASS,  'foaf-armor-stat'],
   [RES_INDICATOR_CLASS,  'foaf-armor-stat'],
   [REC_INDICATOR_CLASS,  'foaf-armor-stat'],

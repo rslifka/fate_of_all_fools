@@ -1,8 +1,16 @@
+const Utility = {
+  NO: 'n',
+  YES: 'y',
+  UNKNOWN: '?'
+}
+
 class ArmorRoll {
 
-  constructor(rollID, name, mob, res, rec, int, dis, str, comments) {
+  constructor(rollID, name, pve, pvp, mob, res, rec, int, dis, str, comments) {
     this.rollID = rollID;
     this.name = name;
+    this.pve = pve.toLowerCase();
+    this.pvp = pvp.toLowerCase();
     this.mob = parseInt(mob);
     this.res = parseInt(res);
     this.rec = parseInt(rec);
@@ -13,6 +21,23 @@ class ArmorRoll {
     this.comments = comments;
   }
 
+  get pveUtility() {
+    return ArmorRoll.mapToStatus(this.pve);
+  }
+
+  get pvpUtility() {
+    return ArmorRoll.mapToStatus(this.pvp);
+  }
+
+  static mapToStatus(property) {
+    switch(property) {
+      case('y'): return Utility.YES;
+      case('n'): return Utility.NO;
+      default: return Utility.UNKNOWN;
+    }
+  }
+
 }
 
 exports.ArmorRoll = ArmorRoll;
+exports.Utility = Utility;

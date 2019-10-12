@@ -1,5 +1,6 @@
 const $ = require('jquery');
 const rollDatabase = require('armorRollDatabase.js').armorRollDB;
+const Utility = require('armorRoll.js').Utility;
 
 const ARMOR_TYPES = [
   "Helmet",
@@ -46,11 +47,18 @@ function updateAttributes() {
     
     if (!isArmorRegistered) {
       $(this).removeAttr('data-fate-comment');
+      $(this).removeAttr('data-fate-armor-junk');
+      $(this).removeAttr('data-fate-armor-pve');
+      $(this).removeAttr('data-fate-armor-pvp');
       return;
     }
 
     const a = rollDatabase.get(serialNumber);
     $(this).attr('data-fate-comment', a.comments);
+    $(this).attr('data-fate-armor-junk', a.pveUtility === Utility.NO && a.pvpUtility === Utility.NO);
+    $(this).attr('data-fate-armor-pve', a.pveUtility === Utility.YES);
+    $(this).attr('data-fate-armor-pvp', a.pvpUtility === Utility.YES);
+
 
     const statCheck = '' + a.mob + a.res + a.rec + a.int + a.dis + a.str;
     if ($(this).attr('data-fate-stat-check') === statCheck) {
