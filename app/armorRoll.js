@@ -6,7 +6,7 @@ const Utility = {
 
 class ArmorRoll {
 
-  constructor(rollID, name, pve, pvp, mob, res, rec, int, dis, str, comments) {
+  constructor(rollID, name, pve, pvp, mob, res, rec, dis, int, str, comments) {
     this.rollID = rollID;
     this.name = name;
     this.pve = pve.toLowerCase();

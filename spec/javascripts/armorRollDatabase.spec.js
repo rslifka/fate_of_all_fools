@@ -3,6 +3,7 @@ describe('armorRollDatabase.js', function() {
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
   const rollDatabase = require('armorRollDatabase.js').armorRollDB;
+  const Utility = require('armorRoll.js').Utility;
 
   beforeEach(function() {
     // The module receiving the publication is the parent class
@@ -49,17 +50,16 @@ describe('armorRollDatabase.js', function() {
 
           expect(piece).toEqual(jasmine.any(roll.ArmorRoll));
           expect(piece.rollID).toEqual('6917529047963087340');
-
-// TODO
-
           expect(piece.mob).toEqual(1);
           expect(piece.res).toEqual(2);
           expect(piece.rec).toEqual(3);
-          expect(piece.int).toEqual(4);
-          expect(piece.dis).toEqual(5);
+          expect(piece.dis).toEqual(4);
+          expect(piece.int).toEqual(5);
           expect(piece.str).toEqual(6);
           expect(piece.name).toEqual('Geomag Stabilizers');
           expect(piece.comments).toEqual('This is for a specific roll!');
+          expect(piece.pveUtility).toEqual(Utility.YES);
+          expect(piece.pvpUtility).toEqual(Utility.NO);
         });
       });
       describe('when the roll is not found', function() {

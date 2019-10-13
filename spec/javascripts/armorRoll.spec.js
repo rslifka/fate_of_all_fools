@@ -33,8 +33,8 @@ describe('armorRoll.js', function() {
       expect(a.mob).toBe(1);
       expect(a.res).toBe(2);
       expect(a.rec).toBe(3);
-      expect(a.int).toBe(4);
-      expect(a.dis).toBe(5);
+      expect(a.dis).toBe(4);
+      expect(a.int).toBe(5);
       expect(a.str).toBe(6);
       expect(a.total).toBe(21);
       expect(a.comments).toBe('Charge up that Chaos Reach!');
