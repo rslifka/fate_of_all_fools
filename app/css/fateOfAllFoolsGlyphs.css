@@ -35,7 +35,6 @@
   bottom: 1px;
 }
 
-/* Energy and Power Weapons */
 .foaf-masterwork {
   border-top: 1px solid rgba(255,217,0,1);
   width: 10px;
@@ -90,11 +89,8 @@
 }
 
 .foaf-mob {
-  background-color: rgba(31,31,31,1);
   font-size: 8px;
-  height: 66px;
   top: 0;
-  width: 12px;
 }
 
 .foaf-res {

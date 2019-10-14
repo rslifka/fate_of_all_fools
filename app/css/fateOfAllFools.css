@@ -63,3 +63,42 @@
 .bucket-1585787867 .foaf-total {
   display: none;
 }
+
+:root {
+  --fate-armor-gutter-width: 13px;
+}
+
+/*
+  Let's increase the width of armor so we can better display the stat icons
+*/
+.bucket-3448274439 .item-drag-container,
+.bucket-3551918588 .item-drag-container,
+.bucket-14239492 .item-drag-container,
+.bucket-20886954 .item-drag-container
+{
+  width: calc(var(--item-size) + var(--fate-armor-gutter-width));
+}
+
+.bucket-3448274439 .item,
+.bucket-3551918588 .item,
+.bucket-14239492 .item,
+.bucket-20886954 .item
+{
+  width: calc(var(--item-size) + var(--fate-armor-gutter-width));
+}
+
+.bucket-3448274439 .item-img,
+.bucket-3551918588 .item-img,
+.bucket-14239492 .item-img,
+.bucket-20886954 .item-img
+{
+  margin-left: 13px;
+}
+
+.bucket-3448274439 .sub-bucket,
+.bucket-3551918588 .sub-bucket,
+.bucket-14239492 .sub-bucket,
+.bucket-20886954 .sub-bucket
+{
+  grid-template-columns: repeat(auto-fill, calc(var(--item-size) + var(--fate-armor-gutter-width)));
+}
