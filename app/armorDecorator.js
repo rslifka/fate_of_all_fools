@@ -59,7 +59,6 @@ function updateAttributes() {
     $(this).attr('data-fate-armor-pve', a.pveUtility === Utility.YES);
     $(this).attr('data-fate-armor-pvp', a.pvpUtility === Utility.YES);
 
-
     const statCheck = '' + a.mob + a.res + a.rec + a.int + a.dis + a.str;
     if ($(this).attr('data-fate-stat-check') === statCheck) {
       return;
@@ -78,7 +77,7 @@ function updateAttributes() {
       ['str', 'S' + a.str, a.str],
     ];
     stats.forEach(function(value) {
-      $armorItem.find('.foaf-'+value[0]).text(value[1]).addClass(getRatingClassForStats(value[2]));
+      $armorItem.find('.foaf-'+value[0]).addClass(getRatingClassForStats(value[2]));
     });
   });
 }
