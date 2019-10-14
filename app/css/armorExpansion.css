@@ -1,5 +1,13 @@
 :root {
   --fate-armor-gutter-width: 13px;
+
+  /* Redefine DIM's this width to fit our expanded item visualization */
+  --character-column-width: 340px;
+}
+
+/* Need to give the equipped item more space because of our adding on to the elements */
+.sub-bucket.equipped {
+  width: calc(var(--item-size) + 19px)
 }
 
 .bucket-3448274439 .item-drag-container,
