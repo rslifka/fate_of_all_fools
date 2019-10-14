@@ -28,12 +28,12 @@ const ARMOR_GLYPHS = new Map([
   [JUNK_INDICATOR_CLASS, 'fglyph-thumbs-down'],
   [PVE_INDICATOR_CLASS,  'fglyph-pve'],
   [PVP_INDICATOR_CLASS,  'fglyph-pvp'],
-  [MOB_INDICATOR_CLASS,  'foaf-armor-stat'],
-  [RES_INDICATOR_CLASS,  'foaf-armor-stat'],
-  [REC_INDICATOR_CLASS,  'foaf-armor-stat'],
-  [INT_INDICATOR_CLASS,  'foaf-armor-stat'],
-  [DIS_INDICATOR_CLASS,  'foaf-armor-stat'],
-  [STR_INDICATOR_CLASS,  'foaf-armor-stat'],
+  [MOB_INDICATOR_CLASS,  'fglyph-mobility'],
+  [RES_INDICATOR_CLASS,  'fglyph-resilience'],
+  [REC_INDICATOR_CLASS,  'fglyph-recovery'],
+  [DIS_INDICATOR_CLASS,  'fglyph-discipline'],
+  [INT_INDICATOR_CLASS,  'fglyph-intellect'],
+  [STR_INDICATOR_CLASS,  'fglyph-strength'],
   [TOTAL_INDICATOR_CLASS,  ''],
   [MASTERWORK_INDICATOR_CLASS, '']
 ]);
