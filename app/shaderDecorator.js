@@ -45,10 +45,10 @@ function storeComments() {
 */
 function oneIsTheLoneliestNumber() {
   $('[data-fate-shader-name]').each(function(index,element) {
-    if ($(this).has('.item-stat').length > 0) {
+    if ($(this).has('._3TPBp').length > 0) {
       return;
     }
-    $(this).append($('<div class="item-stat"><div class="primary-stat">1</div></div>'));
+    $(this).append($('<div class="_3TPBp"><div class="AtD93"><span>1</span></div></div>'));
   });
 }
 
