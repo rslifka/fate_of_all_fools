@@ -65,15 +65,6 @@ describe('armorDecorator.js', function() {
       expect($('[data-fate-armor-name="Vesper of Radius"]')).toHaveAttr('data-fate-armor-junk', 'false');
     });
 
-    it('should store the stats', function() {
-      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-mob.foaf-glyph.foaf-stat-med"));
-      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-res.foaf-glyph.foaf-stat-med"));
-      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-rec.foaf-glyph.foaf-stat-low"));
-      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-dis.foaf-glyph.foaf-stat-med"));
-      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-int.foaf-glyph.foaf-stat-high"));
-      expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-str.foaf-glyph.foaf-stat-low"));
-    });
-
     it('should store the stats total', function() {
       expect('[data-fate-armor-name="Vesper of Radius"]').toContainElement($(".foaf-total.foaf-glyph.foaf-stat-high:contains('69')"));
     });

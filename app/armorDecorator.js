@@ -66,19 +66,6 @@ function updateAttributes() {
     $(this).attr('data-fate-stat-check', statCheck);
 
     $(this).find('.foaf-total').text(a.total).addClass(getRatingClassForTotal(a.total));;
-
-    var $armorItem = $(this);
-    var stats = [
-      ['mob', 'M' + a.mob, a.mob],
-      ['res', 'R' + a.res, a.res],
-      ['rec', 'R' + a.rec, a.rec],
-      ['int', 'I' + a.int, a.int],
-      ['dis', 'D' + a.dis, a.dis],
-      ['str', 'S' + a.str, a.str],
-    ];
-    stats.forEach(function(value) {
-      $armorItem.find('.foaf-'+value[0]).addClass(getRatingClassForStats(value[2]));
-    });
   });
 }
 

@@ -8,12 +8,6 @@ const PVP_INDICATOR_CLASS = 'foaf-pvp';
 const FAVE_INDICATOR_CLASS = 'foaf-fave';
 const MASTERWORK_INDICATOR_CLASS = 'foaf-masterwork';
 
-const MOB_INDICATOR_CLASS = 'foaf-mob';
-const RES_INDICATOR_CLASS = 'foaf-res';
-const REC_INDICATOR_CLASS = 'foaf-rec';
-const INT_INDICATOR_CLASS = 'foaf-int';
-const DIS_INDICATOR_CLASS = 'foaf-dis';
-const STR_INDICATOR_CLASS = 'foaf-str';
 const TOTAL_INDICATOR_CLASS = 'foaf-total';
 
 const WEAPON_GLYPHS = new Map([
@@ -28,12 +22,6 @@ const ARMOR_GLYPHS = new Map([
   [JUNK_INDICATOR_CLASS, 'fglyph-thumbs-down'],
   [PVE_INDICATOR_CLASS,  'fglyph-pve'],
   [PVP_INDICATOR_CLASS,  'fglyph-pvp'],
-  [MOB_INDICATOR_CLASS,  'foaf-armor-stat icoglyph-mobility'],
-  [RES_INDICATOR_CLASS,  'foaf-armor-stat icoglyph-resilience'],
-  [REC_INDICATOR_CLASS,  'foaf-armor-stat icoglyph-recovery'],
-  [DIS_INDICATOR_CLASS,  'foaf-armor-stat icoglyph-discipline'],
-  [INT_INDICATOR_CLASS,  'foaf-armor-stat icoglyph-intellect'],
-  [STR_INDICATOR_CLASS,  'foaf-armor-stat icoglyph-strength'],
   [TOTAL_INDICATOR_CLASS,  ''],
   [MASTERWORK_INDICATOR_CLASS, '']
 ]);
