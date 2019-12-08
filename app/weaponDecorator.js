@@ -38,6 +38,9 @@ function storeWeaponData() {
 
     const serialNumber = $(this).attr('id').split("-")[0];
     $(this).attr('data-fate-serial', serialNumber);
+
+    const light = $(this).find('.AtD93').children('span').text();
+    $(this).attr('data-fate-light', light);
   });
 }
 

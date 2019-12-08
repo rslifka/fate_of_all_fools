@@ -101,6 +101,11 @@ describe('weaponDecorator.js', function() {
       expect('[id="6917529071788725024-ps545"]').toHaveAttr('data-fate-dim-tags', 'lock');
     });
 
+    it('should record the light', function() {
+      expect($('[title*=Ace]')).toHaveAttr('data-fate-light', '949');
+      expect($('[title*=Crimson]')).toHaveAttr('data-fate-light', '950');
+    });
+
     describe('on subsequent refreshes', function() {
 
       it('should not overwrite the original weapon name', function() {

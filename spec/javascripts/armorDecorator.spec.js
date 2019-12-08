@@ -82,6 +82,11 @@ describe('armorDecorator.js', function() {
       expect('[id="6917529056139488819-ps600"]').toHaveAttr('data-fate-dim-tags', 'lock');
     });
 
+    it('should store the light', function() {
+      expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-light', '949');
+      expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-light', '950');
+    });
+
     describe('on subsequent refreshes', function() {
 
       it('should not overwrite the original name', function() {
