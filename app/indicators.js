@@ -6,6 +6,7 @@ const JUNK_INDICATOR_CLASS = 'foaf-junk';
 const PVE_INDICATOR_CLASS = 'foaf-pve';
 const PVP_INDICATOR_CLASS = 'foaf-pvp';
 const FAVE_INDICATOR_CLASS = 'foaf-fave';
+const INFUSION_INDICATOR_CLASS = 'foaf-infusion';
 const MASTERWORK_INDICATOR_CLASS = 'foaf-masterwork';
 
 const TOTAL_INDICATOR_CLASS = 'foaf-total';
@@ -15,6 +16,7 @@ const WEAPON_GLYPHS = new Map([
   [JUNK_INDICATOR_CLASS,      'fglyph-thumbs-down'],
   [PVE_INDICATOR_CLASS,       'fglyph-pve'],
   [PVP_INDICATOR_CLASS,       'fglyph-pvp'],
+  [INFUSION_INDICATOR_CLASS,   'fglyph-up'],
   [MASTERWORK_INDICATOR_CLASS, '']
 ]);
 
@@ -22,6 +24,7 @@ const ARMOR_GLYPHS = new Map([
   [JUNK_INDICATOR_CLASS, 'fglyph-thumbs-down'],
   [PVE_INDICATOR_CLASS,  'fglyph-pve'],
   [PVP_INDICATOR_CLASS,  'fglyph-pvp'],
+  [INFUSION_INDICATOR_CLASS, 'fglyph-up'],
   [TOTAL_INDICATOR_CLASS,  ''],
   [MASTERWORK_INDICATOR_CLASS, '']
 ]);
