@@ -7,8 +7,11 @@ require('beautification.js');
 // Update weapon comments from our database
 require('commentDecorator.js');
 
-// Show higher/lower dupes
+// Show dupes
 require('dupeIndicator.js');
+
+// Show infusables
+require('infusionIndicator.js');
 
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
