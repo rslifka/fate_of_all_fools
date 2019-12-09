@@ -6,7 +6,7 @@ const JUNK_INDICATOR_CLASS = 'foaf-junk';
 const PVE_INDICATOR_CLASS = 'foaf-pve';
 const PVP_INDICATOR_CLASS = 'foaf-pvp';
 const FAVE_INDICATOR_CLASS = 'foaf-fave';
-const INFUSION_INDICATOR_CLASS = 'foaf-infusion';
+const INFUSION_INDICATOR_CLASS = 'foaf-infusable';
 const MASTERWORK_INDICATOR_CLASS = 'foaf-masterwork';
 
 const TOTAL_INDICATOR_CLASS = 'foaf-total';

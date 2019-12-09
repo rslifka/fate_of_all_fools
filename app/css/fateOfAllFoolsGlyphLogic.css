@@ -126,3 +126,16 @@
 {
   display: none;
 }
+
+/*
+  INFUSION INDICATOR
+*/
+[data-fate-infusable="true"] > .foaf-infusable
+{
+  display: block;
+}
+
+[data-fate-infusable="false"] > .foaf-infusable
+{
+  display: none;
+}
