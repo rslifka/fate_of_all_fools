@@ -39,33 +39,9 @@ function storeComments() {
   });
 }
 
-/*
-  DIM doesn't insert a '1' if there's only one shader in a stack which adds
-  unnecessary contrast when looking at blocks of shaders.
-*/
-function oneIsTheLoneliestNumber() {
-  const STAT_CONTAINER_CLASS = '_3TPBp';
-  const STAT_PLACEHOLDER_CLASS = 'data-fate-shader-placeholder'
-  $('[data-fate-shader-name]').each(function(index,element) {
-    switch($(this).children('.' + STAT_CONTAINER_CLASS).length) {
-      case 0:
-        $(this).append($('<div class="'+STAT_CONTAINER_CLASS+' '+STAT_PLACEHOLDER_CLASS+'"><div class="AtD93"><span>1</span></div></div>'));
-        break;
-      case 2:
-        // If we acquire more shaders than one, DIM will a second container (as
-        // it should!) so lets remove ours.
-        $('.' + STAT_PLACEHOLDER_CLASS).remove();
-        break;
-      default:
-        return;
-    }
-  });
-}
-
 fateBus.subscribe(module, 'fate.refresh', function() {
   storeShaderNames();
   storeRegistrationStatus();
   storeKeepStatus();
   storeComments();
-  oneIsTheLoneliestNumber();
 });
