@@ -2,50 +2,35 @@ const $ = require('jquery');
 const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 const Utility = require('weaponRollAssessment.js').Utility;
 
-const WEAPON_TYPES = [
-  "Auto Rifle",
-  "Combat Bow",
-  "Fusion Rifle",
-  "Grenade Launcher",
-  "Hand Cannon",       
-  "Machine Gun",
-  "Pulse Rifle",
-  "Rocket Launcher",
-  "Scout Rifle",
-  "Shotgun",
-  "Sidearm",
-  "Sniper Rifle",
-  "Submachine Gun",
-  "Sword",
-  "Trace Rifle"
+const WEAPON_BUCKETS = [
+  'bucket-1498876634', // Kinetic
+  'bucket-2465295065', // Energy
+  'bucket-953998645',  // Power
 ]
-const SEARCH_STRING = WEAPON_TYPES.map(type => "[title$=\'"+type+"\']").join(',');
 
 function storeWeaponData() {
-  $(SEARCH_STRING).not('[data-fate-weapon-name]').each(function(index,element) {
+  WEAPON_BUCKETS.forEach(function(className) {
+    $('.'+className).find('.item').not('[data-fate-weapon-registered]').each(function() {
+      $(this).attr('data-fate-weapon-registered', false);
 
-    // We need to exclude trying to treat the weapon detail popup as something to be decorated
-    if (!$(this).attr('title').includes("\n")) {
-      return;
-    }
-
-    const weaponName = $(this).attr('title').split("\n")[0];
-    $(this).attr('data-fate-weapon-name', weaponName);
-
-    // Is it an exotic or legendary masterwork?
-    const isMasterwork = ($(this).has('._2kz8P').length + $(this).has('._3iMN1').length) > 0;
-    $(this).attr('data-fate-masterwork', isMasterwork);
-
-    const serialNumber = $(this).attr('id').split("-")[0];
-    $(this).attr('data-fate-serial', serialNumber);
-
-    const light = $(this).find('.AtD93').children('span').text();
-    $(this).attr('data-fate-light', light);
+      const weaponName = $(this).attr('title').split("\n")[0];
+      $(this).attr('data-fate-weapon-name', weaponName);
+  
+      // Is it an exotic or legendary masterwork?
+      const isMasterwork = ($(this).has('._2kz8P').length + $(this).has('._3iMN1').length) > 0;
+      $(this).attr('data-fate-masterwork', isMasterwork);
+  
+      const serialNumber = $(this).attr('id').split("-")[0];
+      $(this).attr('data-fate-serial', serialNumber);
+  
+      const light = $(this).find('.AtD93').children('span').text();
+      $(this).attr('data-fate-light', light);
+    });
   });
 }
 
 function updateAttributes() {
-  $('[data-fate-weapon-name]').each(function(index,element) {
+  $('[data-fate-weapon-registered]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
     const dimTags = $.map($(this).find('svg'), function(value, i) {
