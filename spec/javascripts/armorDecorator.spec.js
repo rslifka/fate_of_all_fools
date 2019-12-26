@@ -105,6 +105,12 @@ describe('armorDecorator.js', function() {
         expect('[data-fate-armor-name="Vesper of Radius"]').toHaveAttr('data-fate-serial', '6917529055948440512');
       });
 
+      it('should overwrite the light', function() {
+        $('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').attr('data-fate-light', '_');
+        fateBus.publish(brunchModule, 'fate.refresh');
+        expect('[data-fate-armor-name="Eimin-Tin Ritual Mask"]').toHaveAttr('data-fate-light', '949');
+      });
+
     });
 
   });

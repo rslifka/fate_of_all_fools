@@ -48,6 +48,9 @@ function updateAttributes() {
     const isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
     
+    const light = $(this).find('.AtD93').children('span').text();
+    $(this).attr('data-fate-light', light);
+
     if (!isArmorRegistered) {
       $(this).removeAttr('data-fate-comment');
       $(this).removeAttr('data-fate-armor-junk');
@@ -77,16 +80,6 @@ function getRatingClassForTotal(total) {
     return 'foaf-stat-low';
   }
   if (total <= 50) {
-    return 'foaf-stat-med';
-  }
-  return 'foaf-stat-high';
-}
-
-function getRatingClassForStats(rating) {
-  if (rating <= 7) {
-    return 'foaf-stat-low';
-  }
-  if (rating <= 14) {
     return 'foaf-stat-med';
   }
   return 'foaf-stat-high';
