@@ -69,14 +69,6 @@
   left: 1px;
 }
 
-.foaf-armor-stat {
-  font-size: 9px;
-  height: 11px;
-  left: 0;
-  padding-left: 1px;
-  width: 11px;
-}
-
 .foaf-stat-low {
   color: rgba(255, 255, 255, 0.05);
 }
@@ -87,34 +79,6 @@
 
 .foaf-stat-high {
   color: rgba(255,255,255,1);
-}
-
-.foaf-mob {
-  font-size: 8px;
-  top: 0;
-}
-
-.foaf-res {
-  padding-left: 2px;
-  top: 11px;
-}
-
-.foaf-rec {
-  top: 22px;
-}
-
-.foaf-dis {
-  padding-left: 2px;
-  top: 33px;
-}
-
-.foaf-int {
-  top: 44px;
-}
-
-.foaf-str {
-  padding-left: 2px;
-  top: 55px;
 }
 
 .foaf-total {
