@@ -16,8 +16,10 @@ module.exports = function(config) {
       Suppress "24 06 2019 06:06:49.978:WARN [web-server]: 404: /static/legendaryShards-ccf1b4.png"
     */
     proxies: {
-      '/static/vault-background-a7a8af.png': '/app/assets/images/vault-background.png',
-      '/static/vault-background-ccf1b4.png': '/app/assets/images/legendaryShards.png'
+      '/static/subclass-void-84d995.png': 'app/assets/images/vault-background.png',
+      '/static/subclass-arc-cdd5d1.png': 'app/assets/images/vault-background.png',
+      '/static/subclass-void-84d995.png': 'app/assets/images/vault-background.png',
+      '/static/subclass-solar-5f94c0.png': 'app/assets/images/vault-background.png'
     }
   })
 };
