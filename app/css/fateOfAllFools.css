@@ -24,24 +24,6 @@
   display: none;
 }
 
-/*
-  If an item has "n/a" in the comments, we mean to keep it and not consider it
-  as part of our normal flow. For example, Gambit Prime gear now that I
-  have the Reckoner Title. I don't want to trash it because chances are I'll want to
-  wear it next season when playing Gambit Prime to level up again OR if there's
-  a new Gambit Prime quest - who knows! But I don't want to have to visually "see"
-  it while working with 
-*/
-[data-fate-comment*="n/a"] {
-  filter: grayscale(100%);
-  opacity: 0.6;
-}
-
-[data-fate-comment*="n/a"] .item-stat {
-  color: rgba(128,128,128,1.0);
-  background-color: unset;
-}
-
 .fate-positive {
   color: rgba(93,181,110,1);
 }
