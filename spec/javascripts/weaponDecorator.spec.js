@@ -13,25 +13,23 @@ describe('weaponDecorator.js', function() {
 
     beforeEach(function() {
       loadFixtures(
-        'weaponDecoratorInventoryRaw.html'
+        'entireDocumentRaw-5.62.0.html'
       );
       spyOn(rollDatabase, 'contains').and.callFake(function(rollID) {
-        return ['6917529071788725024','6917529071785738876','6917529071761031585','6917529070743721064'].includes(rollID);
+        return [
+          '6917529136835103644',
+          '6917529087330069226',
+          '6917529139710693769'
+        ].includes(rollID);
       });
       spyOn(rollDatabase, 'get').and.callFake(function(rollID) {
         switch(rollID) {
-          case '6917529071788725024':
-            return new WeaponRollAssessment('6917529071788725024', 'Ace of Spades', 'N', 'N', 'Not a fan of this roll')
-            break;
-          case '6917529071761031585':
-            return new WeaponRollAssessment('6917529071761031585', 'Go Figure', '?', '?', 'Can be good');
-            break;
-          case '6917529071785738876':
-            return new WeaponRollAssessment('6917529071785738876', 'Subtle Calamity', 'N', 'N', 'Arrows r great');
-            break;
-          case '6917529070743721064':
-            return new WeaponRollAssessment('6917529070743721064', 'Edge Transit', 'Y', 'Y', 'I wish more of these would drop');
-            break;
+          case '6917529136835103644':
+            return new WeaponRollAssessment('6917529136835103644', 'Not Forgotten', 'N', 'Y', 'Longer range Lunas Howl')
+          case '6917529087330069226':
+            return new WeaponRollAssessment('6917529087330069226', "Izanagi's Burden", 'Y', 'N', 'Great for boss DPS');
+          case '6917529139710693769':
+            return new WeaponRollAssessment('6917529139710693769', 'Python', 'N', 'N', 'Gambit shotty; just OK');
           default:
             return null;
         }
@@ -40,113 +38,99 @@ describe('weaponDecorator.js', function() {
       fateBus.publish(brunchModule, 'fate.refresh');
     });
 
+    /*
+      We're using this first spec to ensure that we "visit" weapons in each of
+      the three locations in each row. Subsequent tests won't be this thorough
+      under the assumption that we will use the same visitation logic to decide
+      which weapons to treat.
+    */
     it('should store the original weapon name', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-name', 'Ace of Spades');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-weapon-name', 'Go Figure');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-weapon-name', 'Subtle Calamity');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-weapon-name', 'Edge Transit');
+      // Equipped weapons
+      expect($('[id=6917529132328468093]')).toHaveAttr('data-fate-weapon-name', 'Monte Carlo');
+      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-weapon-name', 'Not Forgotten');
+      expect($('[id=6917529144055150384]')).toHaveAttr('data-fate-weapon-name', 'Shining Sphere');
+      // Inventory weapons
+      expect($('[id=6917529135296833296]')).toHaveAttr('data-fate-weapon-name', 'MIDA Multi-Tool');
+      expect($('[id=6917529139710693769]')).toHaveAttr('data-fate-weapon-name', 'Python');
+      expect($('[id=6917529073791516079]')).toHaveAttr('data-fate-weapon-name', 'The Wardcliff Coil');
+      // Vaulted weapons
+      expect($('[id=6917529087330069226]')).toHaveAttr('data-fate-weapon-name', "Izanagi's Burden");
+      expect($('[id=6917529140859736767]')).toHaveAttr('data-fate-weapon-name', 'Symmetry');
+      expect($('[id=6917529112718125981]')).toHaveAttr('data-fate-weapon-name', 'One Thousand Voices');
     });
 
     it('should store whether or not it is a masterwork', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-masterwork', 'false');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-masterwork', 'false');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-masterwork', 'false');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-masterwork', 'false');
+      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-masterwork', 'true');
+      expect($('[id=6917529132328468093]')).toHaveAttr('data-fate-masterwork', 'false');
     });
 
     it('should store if the weapon is registered', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-registered', 'true');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-weapon-registered', 'true');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-weapon-registered', 'true');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-weapon-registered', 'true');
-      expect($('[title*=Crimson]')).toHaveAttr('data-fate-weapon-registered', 'false');
+      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-weapon-registered', 'true');
+      expect($('[id=6917529132328468093]')).toHaveAttr('data-fate-weapon-registered', 'false');
     });
 
     it('should store if the weapon is good for pve', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-pve', 'false');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-weapon-pve', 'false');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-weapon-pve', 'false');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-weapon-pve', 'true');
+      expect($('[id=6917529087330069226]')).toHaveAttr('data-fate-weapon-pve', 'true');
+      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-weapon-pve', 'false');
     });
 
     it('should store if the weapon is good for pvp', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-pvp', 'false');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-weapon-pvp', 'false');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-weapon-pvp', 'false');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-weapon-pvp', 'true');
+      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-weapon-pvp', 'true');
+      expect($('[id=6917529087330069226]')).toHaveAttr('data-fate-weapon-pvp', 'false');
     });
 
     it('should store if the weapon is junk or not', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-junk', 'true');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-weapon-junk', 'false');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-weapon-junk', 'true');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-weapon-junk', 'false');
+      expect($('[id=6917529139710693769]')).toHaveAttr('data-fate-weapon-junk', 'true');
+      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-weapon-junk', 'false');
     });
 
     it('should store the weapon serial number', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-serial', '6917529071788725024');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-serial', '6917529071761031585');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-serial', '6917529071785738876');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-serial', '6917529070743721064');
+      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-serial', '6917529136835103644');
     });
 
     it('should store the comments', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-comment', 'Not a fan of this roll');
-      expect($('[title*=Figure]')).toHaveAttr('data-fate-comment', 'Can be good');
-      expect($('[title*=Calamity]')).toHaveAttr('data-fate-comment', 'Arrows r great');
-      expect($('[title*=Transit]')).toHaveAttr('data-fate-comment', 'I wish more of these would drop');
+      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-comment', 'Longer range Lunas Howl');
     });
 
     it('should record the DIM tags as their own attributions', function() {
-      expect('[id="6917529071788725024-ps545"]').toHaveAttr('data-fate-dim-tags', 'lock');
+      expect('[id="6917529136835103644"]').toHaveAttr('data-fate-dim-tags', 'lock');
     });
 
     it('should record the light', function() {
-      expect($('[title*=Ace]')).toHaveAttr('data-fate-light', '949');
-      expect($('[title*=Crimson]')).toHaveAttr('data-fate-light', '950');
+      expect('[id="6917529136835103644"]').toHaveAttr('data-fate-light', '956');
     });
 
     describe('on subsequent refreshes', function() {
 
-      it('should not overwrite the original weapon name', function() {
-        $('[title*=Ace]').attr('title', '_');
-        $('[title*=Calamity]').attr('title', '_');
-        $('[title*=Transit]').attr('title', '_');
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[id=6917529071788725024-ps545]')).toHaveAttr('data-fate-weapon-name', 'Ace of Spades');
-        expect($('[id=6917529071785738876-ps527]')).toHaveAttr('data-fate-weapon-name', 'Subtle Calamity');
-        expect($('[id=6917529070743721064-ps545]')).toHaveAttr('data-fate-weapon-name', 'Edge Transit');
+      describe('things that should update', function() {
+        // TODO: These were never tested, so we're going to bank the win of properly
+        // testing with the new DIM document structure and come back to this.
+        // data-fate-dim-tags
+        // data-fate-weapon-registered
+        // data-fate-comment'
+        // 'data-fate-weapon-junk'
+        // 'data-fate-weapon-pve'
+        // 'data-fate-weapon-pvp'
       });
 
-      it('should not overwrite the serial number', function() {
-        $('[id=6917529071788725024-ps545]').attr('id', '_');
-        $('[id=6917529071785738876-ps527]').attr('id', '_');
-        $('[id=6917529070743721064-ps545]').attr('id', '_');
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[title*=Ace]')).toHaveAttr('data-fate-serial', '6917529071788725024');
-        expect($('[title*=Calamity]')).toHaveAttr('data-fate-serial', '6917529071785738876');
-        expect($('[title*=Transit]')).toHaveAttr('data-fate-serial', '6917529070743721064');
-      });
+      describe('things that should NOT update', function() {
+        
+        it('should not overwrite the original weapon name', function() {
+          $('[id=6917529132328468093]').attr('title', '_');
+          fateBus.publish(brunchModule, 'fate.refresh');
+          expect($('[id=6917529132328468093]')).toHaveAttr('data-fate-weapon-name', 'Monte Carlo');
+        });
+  
+        it('should not overwrite the serial number', function() {
+          $('[id=6917529132328468093]').attr('id', '_REMOVAL-TEST_');
+          fateBus.publish(brunchModule, 'fate.refresh');
+          expect($('[id=_REMOVAL-TEST_]')).toHaveAttr('data-fate-serial', '6917529132328468093');
+        });
 
-      it('should overwrite the registration status', function() {
-        $('[title*=Ace]').attr('data-fate-serial', '6917529071788725024');
-        fateBus.publish(brunchModule, 'fate.refresh');
-        expect($('[title*=Ace]')).toHaveAttr('data-fate-weapon-registered', 'true');
       });
 
     });
 
-  });
-
-  describe('when the per-item popup is present', function() {
-    it('should not mistake the popup for a weapon', function() {
-      loadFixtures(
-        'weaponDecoratorInventoryRaw.html',
-        'weaponPopup.html'
-      );
-      fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('[title="Unlock Hand Cannon"]')).toExist();
-    });
   });
 
 });
