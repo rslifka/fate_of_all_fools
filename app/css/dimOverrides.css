@@ -50,9 +50,20 @@
   EFFECT: Hides the DIM built-in "lock" icon when an item is locked.
   REASON: Most items in the inventory are locked, which means that
           this end up being super graphically noisy. I.e. most every
-          piece of gear you have will have it displayed.
+          piece of gear you have will have it displayed and we don't
+          need hundreds of bright red lock icons on the screen.
 */
-svg.fa-lock {
+._3SO_- > svg.fa-lock {
+  display: none !important;
+}
+
+/*
+  EFFECT: Hides the DIM built-in "thumbs down" icon when an item is trashed via
+          the "wish list" feature.
+  REASON: We're opting for a more visually obvious mechanism since that slot is
+          generally where good things go.
+*/
+._16Lie > svg.fa-thumbs-down {
   display: none !important;
 }
 
