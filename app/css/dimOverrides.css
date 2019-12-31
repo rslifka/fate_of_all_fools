@@ -67,6 +67,16 @@
   display: none !important;
 }
 
+/*
+  EFFECT: Hides the DIM built-in "thumbs up" icon when an item is good via
+          the "wish list" feature.
+  REASON: We're opting for a more visually obvious mechanism since that slot is
+          generally where our own icons go.
+*/
+._16Lie > svg.fa-thumbs-up {
+  display: none !important;
+}
+
 /* Go for a more muted background */
 body,
 #header,
