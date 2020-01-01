@@ -36,7 +36,17 @@ function updateAttributes() {
     const dimTags = $.map($(this).find('svg'), function(value, i) {
       return $(value).attr('data-icon');
     });
-    $(this).attr('data-fate-dim-tags', dimTags.join(','));
+
+    const dimJunk = dimTags.includes('ban');
+    $(this).attr('data-fate-dimjunk', dimJunk);
+
+    let wishlistStatus = 'not-registered';
+    if (dimTags.includes('thumbs-up')) {
+      wishlistStatus = 'accepted';
+    } else if (dimTags.includes('thumbs-down')) {
+      wishlistStatus = 'rejected';
+    }
+    $(this).attr('data-fate-wishlist-status', wishlistStatus);
 
     const isWeaponRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-weapon-registered', isWeaponRegistered);

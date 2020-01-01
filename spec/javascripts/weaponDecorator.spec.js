@@ -92,12 +92,32 @@ describe('weaponDecorator.js', function() {
       expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-comment', 'Longer range Lunas Howl');
     });
 
-    it('should record the DIM tags as their own attributions', function() {
-      expect('[id="6917529136835103644"]').toHaveAttr('data-fate-dim-tags', 'lock');
-    });
-
     it('should record the light', function() {
       expect('[id="6917529136835103644"]').toHaveAttr('data-fate-light', '956');
+    });
+
+    describe('supported DIM tags', function() {
+
+      it('should store if it was not tagged with junk', function() {
+        expect('[id="6917529094250649988"]').toHaveAttr('data-fate-dimjunk', 'false');
+      });
+
+      it('should store if it was tagged with junk', function() {
+        expect('[id="6917529142836279186"]').toHaveAttr('data-fate-dimjunk', 'true');
+      });
+
+      it('should store if not present in the DIM wishlist', function() {
+        expect('[id="6917529100602656437"]').toHaveAttr('data-fate-wishlist-status', 'not-registered');
+      });
+
+      it('should store if the DIM wishlist likes it', function() {
+        expect('[id="6917529139131772400"]').toHaveAttr('data-fate-wishlist-status', 'accepted');
+      });
+
+      it('should store if the DIM wishlist does not like it', function() {
+        expect('[id="6917529143743532153"]').toHaveAttr('data-fate-wishlist-status', 'rejected');
+      });
+      
     });
 
     describe('on subsequent refreshes', function() {
@@ -107,10 +127,11 @@ describe('weaponDecorator.js', function() {
         // testing with the new DIM document structure and come back to this.
         // data-fate-dim-tags
         // data-fate-weapon-registered
-        // data-fate-comment'
-        // 'data-fate-weapon-junk'
-        // 'data-fate-weapon-pve'
-        // 'data-fate-weapon-pvp'
+        // data-fate-comment
+        // data-fate-weapon-junk
+        // data-fate-weapon-pve
+        // data-fate-weapon-pvp
+        // data-fate-wishlist-status
       });
 
       describe('things that should NOT update', function() {
