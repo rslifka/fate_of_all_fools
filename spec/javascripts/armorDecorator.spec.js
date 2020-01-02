@@ -101,6 +101,30 @@ describe('armorDecorator.js', function() {
       expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-light', '961');
     });
 
+    describe('supported DIM tags', function() {
+
+      it('should store if it was not tagged with junk', function() {
+        expect($('[id="6917529143732442281"]')).toHaveAttr('data-fate-dimjunk', 'false');
+      });
+
+      it('should store if it was tagged with junk', function() {
+        expect($('[id="6917529140147844123"]')).toHaveAttr('data-fate-dimjunk', 'true');
+      });
+
+      it('should store if not present in the DIM wishlist', function() {
+        expect($('[id="6917529143732442281"]')).toHaveAttr('data-fate-wishlist-status', 'not-registered');
+      });
+
+      it('should store if the DIM wishlist likes it', function() {
+        expect($('[id="6917529123358352198"]')).toHaveAttr('data-fate-wishlist-status', 'accepted');
+      });
+
+      it('should store if the DIM wishlist does not like it', function() {
+        expect($('[id="6917529143984836532"]')).toHaveAttr('data-fate-wishlist-status', 'rejected');
+      });
+      
+    });
+
     describe('on subsequent refreshes', function() {
 
       describe('things that should update', function() {

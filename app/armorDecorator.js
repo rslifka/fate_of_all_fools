@@ -35,6 +35,21 @@ function updateAttributes() {
   $('[data-fate-armor-registered]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
+    const dimTags = $.map($(this).find('svg'), function(value, i) {
+      return $(value).attr('data-icon');
+    });
+
+    const dimJunk = dimTags.includes('ban');
+    $(this).attr('data-fate-dimjunk', dimJunk);
+
+    let wishlistStatus = 'not-registered';
+    if (dimTags.includes('thumbs-up')) {
+      wishlistStatus = 'accepted';
+    } else if (dimTags.includes('thumbs-down')) {
+      wishlistStatus = 'rejected';
+    }
+    $(this).attr('data-fate-wishlist-status', wishlistStatus);
+
     const isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
     
