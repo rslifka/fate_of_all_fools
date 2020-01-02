@@ -19,13 +19,6 @@
   display: block;
 }
 
-[data-fate-armor-registered="false"] > .foaf-mob,
-[data-fate-armor-registered="false"] > .foaf-res,
-[data-fate-armor-registered="false"] > .foaf-rec,
-[data-fate-armor-registered="false"] > .foaf-int,
-[data-fate-armor-registered="false"] > .foaf-dis,
-[data-fate-armor-registered="false"] > .foaf-str,
-[data-fate-armor-registered="false"] > .foaf-total,
 [data-fate-shader-keep="false"] > .foaf-fave,
 [data-fate-shader-registered="false"] > .foaf-fave,
 [data-fate-shader-keep="unknown"] > .foaf-fave
