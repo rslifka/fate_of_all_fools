@@ -9,21 +9,7 @@
   color: #f5dc56 !important;
 }
 
-/* If we mark an item junk using DIM's tagging, subdue its presentation. */
-[data-fate-dim-tags*='ban'] .item-img {
-  filter: grayscale(100%);
-  opacity: 0.6;
-}
-
-[data-fate-dim-tags*='ban'] .item-stat {
-  color: rgba(128,128,128,1.0);
-  background-color: unset;
-}
-
-[data-fate-dim-tags*='ban'] .element {
-  display: none;
-}
-
+/* Colors used on FOAF's various indicators */
 .fate-positive {
   color: rgba(93,181,110,1);
 }
@@ -34,4 +20,51 @@
 
 .fate-middling {
   color: rgba(221,221,221,1);
+}
+
+/*
+  If I've marked an item as "Junk" using DIM's tagging
+    ...fade the image
+    ...remove the elemental display
+*/
+[data-fate-dimjunk='true'] .item-img {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+[data-fate-dimjunk='true'] .AtD93 > img {
+  display: none;
+}
+
+/*
+  If I haven't saved it as a good roll
+    ...and I haven't marked it as "Junk" using DIM's tagging
+    ...and DIM's wishlist rejects it
+    ...then show an overlay indicating it's no bueno.
+*/
+.item[data-fate-weapon-registered='false'][data-fate-dimjunk='false'][data-fate-wishlist-status='rejected']::before,
+.item[data-fate-armor-registered='false'][data-fate-dimjunk='false'][data-fate-wishlist-status='rejected']::before
+{
+  background-color: red;
+  content: " ";
+  position: absolute;
+  height: var(--item-size);
+  opacity: 0.5;
+  width: var(--item-size);
+}
+
+/*
+  If I haven't saved it as a good roll
+    ...and I haven't marked it as "Junk" using DIM's tagging
+    ...and DIM's wishlist acceptss it
+    ...then show an overlay indicating it's interesting!
+*/
+.item[data-fate-weapon-registered='false'][data-fate-dimjunk='false'][data-fate-wishlist-status='accepted']::before,
+.item[data-fate-armor-registered='false'][data-fate-dimjunk='false'][data-fate-wishlist-status='accepted']::before
+{
+  background-color: #08e208;
+  content: " ";
+  position: absolute;
+  height: var(--item-size);
+  opacity: 0.5;
+  width: var(--item-size);
 }
