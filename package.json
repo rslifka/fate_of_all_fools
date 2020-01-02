@@ -16,16 +16,16 @@
     "pubsub-js": "^1"
   },
   "devDependencies": {
-    "@metahub/karma-jasmine-jquery": "^2.0.1",
+    "@babel/preset-env": "^7.7.7",
+    "@metahub/karma-jasmine-jquery": "^3",
     "babel-brunch": "^7.0.1",
-    "@babel/preset-env": "^7.4.5",
-    "brunch": "^2",
-    "clean-css-brunch": "^2",
-    "jasmine-core": "^2",
+    "brunch": "^3",
+    "clean-css-brunch": "^3",
+    "jasmine-core": "^3",
     "jasmine-jquery": "^2",
-    "karma": "^1.7.1",
-    "karma-chrome-launcher": "^2",
-    "karma-jasmine": "^1.1.2",
+    "karma": "^4",
+    "karma-chrome-launcher": "^3",
+    "karma-jasmine": "^2",
     "karma-jquery": "^0",
     "uglify-js-brunch": "^2"
   }
