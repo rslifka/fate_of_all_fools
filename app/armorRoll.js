@@ -6,9 +6,10 @@ const Utility = {
 
 class ArmorRoll {
 
-  constructor(rollID, name, pve, pvp, mob, res, rec, dis, int, str, comments) {
+  constructor(rollID, name, season, pve, pvp, mob, res, rec, dis, int, str, comments) {
     this.rollID = rollID;
     this.name = name;
+    this.season = season;
     this.pve = pve.toLowerCase();
     this.pvp = pvp.toLowerCase();
     this.mob = parseInt(mob);

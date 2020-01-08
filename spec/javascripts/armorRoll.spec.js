@@ -5,6 +5,7 @@ describe('armorRoll.js', function() {
   const rollParams = [
     '6917529074542621459',
     'Geomag Stabilizers',
+    '23',
     'Y',
     'N',
     '1',
@@ -28,6 +29,7 @@ describe('armorRoll.js', function() {
       const a = new armorRoll.ArmorRoll(...rollParams);
       expect(a.rollID).toBe('6917529074542621459');
       expect(a.name).toBe('Geomag Stabilizers');
+      expect(a.season).toBe('23');
       expect(a.pveUtility).toBe(Utility.YES);
       expect(a.pvpUtility).toBe(Utility.NO);
       expect(a.mob).toBe(1);
