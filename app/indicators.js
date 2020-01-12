@@ -11,7 +11,6 @@ const MASTERWORK_INDICATOR_CLASS = 'foaf-masterwork';
 
 const WEAPON_GLYPHS = new Map([
   [DUPLICATE_INDICATOR_CLASS, 'fglyph-knives'],
-  [JUNK_INDICATOR_CLASS,      'fglyph-thumbs-down'],
   [PVE_INDICATOR_CLASS,       'fglyph-pve'],
   [PVP_INDICATOR_CLASS,       'fglyph-pvp'],
   [INFUSION_INDICATOR_CLASS,   'fglyph-up'],
@@ -19,7 +18,6 @@ const WEAPON_GLYPHS = new Map([
 ]);
 
 const ARMOR_GLYPHS = new Map([
-  [JUNK_INDICATOR_CLASS, 'fglyph-thumbs-down'],
   [PVE_INDICATOR_CLASS,  'fglyph-pve'],
   [PVP_INDICATOR_CLASS,  'fglyph-pvp'],
   [INFUSION_INDICATOR_CLASS, 'fglyph-up'],
