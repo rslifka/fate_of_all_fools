@@ -14,6 +14,7 @@ describe('armorRollDatabase.js', function() {
       [
         '6917529047963087340',
         'Geomag Stabilizers',
+        'Void',
         '23',
         'Y',
         'N',

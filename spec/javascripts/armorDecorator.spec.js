@@ -15,6 +15,7 @@ describe('armorDecorator.js', function() {
         return new ArmorRoll(
           '6917529143732442281',
           'Vesper of Radius',
+          'Solar',
           '23',
           'Y',
           'N',
