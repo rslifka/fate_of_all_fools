@@ -58,6 +58,15 @@
 }
 
 /*
+  EFFECT: Hides the DIM built-in "junk" icon when an item is tagged as junk.
+  REASON: We have our own visual treatment (saturation change) when an item
+          is junk, and don't need to double-up.
+*/
+._3SO_- > svg.fa-ban {
+  display: none !important;
+}
+
+/*
   EFFECT: Hides the DIM built-in "thumbs down" icon when an item is trashed via
           the "wish list" feature.
   REASON: We're opting for a more visually obvious mechanism since that slot is
@@ -158,9 +167,4 @@ body,
 
 .armor-class-icon {
   display: none;
-}
-
-/* Remove element indicator from armor; effectively means nothing */
-[data-fate-armor-registered] .item-equipment .primary-stat img {
-  border-top: 0;
 }
