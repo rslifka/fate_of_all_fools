@@ -1,11 +1,16 @@
-let enabled = false;
+let enabled;
 
-exports.setEnabled = function(isEnabled) {
+function setEnabled(isEnabled) {
   enabled = isEnabled;
 }
 
-exports.log = function log(message) {
+function log(message) {
   if (enabled) {
     GM_log('[FATE] ' + message);
   }
 }
+
+setEnabled(false);
+
+exports.setEnabled = setEnabled;
+exports.log = log;
