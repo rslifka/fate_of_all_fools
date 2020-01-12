@@ -106,11 +106,19 @@ describe('armorDecorator.js', function() {
     describe('supported DIM tags', function() {
 
       it('should store if it was not tagged with junk', function() {
-        expect($('[id="6917529143732442281"]')).toHaveAttr('data-fate-dimjunk', 'false');
+        expect($('[id="6917529143732442281"]')).toHaveAttr('data-fate-dimtag-junk', 'false');
       });
 
       it('should store if it was tagged with junk', function() {
-        expect($('[id="6917529140147844123"]')).toHaveAttr('data-fate-dimjunk', 'true');
+        expect($('[id="6917529140147844123"]')).toHaveAttr('data-fate-dimtag-junk', 'true');
+      });
+
+      it('should store if it was not tagged with archive', function() {
+        expect($('[id="6917529143732442281"]')).toHaveAttr('data-fate-dimtag-archive', 'false');
+      });
+
+      it('should store if it was tagged with archive', function() {
+        expect($('[id="6917529143382874808"]')).toHaveAttr('data-fate-dimtag-archive', 'true');
       });
 
       it('should store if not present in the DIM wishlist', function() {

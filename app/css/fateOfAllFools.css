@@ -27,11 +27,11 @@
     ...fade the image
     ...remove the elemental display
 */
-[data-fate-dimjunk='true'] .item-img {
+[data-fate-dimtag-junk='true'] .item-img {
   filter: grayscale(100%);
   opacity: 0.6;
 }
-[data-fate-dimjunk='true'] .AtD93 > img {
+[data-fate-dimtag-junk='true'] .AtD93 > img {
   display: none;
 }
 
@@ -41,8 +41,8 @@
     ...and DIM's wishlist rejects it
     ...then show an overlay indicating it's no bueno.
 */
-.item[data-fate-weapon-registered='false'][data-fate-dimjunk='false'][data-fate-wishlist-status='rejected']::before,
-.item[data-fate-armor-registered='false'][data-fate-dimjunk='false'][data-fate-wishlist-status='rejected']::before
+.item[data-fate-weapon-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='rejected']::before,
+.item[data-fate-armor-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='rejected']::before
 {
   background-color: red;
   content: " ";
@@ -58,8 +58,8 @@
     ...and DIM's wishlist acceptss it
     ...then show an overlay indicating it's interesting!
 */
-.item[data-fate-weapon-registered='false'][data-fate-dimjunk='false'][data-fate-wishlist-status='accepted']::before,
-.item[data-fate-armor-registered='false'][data-fate-dimjunk='false'][data-fate-wishlist-status='accepted']::before
+.item[data-fate-weapon-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='accepted']::before,
+.item[data-fate-armor-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='accepted']::before
 {
   background-color: #08e208;
   content: " ";
