@@ -114,6 +114,22 @@ describe('weaponDecorator.js', function() {
         expect('[id="6917529143990647252"]').toHaveAttr('data-fate-dimtag-archive', 'true');
       });
 
+      it('should store if it was not tagged with keep', function() {
+        expect('[id="6917529094250649988"]').toHaveAttr('data-fate-dimtag-keep', 'false');
+      });
+
+      it('should store if it was tagged with keep', function() {
+        expect('[id="6917529142659232040"]').toHaveAttr('data-fate-dimtag-keep', 'true');
+      });
+
+      it('should store if it was not tagged with infuse', function() {
+        expect('[id="6917529094250649988"]').toHaveAttr('data-fate-dimtag-infuse', 'false');
+      });
+
+      it('should store if it was tagged with infuse', function() {
+        expect('[id="6917529087330069226"]').toHaveAttr('data-fate-dimtag-infuse', 'true');
+      });
+
       it('should store if not present in the DIM wishlist', function() {
         expect('[id="6917529100602656437"]').toHaveAttr('data-fate-wishlist-status', 'not-registered');
       });

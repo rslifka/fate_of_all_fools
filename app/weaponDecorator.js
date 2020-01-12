@@ -43,6 +43,12 @@ function updateAttributes() {
     const dimArchive = dimTags.includes('archive');
     $(this).attr('data-fate-dimtag-archive', dimArchive);
 
+    const dimKeep = dimTags.includes('tag');
+    $(this).attr('data-fate-dimtag-keep', dimKeep);
+
+    const dimInfuse = dimTags.includes('bolt');
+    $(this).attr('data-fate-dimtag-infuse', dimInfuse);
+
     let wishlistStatus = 'not-registered';
     if (dimTags.includes('thumbs-up')) {
       wishlistStatus = 'accepted';

@@ -6,10 +6,9 @@
 }
 
 .foaf-dupe {
-  color: rgba(221,221,221,1);
-  padding: 0px 0px 2px 2px;
-  right: 0px;
-  bottom: 14px;
+  color: rgba(221,221,221,0.75);
+  left: 0;
+  bottom: -1px;
   font-size: 12px;
 }
 
