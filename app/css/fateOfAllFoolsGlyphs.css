@@ -53,40 +53,10 @@
   font-size: 11px;
 }
 
-.foaf-fodder {
-  color: rgb(31, 222, 245);
-  font-size: 10px;
-  bottom: 1px;
-  left: 1px;
-  padding: 1px 1px 2px 0px;
-}
-
 .foaf-fave {
   color: rgba(93,181,110,1);
   font-size: 12px;
   padding: 0;
   bottom: 1px;
   left: 1px;
-}
-
-.foaf-stat-low {
-  color: rgba(255, 255, 255, 0.05);
-}
-
-.foaf-stat-med {
-  color: rgba(255,255,255,0.4);
-}
-
-.foaf-stat-high {
-  color: rgba(255,255,255,1);
-}
-
-.foaf-total {
-  background-color: rgba(31,31,31,0.75);
-  font-size: 10px;
-  font-weight: bold;
-  padding: 0 2px 1px 3px;
-  right: 0;
-  text-align: right;
-  top: 0;
 }
