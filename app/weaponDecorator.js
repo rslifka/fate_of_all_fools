@@ -38,7 +38,10 @@ function updateAttributes() {
     });
 
     const dimJunk = dimTags.includes('ban');
-    $(this).attr('data-fate-dimjunk', dimJunk);
+    $(this).attr('data-fate-dimtag-junk', dimJunk);
+
+    const dimArchive = dimTags.includes('archive');
+    $(this).attr('data-fate-dimtag-archive', dimArchive);
 
     let wishlistStatus = 'not-registered';
     if (dimTags.includes('thumbs-up')) {
