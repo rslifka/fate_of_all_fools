@@ -86,6 +86,31 @@
   display: none !important;
 }
 
+/*
+  EFFECT: Hides the DIM built-in "banker's box" icon when an item is set with
+          the DIM "archive" tag.
+  REASON: Archived items are shrunken and desaturated; no need for the icon
+          as well.
+*/
+._3SO_- > svg.fa-archive {
+  display: none !important;
+}
+
+/*
+  EFFECT: This style is applied to the entire item when you tag it as "Archive"
+          in DIM.
+  REASON: Even if something is archived I still want to be able to see it and
+          reason about it. Current DIM treatment is a bit too muted.
+*/
+._9AyEu {
+  opacity: 0.8;
+  transform: scale(0.85);
+}
+
+._9AyEu > .item-img {
+  filter: grayscale(100%);
+}
+
 /* Go for a more muted background */
 body,
 #header,
