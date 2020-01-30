@@ -1,10 +1,18 @@
-# Fate of All Fools Is...
+[![Build Status](https://travis-ci.org/rslifka/fate_of_all_fools.svg?branch=master)](https://travis-ci.org/rslifka/fate_of_all_fools)
 
-* A [Tampermonkey](https://Tampermonkey.net/)-based suite of enhancements to [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for Destiny 2. I've used DIM for years and find it indispensable. There are a few nits I've wanted to fix from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I play Destiny and work with my vault. These changes range from slight preferences to how I organize, which I realize are super subjective and perhaps best done as a layer on top of DIM versus adding features to the core. If you think about item management the way I do, you're in luck! If not... well feel free to fork this project ;)
-* Only compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another for security reasons; nothing to be done about that.
-* A [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) from Destiny 1 and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
-* The Destiny 2 Jade Rabbit Exotic perk! =D
-* Currently [![Build Status](https://travis-ci.org/rslifka/fate_of_all_fools.svg?branch=master)](https://travis-ci.org/rslifka/fate_of_all_fools)
+# Overview
+
+`Fate of All Fools` is a [Tampermonkey](https://Tampermonkey.net/)-based suite of enhancements to [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for the Destiny video game.
+
+I've used DIM for years and find it indispensable. There are a few nits I've wanted to modify from styling to information density. I've also wanted to add workflow-specific features that are unique to the way I play Destiny and work with my vault. These changes range from slight preferences to how I classify items and how I think about managing my vault. These are of course subjective and so I decided to execute these modifications as a layer on top of DIM versus adding features to the core that are specific to the way I play the game.
+
+If you think about item management the way I do, you're in luck! If not... well feel free to fork this project ;)
+
+## Fate of All Fools? What the What? 
+
+* `Fate of All Fools` is compatible with the [online version of DIM](https://app.destinyitemmanager.com/), not the extension. Chrome prevents extensions from accessing one another for security reasons; nothing to be done about that.
+* It's also a [unique weapon](http://destinydb.com/item/3490486524/fate-of-all-fools) from Destiny 1 and part of a [really touching story](https://www.reddit.com/r/DestinyTheGame/comments/2lgxd4/deej_just_sent_my_husband_the_new_exotic_fate_of/).
+* Finally, it's the name of the Destiny 2 Jade Rabbit Exotic perk! =D
 
 # Quickstart
 
