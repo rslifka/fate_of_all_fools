@@ -11,7 +11,7 @@ describe('weaponRollDatabase.js', function() {
 
     fateBus.registerModule(brunchModule);
     fateBus.publish(brunchModule, 'fate.weaponRollDataFetched',
-      '6917529047963087340\tPositive Outlook\tY\tN\tReload masterwork + Kill Clip = so good!');
+      '6917529047963087340\tPositive Outlook\t-\tY\tN\tReload masterwork + Kill Clip = so good!');
   });
 
   describe('in response to fate.weaponRollDataFetched', function() {
@@ -33,6 +33,7 @@ describe('weaponRollDatabase.js', function() {
           expect(po).toEqual(jasmine.any(roll.WeaponRollAssessment));
           expect(po.rollID).toEqual('6917529047963087340');
           expect(po.name).toEqual('Positive Outlook');
+          expect(po.season).toEqual('-');
           expect(po.pveUtility).toEqual(Utility.YES);
           expect(po.pvpUtility).toEqual(Utility.NO);
           expect(po.comments).toEqual('Reload masterwork + Kill Clip = so good!');
