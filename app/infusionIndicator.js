@@ -10,6 +10,7 @@ const WEAPON_BUCKETS = [
   'bucket-1498876634', // Primary
   'bucket-2465295065', // Secondary
   'bucket-953998645',  // Power
+  'bucket-215593132',  // Postmaster
 ]
 
 const ARMOR_BUCKETS = [

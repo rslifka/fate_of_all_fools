@@ -6,6 +6,7 @@ const WEAPON_BUCKETS = [
   'bucket-1498876634', // Kinetic
   'bucket-2465295065', // Energy
   'bucket-953998645',  // Power
+  'bucket-215593132',  // Postmaster
 ]
 
 function storeWeaponData() {
