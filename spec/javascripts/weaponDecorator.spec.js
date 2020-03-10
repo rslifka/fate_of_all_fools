@@ -13,7 +13,7 @@ describe('weaponDecorator.js', function() {
 
     beforeEach(function() {
       loadFixtures(
-        'entireDocumentRaw-5.62.0.html'
+        'entireDocumentRaw-5.73.0.html'
       );
       spyOn(rollDatabase, 'contains').and.callFake(function(rollID) {
         return [
@@ -46,9 +46,9 @@ describe('weaponDecorator.js', function() {
     */
     it('should store the original weapon name', function() {
       // Equipped weapons
-      expect($('[id=6917529132328468093]')).toHaveAttr('data-fate-weapon-name', 'Monte Carlo');
-      expect($('[id=6917529136835103644]')).toHaveAttr('data-fate-weapon-name', 'Not Forgotten');
-      expect($('[id=6917529144055150384]')).toHaveAttr('data-fate-weapon-name', 'Shining Sphere');
+      expect($('[id=6917529093071112483]')).toHaveAttr('data-fate-weapon-name', 'Outbreak Perfected');
+      expect($('[id=6917529164301408005]')).toHaveAttr('data-fate-weapon-name', 'Distant Tumulus');
+      expect($('[id=6917529097285204851]')).toHaveAttr('data-fate-weapon-name', 'Swarm of the Raven');
       // Inventory weapons
       expect($('[id=6917529135296833296]')).toHaveAttr('data-fate-weapon-name', 'MIDA Multi-Tool');
       expect($('[id=6917529139710693769]')).toHaveAttr('data-fate-weapon-name', 'Python');
@@ -103,7 +103,7 @@ describe('weaponDecorator.js', function() {
       });
 
       it('should store if it was tagged with junk', function() {
-        expect('[id="6917529142836279186"]').toHaveAttr('data-fate-dimtag-junk', 'true');
+        expect('[id="6917529159219864909"]').toHaveAttr('data-fate-dimtag-junk', 'true');
       });
 
       it('should store if it was not tagged with archive', function() {
@@ -111,7 +111,7 @@ describe('weaponDecorator.js', function() {
       });
 
       it('should store if it was tagged with archive', function() {
-        expect('[id="6917529143990647252"]').toHaveAttr('data-fate-dimtag-archive', 'true');
+        expect('[id="6917529082910552548"]').toHaveAttr('data-fate-dimtag-archive', 'true');
       });
 
       it('should store if it was not tagged with keep', function() {
@@ -119,7 +119,7 @@ describe('weaponDecorator.js', function() {
       });
 
       it('should store if it was tagged with keep', function() {
-        expect('[id="6917529142659232040"]').toHaveAttr('data-fate-dimtag-keep', 'true');
+        expect('[id="6917529163508229022"]').toHaveAttr('data-fate-dimtag-keep', 'true');
       });
 
       it('should store if it was not tagged with infuse', function() {
@@ -127,7 +127,7 @@ describe('weaponDecorator.js', function() {
       });
 
       it('should store if it was tagged with infuse', function() {
-        expect('[id="6917529087330069226"]').toHaveAttr('data-fate-dimtag-infuse', 'true');
+        expect('[id="6917529163596195380"]').toHaveAttr('data-fate-dimtag-infuse', 'true');
       });
 
       it('should store if not present in the DIM wishlist', function() {
@@ -135,11 +135,11 @@ describe('weaponDecorator.js', function() {
       });
 
       it('should store if the DIM wishlist likes it', function() {
-        expect('[id="6917529139131772400"]').toHaveAttr('data-fate-wishlist-status', 'accepted');
+        expect('[id="6917529160730652215"]').toHaveAttr('data-fate-wishlist-status', 'accepted');
       });
 
       it('should store if the DIM wishlist does not like it', function() {
-        expect('[id="6917529143743532153"]').toHaveAttr('data-fate-wishlist-status', 'rejected');
+        expect('[id="6917529149415810749"]').toHaveAttr('data-fate-wishlist-status', 'rejected');
       });
       
     });

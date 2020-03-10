@@ -34,8 +34,11 @@ function updateAttributes() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
-    const dimTags = $.map($(this).find('svg'), function(value, i) {
-      return $(value).attr('data-icon');
+    const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
+      const className = $(value).attr('class').split(' ').filter(function(cname) {
+        return cname.startsWith('fa-');
+      })[0];
+      return className.replace('fa-', '');
     });
 
     const dimJunk = dimTags.includes('ban');
