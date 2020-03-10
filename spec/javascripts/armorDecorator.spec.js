@@ -35,7 +35,7 @@ describe('armorDecorator.js', function() {
 
     beforeEach(function() {
       loadFixtures(
-        'entireDocumentRaw-5.62.0.html',
+        'entireDocumentRaw-5.73.0.html',
       );
       fateBus.publish(brunchModule, 'fate.refresh');
     });
@@ -49,24 +49,24 @@ describe('armorDecorator.js', function() {
     it('should store the original armor name', function() {
       // Equipped
       expect('[id=6917529114410685006]').toHaveAttr('data-fate-armor-name', 'Iron Will Hood');
-      expect('[id=6917529139756316838]').toHaveAttr('data-fate-armor-name', 'Contraverse Hold');
+      expect('[id=6917529147051786945]').toHaveAttr('data-fate-armor-name', 'Prodigal Gloves');
       expect('[id=6917529101903668442]').toHaveAttr('data-fate-armor-name', 'Ankaa Seeker IV');
-      expect('[id=6917529144055151721]').toHaveAttr('data-fate-armor-name', 'Iron Truage Legs');
-      expect('[id=6917529131142746950]').toHaveAttr('data-fate-armor-name', 'Binary Phoenix Bond');
+      expect('[id=6917529142423687024]').toHaveAttr('data-fate-armor-name', 'Transversive Steps');
+      expect('[id=6917529131137502844]').toHaveAttr('data-fate-armor-name', 'Binary Phoenix Bond');
 
       // Inventoried
-      expect('[id=6917529143978864432]').toHaveAttr('data-fate-armor-name', 'Righteous Hood');
-      expect('[id=6917529142900962681]').toHaveAttr('data-fate-armor-name', 'Getaway Artist');
-      expect('[id=6917529110410984681]').toHaveAttr('data-fate-armor-name', 'Thorium Holt Robes');
-      expect('[id=6917529134149306256]').toHaveAttr('data-fate-armor-name', 'Transversive Steps');
-      expect('[id=6917529131137502844]').toHaveAttr('data-fate-armor-name', 'Binary Phoenix Bond');
+      expect('[id=6917529164308367381]').toHaveAttr('data-fate-armor-name', 'Seventh Seraph Hood');
+      expect('[id=6917529133452736271]').toHaveAttr('data-fate-armor-name', 'Gloves of Exaltation');
+      expect('[id=6917529164308367382]').toHaveAttr('data-fate-armor-name', 'Seventh Seraph Robes');
+      expect('[id=6917529164308367384]').toHaveAttr('data-fate-armor-name', 'Seventh Seraph Boots');
+      expect('[id=6917529164308367383]').toHaveAttr('data-fate-armor-name', 'Seventh Seraph Bond');
 
       // Vaulted
       expect('[id=6917529136636191278]').toHaveAttr('data-fate-armor-name', 'The Stag');
       expect('[id=6917529140015081019]').toHaveAttr('data-fate-armor-name', 'Sunbracers');
       expect('[id=6917529143732442281]').toHaveAttr('data-fate-armor-name', 'Vesper of Radius');
       expect('[id=6917529142423687024]').toHaveAttr('data-fate-armor-name', 'Transversive Steps');
-      expect('[id=6917529143984834448]').toHaveAttr('data-fate-armor-name', 'Righteous Bond');
+      expect('[id=6917529094184040124]').toHaveAttr('data-fate-armor-name', 'Notorious Sentry Bond');
     });
 
     it('should record the registration status', function() {
@@ -75,8 +75,8 @@ describe('armorDecorator.js', function() {
     });
 
     it('should store the masterwork status', function() {
-      expect('[id=6917529114410685006]').toHaveAttr('data-fate-masterwork', 'true');
-      expect('[id=6917529143984834448]').toHaveAttr('data-fate-masterwork', 'false');
+      expect('[id=6917529142423687024]').toHaveAttr('data-fate-masterwork', 'true');
+      expect('[id=6917529093676727184]').toHaveAttr('data-fate-masterwork', 'false');
     });
 
     it('should record the serial number', function() {
@@ -110,7 +110,7 @@ describe('armorDecorator.js', function() {
       });
 
       it('should store if it was tagged with junk', function() {
-        expect($('[id="6917529140147844123"]')).toHaveAttr('data-fate-dimtag-junk', 'true');
+        expect($('[id="6917529110404742585"]')).toHaveAttr('data-fate-dimtag-junk', 'true');
       });
 
       it('should store if it was not tagged with archive', function() {
@@ -118,21 +118,9 @@ describe('armorDecorator.js', function() {
       });
 
       it('should store if it was tagged with archive', function() {
-        expect($('[id="6917529143382874808"]')).toHaveAttr('data-fate-dimtag-archive', 'true');
+        expect($('[id="6917529094280677113"]')).toHaveAttr('data-fate-dimtag-archive', 'true');
       });
 
-      it('should store if not present in the DIM wishlist', function() {
-        expect($('[id="6917529143732442281"]')).toHaveAttr('data-fate-wishlist-status', 'not-registered');
-      });
-
-      it('should store if the DIM wishlist likes it', function() {
-        expect($('[id="6917529123358352198"]')).toHaveAttr('data-fate-wishlist-status', 'accepted');
-      });
-
-      it('should store if the DIM wishlist does not like it', function() {
-        expect($('[id="6917529143984836532"]')).toHaveAttr('data-fate-wishlist-status', 'rejected');
-      });
-      
     });
 
     describe('on subsequent refreshes', function() {

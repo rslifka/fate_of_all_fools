@@ -35,8 +35,11 @@ function updateAttributes() {
   $('[data-fate-armor-registered]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
-    const dimTags = $.map($(this).find('svg'), function(value, i) {
-      return $(value).attr('data-icon');
+    const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
+      const className = $(value).attr('class').split(' ').filter(function(cname) {
+        return cname.startsWith('fa-');
+      })[0];
+      return className.replace('fa-', '');
     });
 
     const dimJunk = dimTags.includes('ban');
@@ -44,14 +47,6 @@ function updateAttributes() {
 
     const dimArchive = dimTags.includes('archive');
     $(this).attr('data-fate-dimtag-archive', dimArchive);
-
-    let wishlistStatus = 'not-registered';
-    if (dimTags.includes('thumbs-up')) {
-      wishlistStatus = 'accepted';
-    } else if (dimTags.includes('thumbs-down')) {
-      wishlistStatus = 'rejected';
-    }
-    $(this).attr('data-fate-wishlist-status', wishlistStatus);
 
     const isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
