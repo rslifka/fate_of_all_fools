@@ -1,4 +1,4 @@
-/* 5.47.0 */
+/* 5.73.0 */
 
 /*
   This allows you to control the number of items in your vault by
@@ -62,7 +62,7 @@
   REASON: We have our own visual treatment (saturation change) when an item
           is junk, and don't need to double-up.
 */
-._3SO_- > svg.fa-ban {
+._3SO_- > .fa-ban {
   display: none !important;
 }
 
@@ -92,7 +92,7 @@
   REASON: Archived items are shrunken and desaturated; no need for the icon
           as well.
 */
-._3SO_- > svg.fa-archive {
+._3SO_- > .fa-archive {
   display: none !important;
 }
 
