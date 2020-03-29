@@ -47,6 +47,14 @@
 }
 
 /*
+  EFFECT: Shrink the dimensions of DIM's built-in tag icons
+  REASON: They're bigger than they need to be :)
+*/
+.item ._2qGNh {
+  font-size: 10px;
+}
+
+/*
   EFFECT: Hides the DIM built-in "lock" icon when an item is locked.
   REASON: Most items in the inventory are locked, which means that
           this end up being super graphically noisy. I.e. most every
