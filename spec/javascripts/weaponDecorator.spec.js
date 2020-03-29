@@ -30,6 +30,8 @@ describe('weaponDecorator.js', function() {
             return new WeaponRollAssessment('6917529087330069226', "Izanagi's Burden", '-', 'Y', 'N', 'Great for boss DPS');
           case '6917529139710693769':
             return new WeaponRollAssessment('6917529139710693769', 'Python', '-', 'N', 'N', 'Gambit shotty; just OK');
+          case '6917529155622746994':
+            return new WeaponRollAssessment('6917529155622746994', 'Breachlight', '9', 'Y', 'Y', '');
           default:
             return null;
         }
@@ -93,8 +95,20 @@ describe('weaponDecorator.js', function() {
     });
 
     it('should record the light', function() {
-      expect('[id="6917529136835103644"]').toHaveAttr('data-fate-light', '956');
+      expect($('[id="6917529136835103644"]')).toHaveAttr('data-fate-light', '956');
     });
+
+    describe('when there are comments', function() {
+      it('should replace the weapon tooltip with our comments', function() {
+        expect($('[id="6917529136835103644"]')).toHaveAttr('title', "Not Forgotten\nLonger range Lunas Howl");
+      });
+    });
+
+    describe('when there are no comments', function() {
+      it('should leave the weapon tooltip with just the weapon name', function() {
+        expect($('[id="6917529155622746994"]')).toHaveAttr('title', 'Breachlight');
+      });
+    })
 
     describe('supported DIM tags', function() {
 

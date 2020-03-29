@@ -34,6 +34,9 @@ function updateAttributes() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
+    const name = $(this).attr('data-fate-weapon-name')
+    $(this).attr('title', name);
+
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
       const className = $(value).attr('class').split(' ').filter(function(cname) {
         return cname.startsWith('fa-');
@@ -65,6 +68,7 @@ function updateAttributes() {
     $(this).attr('data-fate-weapon-registered', isWeaponRegistered);
 
     if (!isWeaponRegistered) {
+      // $(this).attr('title', $(this).attr('data-fate-weapon-name'));
       $(this).removeAttr('data-fate-comment');
       $(this).removeAttr('data-fate-weapon-junk');
       $(this).removeAttr('data-fate-weapon-pve');
@@ -73,10 +77,15 @@ function updateAttributes() {
     }
 
     const w = rollDatabase.get(serialNumber);
-    $(this).attr('data-fate-comment', w.comments);
     $(this).attr('data-fate-weapon-junk', w.pveUtility === Utility.NO && w.pvpUtility === Utility.NO);
     $(this).attr('data-fate-weapon-pve', w.pveUtility === Utility.YES);
     $(this).attr('data-fate-weapon-pvp', w.pvpUtility === Utility.YES);
+
+    $(this).attr('data-fate-comment', w.comments);
+
+    if (w.comments !== '') {
+      $(this).attr('title', `${name}\n${w.comments}`);
+    }
   });
 }
 
