@@ -5,28 +5,27 @@ describe('shaderDecorator.js', function() {
   const shader = require('shader.js');
   const shaderDatabase = require('shaderDatabase').shaderDB;
 
+  const KEEP_SHADER_NAME = 'New Age Black Armory';
+  const NO_KEEP_SHADER_NAME = 'Vitrified Chronology'
+
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
   });
 
   beforeEach(function() {
     loadFixtures(
-      'shaders/arcticDreamscapeShaderRaw.html',
-      'shaders/atlantisWashShaderRaw.html',
-      'shaders/metallicSunriseShaderRaw.html',
-      'shaders/watermelonShaderRaw.html'
+      'entireDocumentRaw-6.2.0.html'
     );
     spyOn(shaderDatabase, 'contains').and.callFake(function(name) {
-      return ['Arctic Dreamscape','Atlantis Wash','Watermelon'].includes(name);
+      // "Registering" one from inventory and one the from vault
+      return ['New Age Black Armory','Vitrified Chronology'].includes(name);
     });
     spyOn(shaderDatabase, 'get').and.callFake(function(name) {
       switch(name) {
-        case 'Arctic Dreamscape':
-          return {name: 'Arctic Dreamscape', keepStatus:shader.Keep.YES, comments: 'Cool winter camo!'};
-        case 'Atlantis Wash':
-          return {name: 'Atlantis Wash', keepStatus:shader.Keep.NO, comments: 'Titan vomitorium :('};
-        case 'Watermelon':
-          return {name: 'Watermelon', keepStatus:shader.Keep.UNKNOWN, comments: 'Not sure yet'};
+        case KEEP_SHADER_NAME:
+          return {name: KEEP_SHADER_NAME, keepStatus:shader.Keep.YES, comments: 'Cool winter camo!'};
+        case NO_KEEP_SHADER_NAME:
+          return {name: NO_KEEP_SHADER_NAME, keepStatus:shader.Keep.NO, comments: 'Titan vomitorium :('};
       }
     });
     fateBus.publish(brunchModule, 'fate.refresh');
@@ -34,37 +33,42 @@ describe('shaderDecorator.js', function() {
 
   describe('in response to fate.refresh', function() {
     it('should store the original shader name', function() {
-      expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toExist();
-      expect($('[data-fate-shader-name="Atlantis Wash"]')).toExist();
-      expect($('[data-fate-shader-name="Metallic Sunrise"]')).toExist();
-      expect($('[data-fate-shader-name="Watermelon"]')).toExist();
+      expect($('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]')).toExist();
+      expect($('[data-fate-shader-name="'+NO_KEEP_SHADER_NAME+'"]')).toExist();
+      expect($('[data-fate-shader-name="Crucible Vermillion"]')).toExist();
+      expect($('[data-fate-shader-name="Iron Oxide"]')).toExist();
     });
     it('should store if the shader is registered', function() {
-      expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toHaveAttr('data-fate-shader-registered', 'true');
-      expect($('[data-fate-shader-name="Atlantis Wash"]')).toHaveAttr('data-fate-shader-registered', 'true');
-      expect($('[data-fate-shader-name="Metallic Sunrise"]')).toHaveAttr('data-fate-shader-registered', 'false');
-      expect($('[data-fate-shader-name="Watermelon"]')).toHaveAttr('data-fate-shader-registered', 'true');
+      expect($('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-shader-registered', 'true');
+      expect($('[data-fate-shader-name="'+NO_KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-shader-registered', 'true');
+      expect($('[data-fate-shader-name="Crucible Vermillion"]')).toHaveAttr('data-fate-shader-registered', 'false');
+      expect($('[data-fate-shader-name="Iron Oxide"]')).toHaveAttr('data-fate-shader-registered', 'false');
     });
     it('should store if we should keep the shader', function() {
-      expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toHaveAttr('data-fate-shader-keep', 'true');
-      expect($('[data-fate-shader-name="Atlantis Wash"]')).toHaveAttr('data-fate-shader-keep', 'false');
-      expect($('[data-fate-shader-name="Metallic Sunrise"]')).not.toHaveAttr('data-fate-shader-keep');
-      expect($('[data-fate-shader-name="Watermelon"]')).toHaveAttr('data-fate-shader-keep', 'unknown');
+      expect($('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-shader-keep', 'true');
+      expect($('[data-fate-shader-name="'+NO_KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-shader-keep', 'false');
     });
     it('should store the comments', function() {
-      expect($('[data-fate-shader-name="Arctic Dreamscape"]')).toHaveAttr('data-fate-comment', 'Cool winter camo!');
-      expect($('[data-fate-shader-name="Atlantis Wash"]')).toHaveAttr('data-fate-comment', 'Titan vomitorium :(');
-      expect($('[data-fate-shader-name="Metallic Sunrise"]')).not.toHaveAttr('data-fate-comment');
-      expect($('[data-fate-shader-name="Watermelon"]')).toHaveAttr('data-fate-comment', 'Not sure yet');
+      expect($('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-comment', 'Cool winter camo!');
+      expect($('[data-fate-shader-name="'+NO_KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-comment', 'Titan vomitorium :(');
     });
   });
 
   describe('on subsequent refreshes', function() {
+
     it('should not overwrite the original shader name' , function() {
-      $('[drag-channel=Shaders]').attr('title', '_');
+      $('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]').attr('title', '_');
       fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('[drag-channel=Shaders]')).toHaveAttr('data-fate-shader-name', 'Arctic Dreamscape');
+      expect($('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-shader-name', KEEP_SHADER_NAME);
     });
+
+    it('should remove registered attributes if the shader becomes unregistered', function() {
+      $('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]').attr('data-fate-shader-name', 'TEST_NOW_UNREGISTERED');
+      fateBus.publish(brunchModule, 'fate.refresh');
+      expect($('[data-fate-shader-name="TEST_NOW_UNREGISTERED"]')).toHaveAttr('data-fate-shader-registered', 'false');
+      expect($('[data-fate-shader-name="TEST_NOW_UNREGISTERED"]')).not.toHaveAttr('data-fate-shader-keep');
+      expect($('[data-fate-shader-name="TEST_NOW_UNREGISTERED"]')).not.toHaveAttr('data-fate-shader-comment');
+    })
   });
 
 });

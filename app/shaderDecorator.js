@@ -2,22 +2,28 @@ const $ = require('jquery');
 const shader = require('shader.js');
 const shaderDatabase = require('shaderDatabase.js').shaderDB;
 
-function storeShaderNames() {
-  $('[title$=Shader]').not('[data-fate-shader-name]').each(function(index,element) {
+function storeShaderData() {
+  $('.bucket-2973005342').find('.item').not('[data-fate-shader-registered]').each(function() {
+    $(this).attr('data-fate-shader-registered', false);
+
     $(this).attr('data-fate-shader-name', $(this).attr('title').split("\n")[0]);
-  });
+  })
 }
 
-function storeRegistrationStatus() {
-  $('[data-fate-shader-name]').each(function(index,element) {
+function updateAttributes() {
+  $('[data-fate-shader-registered]').each(function(index,element) {
     const name = $(this).attr('data-fate-shader-name');
-    $(this).attr('data-fate-shader-registered', shaderDatabase.contains(name));
-  });
-}
 
-function storeKeepStatus() {
-  $('[data-fate-shader-registered="true"]').each(function(index,element) {
-    const s = shaderDatabase.get($(this).attr('data-fate-shader-name'));
+    const isShaderRegistered = shaderDatabase.contains(name);
+    $(this).attr('data-fate-shader-registered', isShaderRegistered);
+
+    if (!isShaderRegistered) {
+      $(this).removeAttr('data-fate-comment');
+      $(this).removeAttr('data-fate-shader-keep');
+      return
+    }
+
+    const s = shaderDatabase.get(name);
     switch(s.keepStatus) {
       case shader.Keep.YES:
         $(this).attr('data-fate-shader-keep', true);
@@ -29,19 +35,12 @@ function storeKeepStatus() {
         $(this).attr('data-fate-shader-keep', 'unknown');
         break;
     }
-  });
-}
 
-function storeComments() {
-  $('[data-fate-shader-registered="true"]').each(function(index,element) {
-    const s = shaderDatabase.get($(this).attr('data-fate-shader-name'));
     $(this).attr('data-fate-comment', s.comments);
   });
 }
 
 fateBus.subscribe(module, 'fate.refresh', function() {
-  storeShaderNames();
-  storeRegistrationStatus();
-  storeKeepStatus();
-  storeComments();
+  storeShaderData();
+  updateAttributes();
 });
