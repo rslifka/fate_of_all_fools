@@ -8,25 +8,14 @@ describe('armorDecorator.js', function() {
   beforeEach(function() {
     fateBus.registerModule(brunchModule);
     spyOn(armorRollDatabase, 'contains').and.callFake(function(rollID) {
-      return ['6917529143732442281'].includes(rollID);
+      return ['6917529143732442281', '6917529143764907014'].includes(rollID);
     });
     spyOn(armorRollDatabase, 'get').and.callFake(function(rollID) {
-      if ('6917529143732442281' === rollID) {
-        return new ArmorRoll(
-          '6917529143732442281',
-          'Vesper of Radius',
-          'Solar',
-          '23',
-          'Y',
-          'N',
-          '10',
-          '11',
-          '7',
-          '12',
-          '23',
-          '6',
-          'Roll-specific comments'
-        );
+      switch(rollID) {
+        case '6917529143732442281':
+          return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Solar', '23', 'Y', 'N', '10', '11', '7', '12', '23', '6', 'Roll-specific comments' );
+        case '6917529143764907014':
+          return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Solar', '23', 'Y', 'N', '10', '11', '7', '12', '23', '6', '' );
       }
     });
   });
@@ -102,6 +91,18 @@ describe('armorDecorator.js', function() {
     it('should store the light', function() {
       expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-light', '961');
     });
+
+    describe('when there are comments', function() {
+      it('should replace the tooltip with our comments', function() {
+        expect($('[id="6917529143732442281"]')).toHaveAttr('title', "Vesper of Radius\nRoll-specific comments");
+      });
+    });
+
+    describe('when there are no comments', function() {
+      it('should leave the tooltip with just the weapon name', function() {
+        expect($('[id="6917529143764907014"]')).toHaveAttr('title', 'Wings of Sacred Dawn');
+      });
+    })
 
     describe('supported DIM tags', function() {
 
