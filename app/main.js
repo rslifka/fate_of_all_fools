@@ -4,9 +4,6 @@ require('configuration.js');
 // Use DIM styling overrides and our own custom styling
 require('beautification.js');
 
-// Update weapon comments from our database
-require('commentDecorator.js');
-
 // Show dupes
 require('dupeIndicator.js');
 

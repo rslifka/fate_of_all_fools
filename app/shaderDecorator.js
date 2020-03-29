@@ -20,6 +20,7 @@ function updateAttributes() {
     if (!isShaderRegistered) {
       $(this).removeAttr('data-fate-comment');
       $(this).removeAttr('data-fate-shader-keep');
+      $(this).attr('title', `${name}\nShader`)
       return
     }
 
@@ -37,6 +38,9 @@ function updateAttributes() {
     }
 
     $(this).attr('data-fate-comment', s.comments);
+
+    const title = (name + ((s.comments === '') ? ('') : (`\n${s.comments}`)));
+    $(this).attr('title', title);
   });
 }
 
