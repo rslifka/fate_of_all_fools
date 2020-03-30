@@ -13,7 +13,7 @@ exports.ItemDataRefresher = class ItemDataRefresher {
   }
 
   onLoadHandler(response) {
-    logger.log('itemDataRefresher.js ('+this.itemType+'): data fetched');
+    // logger.log('itemDataRefresher.js ('+this.itemType+'): data fetched');
 
     const responseText = response.responseText;
     const responseTextMD5 = md5(responseText);

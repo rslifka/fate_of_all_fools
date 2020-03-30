@@ -2,7 +2,7 @@ const $ = require('jquery');
 const logger = require('logger.js');
 
 fateBus.subscribe(module, 'fate.refresh', function() {
-  logger.log('infusion.js: Calculating infusables');
+  // logger.log('infusion.js: Calculating infusables');
   styleInfusionIndicators();
 });
 

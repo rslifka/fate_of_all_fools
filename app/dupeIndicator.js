@@ -3,7 +3,7 @@ const logger = require('logger.js');
 const indicators = require('indicators.js');
 
 fateBus.subscribe(module, 'fate.refresh', function() {
-  logger.log('dupeIndicator.js: Calculating duplicates');
+  // logger.log('dupeIndicator.js: Calculating duplicates');
   styleDupeIndicators(calculateWorkingSet());
 });
 

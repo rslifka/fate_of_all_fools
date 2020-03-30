@@ -82,6 +82,6 @@ function copyToClipboard(str) {
 }
 
 fateBus.subscribe(module, 'fate.refresh', function() {
-  logger.log('itemIdCopy.js: Registering copy on all weapons');
+  // logger.log('itemIdCopy.js: Registering copy on all weapons');
   registerListeners();
 });

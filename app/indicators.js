@@ -53,7 +53,7 @@ function prepareIndicatorSpace() {
 }
 
 fateBus.subscribe(module, 'fate.refresh', function() {
-  logger.log('indicators.js: Inserting indicator elements');
+  // logger.log('indicators.js: Inserting indicator elements');
   prepareIndicatorSpace();
 });
 
