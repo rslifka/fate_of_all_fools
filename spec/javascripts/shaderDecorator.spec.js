@@ -60,41 +60,6 @@ describe('shaderDecorator.js', function() {
       expect($('[data-fate-shader-name="'+NO_KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-comment', 'Titan vomitorium :(');
     });
 
-    describe('when there are comments', function() {
-      it('should replace the shader tooltip with our comments', function() {
-        expect($('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]')).toHaveAttr('title', KEEP_SHADER_NAME+"\nCool winter camo!");
-      });
-    });
-
-    describe('when there are no comments', function() {
-      it('should leave the title as-is', function() {
-        expect($('[data-fate-shader-name="'+NO_COMMENTS_NAME+'"]')).toHaveAttr('title', NO_COMMENTS_NAME);
-      });
-    })
-
-  });
-
-  describe('on subsequent refreshes', function() {
-
-    it('should not overwrite the original shader name' , function() {
-      $('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]').attr('title', '_');
-      fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]')).toHaveAttr('data-fate-shader-name', KEEP_SHADER_NAME);
-    });
-
-    it('should remove registered attributes if the shader becomes unregistered', function() {
-      $('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]').attr('data-fate-shader-name', 'TEST_NOW_UNREGISTERED');
-      fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('[data-fate-shader-name="TEST_NOW_UNREGISTERED"]')).toHaveAttr('data-fate-shader-registered', 'false');
-      expect($('[data-fate-shader-name="TEST_NOW_UNREGISTERED"]')).not.toHaveAttr('data-fate-shader-keep');
-      expect($('[data-fate-shader-name="TEST_NOW_UNREGISTERED"]')).not.toHaveAttr('data-fate-shader-comment');
-    })
-
-    it('should reset the title if the shader becomes unregistered', function() {
-      $('[data-fate-shader-name="'+KEEP_SHADER_NAME+'"]').attr('data-fate-shader-name', 'TEST_NOW_UNREGISTERED');
-      fateBus.publish(brunchModule, 'fate.refresh');
-      expect($('[data-fate-shader-name="TEST_NOW_UNREGISTERED"]')).toHaveAttr('title', "TEST_NOW_UNREGISTERED\nShader");
-    });
   });
 
 });
