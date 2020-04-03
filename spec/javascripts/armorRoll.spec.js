@@ -9,6 +9,7 @@ describe('armorRoll.js', function() {
     '23',
     'Y',
     'N',
+    'dawn',
     '1',
     '2',
     '3',
@@ -34,6 +35,7 @@ describe('armorRoll.js', function() {
       expect(a.season).toBe('23');
       expect(a.pveUtility).toBe(Utility.YES);
       expect(a.pvpUtility).toBe(Utility.NO);
+      expect(a.overlay).toBe('dawn');
       expect(a.mob).toBe(1);
       expect(a.res).toBe(2);
       expect(a.rec).toBe(3);
