@@ -68,3 +68,14 @@
   opacity: 0.5;
   width: var(--item-size);
 }
+
+.foaf-item-overlay {
+  background-color: rgba(31,31,31,1);
+  color: rgba(255,255,255,0.8);
+  font-size: 9px;
+  padding: 0 2px 1px 2px;
+  position: absolute;
+  text-shadow: none;
+  top: 0;
+  right: 0;
+}

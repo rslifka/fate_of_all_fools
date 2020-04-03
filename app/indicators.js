@@ -41,6 +41,7 @@ function prepareIndicatorSpace() {
     ARMOR_GLYPHS.forEach(function(glyph, className) {
       $(element).append($('<div>', {'class': className + ' ' + glyph + ' foaf-glyph'}));
     });
+    $(this).append($('<div>', {'class': 'foaf-item-overlay'}));
     $(this).attr('data-fate-indicator-init', true);
   });
 

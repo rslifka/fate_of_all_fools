@@ -81,6 +81,8 @@ function updateAttributes() {
     if (a.comments !== '') {
       $(this).attr('title', `${name}\n${a.comments}`);
     }
+
+    $(this).find('.foaf-item-overlay').text(a.overlay);
   });
 }
 

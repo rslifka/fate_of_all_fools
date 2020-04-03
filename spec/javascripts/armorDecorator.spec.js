@@ -6,6 +6,9 @@ describe('armorDecorator.js', function() {
   const ArmorRoll = require('armorRoll.js').ArmorRoll;
 
   beforeEach(function() {
+    // Indicators creates the glyph space whose contents we're validating in some of our tests
+    fateBus.unmute('indicators.js');
+
     fateBus.registerModule(brunchModule);
     spyOn(armorRollDatabase, 'contains').and.callFake(function(rollID) {
       return ['6917529143732442281', '6917529143764907014'].includes(rollID);
@@ -13,9 +16,9 @@ describe('armorDecorator.js', function() {
     spyOn(armorRollDatabase, 'get').and.callFake(function(rollID) {
       switch(rollID) {
         case '6917529143732442281':
-          return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Solar', '23', 'Y', 'N', 'dawn', '10', '11', '7', '12', '23', '6', 'Roll-specific comments' );
+          return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Solar', '23', 'Y', 'N', '', '10', '11', '7', '12', '23', '6', 'Roll-specific comments' );
         case '6917529143764907014':
-          return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Solar', '23', 'Y', 'N', 'dawn', '10', '11', '7', '12', '23', '6', '' );
+          return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Solar', '23', 'Y', 'N', 'top-tree dawn', '10', '11', '7', '12', '23', '6', '' );
       }
     });
   });
@@ -26,6 +29,8 @@ describe('armorDecorator.js', function() {
       loadFixtures(
         'entireDocumentRaw-5.73.0.html',
       );
+      fateBus.publish(brunchModule, 'fate.refresh');
+      // Once more, to ensure indicators get a chance to register
       fateBus.publish(brunchModule, 'fate.refresh');
     });
 
@@ -90,6 +95,11 @@ describe('armorDecorator.js', function() {
 
     it('should store the light', function() {
       expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-light', '961');
+    });
+
+    it('should store the overlay text', function() {
+      expect($('[id=6917529143764907014] > .foaf-item-overlay')).toExist();
+      expect($('[id=6917529143764907014] > .foaf-item-overlay')).toContainText('top-tree dawn');
     });
 
     describe('when there are comments', function() {
