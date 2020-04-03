@@ -122,6 +122,22 @@ describe('armorDecorator.js', function() {
         expect($('[id="6917529094280677113"]')).toHaveAttr('data-fate-dimtag-archive', 'true');
       });
 
+      it('should store if it was not tagged with keep', function() {
+        expect($('[id="6917529143732442281"]')).toHaveAttr('data-fate-dimtag-keep', 'false');
+      });
+
+      it('should store if it was tagged with keep', function() {
+        expect($('[id="6917529100955780876"]')).toHaveAttr('data-fate-dimtag-keep', 'true');
+      });
+
+      it('should store if it was not tagged with favourite', function() {
+        expect($('[id="6917529143732442281"]')).toHaveAttr('data-fate-dimtag-favourite', 'false');
+      });
+
+      it('should store if it was tagged with favourite', function() {
+        expect($('[id="6917529110564948888"]')).toHaveAttr('data-fate-dimtag-favourite', 'true');
+      });
+
     });
 
     describe('on subsequent refreshes', function() {

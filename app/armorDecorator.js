@@ -51,6 +51,12 @@ function updateAttributes() {
     const dimArchive = dimTags.includes('archive');
     $(this).attr('data-fate-dimtag-archive', dimArchive);
 
+    const dimKeep = dimTags.includes('tag');
+    $(this).attr('data-fate-dimtag-keep', dimKeep);
+
+    const dimFavourite = dimTags.includes('heart');
+    $(this).attr('data-fate-dimtag-favourite', dimFavourite);
+
     const isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
     
