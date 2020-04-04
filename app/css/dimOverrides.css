@@ -189,3 +189,11 @@ body,
   bottom: 16px;
   right: -1px;
 }
+
+/*
+  EFFECT: Hide large notifications
+  REASON: When moving more than a couple of items, they cover up the screen
+*/
+.notifications-container {
+  display: none;
+}
