@@ -111,7 +111,7 @@
           reason about it. Current DIM treatment is a bit too muted.
 */
 ._9AyEu {
-  opacity: 0.8;
+  opacity: 0.6;
   transform: scale(0.85);
 }
 
@@ -196,4 +196,14 @@ body,
 */
 .notifications-container {
   display: none;
+}
+
+/*
+  EFFECT: Dim all unregistered weapons and armor
+  REASON: So we can find our registered items more easily!
+*/
+.item[data-fate-armor-registered=false][data-fate-dimtag-archive=false],
+.item[data-fate-weapon-registered=false][data-fate-dimtag-archive=false]
+{
+  opacity: 0.6;
 }
