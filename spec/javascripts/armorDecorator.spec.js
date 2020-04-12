@@ -97,6 +97,10 @@ describe('armorDecorator.js', function() {
       expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-light', '961');
     });
 
+    it('should store the armor element', function() {
+      expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-element', 'solar');
+    }); 
+
     it('should store the overlay text', function() {
       expect($('[id=6917529143764907014] > .foaf-item-overlay')).toExist();
       expect($('[id=6917529143764907014] > .foaf-item-overlay')).toContainText('top-tree dawn');

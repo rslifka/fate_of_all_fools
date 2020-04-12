@@ -76,6 +76,7 @@ function updateAttributes() {
     $(this).attr('data-fate-armor-junk', a.pveUtility === Utility.NO && a.pvpUtility === Utility.NO);
     $(this).attr('data-fate-armor-pve', a.pveUtility === Utility.YES);
     $(this).attr('data-fate-armor-pvp', a.pvpUtility === Utility.YES);
+    $(this).attr('data-fate-element', a.element);
 
     $(this).attr('data-fate-comment', a.comments);
     if (a.comments !== '') {
