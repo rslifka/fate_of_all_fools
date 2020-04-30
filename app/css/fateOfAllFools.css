@@ -69,6 +69,15 @@
   width: var(--item-size);
 }
 
+.item[data-fate-dimtag-infuse='true']::before {
+  background-color: yellow;
+  content: " ";
+  position: absolute;
+  height: var(--item-size);
+  opacity: 0.5;
+  width: var(--item-size);
+}
+
 [data-fate-armor-registered='true'] > .foaf-item-overlay {
   background-color: rgba(31,31,31,1);
   color: rgba(255,255,255,0.8);
