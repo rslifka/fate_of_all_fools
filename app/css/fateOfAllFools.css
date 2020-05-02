@@ -70,7 +70,7 @@
 }
 
 .item[data-fate-dimtag-infuse='true']::before {
-  background-color: yellow;
+  background-color: yellow !important; 
   content: " ";
   position: absolute;
   height: var(--item-size);
