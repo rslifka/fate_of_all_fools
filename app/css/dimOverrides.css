@@ -5,7 +5,7 @@
   shrinking the window.
 */
 .inventory-content {
-  min-width: unset;
+  min-width: unset !important;
 }
 
 /*
