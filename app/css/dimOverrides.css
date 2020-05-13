@@ -9,6 +9,15 @@
 }
 
 /*
+  Remove the white border from the equipped item. We know from the way that
+  DIM mirrors the Destiny UI that it's equipped.
+*/
+.equipped-item {
+  border: none !important;
+  padding: none !important;
+}
+
+/*
   Hide the searching + symbol added to each vault slot.
 */
 .fa-plus-circle {
