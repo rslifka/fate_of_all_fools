@@ -32,7 +32,7 @@ function registerListeners() {
       });
     }, 'keypress');
 
-    Mousetrap.bind('m', function() {
+    Mousetrap.bind('n', function() {
       const $jqElement = $(document.elementFromPoint(mousePositionX, mousePositionY));
       let $itemElement = $jqElement;
       if (!$itemElement.is('[data-fate-serial]')) {
