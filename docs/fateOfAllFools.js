@@ -454,7 +454,7 @@ for(l=s[s.length-1].ownerDocument,
 // Reenable scripts
 ke.map(s,O),f=0;f<u;f++)c=s[f],nt.test(c.type||"")&&!We.access(c,"globalEval")&&ke.contains(l,c)&&(c.src&&"module"!==(c.type||"").toLowerCase()?
 // Optional AJAX dependency, but won't run scripts if not present
-ke._evalUrl&&!c.noModule&&ke._evalUrl(c.src,{nonce:c.nonce||c.getAttribute("nonce")},l):n(c.textContent.replace(lt,""),c,l))}return e}function L(e,t,n){for(var r,i=t?ke.filter(t,e):e,o=0;null!=(r=i[o]);o++)n||1!==r.nodeType||ke.cleanData(w(r)),r.parentNode&&(n&&Ke(r)&&j(w(r,"script")),r.parentNode.removeChild(r));return e}function H(e,t,n){var r,i,o,a,
+ke._evalUrl&&!c.noModule&&ke._evalUrl(c.src,{nonce:c.nonce||c.getAttribute("nonce")},l):n(c.textContent.replace(lt,""),c,l))}return e}function L(e,t,n){for(var r,i=t?ke.filter(t,e):e,o=0;null!=(r=i[o]);o++)n||1!==r.nodeType||ke.cleanData(w(r)),r.parentNode&&(n&&Ke(r)&&j(w(r,"script")),r.parentNode.removeChild(r));return e}function I(e,t,n){var r,i,o,a,
 // Support: Firefox 51+
 // Retrieving style before computed somehow
 // fixes an issue with getting wrong values
@@ -473,7 +473,7 @@ s=e.style;
 // Revert the changed values
 // Support: IE <=9 - 11 only
 // IE returns zIndex value as an integer.
-return n=n||dt(e),n&&(a=n.getPropertyValue(t)||n[t],""!==a||Ke(e)||(a=ke.style(e,t)),!ye.pixelBoxStyles()&&ft.test(a)&&ht.test(t)&&(r=s.width,i=s.minWidth,o=s.maxWidth,s.minWidth=s.maxWidth=s.width=a,a=n.width,s.width=r,s.minWidth=i,s.maxWidth=o)),void 0!==a?a+"":a}function I(e,t){
+return n=n||dt(e),n&&(a=n.getPropertyValue(t)||n[t],""!==a||Ke(e)||(a=ke.style(e,t)),!ye.pixelBoxStyles()&&ft.test(a)&&ht.test(t)&&(r=s.width,i=s.minWidth,o=s.maxWidth,s.minWidth=s.maxWidth=s.width=a,a=n.width,s.width=r,s.minWidth=i,s.maxWidth=o)),void 0!==a?a+"":a}function H(e,t){
 // Define the hook, we'll check on the first run if it's really needed.
 return{get:function(){
 // Hook not needed (or it's not possible to use it due
@@ -512,7 +512,7 @@ return!r&&o>=0&&(u+=Math.max(0,Math.ceil(e["offset"+t[0].toUpperCase()+t.slice(1
 var r=dt(e),
 // To avoid forcing a reflow, only fetch boxSizing if we need it (gh-4322).
 // Fake content-box until we know it's needed to know the true value.
-i=!ye.boxSizingReliable()||n,a=i&&"border-box"===ke.css(e,"boxSizing",!1,r),s=a,u=H(e,t,r),c="offset"+t[0].toUpperCase()+t.slice(1);
+i=!ye.boxSizingReliable()||n,a=i&&"border-box"===ke.css(e,"boxSizing",!1,r),s=a,u=I(e,t,r),c="offset"+t[0].toUpperCase()+t.slice(1);
 // Support: Firefox <=54
 // Return a confounding non-pixel value or feign ignorance, as appropriate.
 if(ft.test(u)){if(!n)return u;u="auto"}
@@ -995,7 +995,7 @@ c&&!r&&m.length>0&&p+n.length>1&&t.uniqueSort(u)}
 // Override manipulation of globals by nested matchers
 return c&&(W=x,D=y),g};return i?r(a):a}var w,j,T,k,C,S,E,_,D,N,A,
 // Local document vars
-O,q,M,R,L,H,I,P,
+O,q,M,R,L,I,H,P,
 // Instance-specific data
 B="sizzle"+1*new Date,F=e.document,W=0,G=0,U=n(),$=n(),V=n(),z=n(),X=function(e,t){return e===t&&(A=!0),0},
 // Instance methods
@@ -1138,7 +1138,7 @@ i=t.getElementsByName(e),r=0;o=i[r++];)if(n=o.getAttributeNode("id"),n&&n.value=
 // By happy coincidence, a (broken) gEBTN appears on DocumentFragment nodes too
 o=t.getElementsByTagName(e);
 // Filter out possible comments
-if("*"===e){for(;n=o[i++];)1===n.nodeType&&r.push(n);return r}return o},T.find.CLASS=j.getElementsByClassName&&function(e,t){if("undefined"!=typeof t.getElementsByClassName&&R)return t.getElementsByClassName(e)},H=[],L=[],(j.qsa=ye.test(q.querySelectorAll))&&(i(function(e){var t;
+if("*"===e){for(;n=o[i++];)1===n.nodeType&&r.push(n);return r}return o},T.find.CLASS=j.getElementsByClassName&&function(e,t){if("undefined"!=typeof t.getElementsByClassName&&R)return t.getElementsByClassName(e)},I=[],L=[],(j.qsa=ye.test(q.querySelectorAll))&&(i(function(e){var t;
 // Select is set to empty string on purpose
 // This is to test IE's treatment of not explicitly
 // setting a boolean content attribute,
@@ -1186,13 +1186,13 @@ e.querySelectorAll("[name=d]").length&&L.push("name"+re+"*[*^$|!~]?="),
 M.appendChild(e).disabled=!0,2!==e.querySelectorAll(":disabled").length&&L.push(":enabled",":disabled"),
 // Support: Opera 10 - 11 only
 // Opera 10-11 does not throw on post-comma invalid pseudos
-e.querySelectorAll("*,:x"),L.push(",.*:")})),(j.matchesSelector=ye.test(I=M.matches||M.webkitMatchesSelector||M.mozMatchesSelector||M.oMatchesSelector||M.msMatchesSelector))&&i(function(e){
+e.querySelectorAll("*,:x"),L.push(",.*:")})),(j.matchesSelector=ye.test(H=M.matches||M.webkitMatchesSelector||M.mozMatchesSelector||M.oMatchesSelector||M.msMatchesSelector))&&i(function(e){
 // Check to see if it's possible to do matchesSelector
 // on a disconnected node (IE 9)
-j.disconnectedMatch=I.call(e,"*"),
+j.disconnectedMatch=H.call(e,"*"),
 // This should fail with an exception
 // Gecko does not error, returns false instead
-I.call(e,"[s!='']:x"),H.push("!=",ae)}),L=L.length&&new RegExp(L.join("|")),H=H.length&&new RegExp(H.join("|")),t=ye.test(M.compareDocumentPosition),P=t||ye.test(M.contains)?function(e,t){var n=9===e.nodeType?e.documentElement:e,r=t&&t.parentNode;return e===r||!(!r||1!==r.nodeType||!(n.contains?n.contains(r):e.compareDocumentPosition&&16&e.compareDocumentPosition(r)))}:function(e,t){if(t)for(;t=t.parentNode;)if(t===e)return!0;return!1},X=t?function(e,t){
+H.call(e,"[s!='']:x"),I.push("!=",ae)}),L=L.length&&new RegExp(L.join("|")),I=I.length&&new RegExp(I.join("|")),t=ye.test(M.compareDocumentPosition),P=t||ye.test(M.contains)?function(e,t){var n=9===e.nodeType?e.documentElement:e,r=t&&t.parentNode;return e===r||!(!r||1!==r.nodeType||!(n.contains?n.contains(r):e.compareDocumentPosition&&16&e.compareDocumentPosition(r)))}:function(e,t){if(t)for(;t=t.parentNode;)if(t===e)return!0;return!1},X=t?function(e,t){
 // Flag for duplicate removal
 if(e===t)return A=!0,0;
 // Sort on method existence if only one input has compareDocumentPosition
@@ -1235,7 +1235,7 @@ for(;s[r]===u[r];)r++;
 // two documents; shallow comparisons work.
 /* eslint-disable eqeqeq */
 /* eslint-enable eqeqeq */
-return r?a(s[r],u[r]):s[r]==F?-1:u[r]==F?1:0},q):q},t.matches=function(e,n){return t(e,null,null,n)},t.matchesSelector=function(e,n){if(O(e),j.matchesSelector&&R&&!z[n+" "]&&(!H||!H.test(n))&&(!L||!L.test(n)))try{var r=I.call(e,n);
+return r?a(s[r],u[r]):s[r]==F?-1:u[r]==F?1:0},q):q},t.matches=function(e,n){return t(e,null,null,n)},t.matchesSelector=function(e,n){if(O(e),j.matchesSelector&&R&&!z[n+" "]&&(!I||!I.test(n))&&(!L||!L.test(n)))try{var r=H.call(e,n);
 // IE 9's matchesSelector returns false on disconnected nodes
 if(r||j.disconnectedMatch||
 // As well, disconnected nodes are said to be in a document
@@ -1732,7 +1732,7 @@ var Le=/^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;ke.Deferred.exce
 // Console exists when dev tools are open, which can happen at any time
 e.console&&e.console.warn&&t&&Le.test(t.name)&&e.console.warn("jQuery.Deferred exception: "+t.message,t.stack,n)},ke.readyException=function(t){e.setTimeout(function(){throw t})};
 // The deferred used on DOM ready
-var He=ke.Deferred();ke.fn.ready=function(e){return He.then(e)["catch"](function(e){ke.readyException(e)}),this},ke.extend({
+var Ie=ke.Deferred();ke.fn.ready=function(e){return Ie.then(e)["catch"](function(e){ke.readyException(e)}),this},ke.extend({
 // Is the DOM ready to be used? Set to true once it occurs.
 isReady:!1,
 // A counter to track how many items to wait for before
@@ -1747,7 +1747,7 @@ ke.isReady=!0,
 // If a normal DOM Ready event fired, decrement, and wait if need be
 e!==!0&&--ke.readyWait>0||
 // If there are functions bound, to execute
-He.resolveWith(we,[ke]))}}),ke.ready.then=He.then,
+Ie.resolveWith(we,[ke]))}}),ke.ready.then=Ie.then,
 // Catch cases where $(document).ready() is called
 // after the browser event has already occurred.
 // Support: IE <=9 - 10 only
@@ -1761,9 +1761,9 @@ we.addEventListener("DOMContentLoaded",d),
 e.addEventListener("load",d));
 // Multifunctional method to get and set values of a collection
 // The value/s can optionally be executed if it's a function
-var Ie=function(e,t,n,i,o,a,s){var u=0,c=e.length,l=null==n;
+var He=function(e,t,n,i,o,a,s){var u=0,c=e.length,l=null==n;
 // Sets many values
-if("object"===r(n)){o=!0;for(u in n)Ie(e,t,u,n[u],!0,a,s)}else if(void 0!==i&&(o=!0,be(i)||(s=!0),l&&(
+if("object"===r(n)){o=!0;for(u in n)He(e,t,u,n[u],!0,a,s)}else if(void 0!==i&&(o=!0,be(i)||(s=!0),l&&(
 // Bulk operations run against the entire set
 s?(t.call(e,i),t=null):(l=t,t=function(e,t,n){return l.call(ke(e),n)})),t))for(;u<c;u++)t(e[u],n,s?i:i.call(e[u],u,t(e[u],n)));
 // Gets
@@ -1845,7 +1845,7 @@ if(void 0===e){if(this.length&&(i=Ge.get(o),1===o.nodeType&&!We.get(o,"hasDataAt
 a[n]&&(r=a[n].name,0===r.indexOf("data-")&&(r=h(r.slice(5)),v(o,r,i[r])));We.set(o,"hasDataAttrs",!0)}return i}
 // Sets multiple values
 // Sets multiple values
-return"object"==typeof e?this.each(function(){Ge.set(this,e)}):Ie(this,function(t){var n;
+return"object"==typeof e?this.each(function(){Ge.set(this,e)}):He(this,function(t){var n;
 // The calling jQuery object (element matches) is not empty
 // (and therefore has an element appears at this[ 0 ]) and the
 // `value` parameter was not undefined. An empty jQuery object
@@ -2094,11 +2094,11 @@ return a=w(s,"script"),a.length>0&&j(a,!u&&w(e,"script")),s},cleanData:function(
 n[We.expando]=void 0}n[Ge.expando]&&(
 // Support: Chrome <=35 - 45+
 // Assign undefined instead of using delete, see Data#remove
-n[Ge.expando]=void 0)}}}),ke.fn.extend({detach:function(e){return L(this,e,!0)},remove:function(e){return L(this,e)},text:function(e){return Ie(this,function(e){return void 0===e?ke.text(this):this.empty().each(function(){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||(this.textContent=e)})},null,e,arguments.length)},append:function(){return R(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=N(this,e);t.appendChild(e)}})},prepend:function(){return R(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=N(this,e);t.insertBefore(e,t.firstChild)}})},before:function(){return R(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this)})},after:function(){return R(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this.nextSibling)})},empty:function(){for(var e,t=0;null!=(e=this[t]);t++)1===e.nodeType&&(
+n[Ge.expando]=void 0)}}}),ke.fn.extend({detach:function(e){return L(this,e,!0)},remove:function(e){return L(this,e)},text:function(e){return He(this,function(e){return void 0===e?ke.text(this):this.empty().each(function(){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||(this.textContent=e)})},null,e,arguments.length)},append:function(){return R(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=N(this,e);t.appendChild(e)}})},prepend:function(){return R(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=N(this,e);t.insertBefore(e,t.firstChild)}})},before:function(){return R(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this)})},after:function(){return R(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this.nextSibling)})},empty:function(){for(var e,t=0;null!=(e=this[t]);t++)1===e.nodeType&&(
 // Prevent memory leaks
 ke.cleanData(w(e,!1)),
 // Remove any remaining nodes
-e.textContent="");return this},clone:function(e,t){return e=null!=e&&e,t=null==t?e:t,this.map(function(){return ke.clone(this,e,t)})},html:function(e){return Ie(this,function(e){var t=this[0]||{},n=0,r=this.length;if(void 0===e&&1===t.nodeType)return t.innerHTML;
+e.textContent="");return this},clone:function(e,t){return e=null!=e&&e,t=null==t?e:t,this.map(function(){return ke.clone(this,e,t)})},html:function(e){return He(this,function(e){var t=this[0]||{},n=0,r=this.length;if(void 0===e&&1===t.nodeType)return t.innerHTML;
 // See if we can take a shortcut and just use innerHTML
 if("string"==typeof e&&!ut.test(e)&&!rt[(tt.exec(e)||["",""])[1].toLowerCase()]){e=ke.htmlPrefilter(e);try{for(;n<r;n++)t=this[n]||{},
 // Remove element nodes and prevent memory leaks
@@ -2156,7 +2156,7 @@ yt=/^(none|table(?!-c[ea]).+)/,bt=/^--/,xt={position:"absolute",visibility:"hidd
 // behavior of getting and setting a style property
 cssHooks:{opacity:{get:function(e,t){if(t){
 // We should always get a number back from opacity
-var n=H(e,"opacity");return""===n?"1":n}}}},
+var n=I(e,"opacity");return""===n?"1":n}}}},
 // Don't automatically add "px" to these possibly-unitless properties
 cssNumber:{animationIterationCount:!0,columnCount:!0,fillOpacity:!0,flexGrow:!0,flexShrink:!0,fontWeight:!0,gridArea:!0,gridColumn:!0,gridColumnEnd:!0,gridColumnStart:!0,gridRow:!0,gridRowEnd:!0,gridRowStart:!0,lineHeight:!0,opacity:!0,order:!0,orphans:!0,widows:!0,zIndex:!0,zoom:!0},
 // Add in properties whose names you wish to fix before
@@ -2193,7 +2193,7 @@ return u||(t=B(s)),a=ke.cssHooks[t]||ke.cssHooks[s],void 0===n?a&&"get"in a&&voi
 // Otherwise, if a way to get the computed value exists, use that
 // Convert "normal" to computed value
 // Make numeric if forced or a qualifier was provided and val looks numeric
-return u||(t=B(s)),a=ke.cssHooks[t]||ke.cssHooks[s],a&&"get"in a&&(i=a.get(e,!0,n)),void 0===i&&(i=H(e,t,r)),"normal"===i&&t in wt&&(i=wt[t]),""===n||n?(o=parseFloat(i),n===!0||isFinite(o)?o||0:i):i}}),ke.each(["height","width"],function(e,t){ke.cssHooks[t]={get:function(e,n,r){if(n)
+return u||(t=B(s)),a=ke.cssHooks[t]||ke.cssHooks[s],a&&"get"in a&&(i=a.get(e,!0,n)),void 0===i&&(i=I(e,t,r)),"normal"===i&&t in wt&&(i=wt[t]),""===n||n?(o=parseFloat(i),n===!0||isFinite(o)?o||0:i):i}}),ke.each(["height","width"],function(e,t){ke.cssHooks[t]={get:function(e,n,r){if(n)
 // Certain elements can have dimension info if we invisibly show them
 // but it must have a current display style that would benefit
 // Support: Safari 8+
@@ -2211,11 +2211,11 @@ s=a||r,u=s&&"border-box"===ke.css(e,"boxSizing",!1,o),c=r?W(e,t,r,u,o):0;
 // Account for unreliable border-box dimensions by comparing offset* to computed and
 // faking a content-box to get border and padding (gh-3699)
 // Convert to pixels if value adjustment is needed
-return u&&a&&(c-=Math.ceil(e["offset"+t[0].toUpperCase()+t.slice(1)]-parseFloat(o[t])-W(e,t,"border",!1,o)-.5)),c&&(i=ze.exec(n))&&"px"!==(i[3]||"px")&&(e.style[t]=n,n=ke.css(e,t)),F(e,n,c)}}}),ke.cssHooks.marginLeft=I(ye.reliableMarginLeft,function(e,t){if(t)return(parseFloat(H(e,"marginLeft"))||e.getBoundingClientRect().left-pt(e,{marginLeft:0},function(){return e.getBoundingClientRect().left}))+"px"}),
+return u&&a&&(c-=Math.ceil(e["offset"+t[0].toUpperCase()+t.slice(1)]-parseFloat(o[t])-W(e,t,"border",!1,o)-.5)),c&&(i=ze.exec(n))&&"px"!==(i[3]||"px")&&(e.style[t]=n,n=ke.css(e,t)),F(e,n,c)}}}),ke.cssHooks.marginLeft=H(ye.reliableMarginLeft,function(e,t){if(t)return(parseFloat(I(e,"marginLeft"))||e.getBoundingClientRect().left-pt(e,{marginLeft:0},function(){return e.getBoundingClientRect().left}))+"px"}),
 // These hooks are used by animate to expand properties
 ke.each({margin:"",padding:"",border:"Width"},function(e,t){ke.cssHooks[e+t]={expand:function(n){for(var r=0,i={},
 // Assumes a single number if not a string
-o="string"==typeof n?n.split(" "):[n];r<4;r++)i[e+Xe[r]+t]=o[r]||o[r-2]||o[0];return i}},"margin"!==e&&(ke.cssHooks[e+t].set=F)}),ke.fn.extend({css:function(e,t){return Ie(this,function(e,t,n){var r,i,o={},a=0;if(Array.isArray(t)){for(r=dt(e),i=t.length;a<i;a++)o[t[a]]=ke.css(e,t[a],!1,r);return o}return void 0!==n?ke.style(e,t,n):ke.css(e,t)},e,t,arguments.length>1)}}),ke.Tween=U,U.prototype={constructor:U,init:function(e,t,n,r,i,o){this.elem=e,this.prop=n,this.easing=i||ke.easing._default,this.options=t,this.start=this.now=this.cur(),this.end=r,this.unit=o||(ke.cssNumber[n]?"":"px")},cur:function(){var e=U.propHooks[this.prop];return e&&e.get?e.get(this):U.propHooks._default.get(this)},run:function(e){var t,n=U.propHooks[this.prop];return this.options.duration?this.pos=t=ke.easing[this.easing](e,this.options.duration*e,0,1,this.options.duration):this.pos=t=e,this.now=(this.end-this.start)*t+this.start,this.options.step&&this.options.step.call(this.elem,this.now,this),n&&n.set?n.set(this):U.propHooks._default.set(this),this}},U.prototype.init.prototype=U.prototype,U.propHooks={_default:{get:function(e){var t;
+o="string"==typeof n?n.split(" "):[n];r<4;r++)i[e+Xe[r]+t]=o[r]||o[r-2]||o[0];return i}},"margin"!==e&&(ke.cssHooks[e+t].set=F)}),ke.fn.extend({css:function(e,t){return He(this,function(e,t,n){var r,i,o={},a=0;if(Array.isArray(t)){for(r=dt(e),i=t.length;a<i;a++)o[t[a]]=ke.css(e,t[a],!1,r);return o}return void 0!==n?ke.style(e,t,n):ke.css(e,t)},e,t,arguments.length>1)}}),ke.Tween=U,U.prototype={constructor:U,init:function(e,t,n,r,i,o){this.elem=e,this.prop=n,this.easing=i||ke.easing._default,this.options=t,this.start=this.now=this.cur(),this.end=r,this.unit=o||(ke.cssNumber[n]?"":"px")},cur:function(){var e=U.propHooks[this.prop];return e&&e.get?e.get(this):U.propHooks._default.get(this)},run:function(e){var t,n=U.propHooks[this.prop];return this.options.duration?this.pos=t=ke.easing[this.easing](e,this.options.duration*e,0,1,this.options.duration):this.pos=t=e,this.now=(this.end-this.start)*t+this.start,this.options.step&&this.options.step.call(this.elem,this.now,this),n&&n.set?n.set(this):U.propHooks._default.set(this),this}},U.prototype.init.prototype=U.prototype,U.propHooks={_default:{get:function(e){var t;
 // Use a property on the element directly when it is not a DOM element,
 // or when there is no matching style property that exists.
 // Use a property on the element directly when it is not a DOM element,
@@ -2275,7 +2275,7 @@ ye.checkOn=""!==e.value,
 ye.optSelected=n.selected,
 // Support: IE <=11 only
 // An input loses its value after becoming a radio
-e=we.createElement("input"),e.value="t",e.type="radio",ye.radioValue="t"===e.value}();var St,Et=ke.expr.attrHandle;ke.fn.extend({attr:function(e,t){return Ie(this,ke.attr,e,t,arguments.length>1)},removeAttr:function(e){return this.each(function(){ke.removeAttr(this,e)})}}),ke.extend({attr:function(e,t,n){var r,i,o=e.nodeType;
+e=we.createElement("input"),e.value="t",e.type="radio",ye.radioValue="t"===e.value}();var St,Et=ke.expr.attrHandle;ke.fn.extend({attr:function(e,t){return He(this,ke.attr,e,t,arguments.length>1)},removeAttr:function(e){return this.each(function(){ke.removeAttr(this,e)})}}),ke.extend({attr:function(e,t,n){var r,i,o=e.nodeType;
 // Don't get/set attributes on text, comment and attribute nodes
 if(3!==o&&8!==o&&2!==o)
 // Fallback to prop when attributes are not supported
@@ -2291,7 +2291,7 @@ St={set:function(e,t,n){
 // Remove boolean attributes when set to false
 return t===!1?ke.removeAttr(e,n):e.setAttribute(n,n),n}},ke.each(ke.expr.match.bool.source.match(/\w+/g),function(e,t){var n=Et[t]||ke.find.attr;Et[t]=function(e,t,r){var i,o,a=t.toLowerCase();
 // Avoid an infinite loop by temporarily removing this function from the getter
-return r||(o=Et[a],Et[a]=i,i=null!=n(e,t,r)?a:null,Et[a]=o),i}});var _t=/^(?:input|select|textarea|button)$/i,Dt=/^(?:a|area)$/i;ke.fn.extend({prop:function(e,t){return Ie(this,ke.prop,e,t,arguments.length>1)},removeProp:function(e){return this.each(function(){delete this[ke.propFix[e]||e]})}}),ke.extend({prop:function(e,t,n){var r,i,o=e.nodeType;
+return r||(o=Et[a],Et[a]=i,i=null!=n(e,t,r)?a:null,Et[a]=o),i}});var _t=/^(?:input|select|textarea|button)$/i,Dt=/^(?:a|area)$/i;ke.fn.extend({prop:function(e,t){return He(this,ke.prop,e,t,arguments.length>1)},removeProp:function(e){return this.each(function(){delete this[ke.propFix[e]||e]})}}),ke.extend({prop:function(e,t,n){var r,i,o=e.nodeType;
 // Don't get/set properties on text, comment and attribute nodes
 if(3!==o&&8!==o&&2!==o)
 // Fix name and attach hooks
@@ -2415,7 +2415,7 @@ var r=this.ownerDocument||this.document||this,i=We.access(r,t);i||r.addEventList
 ke.parseXML=function(t){var n;if(!t||"string"!=typeof t)return null;
 // Support: IE 9 - 11 only
 // IE throws on parseFromString with invalid input.
-try{n=(new e.DOMParser).parseFromString(t,"text/xml")}catch(r){n=void 0}return n&&!n.getElementsByTagName("parsererror").length||ke.error("Invalid XML: "+t),n};var Lt=/\[\]$/,Ht=/\r?\n/g,It=/^(?:submit|button|image|reset|file)$/i,Pt=/^(?:input|select|textarea|keygen)/i;
+try{n=(new e.DOMParser).parseFromString(t,"text/xml")}catch(r){n=void 0}return n&&!n.getElementsByTagName("parsererror").length||ke.error("Invalid XML: "+t),n};var Lt=/\[\]$/,It=/\r?\n/g,Ht=/^(?:submit|button|image|reset|file)$/i,Pt=/^(?:input|select|textarea|keygen)/i;
 // Serialize an array of form elements or a set of
 // key/values into a query string
 ke.param=function(e,t){var n,r=[],i=function(e,t){
@@ -2433,7 +2433,7 @@ return r.join("&")},ke.fn.extend({serialize:function(){return ke.param(this.seri
 // Can add propHook for "elements" to filter or add form elements
 var e=ke.prop(this,"elements");return e?ke.makeArray(e):this}).filter(function(){var e=this.type;
 // Use .is( ":disabled" ) so that fieldset[disabled] works
-return this.name&&!ke(this).is(":disabled")&&Pt.test(this.nodeName)&&!It.test(e)&&(this.checked||!et.test(e))}).map(function(e,t){var n=ke(this).val();return null==n?null:Array.isArray(n)?ke.map(n,function(e){return{name:t.name,value:e.replace(Ht,"\r\n")}}):{name:t.name,value:n.replace(Ht,"\r\n")}}).get()}});var Bt=/%20/g,Ft=/#.*$/,Wt=/([?&])_=[^&]*/,Gt=/^(.*?):[ \t]*([^\r\n]*)$/gm,
+return this.name&&!ke(this).is(":disabled")&&Pt.test(this.nodeName)&&!Ht.test(e)&&(this.checked||!et.test(e))}).map(function(e,t){var n=ke(this).val();return null==n?null:Array.isArray(n)?ke.map(n,function(e){return{name:t.name,value:e.replace(It,"\r\n")}}):{name:t.name,value:n.replace(It,"\r\n")}}).get()}});var Bt=/%20/g,Ft=/#.*$/,Wt=/([?&])_=[^&]*/,Gt=/^(.*?):[ \t]*([^\r\n]*)$/gm,
 // #7653, #8125, #8152: local protocol detection
 Ut=/^(?:about|app|app-storage|.+-extension|file|res|widget):$/,$t=/^(?:GET|HEAD)$/,Vt=/^\/\//,/* Prefilters
 	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
@@ -2849,7 +2849,7 @@ return{top:t.top-i.top-ke.css(r,"marginTop",!0),left:t.left-i.left-ke.css(r,"mar
 // This logic, however, is not guaranteed and can change at any point in the future
 offsetParent:function(){return this.map(function(){for(var e=this.offsetParent;e&&"static"===ke.css(e,"position");)e=e.offsetParent;return e||Ye})}}),
 // Create scrollLeft and scrollTop methods
-ke.each({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(e,t){var n="pageYOffset"===t;ke.fn[e]=function(r){return Ie(this,function(e,r,i){
+ke.each({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(e,t){var n="pageYOffset"===t;ke.fn[e]=function(r){return He(this,function(e,r,i){
 // Coalesce documents and windows
 var o;return xe(e)?o=e:9===e.nodeType&&(o=e.defaultView),void 0===i?o?o[t]:e[r]:void(o?o.scrollTo(n?o.pageXOffset:i,n?i:o.pageYOffset):e[r]=i)},e,r,arguments.length)}}),
 // Support: Safari <=7 - 9.1, Chrome <=37 - 49
@@ -2858,13 +2858,13 @@ var o;return xe(e)?o=e:9===e.nodeType&&(o=e.defaultView),void 0===i?o?o[t]:e[r]:
 // Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
 // getComputedStyle returns percent when specified for top/left/bottom/right;
 // rather than make the css module depend on the offset module, just check for it here
-ke.each(["top","left"],function(e,t){ke.cssHooks[t]=I(ye.pixelPosition,function(e,n){if(n)
+ke.each(["top","left"],function(e,t){ke.cssHooks[t]=H(ye.pixelPosition,function(e,n){if(n)
 // If curCSS returns percentage, fallback to offset
-return n=H(e,t),ft.test(n)?ke(e).position()[t]+"px":n})}),
+return n=I(e,t),ft.test(n)?ke(e).position()[t]+"px":n})}),
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
 ke.each({Height:"height",Width:"width"},function(e,t){ke.each({padding:"inner"+e,content:t,"":"outer"+e},function(n,r){
 // Margin is only for outerHeight, outerWidth
-ke.fn[r]=function(i,o){var a=arguments.length&&(n||"boolean"!=typeof i),s=n||(i===!0||o===!0?"margin":"border");return Ie(this,function(t,n,i){var o;
+ke.fn[r]=function(i,o){var a=arguments.length&&(n||"boolean"!=typeof i),s=n||(i===!0||o===!0?"margin":"border");return He(this,function(t,n,i){var o;
 // Get document width or height
 // Get width or height on the element, requesting but not forcing parseFloat
 // Set width or height on the element
@@ -3127,7 +3127,7 @@ r.publish(n,"fate.itemDataStale");// First update, ASAP
 var a=setInterval(function(){o(".item-img").length>1&&(clearInterval(a),r.publish(n,"fate.refresh"))},100);// Update from Google Sheets every so often, but it doesn't refresh cache all
 // that often so we can chill out for a bit
 setInterval(function(){r.publish(n,"fate.itemDataStale")},6e4),// When we move items around, delete items, etc. they need to be refreshed
-setInterval(function(){r.publish(n,"fate.refresh")},3e3)}}),require.register("maxLightIndicator.js",function(e,t,n){function r(){u.forEach(function(e){var t=e+"-maxLight",n=null===sessionStorage.getItem(t)?0:parseInt(sessionStorage.getItem(t));s("."+e).find("[data-fate-light]").each(function(){n=Math.max(n,parseInt(s(this).attr("data-fate-light")))}),sessionStorage.setItem(t,n)})}function i(){u.forEach(function(e){var t=e+"-maxLight",n="fate-max-light-"+e;s("#"+n).text(sessionStorage.getItem(t))})}function o(){s("#max-light").length>0||s(".store-header .store-cell.vault").append('\n    <div id=\'max-light\'>\n      <table>\n        <tr>\n          <th>Kin</th>\n          <th>Ene</th>\n          <th>Pwr</th>\n          <th></th>\n          <th>Hel</th>\n          <th>Glo</th>\n          <th>Che</th>\n          <th>Leg</th>\n          <th>Cls</th>\n        </tr>\n        <tr>\n          <td id="fate-max-light-bucket-1498876634">1000</td>\n          <td id="fate-max-light-bucket-2465295065">1000</td>\n          <td id="fate-max-light-bucket-953998645">1000</td>\n          <td></td>\n          <td id="fate-max-light-bucket-3448274439">1000</td>\n          <td id="fate-max-light-bucket-3551918588">1000</td>\n          <td id="fate-max-light-bucket-14239492">1000</td>\n          <td id="fate-max-light-bucket-20886954">1000</td>\n          <td id="fate-max-light-bucket-1585787867">1000</td>\n        </tr>\n      </table>\n    </div>')}const a=t("fateBus.js");a.registerModule(n);var s=t("jquery");t("logger.js");a.subscribe(n,"fate.refresh",function(){
+setInterval(function(){r.publish(n,"fate.refresh")},3e3)}}),require.register("maxLightIndicator.js",function(e,t,n){function r(){u.forEach(function(e){var t=e+"-maxLight",n=null===sessionStorage.getItem(t)?0:parseInt(sessionStorage.getItem(t));s("."+e).find("[data-fate-light]").each(function(){n=Math.max(n,parseInt(s(this).attr("data-fate-light")))}),sessionStorage.setItem(t,n)})}function i(){var e=9999;u.forEach(function(t){var n=t+"-maxLight";e=Math.min(e,parseInt(sessionStorage.getItem(n)))}),u.forEach(function(t){var n=t+"-maxLight",r="fate-max-light-"+t,i=parseInt(sessionStorage.getItem(n));s("#"+r).text(i),i===e?s("#"+r).addClass("min-light"):s("#"+r).removeClass("min-light")})}function o(){s("#max-light").length>0||s(".store-header .store-cell.vault").append('\n    <div id=\'max-light\'>\n      <table>\n        <tr>\n          <th>Kin</th>\n          <th>Ene</th>\n          <th>Pwr</th>\n          <th class="max-light-buffer"></th>\n          <th>Hel</th>\n          <th>Glo</th>\n          <th>Che</th>\n          <th>Leg</th>\n          <th>Cls</th>\n        </tr>\n        <tr>\n          <td id="fate-max-light-bucket-1498876634">1000</td>\n          <td id="fate-max-light-bucket-2465295065">1000</td>\n          <td id="fate-max-light-bucket-953998645">1000</td>\n          <td class="max-light-buffer"></td>\n          <td id="fate-max-light-bucket-3448274439">1000</td>\n          <td id="fate-max-light-bucket-3551918588">1000</td>\n          <td id="fate-max-light-bucket-14239492">1000</td>\n          <td id="fate-max-light-bucket-20886954">1000</td>\n          <td id="fate-max-light-bucket-1585787867">1000</td>\n        </tr>\n      </table>\n    </div>')}const a=t("fateBus.js");a.registerModule(n);var s=t("jquery");t("logger.js");a.subscribe(n,"fate.refresh",function(){
 // logger.log('maxLightIndicator.js: Calculating maximum light per slot');
 return o(),GM_config.get("maxLightLevelTracking")?(r(),i(),void s("#max-light").show()):void s("#max-light").hide()});var u=["bucket-1498876634",// Kinetic
 "bucket-2465295065",// Energy
