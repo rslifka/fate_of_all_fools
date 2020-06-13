@@ -14,11 +14,6 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   $('#max-light').show();
 });
 
-const LABELS = [
-  'Kin:',
-  'Ene:',
-]
-
 const GEAR_BUCKETS = [
   'bucket-1498876634', // Kinetic
   'bucket-2465295065', // Energy
