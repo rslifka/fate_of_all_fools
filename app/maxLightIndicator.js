@@ -39,10 +39,23 @@ function calculateMaxLight() {
 }
 
 function updateMaxLight() {
+  let minLight = 9999;
+  GEAR_BUCKETS.forEach(function(className) {
+    const storageKey = className + '-maxLight';
+    minLight = Math.min(minLight, parseInt(sessionStorage.getItem(storageKey)));
+  });
+
   GEAR_BUCKETS.forEach(function(className) {
     const storageKey = className + '-maxLight';
     const elementId = 'fate-max-light-' + className;
-    $('#' + elementId).text(sessionStorage.getItem(storageKey));
+    const light = parseInt(sessionStorage.getItem(storageKey));
+    $('#' + elementId).text(light);
+
+    if (light === minLight) {
+      $('#' + elementId).addClass('min-light');
+    } else {
+      $('#' + elementId).removeClass('min-light');
+    }
   });
 }
 
@@ -58,7 +71,7 @@ function install() {
           <th>Kin</th>
           <th>Ene</th>
           <th>Pwr</th>
-          <th></th>
+          <th class="max-light-buffer"></th>
           <th>Hel</th>
           <th>Glo</th>
           <th>Che</th>
@@ -69,7 +82,7 @@ function install() {
           <td id="fate-max-light-bucket-1498876634">1000</td>
           <td id="fate-max-light-bucket-2465295065">1000</td>
           <td id="fate-max-light-bucket-953998645">1000</td>
-          <td></td>
+          <td class="max-light-buffer"></td>
           <td id="fate-max-light-bucket-3448274439">1000</td>
           <td id="fate-max-light-bucket-3551918588">1000</td>
           <td id="fate-max-light-bucket-14239492">1000</td>

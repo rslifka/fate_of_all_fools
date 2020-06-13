@@ -110,15 +110,27 @@
 
 #max-light {
   position: absolute;
+  font-size: 11px;
   top: 15px;
-  right: 80px;
+  right: 10px;
+}
+
+.max-light-buffer {
+  width: 10px !important;
 }
 
 #max-light th {
-  width: 35px;
+  font-size: 11px;
+  width: 25px;
 }
 
 #max-light td {
-  width: 35px;
+  width: 25px;
   text-align: center;
+}
+
+td.min-light {
+  color: rgba(255,89,73,1);
+  font-weight: bold;
+  font-size: 12px;
 }
