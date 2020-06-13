@@ -107,3 +107,18 @@
 [data-fate-element='arc'] .AtD93 > span {
   border-bottom: 2px solid rgba(121, 187, 232, 0.7);
 }
+
+#max-light {
+  position: absolute;
+  top: 15px;
+  right: 80px;
+}
+
+#max-light th {
+  width: 35px;
+}
+
+#max-light td {
+  width: 35px;
+  text-align: center;
+}

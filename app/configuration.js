@@ -1,6 +1,14 @@
 const $ = require('jquery');
 const logger = require('logger');
 
+function broadcastConfiguration() {
+  fateBus.publish(module, 'fate.configurationLoaded', {
+    rollDataTSV: GM_config.get('rollDataTSV'),
+    armorRollTSV: GM_config.get('armorRollTSV'),
+    shaderDataTSV: GM_config.get('shaderDataTSV')
+  });
+}
+
 function init() {
 	logger.log('configuration.js: Initializing');
 
@@ -30,15 +38,10 @@ function init() {
 		},
 		'events': {
 			'save': function() {
-				fateBus.subscribe(module, 'fate.refresh', init);
+        broadcastConfiguration();
       },
       'init': function() {
-        fateBus.publish(module, 'fate.configurationLoaded', {
-          rollDataTSV: GM_config.get('rollDataTSV'),
-          armorRollTSV: GM_config.get('armorRollTSV'),
-          shaderDataTSV: GM_config.get('shaderDataTSV'),
-          maxLightLevelTracking: GM_config.get('maxLightLevelTracking')
-        });
+        broadcastConfiguration();
       }
 		}
 	});
