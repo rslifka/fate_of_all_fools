@@ -31,18 +31,23 @@ function init() {
 		'events': {
 			'save': function() {
 				fateBus.subscribe(module, 'fate.refresh', init);
-			}
+      },
+      'init': function() {
+        fateBus.publish(module, 'fate.configurationLoaded', {
+          rollDataTSV: GM_config.get('rollDataTSV'),
+          armorRollTSV: GM_config.get('armorRollTSV'),
+          shaderDataTSV: GM_config.get('shaderDataTSV'),
+          maxLightLevelTracking: GM_config.get('maxLightLevelTracking')
+        });
+      }
 		}
-	});
-
-	fateBus.publish(module, 'fate.configurationLoaded', {
-		rollDataTSV: GM_config.get('rollDataTSV'),
-		armorRollTSV: GM_config.get('armorRollTSV'),
-    shaderDataTSV: GM_config.get('shaderDataTSV'),
-    maxLightLevelTracking: GM_config.get('maxLightLevelTracking')
 	});
 }
 
+// "Why don't you use GM_config's 'init' callback above to do this?"
+//
+// When GM_config is built, DIM hasn't finished loading, so we would have no
+// DOM navigation structure to key off of.
 function install() {
 	if ($('.fate-config').length > 0) {
 		return;
