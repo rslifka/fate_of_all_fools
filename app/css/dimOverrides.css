@@ -216,3 +216,20 @@ body,
 {
   opacity: 0.6;
 }
+
+/*
+  EFFECT: Pull the 'gear' seasonal icon over and up flush with the cell.
+  REASON: It's a little off kilter.
+*/
+._41EiH {
+  left: 0;
+  top: 0;
+}
+
+/*
+  EFFECT: Gray out the 'gear' seasonal icon when the item is junked.
+  REASON: It will stay its original color otherwise.
+*/
+[data-fate-dimtag-junk='true'] ._41EiH {
+  filter: grayscale(100%);
+}
