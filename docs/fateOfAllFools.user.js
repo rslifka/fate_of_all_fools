@@ -1,6 +1,7 @@
 // ==UserScript==
 // @author      rslifka
 // @connect     docs.google.com
+// @connect     googleusercontent.com
 // @connect     rslifka.github.io
 // @copyright   2020, Robert Slifka (https://github.com/rslifka/fate_of_all_fools)
 // @description Enhancements to the Destiny Item Manager
@@ -19,5 +20,5 @@
 // @run-at      document-start
 // @supportURL  https://github.com/rslifka/fate_of_all_fools/issues
 // @updateURL   https://openuserjs.org/meta/rslifka/FateOfAllFools_-_DIM_Customization.meta.js
-// @version     2718
+// @version     2719
 // ==/UserScript==
