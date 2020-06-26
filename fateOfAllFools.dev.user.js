@@ -1,5 +1,6 @@
 // ==UserScript==
 // @connect     docs.google.com
+// @connect     googleusercontent.com
 // @connect     rslifka.github.io
 // @grant       GM_addStyle
 // @grant       GM_getResourceText
