@@ -13,9 +13,13 @@ exports.ItemDataRefresher = class ItemDataRefresher {
   }
 
   onLoadHandler(response) {
-    // logger.log('itemDataRefresher.js ('+this.itemType+'): data fetched');
+    if (response.status == 400) {
+      logger.log('itemDataRefresher.js ('+this.itemType+'): Google Sheet is currently unavailable; skipping this refresh');
+      return;
+    }
 
     const responseText = response.responseText;
+
     const responseTextMD5 = md5(responseText);
 
     if (this.rawDataMD5 === responseTextMD5) {
@@ -36,8 +40,22 @@ exports.ItemDataRefresher = class ItemDataRefresher {
     fateBus.publish(module, 'fate.refresh');
   }
 
+  onErrorHandler(response) {
+    logger.log('itemDataRefresher.js ('+this.itemType+'): Error retrieving Google Sheet; skipping this refresh');
+  }
+
+  onAbortHandler(response) {
+    logger.log('itemDataRefresher.js ('+this.itemType+'): Abort while retrieving Google Sheet; skipping this refresh');
+  }
+
   refresh() {
-    GM_xmlhttpRequest({method: 'GET', url: this.dataTSVURL, onload: this.onLoadHandler.bind(this)});
+    GM_xmlhttpRequest({
+      method: 'GET',
+      url: this.dataTSVURL,
+      onload: this.onLoadHandler.bind(this),
+      onerror: this.onErrorHandler.bind(this),
+      onabort: this.onAbortHandler.bind(this)
+    });
   }
 
   deregister() {
