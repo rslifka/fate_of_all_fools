@@ -6,7 +6,7 @@ const Utility = {
 
 class ArmorRoll {
 
-  constructor(rollID, name, element, season, pve, pvp, overlay, mob, res, rec, dis, int, str, comments) {
+  constructor(rollID, name, element, season, pve, pvp, overlay, total, mob, res, rec, dis, int, str) {
     this.rollID = rollID;
     this.name = name;
     this.element = element.toLowerCase();
@@ -20,8 +20,7 @@ class ArmorRoll {
     this.int = parseInt(int);
     this.dis = parseInt(dis);
     this.str = parseInt(str);
-    this.total = this.mob+this.rec+this.res+this.int+this.dis+this.str;
-    this.comments = comments;
+    this.total = parseInt(total);
   }
 
   get pveUtility() {

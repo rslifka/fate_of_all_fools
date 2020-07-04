@@ -10,13 +10,13 @@ describe('armorRoll.js', function() {
     'Y',
     'N',
     'dawn',
+    '21',
     '1',
     '2',
     '3',
     '4',
     '5',
-    '6',
-    'Charge up that Chaos Reach!'
+    '6'
   ];
 
   describe('initialization', function() {
@@ -36,14 +36,13 @@ describe('armorRoll.js', function() {
       expect(a.pveUtility).toBe(Utility.YES);
       expect(a.pvpUtility).toBe(Utility.NO);
       expect(a.overlay).toBe('dawn');
+      expect(a.total).toBe(21);
       expect(a.mob).toBe(1);
       expect(a.res).toBe(2);
       expect(a.rec).toBe(3);
       expect(a.dis).toBe(4);
       expect(a.int).toBe(5);
       expect(a.str).toBe(6);
-      expect(a.total).toBe(21);
-      expect(a.comments).toBe('Charge up that Chaos Reach!');
     });
   });
 

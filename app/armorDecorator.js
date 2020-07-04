@@ -65,7 +65,6 @@ function updateAttributes() {
 
     if (!isArmorRegistered) {
       $(this).attr('title', name);
-      $(this).removeAttr('data-fate-comment');
       $(this).removeAttr('data-fate-armor-junk');
       $(this).removeAttr('data-fate-armor-pve');
       $(this).removeAttr('data-fate-armor-pvp');
@@ -77,11 +76,6 @@ function updateAttributes() {
     $(this).attr('data-fate-armor-pve', a.pveUtility === Utility.YES);
     $(this).attr('data-fate-armor-pvp', a.pvpUtility === Utility.YES);
     $(this).attr('data-fate-element', a.element);
-
-    $(this).attr('data-fate-comment', a.comments);
-    if (a.comments !== '') {
-      $(this).attr('title', `${name}\n${a.comments}`);
-    }
 
     $(this).find('.foaf-item-overlay').text(a.overlay);
   });

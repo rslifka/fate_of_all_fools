@@ -16,9 +16,9 @@ describe('armorDecorator.js', function() {
     spyOn(armorRollDatabase, 'get').and.callFake(function(rollID) {
       switch(rollID) {
         case '6917529143732442281':
-          return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Solar', '23', 'Y', 'N', '', '10', '11', '7', '12', '23', '6', 'Roll-specific comments' );
+          return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Solar', '23', 'Y', 'N', '', '59', '0', '11', '7', '12', '23', '6');
         case '6917529143764907014':
-          return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Solar', '23', 'Y', 'N', 'top-tree dawn', '10', '11', '7', '12', '23', '6', '' );
+          return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Solar', '23', 'Y', 'N', 'top-tree dawn', '69', '10', '11', '7', '12', '23', '6');
       }
     });
   });
@@ -89,10 +89,6 @@ describe('armorDecorator.js', function() {
       expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-armor-junk', 'false');
     });
 
-    it('shoud record the comments', function() {
-      expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-comment', 'Roll-specific comments');
-    });
-
     it('should store the light', function() {
       expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-light', '961');
     });
@@ -105,18 +101,6 @@ describe('armorDecorator.js', function() {
       expect($('[id=6917529143764907014] > .foaf-item-overlay')).toExist();
       expect($('[id=6917529143764907014] > .foaf-item-overlay')).toContainText('top-tree dawn');
     });
-
-    describe('when there are comments', function() {
-      it('should replace the tooltip with our comments', function() {
-        expect($('[id="6917529143732442281"]')).toHaveAttr('title', "Vesper of Radius\nRoll-specific comments");
-      });
-    });
-
-    describe('when there are no comments', function() {
-      it('should leave the tooltip with just the weapon name', function() {
-        expect($('[id="6917529143764907014"]')).toHaveAttr('title', 'Wings of Sacred Dawn');
-      });
-    })
 
     describe('supported DIM tags', function() {
 
@@ -161,7 +145,6 @@ describe('armorDecorator.js', function() {
         // testing with the new DIM document structure and come back to this.
         // data-fate-dim-tags
         // data-fate-armor-registered
-        // data-fate-comment
         // data-fate-armor-junk
         // data-fate-armor-pve
         // data-fate-armor-pvp

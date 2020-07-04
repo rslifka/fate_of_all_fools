@@ -19,13 +19,13 @@ describe('armorRollDatabase.js', function() {
         'Y',
         'N',
         'dawn',
+        '21',
         '1',
         '2',
         '3',
         '4',
         '5',
         '6',
-        'This is for a specific roll!'
       ].join('\t')
     );
   });
@@ -55,6 +55,7 @@ describe('armorRollDatabase.js', function() {
           expect(piece.rollID).toEqual('6917529047963087340');
           expect(piece.season).toEqual('23');
           expect(piece.overlay).toEqual('dawn');
+          expect(piece.total).toEqual(21);
           expect(piece.mob).toEqual(1);
           expect(piece.res).toEqual(2);
           expect(piece.rec).toEqual(3);
@@ -62,7 +63,6 @@ describe('armorRollDatabase.js', function() {
           expect(piece.int).toEqual(5);
           expect(piece.str).toEqual(6);
           expect(piece.name).toEqual('Geomag Stabilizers');
-          expect(piece.comments).toEqual('This is for a specific roll!');
           expect(piece.pveUtility).toEqual(Utility.YES);
           expect(piece.pvpUtility).toEqual(Utility.NO);
         });
