@@ -19,7 +19,7 @@ function storeArmorData() {
       $(this).attr('data-fate-armor-name', armorName);
       
       // Is it an exotic or legendary masterwork?
-      const isMasterwork = ($(this).has('._2kz8P').length + $(this).has('._3iMN1').length) > 0;
+      const isMasterwork = $(this).has('._3iMN1').length > 0;
       $(this).attr('data-fate-masterwork', isMasterwork);
 
       const serialNumber = $(this).attr('id').split("-")[0];
