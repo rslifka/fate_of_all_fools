@@ -221,7 +221,7 @@ body,
   EFFECT: Pull the 'gear' seasonal icon over and up flush with the cell.
   REASON: It's a little off kilter.
 */
-._41EiH {
+.swj7K {
   left: 0;
   top: 0;
 }
@@ -232,4 +232,20 @@ body,
 */
 [data-fate-dimtag-junk='true'] ._41EiH {
   filter: grayscale(100%);
+}
+
+/*
+  EFFECT: Hide masterwork window dressing.
+  REASON: When your vault is full of masterworks, it's visualy noisy.
+*/
+.N0z6Y {
+  display: none;
+}
+
+/*
+  EFFECT: Remove the rating icons.
+  REASON: We use our own styling for this.
+*/
+.rating-icon {
+  display: none;
 }
