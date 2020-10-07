@@ -34,11 +34,11 @@
 
 .foaf-masterwork {
   border-top: 1px solid rgba(255,217,0,1);
-  width: 10px;
+  width: 27px;
   height: 0;
   position: absolute;
-  bottom: 1px;
-  left: 3px;
+  bottom: 0;
+  right: 1px;
 }
 
 .foaf-infusable {
