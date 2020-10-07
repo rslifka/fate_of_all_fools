@@ -134,3 +134,9 @@ td.min-light {
   font-weight: bold;
   font-size: 12px;
 }
+
+/* Postmaster items should not be grayed out */
+.bucket-215593132 .item
+{
+  opacity: unset !important;
+}
