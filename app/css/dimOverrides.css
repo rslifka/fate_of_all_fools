@@ -15,6 +15,18 @@ body,
 }
 
 /*
+  EFFECT: Increase the item size beyond what DIM's configuration allows
+  REASON: We put more 'inside' the item, and at the default max item size this
+          makes things a bit cramped.
+
+  VERIFIED: 6.33.0
+*/
+:root
+{
+  --item-size: 77px !important;
+}
+
+/*
   EFFECT: Hide large notifications
   REASON: When moving more than a couple of items, they cover up the screen
 
@@ -23,7 +35,6 @@ body,
 .notifications-container {
   display: none;
 }
-
 
 /*
   This allows you to control the number of items in your vault by
@@ -36,14 +47,15 @@ body,
 }
 
 /*
-  Remove the white border from the equipped item. We know from the way that
-  DIM mirrors the Destiny UI that it's equipped.
+  EFFECT: Remove the white border around equipped items.
+  REASON: We can tell from how this mirrors the Destiny UI itself what
+          we have equipped. Don't need another indicator.
   
   VERIFIED: 6.33.0
 */
 .equipped-item {
-  border: none !important;
-  padding: none !important;
+  border: unset !important;
+  padding: 0 !important;
 }
 
 /*
@@ -79,13 +91,21 @@ body,
 }
 
 /*
-  EFFECT: Mute the info bar for items.
+  EFFECT:
+    - Mute the info bar for items.
+    - Increase the height.
   REASON: In aggregate they take up a lot of pixels and the contrast is too high.
   VERIFIED: 6.33.0
 */ 
 .item .hcIF4
 {
-  background-color: rgba(221,221,221,0.1);
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgb(240, 240, 240, 1.0);
+  height: calc(((var(--item-size) / 5) + 0px));
+  margin-top: 0;
+  padding: 0 1px;
+  position: absolute;
 }
 
 /*
@@ -95,20 +115,8 @@ body,
 */ 
 .item ._7AyRH
 {
-  color: rgb(240, 240, 240, 1.0);
-  font-size: calc((var(--item-size) / 6));
-}
-
-/*
-  EFFECT: Remove the white border around equipped items.
-  REASON: We can tell from how this mirrors the Destiny UI itself what
-          we have equipped. Don't need another indicator.
-  VERIFIED: 6.33.0          
-*/
-.equipped-item
-{
-  border: inherit;
-  padding: 0;
+  font-size: calc((var(--item-size) / 6.5));
+  font-weight: bold;
 }
 
 /*
@@ -182,18 +190,6 @@ body,
 [data-fate-dimtag-junk='true'] ._2--vS
 {
   filter: grayscale(100%);
-}
-
-/*
-  EFFECT: Increase the height of the tray per item
-  REASON: It's a bit compressed
-  VERIFIED: 6.33.0
-*/
-.hcIF4
-{
-  height: calc(((var(--item-size) / 5) + 5px));
-  margin-top: 0;
-  padding: 0 1px;
 }
 
 /******************************************************************************
