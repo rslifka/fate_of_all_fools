@@ -155,6 +155,16 @@ body,
 }
 
 /*
+  EFFECT: Hides the DIM built-in "archive" icon when an item is tagged.
+  REASON: There is additional visual treatment that we can remove the icon.
+  VERIFIED: 6.33.0
+*/
+.item-drag-container .fa-archive
+{
+  display: none !important;
+}
+
+/*
   EFFECT: Modify the styling of items tagged "archive".
   REASON: DIM's styling makes the item too small and difficult to reason about.
   VERIFIED: 6.33.0          

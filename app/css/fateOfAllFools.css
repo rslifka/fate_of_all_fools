@@ -23,6 +23,16 @@
 }
 
 /*
+  If I've marked an item as "Archive" using DIM's tagging
+    ...remove the archive icon
+    ...add our decorations
+*/
+.item[data-fate-dimtag-archive='true']
+{
+  border: 1px dashed rgba(255,255,255,0.4);
+}
+
+/*
   If I've marked an item as "Junk" using DIM's tagging
     ...fade the image
     ...remove the elemental display
