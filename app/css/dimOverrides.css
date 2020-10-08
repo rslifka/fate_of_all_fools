@@ -111,7 +111,7 @@ body,
 .item .hcIF4
 {
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   color: rgb(240, 240, 240, 1.0);
   height: calc(((var(--item-size) / 5) + 0px));
   margin-top: 0;
