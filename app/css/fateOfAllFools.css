@@ -23,29 +23,6 @@
 }
 
 /*
-  If I've marked an item as "Archive" using DIM's tagging
-    ...remove the archive icon
-    ...add our decorations
-*/
-.item[data-fate-dimtag-archive='true']
-{
-  border: 1px dashed rgba(255,255,255,0.4);
-}
-
-/*
-  If I've marked an item as "Junk" using DIM's tagging
-    ...fade the image
-    ...remove the elemental display
-*/
-[data-fate-dimtag-junk='true'] .item-img {
-  filter: grayscale(100%);
-  opacity: 0.6;
-}
-[data-fate-dimtag-junk='true'] .AtD93 > img {
-  display: none;
-}
-
-/*
   If I haven't saved it as a good roll
     ...and I haven't marked it as "Junk" using DIM's tagging
     ...and DIM's wishlist rejects it

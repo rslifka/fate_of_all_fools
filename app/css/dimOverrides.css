@@ -213,6 +213,29 @@ body,
   filter: grayscale(100%);
 }
 
+/*
+  EFFECT: Add a dashed outline to DIM-archived items
+  REASON: We want to keep them the same size to reduce contrast
+  VERIFIED: 6.33.0
+*/
+.item[data-fate-dimtag-archive='true']
+{
+  border: 1px dashed rgba(255,255,255,0.4);
+}
+
+/*
+  EFFECT: "Disable" items that are DIM-junked and remove their element.
+  REASON: So we can ignore them when scanning our vaults
+  VERIFIED: 6.33.0
+*/
+[data-fate-dimtag-junk='true'] .item-img {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+[data-fate-dimtag-junk='true'] .yDKCS._3hJ0K {
+  display: none;
+}
+
 /******************************************************************************
   EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
   EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
