@@ -15,6 +15,17 @@ body,
 }
 
 /*
+  EFFECT: Pull postmaster contents to the left
+  REASON: Near-alignment insanity where the postmaster contents were not left-
+          aligned with the equipped items.
+
+  VERIFIED: 6.33.0
+*/
+.sub-bucket.not-equippable {
+  padding-left: 0;
+}
+
+/*
   EFFECT: Increase the item size beyond what DIM's configuration allows
   REASON: We put more 'inside' the item, and at the default max item size this
           makes things a bit cramped.
