@@ -16,8 +16,8 @@
   color: rgba(206,82,70,1);
   font-size: 12px;
   padding: 0 1px;
-  left: 1px;
-  bottom: 1px;
+  left: -1px;
+  bottom: -1px;
 }
 
 .foaf-pve {
@@ -54,6 +54,6 @@
   color: rgba(93,181,110,1);
   font-size: 12px;
   padding: 0;
-  bottom: 1px;
-  left: 1px;
+  bottom: -1px;
+  left: 0;
 }
