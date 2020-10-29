@@ -105,8 +105,9 @@ body,
   EFFECT:
     - Mute the info bar for items.
     - Increase the height.
+    - Reset overflow so we can move items outside of the bar.
   REASON: In aggregate they take up a lot of pixels and the contrast is too high.
-  VERIFIED: 6.33.0
+  VERIFIED: 6.36.1
 */ 
 .item .hcIF4
 {
@@ -117,6 +118,7 @@ body,
   margin-top: 0;
   padding: 0 1px;
   position: absolute;
+  overflow: unset;
 }
 
 /*
@@ -179,16 +181,16 @@ body,
 /*
   EFFECT: Pull weapon elemental damage out of the tray.
   REASON: Need more room for our icons.
-  VERIFIED: 6.33.0
+  VERIFIED: 6.36.1
 */
-._7AyRH > .yDKCS {
+._7AyRH > ._1YChF {
   background-color: rgba(31,31,31,0.5);
   height: 10px;
   width: 10px;
   filter: unset;
   padding: 2px;
   position: absolute;
-  bottom: 16px;
+  bottom: 15px;
   right: -1px;
 }
 
@@ -231,9 +233,6 @@ body,
 [data-fate-dimtag-junk='true'] .item-img {
   filter: grayscale(100%);
   opacity: 0.6;
-}
-[data-fate-dimtag-junk='true'] .yDKCS._3hJ0K {
-  display: none;
 }
 
 /******************************************************************************
