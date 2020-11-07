@@ -1,19 +1,6 @@
 const $ = require('jquery');
 const logger = require('logger.js');
 
-fateBus.subscribe(module, 'fate.refresh', function() {
-  // logger.log('maxLightIndicator.js: Calculating maximum light per slot');
-  install();
-  if (!(GM_config.get('maxLightLevelTracking'))) {
-    $('#max-light').hide();
-    return;
-  }
-  
-  calculateMaxLight();
-  updateMaxLight();
-  $('#max-light').show();
-});
-
 const GEAR_BUCKETS = [
   'bucket-1498876634', // Kinetic
   'bucket-2465295065', // Energy
@@ -25,36 +12,57 @@ const GEAR_BUCKETS = [
   'bucket-1585787867', // Class
 ]
 
+fateBus.subscribe(module, 'fate.refresh', function() {
+  // logger.log('maxLightIndicator.js: Calculating maximum light per slot');
+  install();
+  if (!(GM_config.get('maxLightLevelTracking'))) {
+    $('#max-light').hide();
+    return;
+  }
+  
+  calculateMaxLight();
+  updateLightLevelUI();
+  $('#max-light').show();
+});
+
+// Store the maximum light level of each slot
 function calculateMaxLight() {
   GEAR_BUCKETS.forEach(function(className) {
-    const storageKey = className + '-maxLight';
-    let maxLight = (sessionStorage.getItem(storageKey) === null) ? 0 : parseInt(sessionStorage.getItem(storageKey));
-    
+    let maxLight = 0;
     $('.'+className).find('[data-fate-light]').each(function() {
       maxLight = Math.max(maxLight, parseInt($(this).attr('data-fate-light')));
     });
     
+    const storageKey = className + '-maxLight';
     sessionStorage.setItem(storageKey, maxLight);
   });
 }
 
-function updateMaxLight() {
-  let minLight = 9999;
-  GEAR_BUCKETS.forEach(function(className) {
-    const storageKey = className + '-maxLight';
-    minLight = Math.min(minLight, parseInt(sessionStorage.getItem(storageKey)));
-  });
+function updateLightLevelUI() {
+  const lightLevels = GEAR_BUCKETS.map(className => parseInt(sessionStorage.getItem(className + '-maxLight')));
+
+  // Visually indicate which slots are the lowest so we can focus on increasing
+  // their light level.
+  let minLight = lightLevels.reduce((a,c) => Math.min(a,c));
+
+  // If all the light levels are the same, color them normally
+  const identicalLightLevels = !lightLevels.some(ll => ll != minLight);
+  minLight = identicalLightLevels ? 0 : minLight;
 
   GEAR_BUCKETS.forEach(function(className) {
     const storageKey = className + '-maxLight';
-    const elementId = 'fate-max-light-' + className;
     const light = parseInt(sessionStorage.getItem(storageKey));
-    $('#' + elementId).text(light);
+
+    const elementId = '#fate-max-light-' + className;
+    const oldLight = parseInt($(elementId).text());
+    if (light != oldLight) {
+      $(elementId).text(light);
+    }
 
     if (light === minLight) {
-      $('#' + elementId).addClass('min-light');
+      $(elementId).addClass('min-light');
     } else {
-      $('#' + elementId).removeClass('min-light');
+      $(elementId).removeClass('min-light');
     }
   });
 }
