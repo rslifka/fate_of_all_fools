@@ -2,6 +2,8 @@ const $ = require('jquery');
 const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 const Utility = require('weaponRollAssessment.js').Utility;
 
+const POWER_LEVEL_CLASS = '._7AyRH';
+
 const WEAPON_BUCKETS = [
   'bucket-1498876634', // Kinetic
   'bucket-2465295065', // Energy
@@ -24,7 +26,7 @@ function storeWeaponData() {
       const serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
   
-      const light = $(this).find('.AtD93').children('span').text();
+      const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
       $(this).attr('data-fate-light', light);
     });
   });
@@ -36,6 +38,9 @@ function updateAttributes() {
 
     const name = $(this).attr('data-fate-weapon-name')
     $(this).attr('title', name);
+
+    const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
+    $(this).attr('data-fate-light', light);
 
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
       const className = $(value).attr('class').split(' ').filter(function(cname) {
