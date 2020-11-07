@@ -10,7 +10,7 @@ const INFUSION_INDICATOR_CLASS = 'foaf-infusable';
 const MASTERWORK_INDICATOR_CLASS = 'foaf-masterwork';
 
 const WEAPON_GLYPHS = new Map([
-  [DUPLICATE_INDICATOR_CLASS, 'fglyph-knives'],
+  [DUPLICATE_INDICATOR_CLASS, 'fglyph-dupe'],
   [PVE_INDICATOR_CLASS,       'fglyph-pve'],
   [PVP_INDICATOR_CLASS,       'fglyph-pvp'],
   [INFUSION_INDICATOR_CLASS,   'fglyph-up'],
@@ -26,7 +26,7 @@ const ARMOR_GLYPHS = new Map([
 
 const SHADER_GLYPHS = new Map([
   [FAVE_INDICATOR_CLASS, 'fglyph-fave'],
-  [JUNK_INDICATOR_CLASS, 'fglyph-thumbs-down']
+  [JUNK_INDICATOR_CLASS, 'fglyph-junk']
 ]);
 
 function prepareIndicatorSpace() {
