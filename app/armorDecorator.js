@@ -10,6 +10,8 @@ const ARMOR_BUCKETS = [
   'bucket-1585787867', // Class
 ]
 
+const POWER_LEVEL_CLASS = '._7AyRH';
+
 function storeArmorData() {
   ARMOR_BUCKETS.forEach(function(className) {
     $('.'+className).find('.item').not('[data-fate-armor-registered]').each(function() {
@@ -25,7 +27,7 @@ function storeArmorData() {
       const serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
 
-      const light = $(this).find('.AtD93').children('span').text();
+      const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
       $(this).attr('data-fate-light', light);
     });
   });
@@ -60,7 +62,7 @@ function updateAttributes() {
     const isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
     
-    const light = $(this).find('.AtD93').children('span').text();
+    const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
     $(this).attr('data-fate-light', light);
 
     if (!isArmorRegistered) {
@@ -77,7 +79,10 @@ function updateAttributes() {
     $(this).attr('data-fate-armor-pvp', a.pvpUtility === Utility.YES);
     $(this).attr('data-fate-element', a.element);
 
-    $(this).find('.foaf-item-overlay').text(a.overlay);
+    const $itemOverlay = $(this).find('.foaf-item-overlay');
+    if ($itemOverlay.text() != a.overlay) {
+      $(this).find('.foaf-item-overlay').text(a.overlay);
+    }
   });
 }
 
