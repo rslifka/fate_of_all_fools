@@ -57,15 +57,19 @@
 }
 
 .foaf-wishlist-pass {
-  color: #ecff55;
-  top: 3px;
-  right: 1px;
+  color: #3b49fe;
+  background-color: rgba(0,0,0,0.8);
   font-size: 20px;
+  padding: 2px 1px;
+  top: 0;
+  right: 5px;
 }
 
 .foaf-wishlist-fail {
   color: #fe3b3b;
-  top: 3px;
-  right: 1px;
+  background-color: rgba(0,0,0,0.8);
   font-size: 20px;
+  padding: 3px 2px;
+  top: 0;
+  right: 5px;
 }

@@ -256,18 +256,17 @@ body,
 }
 
 /*
-  EFFECT: Relocate DIM's tagging icons.
+  EFFECT: Relocate and restyle DIM's tagging icons.
   REASON: We use the area they would normally appear.
   VERIFIED: 6.37.2
 */
 .rlCY7 {
-  bottom: 20px;
   display: unset;
   flex-direction: unset;
-  left: unset;
   position: absolute;
-  right: 30px;
   top: unset;
+  bottom: 20px;
+  left: 2px;
 }
 
 /*
@@ -276,9 +275,8 @@ body,
   VERIFIED: 6.37.2
 */
 ._18Hio {
-  color: white;
-  filter: unset;
-  font-size: 16px;
+  color: rgb(232, 225, 33);
+  font-size: 12px;
   height: unset;
   width: unset;
 }
