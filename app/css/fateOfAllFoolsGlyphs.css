@@ -1,14 +1,14 @@
 .foaf-glyph {
   background-color: transparent;
-  font-size: 11px;
+  font-size: 12px;
   position: absolute;
   text-shadow: none;
 }
 
 .foaf-dupe {
   color: rgba(221,221,221,0.75);
-  left: 0;
-  bottom: -1px;
+  left: 2px;
+  bottom: 2px;
   font-size: 12px;
 }
 
@@ -42,12 +42,10 @@
 }
 
 .foaf-infusable {
-  background-color: rgba(0,0,0,0.5);
-  color: rgba(93,181,110,1);
-  padding: 0;
-  left: 0;
-  bottom: 16px;
-  font-size: 11px;
+  color: rgb(0, 255, 186);
+  right: 29px;
+  bottom: 1px;
+  font-size: 12px;
 }
 
 .foaf-fave {

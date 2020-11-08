@@ -34,7 +34,7 @@ body,
 */
 :root
 {
-  --item-size: 77px !important;
+  --item-size: 82px !important;
 }
 
 /*
@@ -112,7 +112,7 @@ body,
 .item .hcIF4
 {
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.65);
   color: rgb(240, 240, 240, 1.0);
   height: calc(((var(--item-size) / 5) + 0px));
   margin-top: 0;
@@ -162,6 +162,16 @@ body,
   VERIFIED: 6.33.0
 */
 .item-drag-container .fa-archive
+{
+  display: none !important;
+}
+
+/*
+  EFFECT: Hides the DIM built-in "infuse" icon when an item is tagged.
+  REASON: There is additional visual treatment that we can remove the icon.
+  VERIFIED: 6.33.0
+*/
+.item-drag-container .fa-bolt
 {
   display: none !important;
 }
@@ -235,6 +245,44 @@ body,
   opacity: 0.6;
 }
 
+/*
+  EFFECT: Hides the DIM built-in "thumbs down" and "thumbs up" icons when an
+          item is assessed via the "wish list" feature.
+  REASON: We'll go with our own visuals for this.
+  VERIFIED: 6.37.2
+*/
+.rating-icon {
+  display: none;
+}
+
+/*
+  EFFECT: Relocate DIM's tagging icons.
+  REASON: We use the area they would normally appear.
+  VERIFIED: 6.37.2
+*/
+.rlCY7 {
+  bottom: 20px;
+  display: unset;
+  flex-direction: unset;
+  left: unset;
+  position: absolute;
+  right: 1px;
+  top: unset;
+}
+
+/*
+  EFFECT: Restyle DIM's tagging icons.
+  REASON: To look more like ours.
+  VERIFIED: 6.37.2
+*/
+._18Hio {
+  color: white;
+  filter: unset;
+  font-size: 16px;
+  height: unset;
+  width: unset;
+}
+
 /******************************************************************************
   EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
   EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
@@ -242,26 +290,6 @@ body,
   EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
   EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
 *******************************************************************************/
-
-/*
-  EFFECT: Hides the DIM built-in "thumbs down" icon when an item is trashed via
-          the "wish list" feature.
-  REASON: We're opting for a more visually obvious mechanism since that slot is
-          generally where good things go.
-*/
-._16Lie > .fa-thumbs-down {
-  display: none !important;
-}
-
-/*
-  EFFECT: Hides the DIM built-in "thumbs up" icon when an item is good via
-          the "wish list" feature.
-  REASON: We're opting for a more visually obvious mechanism since that slot is
-          generally where our own icons go.
-*/
-._16Lie > .fa-thumbs-up {
-  display: none !important;
-}
 
 /* Remove fold/unfold icon next to section headings */
 [data-icon='caret-down'],
@@ -279,21 +307,6 @@ body,
   height: 50px !important;
   line-height: 50px !important;
   margin: 10px 0 !important;
-}
-
-/* Stat bar background */
-.item ._3TPBp {
-  background-color: rgba(31,31,31,1);
-  color: rgba(255,255,255,0.8);
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* TODO: Not sure what this was supposed to do */
-.item ._2qGNh {
-  color: rgb(236, 41, 41);
-  width: calc(var(--item-size) / 7);
-  height: calc(var(--item-size) / 7);
 }
 
 .armor-class-icon {
@@ -315,13 +328,5 @@ body,
   REASON: When your vault is full of masterworks, it's visualy noisy.
 */
 .N0z6Y {
-  display: none;
-}
-
-/*
-  EFFECT: Remove the rating icons.
-  REASON: We use our own styling for this.
-*/
-.rating-icon {
   display: none;
 }
