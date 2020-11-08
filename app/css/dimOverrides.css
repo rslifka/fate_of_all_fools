@@ -266,7 +266,7 @@ body,
   flex-direction: unset;
   left: unset;
   position: absolute;
-  right: 1px;
+  right: 30px;
   top: unset;
 }
 
@@ -317,8 +317,8 @@ body,
   EFFECT: Dim all unregistered weapons and armor
   REASON: So we can find our registered items more easily!
 */
-.item[data-fate-armor-registered=false][data-fate-dimtag-archive=false],
-.item[data-fate-weapon-registered=false][data-fate-dimtag-archive=false]
+.item[data-fate-armor-registered=false][data-fate-dimtag-archive=false] > img,
+.item[data-fate-weapon-registered=false][data-fate-dimtag-archive=false] > img
 {
   opacity: 0.6;
 }

@@ -22,40 +22,6 @@
   color: rgba(221,221,221,1);
 }
 
-/*
-  If I haven't saved it as a good roll
-    ...and I haven't marked it as "Junk" using DIM's tagging
-    ...and DIM's wishlist rejects it
-    ...then show an overlay indicating it's no bueno.
-*/
-.item[data-fate-weapon-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='rejected']::before,
-.item[data-fate-armor-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='rejected']::before
-{
-  background-color: red;
-  content: " ";
-  position: absolute;
-  height: var(--item-size);
-  opacity: 0.5;
-  width: var(--item-size);
-}
-
-/*
-  If I haven't saved it as a good roll
-    ...and I haven't marked it as "Junk" using DIM's tagging
-    ...and DIM's wishlist acceptss it
-    ...then show an overlay indicating it's interesting!
-*/
-.item[data-fate-weapon-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='accepted']::before,
-.item[data-fate-armor-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='accepted']::before
-{
-  background-color: #08e208;
-  content: " ";
-  position: absolute;
-  height: var(--item-size);
-  opacity: 0.5;
-  width: var(--item-size);
-}
-
 .item[data-fate-dimtag-infuse='true']::before {
   background-color: yellow !important; 
   content: " ";

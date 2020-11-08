@@ -8,12 +8,16 @@ const PVP_INDICATOR_CLASS = 'foaf-pvp';
 const FAVE_INDICATOR_CLASS = 'foaf-fave';
 const INFUSION_INDICATOR_CLASS = 'foaf-infusable';
 const MASTERWORK_INDICATOR_CLASS = 'foaf-masterwork';
+const WISHLIST_PASS_INDICATOR_CLASS = 'foaf-wishlist-pass';
+const WISHLIST_FAIL_INDICATOR_CLASS = 'foaf-wishlist-fail';
 
 const WEAPON_GLYPHS = new Map([
   [DUPLICATE_INDICATOR_CLASS, 'fglyph-dupe'],
   [PVE_INDICATOR_CLASS,       'fglyph-pve'],
   [PVP_INDICATOR_CLASS,       'fglyph-pvp'],
   [INFUSION_INDICATOR_CLASS,   'fglyph-up'],
+  [WISHLIST_PASS_INDICATOR_CLASS, 'fglyph-wishlist-pass'],
+  [WISHLIST_FAIL_INDICATOR_CLASS, 'fglyph-wishlist-fail'],
   [MASTERWORK_INDICATOR_CLASS, '']
 ]);
 

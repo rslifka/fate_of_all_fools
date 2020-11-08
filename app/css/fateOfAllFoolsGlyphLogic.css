@@ -37,12 +37,6 @@
   display: block;
 }
 
-[data-fate-dimtag-keep="true"] > .foaf-dupe,
-[data-fate-dimtag-infuse="true"] > .foaf-dupe
-{
-  left: 11px;
-}
-
 /*
   JUNK INDICATOR
 */
@@ -115,6 +109,48 @@
 }
 
 [data-fate-infusable="false"] > .foaf-infusable
+{
+  display: none;
+}
+
+/*
+  WISHLIST REJECT INDICATOR
+
+  If I haven't saved it as a good roll
+    ...and I haven't marked it as "Junk" using DIM's tagging
+    ...and DIM's wishlist rejects it
+    ...then show an overlay indicating it's no bueno.
+*/
+.item[data-fate-weapon-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='rejected'] > .foaf-wishlist-fail
+{
+  display: block;
+}
+.item[data-fate-wishlist-status='not-registered'] > .foaf-wishlist-fail,
+.item[data-fate-wishlist-status='accepted'] > .foaf-wishlist-fail,
+.item[data-fate-weapon-registered='true'] > .foaf-wishlist-fail,
+.item[data-fate-dimtag-junk='true'] > .foaf-wishlist-fail,
+.item[data-fate-weapon-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='accepted'] > .foaf-wishlist-fail
+{
+  display: none;
+}
+
+/*
+  WISHLIST ACCEPT INDICATOR
+
+  If I haven't saved it as a good roll
+    ...and I haven't marked it as "Junk" using DIM's tagging
+    ...and DIM's wishlist accepts it
+    ...then show an overlay indicating it's interesting!
+*/
+.item[data-fate-weapon-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='accepted'] > .foaf-wishlist-pass
+{
+  display: block;
+}
+.item[data-fate-wishlist-status='not-registered'] > .foaf-wishlist-pass,
+.item[data-fate-wishlist-status='rejected'] > .foaf-wishlist-pass,
+.item[data-fate-weapon-registered='true'] > .foaf-wishlist-pass,
+.item[data-fate-dimtag-junk='true'] > .foaf-wishlist-pass,
+.item[data-fate-weapon-registered='false'][data-fate-dimtag-junk='false'][data-fate-wishlist-status='rejected'] > .foaf-wishlist-pass
 {
   display: none;
 }

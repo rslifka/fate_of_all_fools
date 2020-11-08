@@ -6,7 +6,7 @@
 }
 
 .foaf-dupe {
-  color: rgba(221,221,221,0.75);
+  color: white;
   left: 2px;
   bottom: 2px;
   font-size: 12px;
@@ -54,4 +54,18 @@
   padding: 0;
   bottom: -1px;
   left: 0;
+}
+
+.foaf-wishlist-pass {
+  color: #ecff55;
+  top: 3px;
+  right: 1px;
+  font-size: 20px;
+}
+
+.foaf-wishlist-fail {
+  color: #fe3b3b;
+  top: 3px;
+  right: 1px;
+  font-size: 20px;
 }
