@@ -1,20 +1,15 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('https://rslifka.github.io/fate_of_all_fools/fonts/icomoon.eot?m95kjv');
-  src:  url('https://rslifka.github.io/fate_of_all_fools/fonts/icomoon.eot?m95kjv#iefix') format('embedded-opentype'),
-    url('https://rslifka.github.io/fate_of_all_fools/fonts/icomoon.woff2?m95kjv') format('woff2'),
-    url('https://rslifka.github.io/fate_of_all_fools/fonts/icomoon.ttf?m95kjv') format('truetype'),
-    url('https://rslifka.github.io/fate_of_all_fools/fonts/icomoon.woff?m95kjv') format('woff'),
-    url('https://rslifka.github.io/fate_of_all_fools/fonts/icomoon.svg?m95kjv#icomoon') format('svg');
+  src: url("data:application/x-font-ttf;charset=utf-8;base64,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") format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="fglyph-"], [class*=" fglyph-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: never;
+  speak-as: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -29,18 +24,18 @@
 .fglyph-up:before {
   content: "\e905";
 }
-.fgylph-fave:before {
+.fglyph-fave:before {
   content: "\e901";
 }
 .fglyph-junk:before {
   content: "\e902";
 }
-.fgylph-pvp:before {
+.fglyph-pvp:before {
   content: "\e903";
 }
-.fgylph-dupe:before {
+.fglyph-dupe:before {
   content: "\e904";
 }
-.fgylph-pve:before {
+.fglyph-pve:before {
   content: "\e900";
 }
