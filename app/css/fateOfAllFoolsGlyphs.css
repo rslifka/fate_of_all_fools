@@ -14,10 +14,10 @@
 
 .foaf-junk {
   color: rgba(206,82,70,1);
-  font-size: 12px;
-  padding: 0 1px;
-  left: -1px;
-  bottom: -1px;
+  font-size: 14px;
+  left: 0px;
+  padding: 0;
+  bottom: 1px;
 }
 
 .foaf-pve {
@@ -50,9 +50,9 @@
 
 .foaf-fave {
   color: rgba(93,181,110,1);
-  font-size: 12px;
+  font-size: 14px;
   padding: 0;
-  bottom: -1px;
+  bottom: 1px;
   left: 0;
 }
 
