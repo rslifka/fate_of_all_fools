@@ -1,20 +1,4 @@
 /*
-  EFFECT: General muting of large swaths of the background.
-  REASON: We want to be able to look at DIM after the sun sets without burning out
-          our retinas.
-
-  VERIFIED: 6.33.0
-*/
-body,
-#header
-.sticky-header-background,
-.store-header,
-.store-cell.vault
-{
-  background-color: #000 !important;
-}
-
-/*
   EFFECT: Pull postmaster contents to the left
   REASON: Near-alignment insanity where the postmaster contents were not left-
           aligned with the equipped items.
