@@ -15,11 +15,20 @@ describe('elementDetector.js', function() {
 
   describe('color setting', function() {
 
-    it('should set the colors', async function() {
-      await elementDetector.updateElementIcons();
-      expect(elementDetector.getElementFromURL(ARC_DAMAGE_ICON)).toEqual('arc');
-      expect(elementDetector.getElementFromURL(SOLAR_DAMAGE_ICON)).toEqual('solar');
-      expect(elementDetector.getElementFromURL(VOID_DAMAGE_ICON)).toEqual('void');
+    describe('when the element is known', function() {
+      it('should set the colors', async function() {
+        await elementDetector.updateElementIcons();
+        expect(elementDetector.getElementFromURL(ARC_DAMAGE_ICON)).toEqual('arc');
+        expect(elementDetector.getElementFromURL(SOLAR_DAMAGE_ICON)).toEqual('solar');
+        expect(elementDetector.getElementFromURL(VOID_DAMAGE_ICON)).toEqual('void');
+      });
+    });
+
+    describe('when the element is not known', function() {
+      it('is kinetic', async function() {
+        await elementDetector.updateElementIcons();
+        expect(elementDetector.getElementFromURL('TEST_NO_ICON_VALUE')).toEqual('kinetic');
+      });
     });
 
   });

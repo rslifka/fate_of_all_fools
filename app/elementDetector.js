@@ -91,7 +91,8 @@ async function getUrlForElement(hexCode, imageSourceUrls) {
 }
 
 function getElementFromURL(url) {
-  return URL_TO_ELEMENT.get(url);
+  const element = URL_TO_ELEMENT.get(url);
+  return element ? element : 'kinetic';
 }
 
 exports.getElementFromURL = getElementFromURL
