@@ -10,41 +10,41 @@ const NUM_ELEMENTS = 3;
 
 // Store the mappings so clients can understand elements from URLs
 const URL_TO_ELEMENT = new Map();
-exports.getElementFromURL = function(url) {
-  URL_TO_ELEMENT.get(url);
-}
 
 let colorsDetected = false;
 
 fateBus.subscribe(module, 'fate.refresh', function() {  
-  // logger.log('elementDetector.js: Calculating element colors');
   if (colorsDetected) {
     return;
   }
+  logger.log('elementDetector.js: Calculating element colors');
 
+  updateElementIcons();
+});
+
+function updateElementIcons() {
   const imageSourceURLs = getElementImageSources();
 
   const arcMatch   = getUrlForElement('#7cbce4', imageSourceURLs);
   const solarMatch = getUrlForElement('#f4641c', imageSourceURLs);
   const voidMatch  = getUrlForElement('#b484dc', imageSourceURLs);
 
-  Promise.all([arcMatch, solarMatch, voidMatch])
-    .then((elementUrls) => {
-      if (elementUrls[0] != undefined) {
-        URL_TO_ELEMENT.set('arc', elementUrls[0]);
-      }
-      if (elementUrls[1] != undefined) {
-        URL_TO_ELEMENT.set('solar', elementUrls[1]);
-      }
-      if (elementUrls[2] != undefined) {
-        URL_TO_ELEMENT.set('void', elementUrls[2]);
-      }
+  return Promise.all([arcMatch, solarMatch, voidMatch]).then((elementUrls) => {
+    if (elementUrls[0] != undefined) {
+      URL_TO_ELEMENT.set(elementUrls[0], 'arc');
+    }
+    if (elementUrls[1] != undefined) {
+      URL_TO_ELEMENT.set(elementUrls[1], 'solar');
+    }
+    if (elementUrls[2] != undefined) {
+      URL_TO_ELEMENT.set(elementUrls[2], 'void');
+    }
 
-      if (URL_TO_ELEMENT.size == NUM_ELEMENTS) {
-        colorsDetected = true;
-      }
-    });
-});
+    if (URL_TO_ELEMENT.size === NUM_ELEMENTS) {
+      colorsDetected = true;
+    }
+  });
+}
 
 /*
   Elements are the same across armor and weapons, so we aren't particularly
@@ -89,3 +89,10 @@ async function getUrlForElement(hexCode, imageSourceUrls) {
   }
   return undefined;
 }
+
+function getElementFromURL(url) {
+  return URL_TO_ELEMENT.get(url);
+}
+
+exports.getElementFromURL = getElementFromURL
+exports.updateElementIcons = updateElementIcons
