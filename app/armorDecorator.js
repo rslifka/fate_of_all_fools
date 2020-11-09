@@ -1,6 +1,7 @@
 const $ = require('jquery');
 const rollDatabase = require('armorRollDatabase.js').armorRollDB;
 const Utility = require('armorRoll.js').Utility;
+const elementDetector = require('elementDetector.js');
 
 const ARMOR_BUCKETS = [
   'bucket-3448274439', // Helm
@@ -11,6 +12,7 @@ const ARMOR_BUCKETS = [
 ]
 
 const POWER_LEVEL_CLASS = '._7AyRH';
+const ELEMENT_ICON_CLASS = '.g7Tk_';
 
 function storeArmorData() {
   ARMOR_BUCKETS.forEach(function(className) {
@@ -29,6 +31,9 @@ function storeArmorData() {
 
       const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
       $(this).attr('data-fate-light', light);
+
+      const elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
+      $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
     });
   });
 }
@@ -39,6 +44,9 @@ function updateAttributes() {
 
     const name = $(this).attr('data-fate-armor-name')
     $(this).attr('title', name);
+
+    const elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
+    $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
 
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
       const className = $(value).attr('class').split(' ').filter(function(cname) {
