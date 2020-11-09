@@ -1,3 +1,6 @@
+// Pull in Async/await polyfills
+import 'regenerator-runtime/runtime';
+
 // Install the configuration interface and set default values
 require('configuration.js');
 
@@ -35,6 +38,8 @@ require('armorRollDatabase.js');
 require('armorRollDataRefresher.js');
 
 require('indicators.js');
+
+require('elementDetector.js');
 
 /*
   The nicest change-refresh flow means loading the development version of
