@@ -1,4 +1,24 @@
 /*
+  EFFECT: Remove the new BL gradient background.
+  REASON: It's really pretty but further reduces the contrast between items
+          and the background.
+  VERIFIED: 6.38.0
+*/
+body,
+#header
+.sticky-header-background,
+.store-header,
+.store-cell.vault,
+.gradientBackground,
+.gradientBackground #header,
+.gradientBackground::before
+{
+  background: unset !important;
+  content: unset !important;
+  background-color: #000 !important;
+}
+
+/*
   EFFECT: Pull postmaster contents to the left
   REASON: Near-alignment insanity where the postmaster contents were not left-
           aligned with the equipped items.
