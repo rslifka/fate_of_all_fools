@@ -9,25 +9,24 @@
     "test": "./node_modules/.bin/karma start --single-run --browsers ChromeHeadless"
   },
   "dependencies": {
-    "blueimp-md5": "^2.17.0",
-    "jquery": "^3.5.1",
+    "blueimp-md5": "^2",
+    "jquery": "^3",
     "jquery-toast-plugin": "^1",
-    "node-vibrant": "^3.1",
+    "node-vibrant": "^3",
     "pubsub-js": "^1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.10.4",
-    "@metahub/karma-jasmine-jquery": "^4.0.1",
+    "@babel/preset-env": "^7",
+    "@metahub/karma-jasmine-jquery": "^4",
     "babel-brunch": "^7",
     "brunch": "^3",
     "clean-css-brunch": "^3",
-    "jasmine-core": "^3.6.0",
+    "jasmine-core": "^3",
     "jasmine-jquery": "^2",
-    "karma": "^5.1.1",
+    "karma": "^5",
     "karma-chrome-launcher": "^3",
-    "karma-jasmine": "^3.3.1",
+    "karma-jasmine": "^3",
     "karma-jquery": "^0",
-    "npm": "^6.14.7",
-    "uglify-js-brunch": "^2"
+    "npm": "^6"
   }
 }
