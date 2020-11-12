@@ -195,5 +195,5 @@
 */
 div.item:not([data-fate-element='kinetic']) > .foaf-masterwork
 {
-  bottom: 8px;
+  bottom: 7px;
 }
