@@ -154,3 +154,46 @@
 {
   display: none;
 }
+
+/*
+  ELEMENT INDICATOR
+*/
+.item[data-fate-element='arc'] > .foaf-element
+{
+  display: block;
+  background-color: rgba(32,146,213);
+}
+
+.item[data-fate-element='solar'] > .foaf-element
+{
+  display: block;
+  background-color: rgba(255,41,0,1);
+}
+
+.item[data-fate-element='void'] > .foaf-element
+{
+  display: block;
+  background-color: rgba(153,88,220,1);
+}
+
+.item[data-fate-element='kinetic'] > .foaf-element
+{
+  display: none;
+}
+
+/*
+  Position of the light level depends on if there are any other icons to show
+  to the right of it.
+*/
+.item[data-fate-element='kinetic'][data-fate-masterwork='false'] .hcIF4
+{
+  padding-right: 0;
+}
+
+/*
+  If the masterwork tick is to appear on an affinity item, push it up.
+*/
+div.item:not([data-fate-element='kinetic']) > .foaf-masterwork
+{
+  bottom: 8px;
+}
