@@ -197,3 +197,12 @@ div.item:not([data-fate-element='kinetic']) > .foaf-masterwork
 {
   bottom: 7px;
 }
+
+/*
+  Only show the built-in DIM tagging icon container if the item is tagged with
+  the 'keep' status.
+*/
+.item[data-fate-dimtag-keep='false'] > .rlCY7
+{
+  display: none;
+}
