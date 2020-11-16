@@ -66,18 +66,18 @@
 
 .foaf-wishlist-pass {
   color: #3b49fe;
-  background-color: rgba(0,0,0,0.8);
-  font-size: 20px;
-  padding: 2px 1px;
+  background-color: rgba(0,0,0,0.5);
+  font-size: 18px;
+  padding: 1px 0;
   top: 0;
-  right: 5px;
+  right: 0;
 }
 
 .foaf-wishlist-fail {
   color: #fe3b3b;
-  background-color: rgba(0,0,0,0.8);
-  font-size: 20px;
-  padding: 3px 2px;
+  background-color: rgba(0,0,0,0.5);
+  font-size: 16px;
+  padding: 1px 0px;
   top: 0;
-  right: 5px;
+  right: 0;
 }
