@@ -77,3 +77,19 @@
   filter: grayscale(100%);
   transform: unset;
 }
+
+/*
+  EFFECT: Restyle DIM's tagging icons.
+  REASON: To look more like ours.
+  VERIFIED: 6.37.2
+*/
+._18Hio
+{
+  color: rgb(232, 225, 33);
+  font-size: 11px;
+  position: absolute;
+  bottom: -16px;
+  left: -2px;
+  height: unset;
+  width: unset;
+}
