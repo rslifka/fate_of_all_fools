@@ -22831,7 +22831,7 @@ var ARMOR_BUCKETS = ['bucket-3448274439', // Helm
 'bucket-20886954', // Legs
 'bucket-1585787867' // Class
 ];
-var POWER_LEVEL_CLASS = '._7AyRH';
+var POWER_LEVEL_CLASS = '.hcIF4';
 var ELEMENT_ICON_CLASS = '.g7Tk_';
 
 function storeArmorData() {
@@ -22845,7 +22845,7 @@ function storeArmorData() {
       $(this).attr('data-fate-masterwork', isMasterwork);
       var serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
-      var light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
+      var light = $(this).find(POWER_LEVEL_CLASS).children('span:not(.IHFwZ)').text();
       $(this).attr('data-fate-light', light);
       var elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
       $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
@@ -22876,7 +22876,7 @@ function updateAttributes() {
     $(this).attr('data-fate-dimtag-favourite', dimFavourite);
     var isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
-    var light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
+    var light = $(this).find(POWER_LEVEL_CLASS).children('span:not(.IHFwZ)').text();
     $(this).attr('data-fate-light', light);
 
     if (!isArmorRegistered) {
@@ -24366,7 +24366,7 @@ var Utility = require('weaponRollAssessment.js').Utility;
 
 var elementDetector = require('elementDetector.js');
 
-var POWER_LEVEL_CLASS = '._7AyRH';
+var POWER_LEVEL_CLASS = '.hcIF4';
 var ELEMENT_ICON_CLASS = '.g7Tk_';
 var WEAPON_BUCKETS = ['bucket-1498876634', // Kinetic
 'bucket-2465295065', // Energy
