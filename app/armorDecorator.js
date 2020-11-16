@@ -11,7 +11,7 @@ const ARMOR_BUCKETS = [
   'bucket-1585787867', // Class
 ]
 
-const POWER_LEVEL_CLASS = '._7AyRH';
+const POWER_LEVEL_CLASS = '.hcIF4';
 const ELEMENT_ICON_CLASS = '.g7Tk_';
 
 function storeArmorData() {
@@ -29,7 +29,7 @@ function storeArmorData() {
       const serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
 
-      const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
+      const light = $(this).find(POWER_LEVEL_CLASS).children('span:not(.IHFwZ)').text();
       $(this).attr('data-fate-light', light);
 
       const elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
@@ -70,7 +70,7 @@ function updateAttributes() {
     const isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
     
-    const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
+    const light = $(this).find(POWER_LEVEL_CLASS).children('span:not(.IHFwZ)').text();
     $(this).attr('data-fate-light', light);
 
     if (!isArmorRegistered) {

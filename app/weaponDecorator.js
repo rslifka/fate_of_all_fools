@@ -3,7 +3,7 @@ const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 const Utility = require('weaponRollAssessment.js').Utility;
 const elementDetector = require('elementDetector.js');
 
-const POWER_LEVEL_CLASS  = '._7AyRH';
+const POWER_LEVEL_CLASS  = '.hcIF4';
 const ELEMENT_ICON_CLASS = '.g7Tk_';
 
 const WEAPON_BUCKETS = [
