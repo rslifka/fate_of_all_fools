@@ -1,0 +1,79 @@
+/*
+  When DIM updates, these identifiers are sometimes rolled. They are DIM
+  overrides, but cordoned off here in their own file so it's clear which
+  styles may need to be examined when there is a major new version.
+*/
+
+/*
+  EFFECT: Pull the 'gear' seasonal icon over and up flush with the cell.
+  REASON: It's a little off kilter.
+  VERIFIED: 6.39.0
+*/
+._2--vS
+{
+  left: 0;
+  top: 0;
+}
+
+/*
+  EFFECT: Hides the masterwork image overlay on exotics and legendaries.
+  REASON: We use our own more subtle way to indicate what's masterworked.
+  VERIFIED: 6.39.0
+*/
+._3kP4m
+{
+  background-image: none;
+}
+
+/*
+  EFFECT: Dramatically restyle the info bar.
+    - Mute the info bar for items.
+    - Increase the height.
+    - Reset overflow so we can move items outside of the bar.
+  REASON: In aggregate they take up a lot of pixels and the contrast is too high.
+  VERIFIED: 6.39.0
+*/ 
+.hcIF4
+{
+  align-items: unset;
+  background-color: rgba(44, 44, 44, 0.7);
+  color: rgb(240, 240, 240, 1.0);
+  height: calc(((var(--item-size) / 5) + 3px)) !important;
+  line-height: calc(((var(--item-size) / 5) + 3px)) !important;
+  margin-top: 0;
+  padding-right: 6px;
+  overflow: unset;
+  vertical-align: top;
+}
+
+/*
+  EFFECT: On armor, hide power level indicator and elemental affinity.
+  REASON: No need and we have our own approach, respectively.
+  VERIFIED: 6.39.0
+*/ 
+.IHFwZ
+{
+  display: none;
+}
+
+/*
+  EFFECT: On weapons, hide elemental affinity.
+  REASON: We have our own approach.
+  VERIFIED: 6.39.0
+*/
+._1YChF
+{
+  display: none;
+}
+
+/*
+  EFFECT: Modify the styling of items tagged "archive".
+  REASON: DIM's styling makes the item too small and difficult to reason about.
+  VERIFIED: 6.33.0          
+*/
+.item._1tegB
+{
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transform: unset;
+}

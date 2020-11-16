@@ -63,7 +63,7 @@
 [data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pve,
 [data-fate-armor-pve="true"][data-fate-armor-pvp="true"] > .foaf-pve
 {
-  left: 15px;
+  left: 12px;
 }
 
 [data-fate-weapon-pve="false"] > .foaf-pve,
@@ -187,7 +187,7 @@
 */
 .item[data-fate-element='kinetic'][data-fate-masterwork='false'] .hcIF4
 {
-  padding-right: 0;
+  padding-right: 2px;
 }
 
 /*
@@ -195,7 +195,7 @@
 */
 div.item:not([data-fate-element='kinetic']) > .foaf-masterwork
 {
-  bottom: 7px;
+  bottom: 9px;
 }
 
 /*

@@ -8,7 +8,7 @@
 .foaf-dupe {
   color: white;
   left: 1px;
-  bottom: 1px;
+  bottom: 2px;
 }
 
 /* TODO: Verify this still works! */
@@ -23,19 +23,19 @@
 .foaf-pve {
   color: rgba(93,181,110,1);
   left: 0;
-  bottom: 1px;
+  bottom: 2px;
 }
 
 .foaf-pvp {
   color: rgba(93,181,110,1);
-  left: 0px;
-  bottom: 1px;
+  left: 1px;
+  bottom: 2px;
 }
 
 .foaf-element {
   width: 4px;
   height: 5px;
-  bottom: 1px;
+  bottom: 3px;
   right: 0;
 }
 
@@ -43,7 +43,7 @@
   background-color: rgba(255,217,0,1);
   width: 4px;
   height: 5px;
-  bottom: 2px;
+  bottom: 4px;
   right: 0;
 }
 

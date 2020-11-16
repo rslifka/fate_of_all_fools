@@ -2,11 +2,13 @@
   EFFECT: Remove the new BL gradient background.
   REASON: It's really pretty but further reduces the contrast between items
           and the background.
-  VERIFIED: 6.38.0
+  VERIFIED: 6.39.0
 */
 body,
-.gradientBackground,
-.gradientBackground::before
+/* This is where the topmost gradient is set */
+.app::before,
+/* Margin between the header and the first row */
+._1R3rf
 {
   background: unset !important;
   content: unset !important;
@@ -14,74 +16,9 @@ body,
 }
 
 /*
-  EFFECT: Push the items a bit further down so they don't abut the header.
-  REASON: A little visual breathing room.
-  VERIFIED: 6.38.0
-*/
-.store-header
-{
-  margin-bottom: 10px;
-}
-
-/*
-  EFFECT: Pull postmaster contents to the left
-  REASON: Near-alignment insanity where the postmaster contents were not left-
-          aligned with the equipped items.
-
-  VERIFIED: 6.33.0
-*/
-.sub-bucket.not-equippable {
-  padding-left: 0;
-}
-
-/*
-  EFFECT: Increase the item size beyond what DIM's configuration allows
-  REASON: We put more 'inside' the item, and at the default max item size this
-          makes things a bit cramped.
-
-  VERIFIED: 6.33.0
-*/
-:root
-{
-  --item-size: 82px !important;
-}
-
-/*
-  EFFECT: Hide large notifications
-  REASON: When moving more than a couple of items, they cover up the screen
-
-  VERIFIED: 6.33.0
-*/
-.notifications-container {
-  display: none;
-}
-
-/*
-  This allows you to control the number of items in your vault by
-  shrinking the window.
-  
-  VERIFIED: 6.33.0
-*/
-.inventory-content {
-  min-width: unset !important;
-}
-
-/*
-  EFFECT: Remove the white border around equipped items.
-  REASON: We can tell from how this mirrors the Destiny UI itself what
-          we have equipped. Don't need another indicator.
-  
-  VERIFIED: 6.33.0
-*/
-.equipped-item {
-  border: unset !important;
-  padding: 0 !important;
-}
-
-/*
-  Hide the searching + symbol added to each vault slot.
-  
-  VERIFIED: 6.33.0
+  EFFECT: Hide the searching + symbol added to each vault slot.
+  REASON: Limited utility.
+  VERIFIED: 6.39.0  
 */
 .pull-item-button
 {
@@ -89,21 +26,32 @@ body,
 }
 
 /*
-  EFFECT: Hides the masterwork image overlay on exotics and legendaries.
-  REASON: We use our own more subtle way to indicate what's masterworked.
-
-  VERIFIED: 6.33.0
+  EFFECT: Hide the class icon that armor is sorted by.
+  REASON: Limited utility.
+  VERIFIED: 6.39.0  
 */
-._3kP4m
+.armor-class-icon
 {
-  background-image: none;
+  display: none;
+}
+
+/*
+  EFFECT: Remove the white border around equipped items.
+  REASON: We can tell from how this mirrors the Destiny UI itself what
+          we have equipped. Don't need another indicator.
+  VERIFIED: 6.39.0
+*/
+.equipped-item
+{
+  border: unset !important;
+  padding: 0 !important;
 }
 
 /*
   EFFECT: Remove the single-line border around all items.
   REASON: The contrast between the item image and the background is enough
           to indicate a difference in meaning. Less visual noise.
-  VERIFIED: 6.33.0          
+  VERIFIED: 6.39.0          
 */ 
 .item .item-img
 {
@@ -111,34 +59,24 @@ body,
 }
 
 /*
-  EFFECT:
-    - Mute the info bar for items.
-    - Increase the height.
-    - Reset overflow so we can move items outside of the bar.
-  REASON: In aggregate they take up a lot of pixels and the contrast is too high.
-  VERIFIED: 6.36.1
-*/ 
-.item .hcIF4
+  EFFECT: Hides the DIM built-in "thumbs down" and "thumbs up" icons when an
+          item is assessed via the "wish list" feature.
+  REASON: We'll go with our own visuals for this.
+  VERIFIED: 6.39.0
+*/
+.rating-icon
 {
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.65);
-  color: rgb(240, 240, 240, 1.0);
-  height: calc(((var(--item-size) / 5) - 2px));
-  margin-top: 0;
-  padding: 3px 6px 0 0;
-  position: absolute;
-  overflow: unset;
+  display: none;
 }
 
 /*
-  EFFECT: Brighten the font for power level.
-  REASON: Increase contrast.
-  VERIFIED: 6.33.0
-*/ 
-.item ._7AyRH
+  EFFECT: Push the items a bit further down so they don't abut the header.
+  REASON: A little visual breathing room.
+  VERIFIED: 6.39.0
+*/
+.store-header
 {
-  font-size: calc((var(--item-size) / 6.5));
-  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 /*
@@ -152,183 +90,4 @@ body,
 .item-drag-container .fa-lock
 {
   display: none !important;
-}
-
-/*
-  EFFECT: Hides the DIM built-in "junk" icon when an item is tagged as junk.
-  REASON: We have our own visual treatment (saturation change) when an item
-          is junk, and don't need to double-up.
-  VERIFIED: 6.33.0
-*/
-.item-drag-container .fa-ban
-{
-  display: none !important;
-}
-
-/*
-  EFFECT: Hides the DIM built-in "archive" icon when an item is tagged.
-  REASON: There is additional visual treatment that we can remove the icon.
-  VERIFIED: 6.33.0
-*/
-.item-drag-container .fa-archive
-{
-  display: none !important;
-}
-
-/*
-  EFFECT: Hides the DIM built-in "infuse" icon when an item is tagged.
-  REASON: There is additional visual treatment that we can remove the icon.
-  VERIFIED: 6.33.0
-*/
-.item-drag-container .fa-bolt
-{
-  display: none !important;
-}
-
-/*
-  EFFECT: Modify the styling of items tagged "archive".
-  REASON: DIM's styling makes the item too small and difficult to reason about.
-  VERIFIED: 6.33.0          
-*/
-.item._1tegB
-{
-  opacity: 0.6;
-  filter: grayscale(100%);
-  transform: unset;
-}
-
-/*
-  EFFECT: Hide armor and weapon elements.
-  REASON: We detect our own and display differently.
-  VERIFIED: 6.38.0
-*/
-._7AyRH > ._1YChF {
-  display: none;
-}
-
-/*
-  EFFECT: Pull the 'gear' seasonal icon over and up flush with the cell.
-  REASON: It's a little off kilter.
-  VERIFIED: 6.33.0
-*/
-._2--vS
-{
-  left: 0;
-  top: 0;
-}
-
-/*
-  EFFECT: Gray out the 'gear' seasonal icon when the item is junked.
-  REASON: It will stay its original color otherwise.
-  VERIFIED: 6.33.0
-*/
-[data-fate-dimtag-junk='true'] ._2--vS
-{
-  filter: grayscale(100%);
-}
-
-/*
-  EFFECT: Add a dashed outline to DIM-archived items
-  REASON: We want to keep them the same size to reduce contrast
-  VERIFIED: 6.33.0
-*/
-.item[data-fate-dimtag-archive='true']
-{
-  border: 1px dashed rgba(255,255,255,0.4);
-}
-
-/*
-  EFFECT: "Disable" items that are DIM-junked and remove their element.
-  REASON: So we can ignore them when scanning our vaults
-  VERIFIED: 6.33.0
-*/
-[data-fate-dimtag-junk='true'] .item-img {
-  filter: grayscale(100%);
-  opacity: 0.6;
-}
-
-/*
-  EFFECT: Hides the DIM built-in "thumbs down" and "thumbs up" icons when an
-          item is assessed via the "wish list" feature.
-  REASON: We'll go with our own visuals for this.
-  VERIFIED: 6.37.2
-*/
-.rating-icon {
-  display: none;
-}
-
-/*
-  EFFECT: Relocate and restyle DIM's tagging icons.
-  REASON: We use the area they would normally appear.
-  VERIFIED: 6.37.2
-*/
-.rlCY7 {
-  display: unset;
-  flex-direction: unset;
-  position: absolute;
-  top: unset;
-  bottom: 14px;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.65);
-  padding: 3px 1px 2px 1px;
-}
-
-/*
-  EFFECT: Restyle DIM's tagging icons.
-  REASON: To look more like ours.
-  VERIFIED: 6.37.2
-*/
-._18Hio {
-  color: rgb(232, 225, 33);
-  font-size: 11px;
-  height: unset;
-  width: unset;
-}
-
-/******************************************************************************
-  EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
-  EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
-  EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
-  EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
-  EVERYTHING BELOW IS HAS NOT BEEN RECENTLY VERIFIED
-*******************************************************************************/
-
-/* Remove fold/unfold icon next to section headings */
-[data-icon='caret-down'],
-[data-icon='caret-right']
-{
-  display: none !important;
-}
-
-/* Improve design of section breaks */
-.title {
-  background-color: rgba(221,221,221,0.1) !important;
-  font-family: 'Helvetica Neue', 'Helvetica', Arial !important;
-  font-size: 2.5em !important;
-  font-weight: bold !important;
-  height: 50px !important;
-  line-height: 50px !important;
-  margin: 10px 0 !important;
-}
-
-.armor-class-icon {
-  display: none;
-}
-
-/*
-  EFFECT: Dim all unregistered weapons and armor
-  REASON: So we can find our registered items more easily!
-*/
-.item[data-fate-armor-registered=false][data-fate-dimtag-archive=false] > img,
-.item[data-fate-weapon-registered=false][data-fate-dimtag-archive=false] > img
-{
-  opacity: 0.6;
-}
-
-/*
-  EFFECT: Hide masterwork window dressing.
-  REASON: When your vault is full of masterworks, it's visualy noisy.
-*/
-.N0z6Y {
-  display: none;
 }
