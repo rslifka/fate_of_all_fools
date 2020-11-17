@@ -69,7 +69,7 @@
 /*
   EFFECT: Modify the styling of items tagged "archive".
   REASON: DIM's styling makes the item too small and difficult to reason about.
-  VERIFIED: 6.33.0          
+  VERIFIED: 6.39.0        
 */
 .item._1tegB
 {
@@ -81,7 +81,7 @@
 /*
   EFFECT: Restyle DIM's tagging icons.
   REASON: To look more like ours.
-  VERIFIED: 6.37.2
+  VERIFIED: 6.39.0
 */
 ._18Hio
 {
@@ -92,4 +92,24 @@
   left: -2px;
   height: unset;
   width: unset;
+}
+
+/*
+  EFFECT: Gray out the 'gear' seasonal icon when the item is junked.
+  REASON: It will stay its original color otherwise.
+  VERIFIED: 6.39.0
+*/
+[data-fate-dimtag-junk='true'] ._2--vS
+{
+  filter: grayscale(100%);
+}
+
+/*
+  EFFECT: "Disable" items that are DIM-junked and remove their element.
+  REASON: So we can ignore them when scanning our vaults
+  VERIFIED: 6.39.0
+*/
+[data-fate-dimtag-junk='true'] .item-img {
+  filter: grayscale(100%);
+  opacity: 0.6;
 }
