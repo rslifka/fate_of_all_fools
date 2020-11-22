@@ -91,3 +91,13 @@ body,
 {
   display: none !important;
 }
+
+/*
+  EFFECT: Hide large notifications
+  REASON: This is a neat idea, but it so frequently obscures the portion of the
+          vault I'm looking.
+  VERIFIED: 6.39.1
+*/
+.notifications-container {
+  display: none;
+}
