@@ -67,18 +67,6 @@
 }
 
 /*
-  EFFECT: Modify the styling of items tagged "archive".
-  REASON: DIM's styling makes the item too small and difficult to reason about.
-  VERIFIED: 6.39.0        
-*/
-.item._1tegB
-{
-  opacity: 0.6;
-  filter: grayscale(100%);
-  transform: unset;
-}
-
-/*
   EFFECT: Restyle DIM's tagging icons.
   REASON: To look more like ours.
   VERIFIED: 6.39.0

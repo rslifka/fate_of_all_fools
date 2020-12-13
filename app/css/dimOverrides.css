@@ -101,3 +101,17 @@ body,
 .notifications-container {
   display: none;
 }
+
+/*
+  EFFECT: Modify the styling of items tagged "archive".
+  REASON: DIM's styling makes the item too small and difficult to reason about.
+  VERIFIED: 6.42.3
+*/
+.item[data-fate-dimtag-archive='true']
+{
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transform: unset;
+  border: 1px dashed;
+  border-color: rgba(255,255,255,0.5);
+}
