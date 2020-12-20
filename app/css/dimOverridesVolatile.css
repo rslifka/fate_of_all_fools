@@ -101,3 +101,12 @@
   filter: grayscale(100%);
   opacity: 0.6;
 }
+
+/*
+  EFFECT: Color the icon tray with a background that stands out
+  REASON: Not enough contrast; keep losing it
+  VERIFIED: 6.43.2
+*/
+._1zEHt {
+  background-color: #173192;
+}
