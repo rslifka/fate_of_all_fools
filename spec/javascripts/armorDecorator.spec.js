@@ -8,27 +8,40 @@ describe('armorDecorator.js', function() {
   beforeEach(function() {
     // Indicators creates the glyph space whose contents we're validating in some of our tests
     fateBus.unmute('indicators.js');
-
     fateBus.registerModule(brunchModule);
-    spyOn(armorRollDatabase, 'contains').and.callFake(function(rollID) {
-      return ['6917529143732442281', '6917529143764907014'].includes(rollID);
-    });
-    spyOn(armorRollDatabase, 'get').and.callFake(function(rollID) {
-      switch(rollID) {
-        case '6917529143732442281':
-          return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Solar', '23', 'Y', 'N', '', '59', '0', '11', '7', '12', '23', '6');
-        case '6917529143764907014':
-          return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Solar', '23', 'Y', 'N', 'top-tree dawn', '69', '10', '11', '7', '12', '23', '6');
-      }
+  });
+
+  describe('masterwork checking', function() {
+    beforeEach(function() {
+      loadFixtures('armor/gauntlets-6.43.2.html');
+      fateBus.publish(brunchModule, 'fate.refresh');
+    })
+
+    it('should store the masterwork status', function() {
+      expect('[id=6917529194053499244]').toHaveAttr('data-fate-masterwork', 'true');
+      expect('[id=6917529223628313385]').toHaveAttr('data-fate-masterwork', 'false');
     });
   });
 
   describe('in response to fate.refresh', function() {
 
     beforeEach(function() {
+      spyOn(armorRollDatabase, 'contains').and.callFake(function(rollID) {
+        return ['6917529143732442281', '6917529143764907014'].includes(rollID);
+      });
+      spyOn(armorRollDatabase, 'get').and.callFake(function(rollID) {
+        switch(rollID) {
+          case '6917529143732442281':
+            return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Solar', '23', 'Y', 'N', '', '59', '0', '11', '7', '12', '23', '6');
+          case '6917529143764907014':
+            return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Solar', '23', 'Y', 'N', 'top-tree dawn', '69', '10', '11', '7', '12', '23', '6');
+        }
+      });
+
       loadFixtures(
         'entireDocumentRaw-5.73.0.html',
       );
+
       fateBus.publish(brunchModule, 'fate.refresh');
       // Once more, to ensure indicators get a chance to register
       fateBus.publish(brunchModule, 'fate.refresh');
@@ -66,11 +79,6 @@ describe('armorDecorator.js', function() {
     it('should record the registration status', function() {
       expect('[id=6917529114410685006]').toHaveAttr('data-fate-armor-registered', 'false');
       expect('[id=6917529143732442281]').toHaveAttr('data-fate-armor-registered', 'true');
-    });
-
-    it('should store the masterwork status', function() {
-      expect('[id=6917529142423687024]').toHaveAttr('data-fate-masterwork', 'true');
-      expect('[id=6917529093676727184]').toHaveAttr('data-fate-masterwork', 'false');
     });
 
     it('should record the serial number', function() {
