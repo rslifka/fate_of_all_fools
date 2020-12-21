@@ -22832,16 +22832,16 @@ var ARMOR_BUCKETS = ['bucket-3448274439', // Helm
 'bucket-1585787867' // Class
 ];
 var POWER_LEVEL_CLASS = '.hcIF4';
-var ELEMENT_ICON_CLASS = '.g7Tk_';
+var ELEMENT_ICON_CLASS = '._1YChF';
+var MASTERWORK_CLASS = '._3kP4m';
 
 function storeArmorData() {
   ARMOR_BUCKETS.forEach(function (className) {
     $('.' + className).find('.item').not('[data-fate-armor-registered]').each(function () {
       $(this).attr('data-fate-armor-registered', false);
       var armorName = $(this).attr('title').split("\n")[0];
-      $(this).attr('data-fate-armor-name', armorName); // Is it an exotic or legendary masterwork?
-
-      var isMasterwork = $(this).has('._3iMN1').length > 0;
+      $(this).attr('data-fate-armor-name', armorName);
+      var isMasterwork = $(this).has(MASTERWORK_CLASS).length > 0;
       $(this).attr('data-fate-masterwork', isMasterwork);
       var serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
@@ -22860,6 +22860,8 @@ function updateAttributes() {
     $(this).attr('title', name);
     var elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
     $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
+    var isMasterwork = $(this).has(MASTERWORK_CLASS).length > 0;
+    $(this).attr('data-fate-masterwork', isMasterwork);
     var dimTags = $.map($(this).find('span.app-icon'), function (value, i) {
       var className = $(value).attr('class').split(' ').filter(function (cname) {
         return cname.startsWith('fa-');
@@ -23309,142 +23311,106 @@ var $ = require('jquery');
 
 var logger = require('logger.js');
 
-var Vibrant = require('node-vibrant'); // Our best guess at the class name all elemental images hage
+var Vibrant = require('node-vibrant'); // Elemental class name as of 6.43.2
 
 
-var ELEMENT_CLASS_NAME = '.g7Tk_'; // How many unique elemental images should we look for?
-
-var NUM_ELEMENTS = 3; // Store the mappings so clients can understand elements from URLs
+var ELEMENT_CLASS_NAME = '.g7Tk_'; // Store the mappings so clients can understand elements from URLs
 
 var URL_TO_ELEMENT = new Map();
-var colorsDetected = false;
 fateBus.subscribe(module, 'fate.refresh', function () {
-  if (colorsDetected) {
+  if (URL_TO_ELEMENT.size >= 6) {
     return;
   }
 
-  logger.log('elementDetector.js: Calculating element colors');
-  updateElementIcons();
+  logger.log('elementDetector.js: Calculating element colors'); // Grab all the unique elemental icon URLs from both weapons and armor.
+
+  var imageURLs = new Set();
+  $(ELEMENT_CLASS_NAME).each(function () {
+    imageURLs.add($(this).attr('src'));
+  }); // Map each detected image to an element
+
+  imageURLs.forEach(function (imageSourceURL) {
+    calculateElementForImage(imageSourceURL).then(function (element) {
+      URL_TO_ELEMENT.set(imageSourceURL, element);
+    });
+  });
 });
-
-function updateElementIcons() {
-  var imageSourceURLs = getElementImageSources();
-  var arcMatch = getUrlForElement('#7cbce4', imageSourceURLs);
-  var solarMatch = getUrlForElement('#f4641c', imageSourceURLs);
-  var voidMatch = getUrlForElement('#b484dc', imageSourceURLs);
-  return Promise.all([arcMatch, solarMatch, voidMatch]).then(function (elementUrls) {
-    if (elementUrls[0] != undefined) {
-      URL_TO_ELEMENT.set(elementUrls[0], 'arc');
-    }
-
-    if (elementUrls[1] != undefined) {
-      URL_TO_ELEMENT.set(elementUrls[1], 'solar');
-    }
-
-    if (elementUrls[2] != undefined) {
-      URL_TO_ELEMENT.set(elementUrls[2], 'void');
-    }
-
-    if (URL_TO_ELEMENT.size === NUM_ELEMENTS) {
-      colorsDetected = true;
-    }
-  });
-}
 /*
-  Elements are the same across armor and weapons, so we aren't particularly
-  concerned with where we get them from. We iteratively look until we find
-  the number of elements in the game (currently three, until Beyond Light
-  ships in which case this likely increases).
+  Given an image, what element does it most closely map to?
 */
 
-
-function getElementImageSources() {
-  var imageURLs = [];
-  $(ELEMENT_CLASS_NAME).each(function (index, element) {
-    var src = $(this).attr('src');
-
-    if (imageURLs.includes(src)) {
-      return;
-    }
-
-    imageURLs.push(src);
-
-    if (imageURLs.length === NUM_ELEMENTS) {
-      return false;
-    }
-  });
-  return imageURLs;
-}
-/*
-  Search through known elemental images until we find on that Vibrant considers
-  a very good match. Vibrant supplies a bit of tooling around detecting how
-  close colors are to one another (interestingly, they are slightly different
-  on each browser/platform).
-*/
-
-
-function getUrlForElement(_x, _x2) {
-  return _getUrlForElement.apply(this, arguments);
+function calculateElementForImage(_x) {
+  return _calculateElementForImage.apply(this, arguments);
 }
 
-function _getUrlForElement() {
-  _getUrlForElement = _asyncToGenerator(
+function _calculateElementForImage() {
+  _calculateElementForImage = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(hexCode, imageSourceUrls) {
-    var i, vibrant, swatches, dominantColor, diff;
+  regeneratorRuntime.mark(function _callee(imageSourceURL) {
+    var vibrant, swatches, dominantColor;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            i = 0;
+            vibrant = Vibrant.from(imageSourceURL);
+            _context.next = 3;
+            return vibrant.getSwatches();
 
-          case 1:
-            if (!(i < imageSourceUrls.length)) {
+          case 3:
+            swatches = _context.sent;
+            dominantColor = swatches['Vibrant'].getHex();
+
+            if (!(Vibrant.Util.hexDiff(dominantColor, '#7cbce4') < 11)) {
+              _context.next = 9;
+              break;
+            }
+
+            return _context.abrupt("return", 'arc');
+
+          case 9:
+            if (!(Vibrant.Util.hexDiff(dominantColor, '#f4641c') < 11)) {
               _context.next = 13;
               break;
             }
 
-            vibrant = Vibrant.from(imageSourceUrls[i]);
-            _context.next = 5;
-            return vibrant.getSwatches();
+            return _context.abrupt("return", 'solar');
 
-          case 5:
-            swatches = _context.sent;
-            dominantColor = swatches['Vibrant'].getHex();
-            diff = Vibrant.Util.hexDiff(dominantColor, hexCode);
-
-            if (!(diff < 11)) {
-              _context.next = 10;
+          case 13:
+            if (!(Vibrant.Util.hexDiff(dominantColor, '#b484dc') < 11)) {
+              _context.next = 17;
               break;
             }
 
-            return _context.abrupt("return", imageSourceUrls[i]);
+            return _context.abrupt("return", 'void');
 
-          case 10:
-            i++;
-            _context.next = 1;
-            break;
+          case 17:
+            if (!(Vibrant.Util.hexDiff(dominantColor, '#4c8cfc') < 11)) {
+              _context.next = 19;
+              break;
+            }
 
-          case 13:
+            return _context.abrupt("return", 'stasis');
+
+          case 19:
             return _context.abrupt("return", undefined);
 
-          case 14:
+          case 20:
           case "end":
             return _context.stop();
         }
       }
     }, _callee);
   }));
-  return _getUrlForElement.apply(this, arguments);
+  return _calculateElementForImage.apply(this, arguments);
 }
 
 function getElementFromURL(url) {
-  var element = URL_TO_ELEMENT.get(url);
-  return element ? element : 'kinetic';
-}
+  return URL_TO_ELEMENT.get(url);
+} // Used only for testing
 
+
+exports.calculateElementForImage = calculateElementForImage;
 exports.getElementFromURL = getElementFromURL;
-exports.updateElementIcons = updateElementIcons;
 
 
       });
