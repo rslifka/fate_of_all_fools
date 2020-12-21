@@ -4,10 +4,9 @@ describe('armorDecorator.js', function() {
   const brunchModule = {id:'test'+this.result.description};
   const armorRollDatabase = require('armorRollDatabase.js').armorRollDB;
   const ArmorRoll = require('armorRoll.js').ArmorRoll;
+  const elementDetector = require('elementDetector.js');
 
   beforeEach(function() {
-    // Indicators creates the glyph space whose contents we're validating in some of our tests
-    fateBus.unmute('indicators.js');
     fateBus.registerModule(brunchModule);
   });
 
@@ -15,11 +14,28 @@ describe('armorDecorator.js', function() {
     beforeEach(function() {
       loadFixtures('armor/gauntlets-6.43.2.html');
       fateBus.publish(brunchModule, 'fate.refresh');
-    })
+    });
+  
+    describe('when an item is not registered', function() {
+      it('should store the masterwork status', function() {
+        expect('[id=6917529194053499244]').toHaveAttr('data-fate-masterwork', 'true');
+        expect('[id=6917529223628313385]').toHaveAttr('data-fate-masterwork', 'false');
+      });
+    });
+  });
 
-    it('should store the masterwork status', function() {
-      expect('[id=6917529194053499244]').toHaveAttr('data-fate-masterwork', 'true');
-      expect('[id=6917529223628313385]').toHaveAttr('data-fate-masterwork', 'false');
+  describe('armor element', function() {
+    beforeEach(function() {
+      spyOn(elementDetector, 'getElementFromURL').and.returnValue('void');
+      loadFixtures( 'armor/gauntlets-6.43.2.html' );
+      fateBus.publish(brunchModule, 'fate.refresh');
+    });
+    
+    describe('when an item is not registered', function() {
+      it('should store the armor element', function() {
+        expect(elementDetector.getElementFromURL).toHaveBeenCalledWith('https://www.bungie.net/common/destiny2_content/icons/DestinyEnergyTypeDefinition_ceb2f6197dccf3958bb31cc783eb97a0.png');
+        expect($('[id=6917529194053499244]')).toHaveAttr('data-fate-element', 'void');
+      }); 
     });
   });
 
@@ -42,6 +58,8 @@ describe('armorDecorator.js', function() {
         'entireDocumentRaw-5.73.0.html',
       );
 
+      // Indicators creates the glyph space whose contents we're validating in some of our tests
+      fateBus.unmute('indicators.js');
       fateBus.publish(brunchModule, 'fate.refresh');
       // Once more, to ensure indicators get a chance to register
       fateBus.publish(brunchModule, 'fate.refresh');
@@ -102,10 +120,6 @@ describe('armorDecorator.js', function() {
     xit('should store the light', function() {
       expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-light', '961');
     });
-
-    it('should store the armor element', function() {
-      expect($('[id=6917529143732442281]')).toHaveAttr('data-fate-element', 'solar');
-    }); 
 
     it('should store the overlay text', function() {
       expect($('[id=6917529143764907014] > .foaf-item-overlay')).toExist();

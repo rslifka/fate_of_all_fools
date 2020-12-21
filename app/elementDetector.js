@@ -2,98 +2,59 @@ const $ = require('jquery');
 const logger = require('logger.js');
 const Vibrant = require('node-vibrant');
 
-// Our best guess at the class name all elemental images hage
+// Elemental class name as of 6.43.2
 const ELEMENT_CLASS_NAME = '.g7Tk_';
-
-// How many unique elemental images should we look for?
-const NUM_ELEMENTS = 3;              
 
 // Store the mappings so clients can understand elements from URLs
 const URL_TO_ELEMENT = new Map();
 
-let colorsDetected = false;
-
 fateBus.subscribe(module, 'fate.refresh', function() {  
-  if (colorsDetected) {
+  if (URL_TO_ELEMENT.size >= 6) {
     return;
   }
   logger.log('elementDetector.js: Calculating element colors');
 
-  updateElementIcons();
+  // Grab all the unique elemental icon URLs from both weapons and armor.
+  const imageURLs = new Set();
+  $(ELEMENT_CLASS_NAME).each(function() {
+    imageURLs.add($(this).attr('src'));
+  });
+
+  // Map each detected image to an element
+  imageURLs.forEach(function(imageSourceURL) {
+    calculateElementForImage(imageSourceURL).then((element) => {
+      URL_TO_ELEMENT.set(imageSourceURL, element);
+    });
+  });
 });
 
-function updateElementIcons() {
-  const imageSourceURLs = getElementImageSources();
-
-  const arcMatch   = getUrlForElement('#7cbce4', imageSourceURLs);
-  const solarMatch = getUrlForElement('#f4641c', imageSourceURLs);
-  const voidMatch  = getUrlForElement('#b484dc', imageSourceURLs);
-
-  return Promise.all([arcMatch, solarMatch, voidMatch]).then((elementUrls) => {
-    if (elementUrls[0] != undefined) {
-      URL_TO_ELEMENT.set(elementUrls[0], 'arc');
-    }
-    if (elementUrls[1] != undefined) {
-      URL_TO_ELEMENT.set(elementUrls[1], 'solar');
-    }
-    if (elementUrls[2] != undefined) {
-      URL_TO_ELEMENT.set(elementUrls[2], 'void');
-    }
-
-    if (URL_TO_ELEMENT.size === NUM_ELEMENTS) {
-      colorsDetected = true;
-    }
-  });
-}
-
 /*
-  Elements are the same across armor and weapons, so we aren't particularly
-  concerned with where we get them from. We iteratively look until we find
-  the number of elements in the game (currently three, until Beyond Light
-  ships in which case this likely increases).
+  Given an image, what element does it most closely map to?
 */
-function getElementImageSources() {
-  const imageURLs = [];
-
-  $(ELEMENT_CLASS_NAME).each(function(index,element) {
-    const src = $(this).attr('src');
-    if (imageURLs.includes(src)) {
-      return;
-    }
-    imageURLs.push(src);
-
-    if (imageURLs.length === NUM_ELEMENTS) {
-      return false;
-    }
-  });
-
-  return imageURLs;
-}
-
-/*
-  Search through known elemental images until we find on that Vibrant considers
-  a very good match. Vibrant supplies a bit of tooling around detecting how
-  close colors are to one another (interestingly, they are slightly different
-  on each browser/platform).
-*/
-async function getUrlForElement(hexCode, imageSourceUrls) {
-  for (let i = 0; i < imageSourceUrls.length; i++) {
-    const vibrant = Vibrant.from(imageSourceUrls[i]);
-    const swatches = await vibrant.getSwatches();
-    
-    const dominantColor = swatches['Vibrant'].getHex();
-    const diff = Vibrant.Util.hexDiff(dominantColor, hexCode);
-    if (diff < 11) {
-      return imageSourceUrls[i];
-    }
+async function calculateElementForImage(imageSourceURL) {
+  const vibrant = Vibrant.from(imageSourceURL);
+  const swatches = await vibrant.getSwatches();
+  
+  const dominantColor = swatches['Vibrant'].getHex();
+  if (Vibrant.Util.hexDiff(dominantColor, '#7cbce4') < 11) {
+    return 'arc';
+  } else if (Vibrant.Util.hexDiff(dominantColor, '#f4641c') < 11) {
+    return 'solar';
+  } else if (Vibrant.Util.hexDiff(dominantColor, '#b484dc') < 11) {
+    return 'void';
+  } else if (Vibrant.Util.hexDiff(dominantColor, '#4c8cfc') < 11) {
+    return 'stasis';
   }
+
   return undefined;
 }
 
 function getElementFromURL(url) {
-  const element = URL_TO_ELEMENT.get(url);
-  return element ? element : 'kinetic';
+  return URL_TO_ELEMENT.get(url);
 }
 
+// Used only for testing
+exports.calculateElementForImage = calculateElementForImage
+
 exports.getElementFromURL = getElementFromURL
-exports.updateElementIcons = updateElementIcons
+

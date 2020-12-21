@@ -12,7 +12,8 @@ const ARMOR_BUCKETS = [
 ]
 
 const POWER_LEVEL_CLASS = '.hcIF4';
-const ELEMENT_ICON_CLASS = '.g7Tk_';
+const ELEMENT_ICON_CLASS = '._1YChF';
+const MASTERWORK_CLASS = '._3kP4m';
 
 function storeArmorData() {
   ARMOR_BUCKETS.forEach(function(className) {
@@ -22,7 +23,7 @@ function storeArmorData() {
       const armorName = $(this).attr('title').split("\n")[0];
       $(this).attr('data-fate-armor-name', armorName);
       
-      const isMasterwork = $(this).has('._3kP4m').length > 0;
+      const isMasterwork = $(this).has(MASTERWORK_CLASS).length > 0;
       $(this).attr('data-fate-masterwork', isMasterwork);
 
       const serialNumber = $(this).attr('id').split("-")[0];
@@ -47,7 +48,7 @@ function updateAttributes() {
     const elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
     $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
 
-    const isMasterwork = $(this).has('._3kP4m').length > 0;
+    const isMasterwork = $(this).has(MASTERWORK_CLASS).length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
 
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
