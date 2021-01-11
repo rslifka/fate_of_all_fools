@@ -18,33 +18,7 @@
 1. **Visual Modification**: It modifies the presentation of **existing** information (that DIM provides).
 1. **Information Overlays**: It displays **new** information (that you provide).
 
-We'll review each of these below.
-
-## Visual Modifications
-
-There are many small tweaks that aren't separately shown here. I'm focusing on the more obvious ones and the motivations for those choices.
-
-## Information Overlays
-
-The following overlays are based off of three Google Sheets that you'll maintain. Don't worry, they're simple sheets that you can copy and use immediately!
-
-### Your Own Shader Assessments
-
-Let's start with the easiest one first so you get an idea of what `Fate` helps you with.
-
-**PROBLEM**: Destiny features hundreds of shaders, many of which are difficult to distinguish at-a-glance. How can I confidently keep my shader inventory pared down to only what I prefer?
-
-**SOLUTION**: By keeping my custom ratings in an easily-editable format!
-
-[![Fate of All Fools - Shader Assessments!](https://rslifka.github.io/fate_of_all_fools/img/fate-shader-ratings.png)](https://docs.google.com/spreadsheets/d/16BO3r1B5vuLtCnR06l_rtCl_WlWVDkg_9C9Gu-v-xi4/edit#gid=1194152043)
-
-### Your Weapon Assessments
-
-**TODO**
-
-### Your Armor Assessments
-
-**TODO**
+We'll review each of these below (TODO).
 
 # Development Setup
 `Fate of All Fools` is a node-based project using ES6. TypeScript wasn't yet a thing when I kicked this off in 2017. If I was going to start over, I'd love to wrap my head around TypeScript and do that; for another project perhaps.
