@@ -2,10 +2,7 @@
 
 # Overview
 
-`Fate of All Fools` (`Fate`) is an suite of visual modifications and data overlays on top of the [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for the Destiny video game. *`Fate` only works with the online version of DIM, not the DIM browser extension.*
-
-
-
+`Fate of All Fools` (`Fate`) is a suite of visual modifications and data overlays on top of [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for the Destiny video game. *`Fate` only works with the online version of DIM, not the DIM browser extension.*
 
 # Quickstart
 
