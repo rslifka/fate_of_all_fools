@@ -15,7 +15,6 @@ describe('armorRollDatabase.js', function() {
         '6917529047963087340',
         'Geomag Stabilizers',
         'Void',
-        '23',
         'Y',
         'N',
         'dawn',
@@ -53,7 +52,6 @@ describe('armorRollDatabase.js', function() {
 
           expect(piece).toEqual(jasmine.any(roll.ArmorRoll));
           expect(piece.rollID).toEqual('6917529047963087340');
-          expect(piece.season).toEqual('23');
           expect(piece.overlay).toEqual('dawn');
           expect(piece.total).toEqual(21);
           expect(piece.mob).toEqual(1);

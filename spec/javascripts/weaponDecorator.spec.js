@@ -25,13 +25,13 @@ describe('weaponDecorator.js', function() {
       spyOn(rollDatabase, 'get').and.callFake(function(rollID) {
         switch(rollID) {
           case '6917529136835103644':
-            return new WeaponRollAssessment('6917529136835103644', 'Not Forgotten', '-', 'N', 'Y', 'Longer range Lunas Howl')
+            return new WeaponRollAssessment('6917529136835103644', 'Not Forgotten', 'N', 'Y', 'Longer range Lunas Howl')
           case '6917529087330069226':
-            return new WeaponRollAssessment('6917529087330069226', "Izanagi's Burden", '-', 'Y', 'N', 'Great for boss DPS');
+            return new WeaponRollAssessment('6917529087330069226', "Izanagi's Burden", 'Y', 'N', 'Great for boss DPS');
           case '6917529139710693769':
-            return new WeaponRollAssessment('6917529139710693769', 'Python', '-', 'N', 'N', 'Gambit shotty; just OK');
+            return new WeaponRollAssessment('6917529139710693769', 'Python', 'N', 'N', 'Gambit shotty; just OK');
           case '6917529155622746994':
-            return new WeaponRollAssessment('6917529155622746994', 'Breachlight', '9', 'Y', 'Y', '');
+            return new WeaponRollAssessment('6917529155622746994', 'Breachlight', 'Y', 'Y', '');
           default:
             return null;
         }

@@ -6,7 +6,6 @@ describe('armorRoll.js', function() {
     '6917529074542621459',
     'Geomag Stabilizers',
     'Arc',
-    '23',
     'Y',
     'N',
     'dawn',
@@ -32,7 +31,6 @@ describe('armorRoll.js', function() {
       expect(a.rollID).toBe('6917529074542621459');
       expect(a.name).toBe('Geomag Stabilizers');
       expect(a.element).toBe('arc');
-      expect(a.season).toBe('23');
       expect(a.pveUtility).toBe(Utility.YES);
       expect(a.pvpUtility).toBe(Utility.NO);
       expect(a.overlay).toBe('dawn');
