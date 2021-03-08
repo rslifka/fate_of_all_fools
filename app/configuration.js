@@ -29,11 +29,6 @@ function init() {
 				'label': 'Shader Data Tab-Separated Values',
 				'type': 'text',
 				'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1194152043&single=true&output=tsv'
-      },
-      'maxLightLevelTracking': {
-        'label': 'Display per-slot max light level overlay',
-        'type': 'checkbox',
-        'default': false
       }
 		},
 		'events': {

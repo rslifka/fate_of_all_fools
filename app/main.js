@@ -13,9 +13,6 @@ require('dupeIndicator.js');
 // Show infusables
 require('infusionIndicator.js');
 
-// What item in each slot has the highest light?
-require('maxLightIndicator.js');
-
 // Retrieve and publish data for all item types
 require('itemDataRefresher.js');
 
