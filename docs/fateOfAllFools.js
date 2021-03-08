@@ -22931,13 +22931,12 @@ var Utility = {
 var ArmorRoll =
 /*#__PURE__*/
 function () {
-  function ArmorRoll(rollID, name, element, season, pve, pvp, overlay, total, mob, res, rec, dis, _int, str) {
+  function ArmorRoll(rollID, name, element, pve, pvp, overlay, total, mob, res, rec, dis, _int, str) {
     _classCallCheck(this, ArmorRoll);
 
     this.rollID = rollID;
     this.name = name;
     this.element = element.toLowerCase();
-    this.season = season;
     this.overlay = overlay;
     this.pve = pve.toLowerCase();
     this.pvp = pvp.toLowerCase();
@@ -24444,12 +24443,11 @@ var Utility = {
 var WeaponRollAssessment =
 /*#__PURE__*/
 function () {
-  function WeaponRollAssessment(rollID, name, season, pveUseful, pvpUseful, comments) {
+  function WeaponRollAssessment(rollID, name, pveUseful, pvpUseful, comments) {
     _classCallCheck(this, WeaponRollAssessment);
 
     this.rollID = rollID;
     this.name = name;
-    this.season = season;
     this.pve = pveUseful.toLowerCase();
     this.pvp = pvpUseful.toLowerCase();
     this.comments = comments;
@@ -24512,6 +24510,18 @@ fateBus.subscribe(module, 'fate.configurationLoaded', function (topic, configura
         "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -24581,7 +24591,7 @@ function (_i$ItemDatabase) {
   _createClass(WeaponRollDB, [{
     key: "createItemFromData",
     value: function createItemFromData(data) {
-      this.itemMap.set(data[0], new weaponRoll.WeaponRollAssessment(data[0], data[1], data[2], data[3], data[4], data[5]));
+      this.itemMap.set(data[0], _construct(weaponRoll.WeaponRollAssessment, _toConsumableArray(data)));
     }
   }]);
 
