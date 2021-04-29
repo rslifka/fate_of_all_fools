@@ -23147,8 +23147,7 @@ var logger = require('logger');
 function broadcastConfiguration() {
   fateBus.publish(module, 'fate.configurationLoaded', {
     rollDataTSV: GM_config.get('rollDataTSV'),
-    armorRollTSV: GM_config.get('armorRollTSV'),
-    shaderDataTSV: GM_config.get('shaderDataTSV')
+    armorRollTSV: GM_config.get('armorRollTSV')
   });
 }
 
@@ -23166,11 +23165,6 @@ function init() {
         'label': 'Armor Rolls Tab-Separated Values',
         'type': 'text',
         'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1332329724&single=true&output=tsv'
-      },
-      'shaderDataTSV': {
-        'label': 'Shader Data Tab-Separated Values',
-        'type': 'text',
-        'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1194152043&single=true&output=tsv'
       }
     },
     'events': {
@@ -23496,10 +23490,8 @@ var $ = require('jquery');
 var logger = require('logger.js');
 
 var DUPLICATE_INDICATOR_CLASS = 'foaf-dupe';
-var JUNK_INDICATOR_CLASS = 'foaf-junk';
 var PVE_INDICATOR_CLASS = 'foaf-pve';
 var PVP_INDICATOR_CLASS = 'foaf-pvp';
-var FAVE_INDICATOR_CLASS = 'foaf-fave';
 var INFUSION_INDICATOR_CLASS = 'foaf-infusable';
 var MASTERWORK_INDICATOR_CLASS = 'foaf-masterwork';
 var WISHLIST_PASS_INDICATOR_CLASS = 'foaf-wishlist-pass';
@@ -23507,7 +23499,6 @@ var WISHLIST_FAIL_INDICATOR_CLASS = 'foaf-wishlist-fail';
 var ELEMENT_INDICATOR_CLASS = 'foaf-element';
 var WEAPON_GLYPHS = new Map([[DUPLICATE_INDICATOR_CLASS, 'fglyph-dupe'], [PVE_INDICATOR_CLASS, 'fglyph-pve'], [PVP_INDICATOR_CLASS, 'fglyph-pvp'], [INFUSION_INDICATOR_CLASS, 'fglyph-up'], [WISHLIST_PASS_INDICATOR_CLASS, 'fglyph-wishlist-pass'], [WISHLIST_FAIL_INDICATOR_CLASS, 'fglyph-wishlist-fail'], [MASTERWORK_INDICATOR_CLASS, ''], [ELEMENT_INDICATOR_CLASS, '']]);
 var ARMOR_GLYPHS = new Map([[PVE_INDICATOR_CLASS, 'fglyph-pve'], [PVP_INDICATOR_CLASS, 'fglyph-pvp'], [INFUSION_INDICATOR_CLASS, 'fglyph-up'], [MASTERWORK_INDICATOR_CLASS, ''], [ELEMENT_INDICATOR_CLASS, '']]);
-var SHADER_GLYPHS = new Map([[FAVE_INDICATOR_CLASS, 'fglyph-fave'], [JUNK_INDICATOR_CLASS, 'fglyph-junk']]);
 
 function prepareIndicatorSpace() {
   $('[data-fate-weapon-name]').not('[data-fate-indicator-init=true]').each(function (index, element) {
@@ -23527,14 +23518,6 @@ function prepareIndicatorSpace() {
     $(this).append($('<div>', {
       'class': 'foaf-item-overlay'
     }));
-    $(this).attr('data-fate-indicator-init', true);
-  });
-  $('[data-fate-shader-name]').not('[data-fate-indicator-init=true]').each(function (index, element) {
-    SHADER_GLYPHS.forEach(function (glyph, className) {
-      $(element).append($('<div>', {
-        'class': className + ' ' + glyph + ' foaf-glyph'
-      }));
-    });
     $(this).attr('data-fate-indicator-init', true);
   });
 }
@@ -23947,14 +23930,6 @@ require('itemDataRefresher.js'); // Copy-to-clipboard support for the serial num
 
 require('itemIdCopy.js');
 
-require('shaderDecorator.js');
-
-require('shader.js');
-
-require('shaderDatabase.js');
-
-require('shaderDataRefresher.js');
-
 require('weaponDecorator.js');
 
 require('weaponRollAssessment.js');
@@ -24012,215 +23987,6 @@ if (!window.navigator.userAgent.includes('HeadlessChrome')) {
 
 
       });;
-      require.register("shader.js", function(exports, require, module) {
-        
-      const fateBus = require('fateBus.js');
-      fateBus.registerModule(module);
-    
-        "use strict";
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Keep = {
-  NO: 'n',
-  YES: 'y',
-  UNKNOWN: '?'
-};
-
-var Shader =
-/*#__PURE__*/
-function () {
-  function Shader(name, keep, comments) {
-    _classCallCheck(this, Shader);
-
-    this.name = name;
-    this.keep = keep.toLowerCase();
-    this.comments = comments;
-  }
-
-  _createClass(Shader, [{
-    key: "keepStatus",
-    get: function get() {
-      switch (this.keep) {
-        case 'y':
-          return Keep.YES;
-
-        case 'n':
-          return Keep.NO;
-
-        default:
-          return Keep.UNKNOWN;
-      }
-    }
-  }]);
-
-  return Shader;
-}();
-
-exports.Shader = Shader;
-exports.Keep = Keep;
-
-
-      });
-      require.register("shaderDataRefresher.js", function(exports, require, module) {
-        
-      const fateBus = require('fateBus.js');
-      fateBus.registerModule(module);
-    
-        "use strict";
-
-var i = require('itemDataRefresher.js');
-
-fateBus.subscribe(module, 'fate.configurationLoaded', function (topic, configuration) {
-  new i.ItemDataRefresher('shader', configuration.shaderDataTSV);
-});
-
-
-      });
-      require.register("shaderDatabase.js", function(exports, require, module) {
-        
-      const fateBus = require('fateBus.js');
-      fateBus.registerModule(module);
-    
-        "use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) {
-  function isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-
-    try {
-      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  return function () {
-    var Super = _getPrototypeOf(Derived),
-        result;
-
-    if (isNativeReflectConstruct()) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-
-    return _possibleConstructorReturn(this, result);
-  };
-}
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var logger = require('logger');
-
-var i = require('itemDatabase.js');
-
-var shader = require('shader.js');
-
-var ShaderDB =
-/*#__PURE__*/
-function (_i$ItemDatabase) {
-  _inherits(ShaderDB, _i$ItemDatabase);
-
-  var _super = _createSuper(ShaderDB);
-
-  function ShaderDB() {
-    _classCallCheck(this, ShaderDB);
-
-    return _super.call(this, 'shader');
-  }
-
-  _createClass(ShaderDB, [{
-    key: "createItemFromData",
-    value: function createItemFromData(data) {
-      this.itemMap.set(data[0], new shader.Shader(data[0], data[1], data[2]));
-    }
-  }]);
-
-  return ShaderDB;
-}(i.ItemDatabase);
-
-exports.shaderDB = new ShaderDB();
-
-
-      });
-      require.register("shaderDecorator.js", function(exports, require, module) {
-        
-      const fateBus = require('fateBus.js');
-      fateBus.registerModule(module);
-    
-        "use strict";
-
-var $ = require('jquery');
-
-var shader = require('shader.js');
-
-var shaderDatabase = require('shaderDatabase.js').shaderDB;
-
-function updateAttributes() {
-  $('.bucket-2973005342').find('.item').each(function () {
-    var name = $(this).attr('title').split("\n")[0];
-    $(this).attr('data-fate-shader-name', name);
-    var isShaderRegistered = shaderDatabase.contains(name);
-    $(this).attr('data-fate-shader-registered', isShaderRegistered);
-
-    if (!isShaderRegistered) {
-      $(this).removeAttr('data-fate-comment');
-      $(this).removeAttr('data-fate-shader-keep');
-      return;
-    }
-
-    var s = shaderDatabase.get(name);
-
-    switch (s.keepStatus) {
-      case shader.Keep.YES:
-        $(this).attr('data-fate-shader-keep', true);
-        break;
-
-      case shader.Keep.NO:
-        $(this).attr('data-fate-shader-keep', false);
-        break;
-
-      case shader.Keep.UNKNOWN:
-        $(this).attr('data-fate-shader-keep', 'unknown');
-        break;
-    }
-
-    $(this).attr('data-fate-comment', s.comments);
-  });
-}
-
-fateBus.subscribe(module, 'fate.refresh', function () {
-  updateAttributes();
-});
-
-
-      });
       require.register("weaponDecorator.js", function(exports, require, module) {
         
       const fateBus = require('fateBus.js');
