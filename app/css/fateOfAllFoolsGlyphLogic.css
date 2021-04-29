@@ -10,21 +10,6 @@
 }
 
 /*
-  FAVE INDICATOR
-*/
-[data-fate-shader-keep="true"] > .foaf-fave
-{
-  display: block;
-}
-
-[data-fate-shader-keep="false"] > .foaf-fave,
-[data-fate-shader-registered="false"] > .foaf-fave,
-[data-fate-shader-keep="unknown"] > .foaf-fave
-{
-  display: none;
-}
-
-/*
   DUPLICATE INDICATOR
 */
 [data-fate-weapon-dupe="false"] > .foaf-dupe
@@ -34,20 +19,6 @@
 
 [data-fate-weapon-dupe="true"] > .foaf-dupe
 {
-  display: block;
-}
-
-/*
-  JUNK INDICATOR
-*/
-[data-fate-shader-keep="true"] > .foaf-junk,
-[data-fate-shader-registered="false"] > .foaf-junk,
-[data-fate-shader-keep="unknown"] > .foaf-junk
-{
-  display: none;
-}
-
-[data-fate-shader-keep="false"] > .foaf-junk {
   display: block;
 }
 

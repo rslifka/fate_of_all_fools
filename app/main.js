@@ -19,11 +19,6 @@ require('itemDataRefresher.js');
 // Copy-to-clipboard support for the serial number
 require('itemIdCopy.js');
 
-require('shaderDecorator.js');
-require('shader.js');
-require('shaderDatabase.js');
-require('shaderDataRefresher.js');
-
 require('weaponDecorator.js');
 require('weaponRollAssessment.js');
 require('weaponRollDatabase.js');

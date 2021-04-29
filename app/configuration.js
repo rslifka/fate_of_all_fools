@@ -4,8 +4,7 @@ const logger = require('logger');
 function broadcastConfiguration() {
   fateBus.publish(module, 'fate.configurationLoaded', {
     rollDataTSV: GM_config.get('rollDataTSV'),
-    armorRollTSV: GM_config.get('armorRollTSV'),
-    shaderDataTSV: GM_config.get('shaderDataTSV')
+    armorRollTSV: GM_config.get('armorRollTSV')
   });
 }
 
@@ -24,12 +23,7 @@ function init() {
 				'label': 'Armor Rolls Tab-Separated Values',
 				'type': 'text',
 				'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1332329724&single=true&output=tsv'
-			},
-			'shaderDataTSV': {
-				'label': 'Shader Data Tab-Separated Values',
-				'type': 'text',
-				'default': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ06pCDSdvu2nQzgHMXl22ci-6pO9rTTmvZmlKXaiBrIHVhl1X1awIaHEOagZcs4ME4X9ZMEghBP9NE/pub?gid=1194152043&single=true&output=tsv'
-      }
+			}
 		},
 		'events': {
 			'save': function() {
