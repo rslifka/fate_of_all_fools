@@ -3,8 +3,9 @@ const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 const Utility = require('weaponRollAssessment.js').Utility;
 const elementDetector = require('elementDetector.js');
 
-const POWER_LEVEL_CLASS  = '.hcIF4';
-const ELEMENT_ICON_CLASS = '.g7Tk_';
+const POWER_LEVEL_CLASS  = '.yEIm1';
+const ELEMENT_ICON_CLASS = '._8tC_';
+const MASTERWORK_CLASS = '.m_jVB';
 
 const WEAPON_BUCKETS = [
   'bucket-1498876634', // Kinetic
@@ -22,7 +23,7 @@ function storeWeaponData() {
       $(this).attr('data-fate-weapon-name', weaponName);
   
       // Is it an exotic or legendary masterwork?
-      const isMasterwork = ($(this).has('._2aTlr').length + $(this).has('._3kP4m').length) > 0;
+      const isMasterwork = $(this).has(MASTERWORK_CLASS).length > 0;
       $(this).attr('data-fate-masterwork', isMasterwork);
   
       const serialNumber = $(this).attr('id').split("-")[0];

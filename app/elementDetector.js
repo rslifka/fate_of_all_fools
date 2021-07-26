@@ -3,7 +3,7 @@ const logger = require('logger.js');
 const Vibrant = require('node-vibrant');
 
 // Elemental class name as of 6.43.2
-const ELEMENT_CLASS_NAME = '.g7Tk_';
+const ELEMENT_CLASS_NAME = '._8tC_';
 
 // Store the mappings so clients can understand elements from URLs
 const URL_TO_ELEMENT = new Map();

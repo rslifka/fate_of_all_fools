@@ -11,9 +11,9 @@ const ARMOR_BUCKETS = [
   'bucket-1585787867', // Class
 ]
 
-const POWER_LEVEL_CLASS = '.hcIF4';
-const ELEMENT_ICON_CLASS = '._1YChF';
-const MASTERWORK_CLASS = '._3kP4m';
+const POWER_LEVEL_CLASS = '.yEIm1';
+const ELEMENT_ICON_CLASS = '._8tC_';
+const MASTERWORK_CLASS = '.m_jVB';
 
 function storeArmorData() {
   ARMOR_BUCKETS.forEach(function(className) {
