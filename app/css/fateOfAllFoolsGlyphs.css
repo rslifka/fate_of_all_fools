@@ -67,10 +67,17 @@
 .foaf-wishlist-pass {
   color: #3b49fe;
   background-color: rgba(0,0,0,0.5);
-  font-size: 18px;
+  font-size: 15px;
   padding: 1px 0;
   top: 0;
   right: 0;
+}
+
+.bucket-2465295065 .foaf-wishlist-pass,
+.bucket-953998645 .foaf-wishlist-pass
+{
+  left: 0;
+  right: unset;
 }
 
 .foaf-wishlist-fail {
