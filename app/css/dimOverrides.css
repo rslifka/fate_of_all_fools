@@ -87,7 +87,8 @@ body,
           need hundreds of bright red lock icons on the screen.
   VERIFIED: 6.33.0          
 */
-.item-drag-container .fa-lock
+.item-drag-container .fa-lock,
+.item-drag-container .fa-ban
 {
   display: none !important;
 }

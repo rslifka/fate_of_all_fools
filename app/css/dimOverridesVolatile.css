@@ -7,20 +7,22 @@
 /*
   EFFECT: Pull the 'gear' seasonal icon over and up flush with the cell.
   REASON: It's a little off kilter.
-  VERIFIED: 6.39.0
+  VERIFIED: 6.75.0
 */
-._2--vS
+.XMWhP
 {
-  left: 0;
-  top: 0;
+  /* left: 0; */
+  /* top: 0; */
+  display: none;
 }
 
 /*
   EFFECT: Hides the masterwork image overlay on exotics and legendaries.
   REASON: We use our own more subtle way to indicate what's masterworked.
-  VERIFIED: 6.39.0
+  VERIFIED: 6.75.0
 */
-._3kP4m
+.q9TdK,
+.m_jVB
 {
   background-image: none;
 }
@@ -31,9 +33,9 @@
     - Increase the height.
     - Reset overflow so we can move items outside of the bar.
   REASON: In aggregate they take up a lot of pixels and the contrast is too high.
-  VERIFIED: 6.39.0
+  VERIFIED: 6.75.0
 */ 
-.hcIF4
+.yEIm1
 {
   align-items: unset;
   background-color: rgba(44, 44, 44, 0.7);
@@ -49,9 +51,9 @@
 /*
   EFFECT: On armor, hide power level indicator and elemental affinity.
   REASON: No need and we have our own approach, respectively.
-  VERIFIED: 6.39.0
+  VERIFIED: 6.75.0
 */ 
-.IHFwZ
+._16yY
 {
   display: none;
 }
@@ -59,37 +61,11 @@
 /*
   EFFECT: On weapons, hide elemental affinity.
   REASON: We have our own approach.
-  VERIFIED: 6.39.0
+  VERIFIED: 6.75.0
 */
-.item-drag-container ._1YChF
+._8tC_
 {
   display: none;
-}
-
-/*
-  EFFECT: Restyle DIM's tagging icons.
-  REASON: To look more like ours.
-  VERIFIED: 6.39.0
-*/
-._18Hio
-{
-  color: rgb(232, 225, 33);
-  font-size: 11px;
-  position: absolute;
-  bottom: -16px;
-  left: -2px;
-  height: unset;
-  width: unset;
-}
-
-/*
-  EFFECT: Gray out the 'gear' seasonal icon when the item is junked.
-  REASON: It will stay its original color otherwise.
-  VERIFIED: 6.39.0
-*/
-[data-fate-dimtag-junk='true'] ._2--vS
-{
-  filter: grayscale(100%);
 }
 
 /*
@@ -105,8 +81,38 @@
 /*
   EFFECT: Color the icon tray with a background that stands out
   REASON: Not enough contrast; keep losing it
-  VERIFIED: 6.43.2
+  VERIFIED: 6.75.0
 */
-._1zEHt {
+.VxCIF {
   background-color: #173192;
+}
+
+/*
+  EFFECT: Restyle DIM's tagging icons.
+  REASON: To look more like ours.
+  VERIFIED: 6.75.0
+*/
+.Uhkx7
+{
+  color: rgb(232, 225, 33);
+  font-size: 10px;
+  position: absolute;
+  height: unset;
+  width: unset;
+}
+
+.Ddoxk
+{
+  bottom: 29px;
+  left: 2px;
+  top: unset;
+}
+
+.bucket-2465295065 .Ddoxk,
+.bucket-953998645 .Ddoxk
+{
+  bottom: 29px;
+  left: unset;
+  right: 13px;
+  top: unset;
 }
