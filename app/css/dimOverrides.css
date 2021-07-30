@@ -16,6 +16,30 @@ body,
 }
 
 /*
+  EFFECT: Remove the header bar and add a little space above the postmaster engrams.
+  REASON: Limited utility.
+  VERIFIED: 6.75.0
+*/
+.store-header
+{
+  display: none !important;
+}
+.bucket-375726501
+{
+  margin-top: 10px;
+}
+
+/*
+  EFFECT: Left align the postmaster items with inventory. It's a little off.
+  REASON: Limited utility.
+  VERIFIED: 6.75.0
+*/
+.bucket-215593132 .store-cell .sub-bucket
+{
+  padding-left: unset;
+}
+
+/*
   EFFECT: Hide the searching + symbol added to each vault slot.
   REASON: Limited utility.
   VERIFIED: 6.39.0  
