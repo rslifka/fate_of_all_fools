@@ -116,3 +116,14 @@
   right: 13px;
   top: unset;
 }
+
+/*
+  EFFECT: Keep the header bar shrunk
+  REASON: Header bar takes up significant space on the screen getting in the
+          way of the vault contents.
+  VERIFIED: 6.76.0
+*/
+.wPm7X
+{
+  height: unset;
+}
