@@ -9,7 +9,9 @@ const ELEMENT_CLASS_NAME = '._8tC_';
 const URL_TO_ELEMENT = new Map();
 
 fateBus.subscribe(module, 'fate.refresh', function() {  
-  if (URL_TO_ELEMENT.size >= 6) {
+  // There's a different elemental icon set for weapons and for armor, so we
+  // double the number of URLs for each element in the game.
+  if (URL_TO_ELEMENT.size >= 8) {
     return;
   }
   logger.log('elementDetector.js: Calculating element colors');
@@ -46,6 +48,7 @@ async function calculateElementForImage(imageSourceURL) {
     return 'stasis';
   }
 
+  console.log('do not know this one: ' + dominantColor)
   return undefined;
 }
 
