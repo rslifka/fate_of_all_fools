@@ -16,18 +16,15 @@ body,
 }
 
 /*
-  EFFECT: Remove the header bar and add a little space above the postmaster engrams.
-  REASON: Limited utility.
-  VERIFIED: 6.75.0
+  EFFECT: Remove the BL gradient background over the inventory and vault.
+  REASON: It's really pretty but further reduces the contrast between items
+          and the background.
+  VERIFIED: 6.80.0
 */
-/* .store-header
+.cnld_::before
 {
-  display: none !important;
+  background: unset !important;
 }
-.bucket-375726501
-{
-  margin-top: 10px;
-} */
 
 /*
   EFFECT: Left align the postmaster items with inventory. It's a little off.
@@ -88,7 +85,7 @@ body,
   REASON: We'll go with our own visuals for this.
   VERIFIED: 6.39.0
 */
-.rating-icon
+.EIxDP
 {
   display: none;
 }
