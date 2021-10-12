@@ -1,32 +1,4 @@
 /*
-  EFFECT: Remove the new BL gradient background.
-  REASON: It's really pretty but further reduces the contrast between items
-          and the background.
-  VERIFIED: 6.39.0
-*/
-body,
-/* This is where the topmost gradient is set */
-.app::before,
-/* Margin between the header and the first row */
-._1R3rf
-{
-  background: unset !important;
-  content: unset !important;
-  background-color: #000 !important;
-}
-
-/*
-  EFFECT: Remove the BL gradient background over the inventory and vault.
-  REASON: It's really pretty but further reduces the contrast between items
-          and the background.
-  VERIFIED: 6.80.0
-*/
-.cnld_::before
-{
-  background: unset !important;
-}
-
-/*
   EFFECT: Left align the postmaster items with inventory. It's a little off.
   REASON: Limited utility.
   VERIFIED: 6.75.0
@@ -77,17 +49,6 @@ body,
 .item .item-img
 {
   border: none;
-}
-
-/*
-  EFFECT: Hides the DIM built-in "thumbs down" and "thumbs up" icons when an
-          item is assessed via the "wish list" feature.
-  REASON: We'll go with our own visuals for this.
-  VERIFIED: 6.39.0
-*/
-.EIxDP
-{
-  display: none;
 }
 
 /*
