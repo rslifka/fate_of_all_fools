@@ -2,10 +2,7 @@ const $ = require('jquery');
 const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 const Utility = require('weaponRollAssessment.js').Utility;
 const elementDetector = require('elementDetector.js');
-
-const POWER_LEVEL_CLASS  = '.yEIm1';
-const ELEMENT_ICON_CLASS = '._8tC_';
-const MASTERWORK_CLASS = '.m_jVB';
+const volatiles = require('dimVolatileClasses.js').VOLATILE_CLASSES;
 
 const WEAPON_BUCKETS = [
   'bucket-1498876634', // Kinetic
@@ -23,16 +20,16 @@ function storeWeaponData() {
       $(this).attr('data-fate-weapon-name', weaponName);
   
       // Is it an exotic or legendary masterwork?
-      const isMasterwork = $(this).has(MASTERWORK_CLASS).length > 0;
+      const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
       $(this).attr('data-fate-masterwork', isMasterwork);
   
       const serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
   
-      const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
+      const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span').text();
       $(this).attr('data-fate-light', light);
 
-      const elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
+      const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
       $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
     });
   });
@@ -45,10 +42,10 @@ function updateAttributes() {
     const name = $(this).attr('data-fate-weapon-name')
     $(this).attr('title', name);
 
-    const light = $(this).find(POWER_LEVEL_CLASS).children('span').text();
+    const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span').text();
     $(this).attr('data-fate-light', light);
 
-    const elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
+    const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
     $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
 
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {

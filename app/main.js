@@ -19,6 +19,10 @@ require('itemDataRefresher.js');
 // Copy-to-clipboard support for the serial number
 require('itemIdCopy.js');
 
+// These change at various DIM releases and we need to keep updating them so
+// that our detectors work.
+require('dimVolatileClasses.js');
+
 require('weaponDecorator.js');
 require('weaponRollAssessment.js');
 require('weaponRollDatabase.js');
