@@ -132,7 +132,7 @@
 .item[data-fate-element='arc'] > .foaf-element
 {
   display: block;
-  background-color: rgba(32,146,213);
+  background-color: rgb(51, 165, 232);
 }
 
 .item[data-fate-element='solar'] > .foaf-element
@@ -144,7 +144,13 @@
 .item[data-fate-element='void'] > .foaf-element
 {
   display: block;
-  background-color: rgba(153,88,220,1);
+  background-color: rgb(175, 133, 218);
+}
+
+.item[data-fate-element='stasis'] > .foaf-element
+{
+  display: block;
+  background-color: rgb(76, 90, 191);
 }
 
 .item[data-fate-element='kinetic'] > .foaf-element
