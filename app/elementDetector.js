@@ -1,11 +1,15 @@
 const $ = require('jquery');
 const logger = require('logger.js');
 const Vibrant = require('node-vibrant');
+const volatiles = require('dimVolatileClasses.js').VOLATILE_CLASSES;
 
-// Elemental class name as of 6.43.2
-const ELEMENT_CLASS_NAME = '._8tC_';
+/*
+  There are two identical icons stored under different paths: one for weapons
+  and one for armor:
 
-// Store the mappings so clients can understand elements from URLs
+  Weapons: "./icons/DestinyDamageTypeDefinition_HASH.png"
+  Armor:   "./icons/DestinyEnergyTypeDefinition_HASH.png"
+*/
 const URL_TO_ELEMENT = new Map();
 
 fateBus.subscribe(module, 'fate.refresh', function() {  
@@ -18,7 +22,7 @@ fateBus.subscribe(module, 'fate.refresh', function() {
 
   // Grab all the unique elemental icon URLs from both weapons and armor.
   const imageURLs = new Set();
-  $(ELEMENT_CLASS_NAME).each(function() {
+  $(volatiles.ELEMENT_ICON_CLASS).each(function() {
     imageURLs.add($(this).attr('src'));
   });
 
@@ -48,7 +52,7 @@ async function calculateElementForImage(imageSourceURL) {
     return 'stasis';
   }
 
-  console.log('do not know this one: ' + dominantColor)
+  logger.log('do not know this one: ' + dominantColor)
   return undefined;
 }
 

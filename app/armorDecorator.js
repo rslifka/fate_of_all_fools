@@ -2,6 +2,7 @@ const $ = require('jquery');
 const rollDatabase = require('armorRollDatabase.js').armorRollDB;
 const Utility = require('armorRoll.js').Utility;
 const elementDetector = require('elementDetector.js');
+const volatiles = require('dimVolatileClasses.js').VOLATILE_CLASSES;
 
 const ARMOR_BUCKETS = [
   'bucket-3448274439', // Helm
@@ -11,10 +12,6 @@ const ARMOR_BUCKETS = [
   'bucket-1585787867', // Class
 ]
 
-const POWER_LEVEL_CLASS = '.yEIm1';
-const ELEMENT_ICON_CLASS = '._8tC_';
-const MASTERWORK_CLASS = '.m_jVB';
-
 function storeArmorData() {
   ARMOR_BUCKETS.forEach(function(className) {
     $('.'+className).find('.item').not('[data-fate-armor-registered]').each(function() {
@@ -23,16 +20,17 @@ function storeArmorData() {
       const armorName = $(this).attr('title').split("\n")[0];
       $(this).attr('data-fate-armor-name', armorName);
       
-      const isMasterwork = $(this).has(MASTERWORK_CLASS).length > 0;
+      const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
       $(this).attr('data-fate-masterwork', isMasterwork);
 
       const serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
 
-      const light = $(this).find(POWER_LEVEL_CLASS).children('span:not(.IHFwZ)').text();
+      // There are two spans in here and we want to avoid the Energy level one
+      const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not(.gwSnM)').text();
       $(this).attr('data-fate-light', light);
 
-      const elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
+      const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
       $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
     });
   });
@@ -45,11 +43,14 @@ function updateAttributes() {
     const name = $(this).attr('data-fate-armor-name')
     $(this).attr('title', name);
 
-    const elementIconSrc = $(this).find(ELEMENT_ICON_CLASS).attr('src');
-    $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
-
-    const isMasterwork = $(this).has(MASTERWORK_CLASS).length > 0;
+    const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
+
+    const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not(.gwSnM)').text();
+    $(this).attr('data-fate-light', light);
+
+    const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
+    $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
 
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
       const className = $(value).attr('class').split(' ').filter(function(cname) {
@@ -73,9 +74,6 @@ function updateAttributes() {
     const isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
     
-    const light = $(this).find(POWER_LEVEL_CLASS).children('span:not(.IHFwZ)').text();
-    $(this).attr('data-fate-light', light);
-
     if (!isArmorRegistered) {
       $(this).attr('title', name);
       $(this).removeAttr('data-fate-armor-junk');
