@@ -1,7 +1,5 @@
 /*
-  EFFECT: Left align the postmaster items with inventory. It's a little off.
-  REASON: Limited utility.
-  VERIFIED: 6.75.0
+  Left align the postmaster items with inventory. It's a little off.
 */
 .bucket-215593132 .store-cell .sub-bucket
 {
@@ -11,7 +9,6 @@
 /*
   EFFECT: Hide the searching + symbol added to each vault slot.
   REASON: Limited utility.
-  VERIFIED: 6.39.0  
 */
 .pull-item-button
 {
@@ -21,7 +18,6 @@
 /*
   EFFECT: Hide the class icon that armor is sorted by.
   REASON: Limited utility.
-  VERIFIED: 6.39.0  
 */
 .armor-class-icon
 {
@@ -32,7 +28,6 @@
   EFFECT: Remove the white border around equipped items.
   REASON: We can tell from how this mirrors the Destiny UI itself what
           we have equipped. Don't need another indicator.
-  VERIFIED: 6.39.0
 */
 .equipped-item
 {
@@ -44,7 +39,6 @@
   EFFECT: Remove the single-line border around all items.
   REASON: The contrast between the item image and the background is enough
           to indicate a difference in meaning. Less visual noise.
-  VERIFIED: 6.39.0          
 */ 
 .item .item-img
 {
@@ -54,7 +48,6 @@
 /*
   EFFECT: Push the items a bit further down so they don't abut the header.
   REASON: A little visual breathing room.
-  VERIFIED: 6.39.0
 */
 .store-header
 {
@@ -67,7 +60,6 @@
           this end up being super graphically noisy. I.e. most every
           piece of gear you have will have it displayed and we don't
           need hundreds of bright red lock icons on the screen.
-  VERIFIED: 6.33.0          
 */
 .item-drag-container .fa-lock,
 .item-drag-container .fa-ban
@@ -79,7 +71,6 @@
   EFFECT: Hide large notifications
   REASON: This is a neat idea, but it so frequently obscures the portion of the
           vault I'm looking.
-  VERIFIED: 6.39.1
 */
 .notifications-container {
   display: none;
@@ -88,7 +79,6 @@
 /*
   EFFECT: Modify the styling of items tagged "archive".
   REASON: DIM's styling makes the item too small and difficult to reason about.
-  VERIFIED: 6.42.3
 */
 .item[data-fate-dimtag-archive='true']
 {
@@ -97,4 +87,13 @@
   transform: unset;
   border: 1px dashed;
   border-color: rgba(255,255,255,0.5);
+}
+
+/*
+  EFFECT: "Disable" items that are DIM-junked and remove their element.
+  REASON: So we can ignore them when scanning our vaults
+*/
+[data-fate-dimtag-junk='true'] .item-img {
+  filter: grayscale(100%);
+  opacity: 0.6;
 }

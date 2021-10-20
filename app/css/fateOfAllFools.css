@@ -42,25 +42,6 @@
   right: 0;
 }
 
-/*
-  If the armor is registered we know its element. Remove DIM's.
-*/
-[data-fate-armor-registered='true'] .AtD93 > img {
-  display: none;
-}
-
-[data-fate-element='solar'] .AtD93 > span {
-  border-bottom: 2px solid rgba(240, 99, 30, 0.7);
-}
-
-[data-fate-element='void'] .AtD93 > span {
-  border-bottom: 2px solid rgba(177, 134, 224, 0.7);
-}
-
-[data-fate-element='arc'] .AtD93 > span {
-  border-bottom: 2px solid rgba(121, 187, 232, 0.7);
-}
-
 #max-light {
   position: absolute;
   font-size: 11px;

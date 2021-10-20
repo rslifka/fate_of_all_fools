@@ -159,27 +159,9 @@
 }
 
 /*
-  Position of the light level depends on if there are any other icons to show
-  to the right of it.
-*/
-.item[data-fate-element='kinetic'][data-fate-masterwork='false'] .hcIF4
-{
-  padding-right: 2px;
-}
-
-/*
   If the masterwork tick is to appear on an affinity item, push it up.
 */
 div.item:not([data-fate-element='kinetic']) > .foaf-masterwork
 {
   bottom: 9px;
-}
-
-/*
-  Only show the built-in DIM tagging icon container if the item is tagged with
-  the 'keep' status.
-*/
-.item[data-fate-dimtag-keep='false'] > .rlCY7
-{
-  display: none;
 }
