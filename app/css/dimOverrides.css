@@ -97,3 +97,14 @@
   filter: grayscale(100%);
   opacity: 0.6;
 }
+
+/*
+  EFFECT: Hides the DIM built-in "thumbs down" and "thumbs up" icons when an
+          item is assessed via the "wish list" feature.
+  REASON: We'll go with our own visuals for this.
+*/
+.fa-thumbs-up,
+.fa-thumbs-down
+{
+  display: none;
+}
