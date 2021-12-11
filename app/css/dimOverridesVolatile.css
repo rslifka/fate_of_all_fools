@@ -107,27 +107,17 @@ body,
   EFFECT: Reposition DIM's tagging icons.
   REASON: So they don't overlap the weapon.
 */
-.Fzhz9
+.TRM0_
 {
   bottom: 29px;
   left: 2px;
   top: unset;
 }
-.bucket-2465295065 .Fzhz9,
-.bucket-953998645 .Fzhz9
+.bucket-2465295065 .TRM0_,
+.bucket-953998645 .TRM0_
 {
   bottom: 29px;
   left: unset;
   right: 13px;
   top: unset;
-}
-
-/*
-  EFFECT: Hides the DIM built-in "thumbs down" and "thumbs up" icons when an
-          item is assessed via the "wish list" feature.
-  REASON: We'll go with our own visuals for this.
-*/
-.TRM0_
-{
-  display: none;
 }
