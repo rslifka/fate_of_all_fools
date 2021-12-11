@@ -27,7 +27,7 @@ function storeArmorData() {
       $(this).attr('data-fate-serial', serialNumber);
 
       // There are two spans in here and we want to avoid the Energy level one
-      const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not(.gwSnM)').text();
+      const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not('+volatiles.ARMOR_SPAN_AVOID_CLASS+')').text();
       $(this).attr('data-fate-light', light);
 
       const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
