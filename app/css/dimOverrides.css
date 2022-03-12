@@ -1,5 +1,6 @@
 /*
-  Left align the postmaster items with inventory. It's a little off.
+  EFFECT: Left align the postmaster items with inventory.
+  REASON: It's a little off.
 */
 .bucket-215593132 .store-cell .sub-bucket
 {
@@ -55,36 +56,13 @@
 }
 
 /*
-  EFFECT: Hides the DIM built-in "lock" icon when an item is locked.
-  REASON: Most items in the inventory are locked, which means that
-          this end up being super graphically noisy. I.e. most every
-          piece of gear you have will have it displayed and we don't
-          need hundreds of bright red lock icons on the screen.
-*/
-.item-drag-container .fa-lock,
-.item-drag-container .fa-ban
-{
-  display: none !important;
-}
-
-/*
-  EFFECT: Hide large notifications
-  REASON: This is a neat idea, but it so frequently obscures the portion of the
-          vault I'm looking.
-*/
-.notifications-container {
-  display: none;
-}
-
-/*
   EFFECT: Modify the styling of items tagged "archive".
   REASON: DIM's styling makes the item too small and difficult to reason about.
 */
 .item[data-fate-dimtag-archive='true']
 {
-  opacity: 0.6;
+  opacity: 0.6 !important;
   filter: grayscale(100%);
-  transform: unset;
   border: 1px dashed;
   border-color: rgba(255,255,255,0.5);
 }
@@ -95,16 +73,17 @@
 */
 [data-fate-dimtag-junk='true'] .item-img {
   filter: grayscale(100%);
-  opacity: 0.6;
 }
 
 /*
-  EFFECT: Hides the DIM built-in "thumbs down" and "thumbs up" icons when an
-          item is assessed via the "wish list" feature.
-  REASON: We'll go with our own visuals for this.
+  Hides many of the DIM built-in icons that create too much visual clutter
+  given the size of vaults these days.
 */
-.fa-thumbs-up,
-.fa-thumbs-down
+.item-drag-container .fa-archive,
+.item-drag-container .fa-ban,
+.item-drag-container .fa-lock,
+.item-drag-container .fa-thumbs-down,
+.item-drag-container .fa-thumbs-up
 {
-  display: none;
+  display: none !important;
 }
