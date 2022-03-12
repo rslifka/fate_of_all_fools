@@ -121,3 +121,12 @@ body,
   right: 13px;
   top: unset;
 }
+
+/*
+  EFFECT: Hide large notifications
+  REASON: This is a neat idea, but it so frequently obscures the portion of the
+          vault I'm looking.
+*/
+.QKPrn {
+  display: none;
+}
