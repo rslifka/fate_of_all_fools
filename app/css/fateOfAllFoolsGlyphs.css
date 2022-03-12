@@ -88,3 +88,13 @@
   top: 0;
   right: 0;
 }
+
+.foaf-attuned
+{
+  color: rgba(255,255,255,0.9);
+  background-color: rgba(210, 82, 58, 0.5);
+  font-size: 16px;
+  padding: 2px 5px;
+  bottom: 16;
+  right: 0;
+}

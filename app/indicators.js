@@ -7,6 +7,7 @@ const INFUSION_INDICATOR_CLASS = 'foaf-infusable';
 const WISHLIST_PASS_INDICATOR_CLASS = 'foaf-wishlist-pass';
 const WISHLIST_FAIL_INDICATOR_CLASS = 'foaf-wishlist-fail';
 const ELEMENT_INDICATOR_CLASS = 'foaf-element';
+const ATTUNED_INDICATOR_CLASS = 'foaf-attuned';
 
 const WEAPON_GLYPHS = new Map([
   [PVE_INDICATOR_CLASS,       'fglyph-pve'],
@@ -14,7 +15,8 @@ const WEAPON_GLYPHS = new Map([
   [INFUSION_INDICATOR_CLASS,   'fglyph-up'],
   [WISHLIST_PASS_INDICATOR_CLASS, 'fglyph-wishlist-pass'],
   [WISHLIST_FAIL_INDICATOR_CLASS, 'fglyph-wishlist-fail'],
-  [ELEMENT_INDICATOR_CLASS, '']
+  [ELEMENT_INDICATOR_CLASS, ''],
+  [ATTUNED_INDICATOR_CLASS, 'fglyph-exclamation']
 ]);
 
 const ARMOR_GLYPHS = new Map([

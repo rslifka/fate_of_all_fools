@@ -144,3 +144,16 @@
 {
   display: none;
 }
+
+/*
+  ATTUNEMENT COMPLETE
+*/
+.item[data-fate-attuned='false'] > .foaf-attuned
+{
+  display: none
+}
+
+.item[data-fate-attuned='true'] > .foaf-attuned
+{
+  display: block
+}

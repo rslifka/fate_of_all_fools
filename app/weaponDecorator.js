@@ -18,17 +18,10 @@ function storeWeaponData() {
 
       const weaponName = $(this).attr('title').split("\n")[0];
       $(this).attr('data-fate-weapon-name', weaponName);
-  
-      // Is it an exotic or legendary masterwork?
-      const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
-      $(this).attr('data-fate-masterwork', isMasterwork);
-  
+    
       const serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
   
-      const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span').text();
-      $(this).attr('data-fate-light', light);
-
       const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
       $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
     });
@@ -45,11 +38,14 @@ function updateAttributes() {
     const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span').text();
     $(this).attr('data-fate-light', light);
 
-    const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
-    $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
+    const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
+    $(this).attr('data-fate-masterwork', isMasterwork);
 
     const isDeepsight = $(this).has(volatiles.DEEPSIGHT_BORDER_CLASS).length > 0;
     $(this).attr('data-fate-deepsight', isDeepsight);
+
+    const isAttuned = $(this).has(volatiles.ATTTUNEMENT_COMPLETE_CLASS).length > 0;
+    $(this).attr('data-fate-attuned', isAttuned);
 
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
       const className = $(value).attr('class').split(' ').filter(function(cname) {
