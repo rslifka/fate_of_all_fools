@@ -28,9 +28,11 @@ body,
 
 /*
   EFFECT: Hides the masterwork image overlay on exotics and legendaries.
+          Sometimes it's two classes; sometimes it's one 🤷
   REASON: We use our own more subtle way to indicate what's masterworked.
 */
-.BfAGU
+.EJ0gV,
+.ocMSk
 {
   background-image: none;
 }
@@ -53,6 +55,11 @@ body,
   padding-right: 6px;
   overflow: unset;
   vertical-align: top;
+}
+
+.item[data-fate-masterwork='true'] .SLO2o
+{
+  background: radial-gradient(circle, rgba(253,222,29,0.5) 0%, rgba(111,98,13,0.5) 100%);
 }
 
 /*

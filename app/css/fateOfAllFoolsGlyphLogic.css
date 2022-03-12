@@ -59,19 +59,6 @@
 }
 
 /*
-  MASTERWORK INDICATOR
-*/
-[data-fate-masterwork="true"] > .foaf-masterwork
-{
-  display: block;
-}
-
-[data-fate-masterwork="false"] > .foaf-masterwork
-{
-  display: none;
-}
-
-/*
   INFUSION INDICATOR
 */
 [data-fate-infusable="true"] > .foaf-infusable
@@ -156,12 +143,4 @@
 .item[data-fate-element='kinetic'] > .foaf-element
 {
   display: none;
-}
-
-/*
-  If the masterwork tick is to appear on an affinity item, push it up.
-*/
-div.item:not([data-fate-element='kinetic']) > .foaf-masterwork
-{
-  bottom: 9px;
 }

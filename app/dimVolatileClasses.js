@@ -1,6 +1,6 @@
 exports.VOLATILE_CLASSES = {
   ARMOR_SPAN_AVOID_CLASS:  '.XvpsT',
   ELEMENT_ICON_CLASS:      '.e0VY8',
-  MASTERWORK_CLASS:        '.BfAGU',
+  MASTERWORK_CLASS:        '.EJ0gV',
   POWER_LEVEL_CLASS:       '.SLO2o'
 }

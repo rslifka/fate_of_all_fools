@@ -4,7 +4,6 @@ const logger = require('logger.js');
 const PVE_INDICATOR_CLASS = 'foaf-pve';
 const PVP_INDICATOR_CLASS = 'foaf-pvp';
 const INFUSION_INDICATOR_CLASS = 'foaf-infusable';
-const MASTERWORK_INDICATOR_CLASS = 'foaf-masterwork';
 const WISHLIST_PASS_INDICATOR_CLASS = 'foaf-wishlist-pass';
 const WISHLIST_FAIL_INDICATOR_CLASS = 'foaf-wishlist-fail';
 const ELEMENT_INDICATOR_CLASS = 'foaf-element';
@@ -15,7 +14,6 @@ const WEAPON_GLYPHS = new Map([
   [INFUSION_INDICATOR_CLASS,   'fglyph-up'],
   [WISHLIST_PASS_INDICATOR_CLASS, 'fglyph-wishlist-pass'],
   [WISHLIST_FAIL_INDICATOR_CLASS, 'fglyph-wishlist-fail'],
-  [MASTERWORK_INDICATOR_CLASS, ''],
   [ELEMENT_INDICATOR_CLASS, '']
 ]);
 
@@ -23,7 +21,6 @@ const ARMOR_GLYPHS = new Map([
   [PVE_INDICATOR_CLASS,  'fglyph-pve'],
   [PVP_INDICATOR_CLASS,  'fglyph-pvp'],
   [INFUSION_INDICATOR_CLASS, 'fglyph-up'],
-  [MASTERWORK_INDICATOR_CLASS, ''],
   [ELEMENT_INDICATOR_CLASS, '']
 ]);
 
