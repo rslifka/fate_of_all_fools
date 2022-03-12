@@ -1,7 +1,6 @@
 const $ = require('jquery');
 const logger = require('logger.js');
 
-const DUPLICATE_INDICATOR_CLASS = 'foaf-dupe';
 const PVE_INDICATOR_CLASS = 'foaf-pve';
 const PVP_INDICATOR_CLASS = 'foaf-pvp';
 const INFUSION_INDICATOR_CLASS = 'foaf-infusable';
@@ -11,7 +10,6 @@ const WISHLIST_FAIL_INDICATOR_CLASS = 'foaf-wishlist-fail';
 const ELEMENT_INDICATOR_CLASS = 'foaf-element';
 
 const WEAPON_GLYPHS = new Map([
-  [DUPLICATE_INDICATOR_CLASS, 'fglyph-dupe'],
   [PVE_INDICATOR_CLASS,       'fglyph-pve'],
   [PVP_INDICATOR_CLASS,       'fglyph-pvp'],
   [INFUSION_INDICATOR_CLASS,   'fglyph-up'],
@@ -50,5 +48,3 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   // logger.log('indicators.js: Inserting indicator elements');
   prepareIndicatorSpace();
 });
-
-exports.DUPLICATE_INDICATOR_CLASS = DUPLICATE_INDICATOR_CLASS;

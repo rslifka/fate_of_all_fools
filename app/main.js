@@ -7,9 +7,6 @@ require('configuration.js');
 // Use DIM styling overrides and our own custom styling
 require('beautification.js');
 
-// Show dupes
-require('dupeIndicator.js');
-
 // Show infusables
 require('infusionIndicator.js');
 
