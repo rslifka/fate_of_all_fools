@@ -137,3 +137,21 @@ body,
 .QKPrn {
   display: none;
 }
+
+/*
+  EFFECT: Hide Deepsight image border
+  REASON: We'll use our own visual treatment
+*/
+.rF59A
+{
+  display: none;
+}
+
+/*
+  EFFECT: Hide whatever this is supposed to be. Weird red border around light level.
+  REASON: Don't know what it is. Maybe Deepsight?
+*/
+.sci0Q
+{
+  border: unset !important;
+}

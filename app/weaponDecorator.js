@@ -48,6 +48,9 @@ function updateAttributes() {
     const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
     $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
 
+    const isDeepsight = $(this).has(volatiles.DEEPSIGHT_BORDER_CLASS).length > 0;
+    $(this).attr('data-fate-deepsight', isDeepsight);
+
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
       const className = $(value).attr('class').split(' ').filter(function(cname) {
         return cname.startsWith('fa-');
