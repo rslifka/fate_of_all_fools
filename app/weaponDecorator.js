@@ -20,10 +20,7 @@ function storeWeaponData() {
       $(this).attr('data-fate-weapon-name', weaponName);
     
       const serialNumber = $(this).attr('id').split("-")[0];
-      $(this).attr('data-fate-serial', serialNumber);
-  
-      const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
-      $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
+      $(this).attr('data-fate-serial', serialNumber);  
     });
   });
 }
@@ -37,6 +34,18 @@ function updateAttributes() {
 
     const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span').text();
     $(this).attr('data-fate-light', light);
+
+    // It would be ideal to put this in the one-time-init section above since
+    // elements don't change, but we need to give time to the element detection
+    // code to wake up.
+    if (!$(this).is('[data-fate-element]')) {
+      const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
+      if (elementIconSrc === undefined) {
+        $(this).attr('data-fate-element', 'kinetic');  
+      } else {
+        $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
+      }
+    }
 
     const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
