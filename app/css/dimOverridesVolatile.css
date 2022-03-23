@@ -63,15 +63,6 @@ body,
 }
 
 /*
-  Position of the light level depends on if there are any other icons to show
-  to the right of it.
-*/
-.bucket-1498876634 .item[data-fate-masterwork='false'] .N_eIi
-{
-  padding-right: 2px;
-}
-
-/*
   EFFECT: On armor, hide power level indicator and elemental affinity.
   REASON: No need and we have our own approach, respectively.
 */ 
