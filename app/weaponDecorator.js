@@ -16,9 +16,6 @@ function storeWeaponData() {
     $('.'+className).find('.item').not('[data-fate-weapon-registered]').each(function() {
       $(this).attr('data-fate-weapon-registered', false);
 
-      const weaponName = $(this).attr('title').split("\n")[0];
-      $(this).attr('data-fate-weapon-name', weaponName);
-    
       const serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);  
     });
@@ -99,12 +96,6 @@ function updateAttributes() {
     $(this).attr('data-fate-weapon-junk', w.pveUtility === Utility.NO && w.pvpUtility === Utility.NO);
     $(this).attr('data-fate-weapon-pve', w.pveUtility === Utility.YES);
     $(this).attr('data-fate-weapon-pvp', w.pvpUtility === Utility.YES);
-
-    $(this).attr('data-fate-comment', w.comments);
-
-    if (w.comments !== '') {
-      $(this).attr('title', `${name}\n${w.comments}`);
-    }
   });
 }
 

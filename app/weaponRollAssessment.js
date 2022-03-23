@@ -6,12 +6,11 @@ const Utility = {
 
 class WeaponRollAssessment {
 
-  constructor(rollID, name, pveUseful, pvpUseful, comments) {
+  constructor(rollID, name, pveUseful, pvpUseful) {
     this.rollID = rollID;
     this.name = name;
     this.pve = pveUseful.toLowerCase();
     this.pvp = pvpUseful.toLowerCase();
-    this.comments = comments;
   }
 
   get pveUtility() {
