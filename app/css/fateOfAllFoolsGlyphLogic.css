@@ -10,19 +10,6 @@
 }
 
 /*
-  DUPLICATE INDICATOR
-*/
-[data-fate-weapon-dupe="false"] > .foaf-dupe
-{
-  display: none;
-}
-
-[data-fate-weapon-dupe="true"] > .foaf-dupe
-{
-  display: block;
-}
-
-/*
   PVE INDICATOR
 */
 [data-fate-weapon-pve="true"] > .foaf-pve,
