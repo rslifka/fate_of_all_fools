@@ -61,14 +61,14 @@
 /*
   INFUSION INDICATOR
 */
+.foaf-infusable
+{
+  display: none;
+}
+
 [data-fate-infusable="true"] > .foaf-infusable
 {
   display: block;
-}
-
-[data-fate-infusable="false"] > .foaf-infusable
-{
-  display: none;
 }
 
 /*
