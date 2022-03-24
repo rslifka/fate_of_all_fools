@@ -174,3 +174,14 @@ body,
   right: unset;
   left: 0
 }
+
+/* 
+  EFFECT: Remove the "Postmaster" and "Weapons" drop-down toggles.
+  REASON: We know what it is and don't need to title it, and we would never
+          collapse these.
+*/
+.store-row.inventory-title:nth-child(4),
+.store-row.inventory-title:nth-child(6)
+{
+  display: none;
+}
