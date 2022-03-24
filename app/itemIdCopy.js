@@ -23,9 +23,7 @@ function registerListeners() {
       }
 
       const serialNumber = $itemElement.attr('data-fate-serial');
-      const weaponName = $itemElement.attr('data-fate-weapon-name');
-      const armorName = $itemElement.attr('data-fate-armor-name');
-      const itemName = (weaponName === undefined) ? (armorName) : (weaponName);
+      const itemName = $itemElement.attr('data-fate-item-name');
       copyToClipboard(serialNumber);
       $.toast({
         text: '<span style="font-size:16px;"><strong>'+itemName+'</strong> serial number copied to clipboard</span>',
@@ -40,8 +38,7 @@ function registerListeners() {
       }
 
       const weaponName = $itemElement.attr('data-fate-weapon-name');
-      const armorName = $itemElement.attr('data-fate-armor-name');
-      const itemName = (weaponName === undefined) ? (armorName) : (weaponName);
+      const itemName = $itemElement.attr('data-fate-item-name');
       copyToClipboard(itemName);
       $.toast({
         text: '<span style="font-size:16px;"><strong>'+itemName+'</strong> copied to clipboard</span>',

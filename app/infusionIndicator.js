@@ -26,7 +26,7 @@ function styleInfusionIndicators() {
   WEAPON_BUCKETS.forEach(function(className) {
     const unregisteredItems = new Map();
     $('.'+className).find('[data-fate-weapon-registered="false"').each(function() {
-      const itemName = $(this).attr('data-fate-infusion-name');
+      const itemName = $(this).attr('data-fate-item-name');
       const itemLight = parseInt($(this).attr('data-fate-light'));
       if (!unregisteredItems.has(itemName) || unregisteredItems.get(itemName) < itemLight) {
         unregisteredItems.set(itemName, itemLight);
@@ -35,7 +35,7 @@ function styleInfusionIndicators() {
     });
 
     $('.'+className).find('[data-fate-weapon-registered="true"').each(function() {
-      const itemName = $(this).attr('data-fate-infusion-name');
+      const itemName = $(this).attr('data-fate-item-name');
       const itemLight = parseInt($(this).attr('data-fate-light'));
       $(this).attr('data-fate-infusable', unregisteredItems.has(itemName) && unregisteredItems.get(itemName) > itemLight);
     });
@@ -44,7 +44,7 @@ function styleInfusionIndicators() {
   ARMOR_BUCKETS.forEach(function(className) {
     const unregisteredItems = new Map();
     $('.'+className).find('[data-fate-armor-registered="false"').each(function() {
-      const itemName = $(this).attr('data-fate-infusion-name');
+      const itemName = $(this).attr('data-fate-item-name');
       const itemLight = parseInt($(this).attr('data-fate-light'));
       if (!unregisteredItems.has(itemName) || unregisteredItems.get(itemName) < itemLight) {
         unregisteredItems.set(itemName, itemLight);
@@ -53,7 +53,7 @@ function styleInfusionIndicators() {
     });
 
     $('.'+className).find('[data-fate-armor-registered="true"').each(function() {
-      const itemName = $(this).attr('data-fate-infusion-name');
+      const itemName = $(this).attr('data-fate-item-name');
       const itemLight = parseInt($(this).attr('data-fate-light'));
       $(this).attr('data-fate-infusable', unregisteredItems.has(itemName) && unregisteredItems.get(itemName) > itemLight);
     });
