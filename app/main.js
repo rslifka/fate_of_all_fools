@@ -4,9 +4,6 @@ import 'regenerator-runtime/runtime';
 // Install the configuration interface and set default values
 require('configuration.js');
 
-// Use DIM styling overrides and our own custom styling
-require('beautification.js');
-
 // Show infusables
 require('infusionIndicator.js');
 
