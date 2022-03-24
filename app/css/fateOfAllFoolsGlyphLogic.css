@@ -1,10 +1,27 @@
 /*
   UNREGISTERED SIDE EFFECTS
 */
-[data-fate-weapon-registered="false"] > .foaf-pve,
+/* [data-fate-weapon-registered="false"] > .foaf-pve,
 [data-fate-weapon-registered="false"] > .foaf-pvp,
 [data-fate-armor-registered="false"] > .foaf-pve,
 [data-fate-armor-registered="false"] > .foaf-pvp
+{
+  display: none;
+} */
+.foaf-pve,
+.foaf-pvp
+{
+  display: none;
+}
+
+/*
+  PVE + PVP INDICATORS
+  If both are enabled, show nothing. Any registered weapon is good for both.
+*/
+[data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pve,
+[data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pvp,
+[data-fate-armor-pve="true"][data-fate-armor-pvp="true"] > .foaf-pve,
+[data-fate-armor-pve="true"][data-fate-armor-pvp="true"] > .foaf-pvp
 {
   display: none;
 }
@@ -18,18 +35,6 @@
   display: block;
 }
 
-[data-fate-weapon-pve="true"][data-fate-weapon-pvp="true"] > .foaf-pve,
-[data-fate-armor-pve="true"][data-fate-armor-pvp="true"] > .foaf-pve
-{
-  left: 12px;
-}
-
-[data-fate-weapon-pve="false"] > .foaf-pve,
-[data-fate-armor-pve="false"] > .foaf-pve
-{
-  display: none;
-}
-
 /*
   PVP INDICATOR
 */
@@ -37,12 +42,6 @@
 [data-fate-armor-pvp="true"] > .foaf-pvp
 {
   display: block;
-}
-
-[data-fate-weapon-pvp="false"] > .foaf-pvp,
-[data-fate-armor-pvp="false"] > .foaf-pvp
-{
-  display: none;
 }
 
 /*
