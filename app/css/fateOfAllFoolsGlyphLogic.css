@@ -103,6 +103,11 @@
 /*
   ELEMENT INDICATOR
 */
+.item[data-fate-dimtag-junk='true'] > .foaf-element
+{
+  display: none !important;
+}
+
 .item[data-fate-element='arc'] > .foaf-element
 {
   display: block;
