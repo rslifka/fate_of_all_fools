@@ -17,9 +17,6 @@ function storeArmorData() {
     $('.'+className).find('.item').not('[data-fate-armor-registered]').each(function() {
       $(this).attr('data-fate-armor-registered', false);
 
-      const armorName = $(this).attr('title').split("\n")[0];
-      $(this).attr('data-fate-armor-name', armorName);
-      
       const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
       $(this).attr('data-fate-masterwork', isMasterwork);
 
@@ -29,9 +26,6 @@ function storeArmorData() {
       // There are two spans in here and we want to avoid the Energy level one
       const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not('+volatiles.ARMOR_SPAN_AVOID_CLASS+')').text();
       $(this).attr('data-fate-light', light);
-
-      const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
-      $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
     });
   });
 }
@@ -40,17 +34,23 @@ function updateAttributes() {
   $('[data-fate-armor-registered]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
-    const name = $(this).attr('data-fate-armor-name')
-    $(this).attr('title', name);
-
     const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
 
     const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not(.gwSnM)').text();
     $(this).attr('data-fate-light', light);
 
-    const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
-    $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
+    // It would be ideal to put this in the one-time-init section above since
+    // elements don't change, but we need to give time to the element detection
+    // code to wake up.
+    if (!$(this).is('[data-fate-element]')) {
+      const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
+      if (elementIconSrc === undefined) {
+        $(this).attr('data-fate-element', 'kinetic');
+      } else {
+        $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
+      }
+    }
 
     const dimTags = $.map($(this).find('span.app-icon'), function(value, i) {
       const className = $(value).attr('class').split(' ').filter(function(cname) {
@@ -75,7 +75,6 @@ function updateAttributes() {
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
     
     if (!isArmorRegistered) {
-      $(this).attr('title', name);
       $(this).removeAttr('data-fate-armor-junk');
       $(this).removeAttr('data-fate-armor-pve');
       $(this).removeAttr('data-fate-armor-pvp');
@@ -86,7 +85,6 @@ function updateAttributes() {
     $(this).attr('data-fate-armor-junk', a.pveUtility === Utility.NO && a.pvpUtility === Utility.NO);
     $(this).attr('data-fate-armor-pve', a.pveUtility === Utility.YES);
     $(this).attr('data-fate-armor-pvp', a.pvpUtility === Utility.YES);
-    $(this).attr('data-fate-element', a.element);
 
     const $itemOverlay = $(this).find('.foaf-item-overlay');
     if ($itemOverlay.text() != a.overlay) {
