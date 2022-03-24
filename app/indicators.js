@@ -27,14 +27,14 @@ const ARMOR_GLYPHS = new Map([
 ]);
 
 function prepareIndicatorSpace() {
-  $('[data-fate-weapon-name]').not('[data-fate-indicator-init=true]').each(function(index,element) {
+  $('[data-fate-weapon-registered]').not('[data-fate-indicator-init=true]').each(function(index,element) {
     WEAPON_GLYPHS.forEach(function(glyph, className) {
       $(element).append($('<div>', {'class': className + ' ' + glyph + ' foaf-glyph'}));
     });
     $(this).attr('data-fate-indicator-init', true);
   });
 
-  $('[data-fate-armor-name]').not('[data-fate-indicator-init=true]').each(function(index,element) {
+  $('[data-fate-armor-registered]').not('[data-fate-indicator-init=true]').each(function(index,element) {
     ARMOR_GLYPHS.forEach(function(glyph, className) {
       $(element).append($('<div>', {'class': className + ' ' + glyph + ' foaf-glyph'}));
     });
