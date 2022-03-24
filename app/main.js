@@ -43,6 +43,9 @@ if (!window.navigator.userAgent.includes('HeadlessChrome')) {
   logger.setEnabled(true);
   logger.log('main.js: Initializing');
 
+  // Apply our comprehensive styling
+  GM_addStyle(GM_getResourceText('fateOfAllFoolsCSS'));
+
   // One-time configuration (CSS, data URLs, etc.)
   fateBus.publish(module, 'fate.init');
   
