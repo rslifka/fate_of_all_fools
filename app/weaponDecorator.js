@@ -17,7 +17,11 @@ function storeWeaponData() {
       $(this).attr('data-fate-weapon-registered', false);
 
       const serialNumber = $(this).attr('id').split("-")[0];
-      $(this).attr('data-fate-serial', serialNumber);  
+      $(this).attr('data-fate-serial', serialNumber);
+
+      // Infusion indicator is based off the name of the item
+      const infusionName = $(this).attr('title').split("\n")[0];
+      $(this).attr('data-fate-infusion-name', infusionName);
     });
   });
 }

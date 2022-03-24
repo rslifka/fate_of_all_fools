@@ -17,15 +17,12 @@ function storeArmorData() {
     $('.'+className).find('.item').not('[data-fate-armor-registered]').each(function() {
       $(this).attr('data-fate-armor-registered', false);
 
-      const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
-      $(this).attr('data-fate-masterwork', isMasterwork);
-
       const serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
 
-      // There are two spans in here and we want to avoid the Energy level one
-      const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not('+volatiles.ARMOR_SPAN_AVOID_CLASS+')').text();
-      $(this).attr('data-fate-light', light);
+      // Infusion indicator is based off the name of the item
+      const infusionName = $(this).attr('title').split("\n")[0];
+      $(this).attr('data-fate-infusion-name', infusionName);
     });
   });
 }
@@ -37,7 +34,7 @@ function updateAttributes() {
     const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
     $(this).attr('data-fate-masterwork', isMasterwork);
 
-    const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not(.gwSnM)').text();
+    const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not(' + volatiles.ARMOR_SPAN_AVOID_CLASS + ')').text();
     $(this).attr('data-fate-light', light);
 
     // It would be ideal to put this in the one-time-init section above since
