@@ -26,9 +26,6 @@ function updateAttributes() {
   $('[data-fate-weapon-registered]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
-    const name = $(this).attr('data-fate-weapon-name')
-    $(this).attr('title', name);
-
     const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span').text();
     $(this).attr('data-fate-light', light);
 
@@ -84,8 +81,6 @@ function updateAttributes() {
     $(this).attr('data-fate-weapon-registered', isWeaponRegistered);
 
     if (!isWeaponRegistered) {
-      $(this).attr('title', name);
-      $(this).removeAttr('data-fate-comment');
       $(this).removeAttr('data-fate-weapon-junk');
       $(this).removeAttr('data-fate-weapon-pve');
       $(this).removeAttr('data-fate-weapon-pvp');
