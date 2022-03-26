@@ -30,7 +30,9 @@ function updateAttributes() {
   $('[data-fate-armor-registered]').each(function(index,element) {
     const serialNumber = $(this).attr('data-fate-serial');
 
-    const isMasterwork = $(this).has(volatiles.MASTERWORK_CLASS).length > 0;
+    const isMasterwork =
+      $(this).has(volatiles.MASTERWORK_CLASS).length > 0 ||
+      $(this).has(volatiles.MASTERWORK_CLASS_EXO).length > 0
     $(this).attr('data-fate-masterwork', isMasterwork);
 
     const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not(' + volatiles.ARMOR_SPAN_AVOID_CLASS + ')').text();
