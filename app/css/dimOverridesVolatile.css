@@ -9,7 +9,6 @@
   REASON: It's really pretty but further reduces the contrast between items
           and the background.
 */
-body,
 .bqhls::before
 {
   background: unset !important;
@@ -66,7 +65,7 @@ body,
   EFFECT: On armor, hide power level indicator and elemental affinity.
   REASON: No need and we have our own approach, respectively.
 */ 
-.XvpsT
+.inventory-content .XvpsT
 {
   display: none;
 }
@@ -75,7 +74,7 @@ body,
   EFFECT: On weapons, hide elemental affinity.
   REASON: We have our own approach.
 */
-.e0VY8
+.inventory-content .e0VY8
 {
   display: none;
 }
