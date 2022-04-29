@@ -1,4 +1,4 @@
-describe('infusionIndicator.js', function() {
+xdescribe('infusionIndicator.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};

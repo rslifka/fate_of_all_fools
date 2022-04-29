@@ -1,4 +1,4 @@
-describe('weaponRollDatabase.js', function() {
+xdescribe('weaponRollDatabase.js', function() {
 
   const fateBus = require('fateBus.js');
   const brunchModule = {id:'test'+this.result.description};
