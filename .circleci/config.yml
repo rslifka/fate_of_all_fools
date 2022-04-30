@@ -10,18 +10,12 @@ jobs:
   build_and_test:
     docker:
       - image: cimg/node:16.15.0-browsers
-#     environment:
-#       CHROME_BIN: /usr/bin/google-chrome
     steps:
-      - checkout
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - node/install-packages:
           pkg-manager: npm
-#       - run:
-#            name: The First Step
-#            command: |
-#              echo 'GOGO'
-#              which google-chrome 
-#              echo 'This is the delivery pipeline'
+      - checkout
       - run:
           command: npm run build
           name: Build
