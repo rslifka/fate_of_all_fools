@@ -23,6 +23,19 @@ jobs:
       - run:
           command: node generateUserScript.js > ./docs/fateOfAllFools.user.js
           name: Generate New User Script
+      - run:
+          command: |
+            cp ./public/fateOfAllFools.js docs/
+            cp ./public/fateOfAllFools.css docs/
+          name: Prep Assets for Release
+      - run:
+          command: |
+            git config --global user.email "circleci@circleci.com"
+            git config --global user.name "Circle CI"
+            git add docs/*
+            git commit -m "[skip ci] Publishing build ${CIRCLE_BUILD_NUM}"
+            git push
+          name: Commit
 
 workflows:
   build_test:
