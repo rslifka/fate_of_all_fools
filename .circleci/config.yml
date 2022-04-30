@@ -7,12 +7,16 @@ orbs:
   browser-tools: circleci/browser-tools@1.3.0
 
 jobs:
-  build:
+  build_and_test:
     docker:
       - image: cimg/node:16.15.0-browsers
     steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-          name: The First Step
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+          command: npm run build
+          name: Build
+      - run:
+          command: npm run test
+          name: Run Tests
