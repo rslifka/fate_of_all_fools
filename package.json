@@ -6,6 +6,7 @@
   "version": "0.0.1",
   "repository": "rslifka/fate_of_all_fools",
   "scripts": {
+    "build": "./node_modules/.bin/brunch build --production",
     "test": "./node_modules/.bin/karma start --single-run --browsers ChromeHeadless"
   },
   "dependencies": {
