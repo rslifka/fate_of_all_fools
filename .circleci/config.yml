@@ -7,12 +7,29 @@ orbs:
   browser-tools: circleci/browser-tools@1.3.0
 
 jobs:
-  build:
+  build_and_test:
     docker:
       - image: cimg/node:16.15.0-browsers
+    environment:
+      CHROME_BIN: /usr/bin/google-chrome
     steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-          name: The First Step
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+           name: The First Step
+           command: |
+             echo 'GOGO'
+             which google-chrome 
+             echo 'This is the delivery pipeline'
+      - run:
+          command: npm run build
+          name: Build
+      - run:
+          command: npm run test
+          name: Run Tests
+
+workflows:
+  build_test:
+    jobs:
+      - build_and_test
