@@ -1,4 +1,6 @@
-// ==UserScript==
+const buildNumber = process.env.CIRCLE_BUILD_NUM + 3000
+
+const userScriptTemplate = `// ==UserScript==
 // @author      rslifka
 // @connect     docs.google.com
 // @connect     googleusercontent.com
@@ -20,5 +22,7 @@
 // @run-at      document-start
 // @supportURL  https://github.com/rslifka/fate_of_all_fools/issues
 // @updateURL   https://openuserjs.org/meta/rslifka/FateOfAllFools_-_DIM_Customization.meta.js
-// @version     <%= ENV['TRAVIS_BUILD_NUMBER'] %>
-// ==/UserScript==
+// @version     ${buildNumber}
+// ==/UserScript==`;
+
+console.log(userScriptTemplate)
