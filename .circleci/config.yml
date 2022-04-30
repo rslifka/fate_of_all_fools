@@ -13,9 +13,9 @@ jobs:
     steps:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
+      - checkout
       - node/install-packages:
           pkg-manager: npm
-      - checkout
       - run:
           command: npm run build
           name: Build
