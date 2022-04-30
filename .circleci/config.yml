@@ -22,7 +22,7 @@ jobs:
           name: Run Tests
       - run:
           command: node generateUserScript.js > ./docs/fateOfAllFools.user.js
-          name: Generate new User Script
+          name: Generate New User Script
 
 workflows:
   build_test:
