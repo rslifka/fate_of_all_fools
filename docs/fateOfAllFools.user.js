@@ -20,5 +20,5 @@
 // @run-at      document-start
 // @supportURL  https://github.com/rslifka/fate_of_all_fools/issues
 // @updateURL   https://openuserjs.org/meta/rslifka/FateOfAllFools_-_DIM_Customization.meta.js
-// @version     233000
+// @version     253000
 // ==/UserScript==
