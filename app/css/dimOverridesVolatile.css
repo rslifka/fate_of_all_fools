@@ -56,6 +56,14 @@
   vertical-align: top;
 }
 
+/* 
+  EFFECT: Provide our own styling for inventory items that have hit capacity
+*/
+.SLO2o.LM5lX
+{
+  color: #f2721b;
+}
+
 .item[data-fate-masterwork='true'] .SLO2o
 {
   background: radial-gradient(circle, rgba(253,222,29,0.5) 0%, rgba(111,98,13,0.5) 100%);
