@@ -1,9 +1,7 @@
 version: 2.1
 
 orbs:
-  # https://circleci.com/developer/orbs/orb/circleci/node
   node: circleci/node@5.0.2
-  # https://circleci.com/developer/orbs/orb/circleci/browser-tools
   browser-tools: circleci/browser-tools@1.3.0
 
 jobs:
@@ -22,6 +20,22 @@ jobs:
       - run:
           command: npm run test
           name: Run Tests
+      - run:
+          command: node generateUserScript.js > ./docs/fateOfAllFools.user.js
+          name: Generate New User Script
+      - run:
+          command: |
+            cp ./public/fateOfAllFools.js docs/
+            cp ./public/fateOfAllFools.css docs/
+          name: Prep Assets for Release
+      - run:
+          command: |
+            git config --global user.email "circleci@circleci.com"
+            git config --global user.name "Circle CI"
+            git add docs/*
+            git commit -m "[skip ci] Publishing build ${CIRCLE_BUILD_NUM}"
+            git push
+          name: Commit
 
 workflows:
   build_test:

@@ -3,7 +3,7 @@
 // @connect     docs.google.com
 // @connect     googleusercontent.com
 // @connect     rslifka.github.io
-// @copyright   2020, Robert Slifka (https://github.com/rslifka/fate_of_all_fools)
+// @copyright   2022, Robert Slifka (https://github.com/rslifka/fate_of_all_fools)
 // @description Enhancements to the Destiny Item Manager
 // @grant       GM_addStyle
 // @grant       GM_getResourceText
@@ -20,5 +20,5 @@
 // @run-at      document-start
 // @supportURL  https://github.com/rslifka/fate_of_all_fools/issues
 // @updateURL   https://openuserjs.org/meta/rslifka/FateOfAllFools_-_DIM_Customization.meta.js
-// @version     2772
+// @version     233000
 // ==/UserScript==
