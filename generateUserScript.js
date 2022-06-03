@@ -1,6 +1,7 @@
 const buildNumber = process.env.CIRCLE_BUILD_NUM + 3000
 
 const userScriptTemplate = `// ==UserScript==
+// @name        FateOfAllFools - DIM Customization
 // @author      rslifka
 // @connect     docs.google.com
 // @connect     googleusercontent.com
@@ -16,7 +17,6 @@ const userScriptTemplate = `// ==UserScript==
 // @homepageURL https://github.com/rslifka/fate_of_all_fools
 // @license     MIT; https://raw.githubusercontent.com/rslifka/fate_of_all_fools/master/LICENSE.txt
 // @match       https://*.destinyitemmanager.com/*
-// @name        FateOfAllFools - DIM Customization
 // @require     https://rslifka.github.io/fate_of_all_fools/fateOfAllFools.js
 // @resource    fateOfAllFoolsCSS https://rslifka.github.io/fate_of_all_fools/fateOfAllFools.css
 // @run-at      document-start
