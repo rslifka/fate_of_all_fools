@@ -9,7 +9,7 @@
   REASON: It's really pretty but further reduces the contrast between items
           and the background.
 */
-.bqhls::before
+.bqhlsq0i::before
 {
   background: unset !important;
   background-color: #000 !important;
@@ -20,7 +20,7 @@
   REASON: No need to take up 30% of the display area with something that's
           helpful nearly 0% of the time now that sunsetting is gone.
 */
-.F9dGw
+.F9dGwKBh
 {
   display: none;
 }
@@ -30,8 +30,8 @@
           Sometimes it's two classes; sometimes it's one 🤷
   REASON: We use our own more subtle way to indicate what's masterworked.
 */
-.EJ0gV,
-.ocMSk
+.EJ0gVh8G,
+.ocMSkp02
 {
   background-image: none;
 }
@@ -43,7 +43,7 @@
     - Reset overflow so we can move items outside of the bar.
   REASON: In aggregate they take up a lot of pixels and the contrast is too high.
 */ 
-.SLO2o
+.SLO2oppG
 {
   align-items: unset;
   background-color: rgba(44, 44, 44, 0.7);
@@ -59,12 +59,12 @@
 /* 
   EFFECT: Provide our own styling for inventory items that have hit capacity
 */
-.SLO2o.LM5lX
+.SLO2oppG.LM5lXZDB
 {
   color: #f2721b;
 }
 
-.item[data-fate-masterwork='true'] .SLO2o
+.item[data-fate-masterwork='true'] .SLO2oppG
 {
   background: radial-gradient(circle, rgba(253,222,29,0.5) 0%, rgba(111,98,13,0.5) 100%);
 }
@@ -73,7 +73,7 @@
   EFFECT: On armor, hide power level indicator and elemental affinity.
   REASON: No need and we have our own approach, respectively.
 */ 
-.inventory-content .XvpsT
+.inventory-content .XvpsTGeC
 {
   display: none;
 }
@@ -82,7 +82,7 @@
   EFFECT: On weapons, hide elemental affinity.
   REASON: We have our own approach.
 */
-.inventory-content .e0VY8
+.inventory-content .e0VY8WPa
 {
   display: none;
 }
@@ -91,15 +91,15 @@
   EFFECT: Color the icon tray on item popups with a background that stands out
   REASON: Not enough contrast; keep losing it
 */
-.LyiQ3 {
-  background-color: #173192;
+.Ul_ZE389 {
+  background-color: #179224;
 }
 
 /*
   EFFECT: Restyle DIM's tagging icons. This is the icon itself, not the container.
   REASON: To look more like ours.
 */
-.a5Pkx
+.a5PkxlJx
 {
   color: rgb(232, 225, 33);
   font-size: 10px;
@@ -118,8 +118,8 @@
   left: 2px;
   top: unset;
 }
-.bucket-2465295065 .TRM0_,
-.bucket-953998645 .TRM0_
+.bucket-2465295065 .TRM0_BvX,
+.bucket-953998645 .TRM0_BvX
 {
   bottom: 29px;
   left: unset;
@@ -132,7 +132,8 @@
   REASON: This is a neat idea, but it so frequently obscures the portion of the
           vault I'm looking.
 */
-.QKPrn {
+.QKPrnyWo
+{
   display: none;
 }
 
@@ -140,7 +141,7 @@
   EFFECT: Hide Deepsight image border
   REASON: We'll use our own visual treatment
 */
-.rF59A
+.rF59AvCY
 {
   display: none;
 }
@@ -149,7 +150,7 @@
   EFFECT: Hide whatever this is supposed to be. Weird red border around light level.
   REASON: Don't know what it is. Maybe Deepsight?
 */
-.sci0Q
+.sci0Q4Me
 {
   border: unset !important;
 }
@@ -167,7 +168,7 @@
   EFFECT: Reposition the enclave/crafting indicator
   REASON: Prefer our own styling
 */
-.pUWnX
+.pUWnXIPG
 {
   background-color: rgba(0,0,0,0.75);
   position: absolute;
@@ -175,8 +176,8 @@
   right: 0;
   padding: 4px 4px;
 }
-.bucket-2465295065 .pUWnX,
-.bucket-953998645 .pUWnX
+.bucket-2465295065 .pUWnXIPG,
+.bucket-953998645 .pUWnXIPG
 {
   right: unset;
   left: 0
