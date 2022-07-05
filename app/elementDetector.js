@@ -23,7 +23,8 @@ fateBus.subscribe(module, 'fate.refresh', function() {
   // Grab all the unique elemental icon URLs from both weapons and armor.
   const imageURLs = new Set();
   $(volatiles.ELEMENT_ICON_CLASS).each(function() {
-    imageURLs.add($(this).attr('src'));
+    let backgroundImage = $(this).css('background-image');
+    imageURLs.add(backgroundImage.substring(5, backgroundImage.length-2));
   });
 
   // Map each detected image to an element
