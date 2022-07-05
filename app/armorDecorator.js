@@ -38,15 +38,17 @@ function updateAttributes() {
     const light = $(this).find(volatiles.POWER_LEVEL_CLASS).children('span:not(' + volatiles.ARMOR_SPAN_AVOID_CLASS + ')').text();
     $(this).attr('data-fate-light', light);
 
-    // It would be ideal to put this in the one-time-init section above since
-    // elements don't change, but we need to give time to the element detection
-    // code to wake up.
+    // It would be ideal to put this in the one-time-init section above, but
+    // these now appear to be lazy loaded, so we need to constantly check if an
+    // element item was added.
     if (!$(this).is('[data-fate-element]')) {
-      const elementIconSrc = $(this).find(volatiles.ELEMENT_ICON_CLASS).attr('src');
-      if (elementIconSrc === undefined) {
-        $(this).attr('data-fate-element', 'kinetic');
-      } else {
-        $(this).attr('data-fate-element', elementDetector.getElementFromURL(elementIconSrc));
+      const backgroundImage = $(this).find(volatiles.ELEMENT_ICON_CLASS).css('background-image');
+      if (backgroundImage !== undefined) {
+        const elementIconSrc = backgroundImage.substring(5, backgroundImage.length - 2);
+        const elementName = elementDetector.getElementFromURL(elementIconSrc);
+        if (elementName !== undefined) {
+          $(this).attr('data-fate-element', elementName);
+        }
       }
     }
 
