@@ -76,11 +76,11 @@ td.min-light {
 }
 
 /*
-  EFFECT: Dim all unregistered weapons and armor
+  EFFECT: Mute all unregistered weapons and armor
   REASON: So we can find our registered items more easily!
 */
-.item[data-fate-armor-registered=false][data-fate-dimtag-archive=false] > img,
-.item[data-fate-weapon-registered=false][data-fate-dimtag-archive=false] > img
+.item[data-fate-armor-registered=false][data-fate-dimtag-archive=false] > .item-img,
+.item[data-fate-weapon-registered=false][data-fate-dimtag-archive=false] > .item-img
 {
   opacity: 0.6;
 }
