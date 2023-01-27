@@ -24,7 +24,7 @@
     "clean-css-brunch": "^3",
     "jasmine-core": "^3",
     "jasmine-jquery": "^2",
-    "karma": "^5",
+    "karma": "^6",
     "karma-chrome-launcher": "^3",
     "karma-jasmine": "^3",
     "karma-jquery": "^0",
