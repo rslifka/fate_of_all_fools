@@ -131,6 +131,11 @@
   background-color: rgb(76, 90, 191);
 }
 
+.item[data-fate-element='strand']>.foaf-element {
+  display: block;
+  background-color: rgb(52, 227, 102);
+}
+
 .item[data-fate-element='kinetic'] > .foaf-element
 {
   display: none;
