@@ -48,9 +48,9 @@ xdescribe('armorDecorator.js', function() {
       spyOn(armorRollDatabase, 'get').and.callFake(function(rollID) {
         switch(rollID) {
           case '6917529143732442281':
-            return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Solar', 'Y', 'N', '', '59', '0', '11', '7', '12', '23', '6');
+            return new ArmorRoll( '6917529143732442281', 'Vesper of Radius', 'Y', 'N', '', '59', '0', '11', '7', '12', '23', '6');
           case '6917529143764907014':
-            return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Solar', 'Y', 'N', 'top-tree dawn', '69', '10', '11', '7', '12', '23', '6');
+            return new ArmorRoll( '6917529143764907014', 'Wings of Sacred Dawn', 'Y', 'N', 'top-tree dawn', '69', '10', '11', '7', '12', '23', '6');
         }
       });
 
