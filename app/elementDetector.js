@@ -51,6 +51,8 @@ async function calculateElementForImage(imageSourceURL) {
     return 'void';
   } else if (Vibrant.Util.hexDiff(dominantColor, '#4c8cfc') < 11) {
     return 'stasis';
+  } else if (Vibrant.Util.hexDiff(dominantColor, '#34e366') < 11) {
+    return 'strand';
   }
 
   logger.log('do not know this one: ' + dominantColor)
