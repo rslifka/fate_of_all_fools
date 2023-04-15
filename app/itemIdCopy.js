@@ -1,6 +1,7 @@
 const logger = require('logger.js');
 const $ = jQuery = require('jquery');
 require('jquery-toast-plugin');
+const Mousetrap = require('mousetrap'); require('mousetrap');
 
 let mousePositionX;
 let mousePositionY;

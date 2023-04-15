@@ -14,7 +14,8 @@
     "jquery": "^3",
     "jquery-toast-plugin": "^1",
     "node-vibrant": "^3",
-    "pubsub-js": "^1"
+    "pubsub-js": "^1",
+    "mousetrap": "^1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7",
