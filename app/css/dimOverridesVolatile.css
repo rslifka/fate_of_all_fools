@@ -64,11 +64,6 @@
   color: #f2721b;
 }
 
-.item[data-fate-masterwork='true'] .SLO2oppG
-{
-  background: radial-gradient(circle, rgba(253,222,29,0.5) 0%, rgba(111,98,13,0.5) 100%);
-}
-
 /*
   EFFECT: On armor, hide power level indicator and elemental affinity.
   REASON: No need and we have our own approach, respectively.
