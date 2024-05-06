@@ -24,7 +24,7 @@ We'll review each of these below (TODO).
 `Fate of All Fools` is a node-based project using ES6 (TypeScript wasn't yet a thing when I kicked this off in 2017). Much of the complexity of project configuration has been done to accelerate the local `modify => refresh => test` loop! Upon saving any file, everything is built, tested and bundled.
 
 1. [Install Tampermonkey](https://chrome.google.com/webstore/detail/Tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) from the Chrome Web Store. You cannot use the Safari version of TamperMonkey for development because Safari will not allow you to configure the next setting.
-1. Enable `Allow access to file URLs` in the Tampermonkey extension. This allows you to refresh your browser to pick up changes during development, using the file URLs present in the next steps.
+1. In Chrome's "Extension" settings, choose "Tampermonkey" and enable the option `Allow access to file URLs`. This allows you to refresh your browser to pick up changes during development, using the file URLs present in the next steps.
 1. Create a new script in Tampermonkey and paste the contents of [fateOfAllFools.dev.user.js](https://github.com/rslifka/fate_of_all_fools/blob/master/fateOfAllFools.dev.user.js).
 1. Modify the `@require` and `@resource` directives to be accurate based on your filesystem.
 1. `npm install`
