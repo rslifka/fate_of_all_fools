@@ -21,14 +21,14 @@
     "@babel/preset-env": "^7",
     "@metahub/karma-jasmine-jquery": "^4",
     "babel-brunch": "^7",
-    "brunch": "^3",
+    "brunch": "^4",
     "clean-css-brunch": "^3",
-    "jasmine-core": "^3",
+    "jasmine-core": "^5",
     "jasmine-jquery": "^2",
-    "karma": "^5",
+    "karma": "^6",
     "karma-chrome-launcher": "^3",
-    "karma-jasmine": "^3",
+    "karma-jasmine": "^5",
     "karma-jquery": "^0",
-    "npm": "^6"
+    "npm": "^10"
   }
 }
