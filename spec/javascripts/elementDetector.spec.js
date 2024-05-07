@@ -1,7 +1,7 @@
 describe('elementDetector.js', function() {
 
   const fateBus = require('fateBus.js');
-  const brunchModule = {id:'test'+this.result.description};
+  const brunchModule = {id:'test'+this.description};
   const elementDetector = require('elementDetector.js');
 
   const ARC_DAMAGE_ICON = 'https://www.bungie.net/common/destiny2_content/icons/DestinyDamageTypeDefinition_092d066688b879c807c3b460afdd61e6.png';
