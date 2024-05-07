@@ -6,7 +6,7 @@ const userScriptTemplate = `// ==UserScript==
 // @connect     docs.google.com
 // @connect     googleusercontent.com
 // @connect     rslifka.github.io
-// @copyright   2023, Robert Slifka (https://github.com/rslifka/fate_of_all_fools)
+// @copyright   2024, Robert Slifka (https://github.com/rslifka/fate_of_all_fools)
 // @description Enhancements to the Destiny Item Manager
 // @grant       GM_addStyle
 // @grant       GM_getResourceText
@@ -16,7 +16,7 @@ const userScriptTemplate = `// ==UserScript==
 // @grant       GM_xmlhttpRequest
 // @homepageURL https://github.com/rslifka/fate_of_all_fools
 // @license     MIT; https://raw.githubusercontent.com/rslifka/fate_of_all_fools/master/LICENSE.txt
-// @match       https://*.destinyitemmanager.com/*
+// @match       https://app.destinyitemmanager.com/*
 // @require     https://rslifka.github.io/fate_of_all_fools/fateOfAllFools.js
 // @resource    fateOfAllFoolsCSS https://rslifka.github.io/fate_of_all_fools/fateOfAllFools.css
 // @run-at      document-start
