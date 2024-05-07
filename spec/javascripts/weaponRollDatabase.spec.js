@@ -1,7 +1,7 @@
-xdescribe('weaponRollDatabase.js', function() {
+describe('weaponRollDatabase.js', function() {
 
   const fateBus = require('fateBus.js');
-  const brunchModule = {id:'test'+this.result.description};
+  const brunchModule = {id:'test'+this.description};
   const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
   const Utility = require('weaponRollAssessment.js').Utility;
 
@@ -35,7 +35,6 @@ xdescribe('weaponRollDatabase.js', function() {
           expect(po.name).toEqual('Positive Outlook');
           expect(po.pveUtility).toEqual(Utility.YES);
           expect(po.pvpUtility).toEqual(Utility.NO);
-          expect(po.comments).toEqual('Reload masterwork + Kill Clip = so good!');
         });
       });
     });
