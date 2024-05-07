@@ -2,7 +2,7 @@ describe('itemDatabase.js', function() {
 
   const pubsub = require('pubsub-js');
   const fateBus = require('fateBus.js');
-  const brunchModule = {id:'test'+this.result.description};
+  const brunchModule = {id:'test'+this.description};
   const i = require('itemDatabase.js');
 
   class TestDB extends i.ItemDatabase {
