@@ -1,7 +1,7 @@
 xdescribe('armorDecorator.js', function() {
 
   const fateBus = require('fateBus.js');
-  const brunchModule = {id:'test'+this.result.description};
+  const brunchModule = {id:'test'+this.description};
   const armorRollDatabase = require('armorRollDatabase.js').armorRollDB;
   const ArmorRoll = require('armorRoll.js').ArmorRoll;
   const elementDetector = require('elementDetector.js');
@@ -164,16 +164,16 @@ xdescribe('armorDecorator.js', function() {
 
     describe('on subsequent refreshes', function() {
 
-      describe('things that should update', function() {
-        // TODO: These were never tested, so we're going to bank the win of properly
-        // testing with the new DIM document structure and come back to this.
-        // data-fate-dim-tags
-        // data-fate-armor-registered
-        // data-fate-armor-junk
-        // data-fate-armor-pve
-        // data-fate-armor-pvp
-        // data-fate-light
-      });
+      // xdescribe('things that should update', function() {
+      //   // TODO: These were never tested, so we're going to bank the win of properly
+      //   // testing with the new DIM document structure and come back to this.
+      //   // data-fate-dim-tags
+      //   // data-fate-armor-registered
+      //   // data-fate-armor-junk
+      //   // data-fate-armor-pve
+      //   // data-fate-armor-pvp
+      //   // data-fate-light
+      // });
 
       describe('things that should NOT update', function() {
         
