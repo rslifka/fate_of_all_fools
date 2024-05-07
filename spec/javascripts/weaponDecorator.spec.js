@@ -1,7 +1,7 @@
 xdescribe('weaponDecorator.js', function() {
 
   const fateBus = require('fateBus.js');
-  const brunchModule = {id:'test'+this.result.description};
+  const brunchModule = {id:'test'+this.description};
   const WeaponRollAssessment = require('weaponRollAssessment.js').WeaponRollAssessment;
   const rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 
