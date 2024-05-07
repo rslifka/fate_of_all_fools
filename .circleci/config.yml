@@ -9,6 +9,9 @@ jobs:
     docker:
       - image: cimg/node:22.1.0-browsers
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:09q8MQHZQCQw8Lj64kluvHkGKktqcefUPapf6FpYcgY robert.slifka@gmail.com"
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - checkout
