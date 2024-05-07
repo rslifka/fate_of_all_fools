@@ -1,7 +1,7 @@
 describe('armorRollDatabase.js', function() {
 
   const fateBus = require('fateBus.js');
-  const brunchModule = {id:'test'+this.result.description};
+  const brunchModule = {id:'test'+this.description};
   const rollDatabase = require('armorRollDatabase.js').armorRollDB;
   const Utility = require('armorRoll.js').Utility;
 
