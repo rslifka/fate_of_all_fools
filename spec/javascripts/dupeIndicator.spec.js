@@ -1,7 +1,7 @@
 xdescribe('dupeIndicator.js', function() {
 
   const fateBus = require('fateBus.js');
-  const brunchModule = {id:'test'+this.result.description};
+  const brunchModule = {id:'test'+this.description};
   const indicators = require('indicators.js');
 
   beforeEach(function() {
