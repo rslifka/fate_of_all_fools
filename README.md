@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rslifka/fate_of_all_fools.svg?branch=master)](https://travis-ci.org/rslifka/fate_of_all_fools)
+[![CircleCI](https://circleci.com/gh/rslifka/fate_of_all_fools.svg?style=shield)](https://circleci.com/gh/rslifka/fate_of_all_fools)
 
 # May, 2024 Update
 
