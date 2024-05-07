@@ -11,7 +11,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:09q8MQHZQCQw8Lj64kluvHkGKktqcefUPapf6FpYcgY robert.slifka@gmail.com"
+            - "SHA256:09q8MQHZQCQw8Lj64kluvHkGKktqcefUPapf6FpYcgY"
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - checkout
