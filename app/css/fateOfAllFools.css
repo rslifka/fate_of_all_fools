@@ -82,7 +82,7 @@ td.min-light {
 .item[data-fate-armor-registered=false][data-fate-dimtag-archive=false] > .item-img,
 .item[data-fate-weapon-registered=false][data-fate-dimtag-archive=false] > .item-img
 {
-  opacity: 0.3;
+  opacity: 0.6;
 }
 
 .item[data-fate-deepsight=true]
