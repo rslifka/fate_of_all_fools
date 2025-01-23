@@ -11,7 +11,7 @@
 // @grant       GM_setValue
 // @grant       GM_xmlhttpRequest
 // @match       https://*.destinyitemmanager.com/*
-// @require     file:///Users/rslifka/Dropbox/workspace/fate_of_all_fools/public/fateOfAllFools.js
-// @resource    fateOfAllFoolsCSS file:///Users/rslifka/Dropbox/workspace/fate_of_all_fools/public/fateOfAllFools.css
+// @require     file:///Users/rslifka/Documents/GitHub/fate_of_all_fools/public/fateOfAllFools.js
+// @resource    fateOfAllFoolsCSS file:///Users/rslifka/Documents/GitHub/fate_of_all_fools/public/fateOfAllFools.css
 // @run-at      document-idle
 // ==/UserScript==

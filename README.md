@@ -1,12 +1,12 @@
 [![CircleCI](https://circleci.com/gh/rslifka/fate_of_all_fools.svg?style=shield)](https://circleci.com/gh/rslifka/fate_of_all_fools)
 
-# May, 2024 Update
+# 2025, January - Update
 
-For the past few years, I've been focusing my energy on [Vault Zero](https://www.vaultzero.app/), an iPadOS/Apple Silicon app for Destiny 2. Fate hasn't gotten much love in that time, though it still continues to function, and I use it daily. This month, I'll be making a modernization pass to the tech, getting the build back online, etc.
+For the past few years, I've been focusing my energy on [Vault Zero](https://www.vaultzero.app/), an iOS/Apple Silicon app for Destiny 2. Fate hasn't gotten much love in that time, though it still continues to function, and I use it daily. Since my last update, the underlying build and packaging engine (Brunch) has been archived, which may impact my ability to work on this.
 
 # Overview
 
-`Fate of All Fools` (or "Fate" for short) is a suite of visual modifications and data overlays on top of [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for the Destiny video game. It works by modifying the presentation of DIM while it's running, directly in the browser.
+`Fate of All Fools` (or "Fate" for short) is a suite of visual modifications and data overlays on top of [Destiny Item Manager](https://www.destinyitemmanager.com/) (DIM) for the Destiny video game. It works by modifying the presentation of DIM, directly in the browser.
 
 `Fate` builds on DIM in two ways:
 
@@ -22,9 +22,7 @@ For the past few years, I've been focusing my energy on [Vault Zero](https://www
 1. Reload DIM.
 
 # Development Setup
-Fate is a node-based project using ES6 as TypeScript wasn't yet a thing when I kicked this off in 2017. Much of the complexity of project configuration has been done to accelerate development; primarily the local modify => refresh => test loop.
-
-Upon saving any file, everything is built, tested and released (locally).
+Fate is a node-based project using ES6 as TypeScript wasn't in widespread use back in 2017. Much of the complexity of project configuration has been done to accelerate development; primarily the local modify => refresh => test loop. Upon saving any file, everything is built, tested and released (locally).
 
 1. Install [Tampermonkey](https://chrome.google.com/webstore/detail/Tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) from the Chrome Web Store. You cannot use the Safari version of TamperMonkey for development because Safari will not allow you to configure the next setting.
 1. In Chrome's "Extension" settings, choose "Tampermonkey" and enable the option to `Allow access to file URLs`. This allows you to refresh your browser to pick up changes during development, using the file URLs present in the next steps.
