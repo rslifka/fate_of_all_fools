@@ -5,15 +5,15 @@ const elementDetector = require('elementDetector.js');
 const volatiles = require('dimVolatileClasses.js').VOLATILE_CLASSES;
 
 const WEAPON_BUCKETS = [
-  'bucket-1498876634', // Kinetic
-  'bucket-2465295065', // Energy
-  'bucket-953998645',  // Power
-  'bucket-215593132',  // Postmaster
+  'Kinetic Weapons', // 
+  'Energy Weapons', // Energy
+  'Power Weapons',  // Power
+  'Lost Items',  // Postmaster
 ]
 
 function storeWeaponData() {
   WEAPON_BUCKETS.forEach(function(className) {
-    $('.'+className).find('.item').not('[data-fate-weapon-registered]').each(function() {
+    $('[aria-label="'+className+'"]').find('.item').not('[data-fate-weapon-registered]').each(function() {
       $(this).attr('data-fate-weapon-registered', false);
 
       const serialNumber = $(this).attr('id').split("-")[0];
