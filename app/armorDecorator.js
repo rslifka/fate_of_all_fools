@@ -5,16 +5,16 @@ const elementDetector = require('elementDetector.js');
 const volatiles = require('dimVolatileClasses.js').VOLATILE_CLASSES;
 
 const ARMOR_BUCKETS = [
-  'bucket-3448274439', // Helm
-  'bucket-3551918588', // Gloves
-  'bucket-14239492',   // Chest
-  'bucket-20886954',   // Legs
-  'bucket-1585787867', // Class
+  'Helmet',
+  'Gauntlets',
+  'Chest Armor',
+  'Leg Armor',
+  'Class Armor',
 ]
 
 function storeArmorData() {
   ARMOR_BUCKETS.forEach(function(className) {
-    $('.'+className).find('.item').not('[data-fate-armor-registered]').each(function() {
+    $('[aria-label="'+className+'"]').find('.item').not('[data-fate-armor-registered]').each(function() {
       $(this).attr('data-fate-armor-registered', false);
 
       const serialNumber = $(this).attr('id').split("-")[0];
