@@ -21738,6 +21738,8 @@ function updateAttributes() {
     $(this).attr('data-fate-dimtag-keep', dimKeep);
     var dimFavourite = dimTags.includes('heart');
     $(this).attr('data-fate-dimtag-favourite', dimFavourite);
+    var dimInfuse = dimTags.includes('bolt');
+    $(this).attr('data-fate-dimtag-infuse', dimInfuse);
     var isArmorRegistered = rollDatabase.contains(serialNumber);
     $(this).attr('data-fate-armor-registered', isArmorRegistered);
     if (!isArmorRegistered) {
