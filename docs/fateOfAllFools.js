@@ -21705,19 +21705,10 @@ var rollDatabase = require('armorRollDatabase.js').armorRollDB;
 var Utility = require('armorRoll.js').Utility;
 var elementDetector = require('elementDetector.js');
 var volatiles = require('dimVolatileClasses.js').VOLATILE_CLASSES;
-var ARMOR_BUCKETS = ['bucket-3448274439',
-// Helm
-'bucket-3551918588',
-// Gloves
-'bucket-14239492',
-// Chest
-'bucket-20886954',
-// Legs
-'bucket-1585787867' // Class
-];
+var ARMOR_BUCKETS = ['Helmet', 'Gauntlets', 'Chest Armor', 'Leg Armor', 'Class Armor'];
 function storeArmorData() {
   ARMOR_BUCKETS.forEach(function (className) {
-    $('.' + className).find('.item').not('[data-fate-armor-registered]').each(function () {
+    $('[aria-label="' + className + '"]').find('.item').not('[data-fate-armor-registered]').each(function () {
       $(this).attr('data-fate-armor-registered', false);
       var serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
@@ -22632,17 +22623,17 @@ var rollDatabase = require('weaponRollDatabase.js').weaponRollDB;
 var Utility = require('weaponRollAssessment.js').Utility;
 var elementDetector = require('elementDetector.js');
 var volatiles = require('dimVolatileClasses.js').VOLATILE_CLASSES;
-var WEAPON_BUCKETS = ['bucket-1498876634',
-// Kinetic
-'bucket-2465295065',
+var WEAPON_BUCKETS = ['Kinetic Weapons',
+// 
+'Energy Weapons',
 // Energy
-'bucket-953998645',
+'Power Weapons',
 // Power
-'bucket-215593132' // Postmaster
+'Lost Items' // Postmaster
 ];
 function storeWeaponData() {
   WEAPON_BUCKETS.forEach(function (className) {
-    $('.' + className).find('.item').not('[data-fate-weapon-registered]').each(function () {
+    $('[aria-label="' + className + '"]').find('.item').not('[data-fate-weapon-registered]').each(function () {
       $(this).attr('data-fate-weapon-registered', false);
       var serialNumber = $(this).attr('id').split("-")[0];
       $(this).attr('data-fate-serial', serialNumber);
